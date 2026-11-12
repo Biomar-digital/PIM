@@ -5,7 +5,7 @@ import { can, isOutdated, variantMissingFields } from '../../data/rules'
 import { createVariant, markVariantUpToDate, saveMarketing, saveVariant, setMarkets } from '../../data/store'
 import { marketLabel } from '../../data/reference'
 import { Card, EmptyState, ListEditor } from '../../components/ui'
-import { SampleTag } from './InfoTab'
+import { SampleTag, SourceTag } from './InfoTab'
 
 const FIELDS: { key: MarketingField; label: string; hint: string; kind: 'line' | 'text' | 'long' | 'list'; max?: number }[] = [
   { key: 'tagline', label: 'Tagline', hint: 'One short line that captures the product promise', kind: 'line', max: 70 },
@@ -73,7 +73,7 @@ function GlobalMarketing({ p, user }: { p: Product; user: User }) {
         {FIELDS.map((f) => (
           <div className="mfield" key={f.key}>
             <div className="mfield-head">
-              <h3>{f.label}{!draft && p.sampleFields?.includes(f.key) && (m[f.key] as string | string[]).length > 0 && <SampleTag />}</h3>
+              <h3>{f.label}{!draft && p.sampleFields?.includes(f.key) && (m[f.key] as string | string[]).length > 0 && <SampleTag />}{!draft && p.sources?.[f.key] && <SourceTag url={p.sources[f.key]} />}</h3>
               <span className="muted small">{f.hint}</span>
             </div>
             {draft ? (

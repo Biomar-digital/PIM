@@ -51,7 +51,7 @@ export default function ProductPage() {
       <header className="phead card">
         <Thumb url={productThumb(p, blobUrls)} size={88} />
         <div className="phead-main">
-          <div className="phead-kicker">{p.range} · {p.category}</div>
+          <div className="phead-kicker">{p.range}{p.categories.length ? ` · ${p.categories.join(', ')}` : ''}</div>
           <h1>{p.name} <span className="phead-species">{p.species}</span></h1>
           <div className="phead-meta">
             <StatusBadge status={overallStatus(p)} />

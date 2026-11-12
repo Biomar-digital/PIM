@@ -102,7 +102,8 @@ export interface Product {
   name: string
   species: string
   range: string
-  category: string
+  /** Website categories, e.g. High Performance, Health, First feeding */
+  categories: string[]
   stages: string[]
   feedType: string
   pelletSizes: string[]
@@ -110,6 +111,8 @@ export interface Product {
   regulatoryNotes: string
   /** Fields still holding illustrative sample values (not from the website import). Cleared field by field on edit. */
   sampleFields?: string[]
+  /** Field -> biomar.com page the value was imported from. Dropped when someone edits the field. */
+  sources?: Record<string, string>
   owner: string
   lifecycle: Lifecycle
   info: Meta
@@ -130,7 +133,7 @@ export interface Database {
 
 /** Fields of the global product information block (used by forms and history snapshots). */
 export const INFO_FIELDS = [
-  'name', 'species', 'range', 'category', 'stages', 'feedType', 'pelletSizes',
+  'name', 'species', 'range', 'categories', 'stages', 'feedType', 'pelletSizes',
   'packaging', 'code', 'owner', 'lifecycle', 'regulatoryNotes',
 ] as const
 export type InfoField = (typeof INFO_FIELDS)[number]

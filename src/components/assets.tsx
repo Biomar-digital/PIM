@@ -66,7 +66,7 @@ function DocPreview({ p, a }: { p: Product; a: Asset }) {
       <header className="doc-head"><span className="doc-logo">BioMar</span><span>{a.type === 'brochure' ? 'Product brochure' : 'Technical datasheet'}{a.scope !== 'global' ? ` · ${marketLabel(a.scope)}` : ''}</span></header>
       <h2>{p.name} – {p.species}</h2>
       <table className="doc-table"><tbody>
-        {[['Product code', p.code], ['Range', p.range], ['Category', p.category], ['Production stage', p.stages.join(', ')], ['Feed type', p.feedType], ['Pellet sizes', p.pelletSizes.join(', ')], ['Packaging', p.packaging.join(', ')]].map(([k, v]) => (
+        {[['Product code', p.code], ['Range', p.range], ['Category', p.categories.join(', ')], ['Production stage', p.stages.join(', ')], ['Feed type', p.feedType], ['Pellet sizes', p.pelletSizes.join(', ')], ['Packaging', p.packaging.join(', ')]].map(([k, v]) => (
           <tr key={k}><th>{k}</th><td>{v || '—'}</td></tr>
         ))}
       </tbody></table>

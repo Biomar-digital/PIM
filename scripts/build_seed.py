@@ -65,48 +65,23 @@ SELECTION = [
 
 # Fields not present in the website export. The seed fills them with illustrative values and
 # the app labels them "Sample" until someone edits them.
-SAMPLE_FIELDS = ["code", "feedType", "pelletSizes", "packaging", "owner", "lifecycle", "tagline", "sellingPoints"]
+SAMPLE_FIELDS = ["code", "feedType", "pelletSizes", "packaging", "owner", "lifecycle"]
 
 RANGE_FROM_NAME = {
     "INICIO": "INICIO", "INTRO": "INTRO", "CPK": "CPK", "DAN-EX": "DAN-EX", "Ecolife": "Ecolife",
     "EGGSTRA": "EGGSTRA", "FINESTA": "FINESTA", "EFICO": "EFICO", "Symbio": "Symbio", "Tri": "TRI-X",
 }
 
-CATEGORY = {
-    "LARVIVA": "Hatchery feed", "INICIO": "Starter feed", "INTRO": "Starter feed", "CPK": "Starter feed",
-    "SmartCare": "Functional health feed", "Blue Impact": "Low-impact feed", "Ecolife": "Low-impact feed",
-    "ORBIT": "RAS feed", "Symbio": "Cleaner fish feed", "EGGSTRA": "Broodstock feed",
-}
+# Website content (taglines, range benefits, categories, stages) collected by
+# scripts/fetch_website_content.py. Without it the fields stay empty.
+WEBSITE_PATH = "src/data/website.json"
+WEBSITE = json.load(open(WEBSITE_PATH, encoding="utf-8")) if os.path.exists(WEBSITE_PATH) else {"ranges": {}, "products": {}}
 
-TAGLINES = {
-    "POWER": "Maximum growth. Shorter time at sea.",
-    "Blue Impact": "Same performance, lower footprint.",
-    "SmartCare": "Nutrition that supports fish health when it matters most.",
-    "ORBIT": "High performance for fish and biofilter.",
-    "EFICO": "Proven performance, every day.",
-    "INICIO": "A strong start from the very first feeding.",
-    "INTRO": "Built for a robust transition.",
-    "LARVIVA": "Hatchery nutrition for strong, uniform juveniles.",
-    "MAXIO": "Growth and feed efficiency in balance.",
-    "EXIA": "Consistent results in intensive shrimp farming.",
-    "Ecolife": "Responsible feed with a documented lower impact.",
-    "Symbio": "Tailored nutrition for effective cleaner fish.",
-}
-
-SELLING_POINTS = {
-    "POWER": ["BioMar's best-selling salmon feed", "Shorter production cycle frees up licence capacity"],
-    "Blue Impact": ["Lower carbon footprint per kg of fish produced", "Supports customers' ASC and retailer sustainability targets"],
-    "SmartCare": ["Developed and documented at BioMar's Aquaculture Technology Centres", "Can be used strategically in high-risk periods"],
-    "ORBIT": ["Reduces biofilter load in RAS", "Also suitable for flow-through systems"],
-    "EFICO": ["Broad, well-known range with consistent physical quality"],
-    "LARVIVA": ["Complete hatchery programme from first feeding to weaning"],
-    "EXIA": ["Formulated for high-density (200+ shrimp/m²) systems"],
-}
-
+STAGE_ORDER = ["Hatchery", "Starter", "Transfer", "Grower"]
 PELLETS = {
     "Hatchery": ["0.1–0.2 mm", "0.2–0.3 mm", "0.3–0.5 mm", "0.5–0.8 mm"],
-    "Fry & fingerling": ["0.5 mm", "0.8 mm", "1.0 mm", "1.5 mm", "2.0 mm"],
-    "Smolt transfer": ["2.0 mm", "3.0 mm", "4.0 mm"],
+    "Starter": ["0.5 mm", "0.8 mm", "1.0 mm", "1.5 mm", "2.0 mm"],
+    "Transfer": ["2.0 mm", "3.0 mm", "4.0 mm"],
     "Grower": ["3.0 mm", "4.5 mm", "6.0 mm", "9.0 mm", "12.0 mm"],
 }
 SHRIMP_PELLETS = ["Crumble 0.4–0.6 mm", "Crumble 0.8–1.2 mm", "1.6 mm", "2.0 mm", "2.4 mm"]
@@ -210,8 +185,11 @@ def main():
             rng = name.split()[0]
         stages_raw = props.get("stages") if isinstance(props.get("stages"), str) else ""
         stages = [STAGES[s[-6:]] for s in stages_raw.split(",") if s and s[-6:] in STAGES] or ["Grower"]
-        order = ["Hatchery", "Fry & fingerling", "Smolt transfer", "Grower"]
-        stages = sorted(set(stages), key=order.index)
+        # The export's stage ids are unlabelled; prefer the stages shown on the product page.
+        web = WEBSITE["products"].get(slugify(f"{name}-{species}"), {})
+        web_stages = [x.replace(" Feed", "") for x in web.get("stages", [])]
+        stages = web_stages or [{"Fry & fingerling": "Starter", "Smolt transfer": "Transfer"}.get(x, x) for x in stages]
+        stages = sorted(set(stages), key=STAGE_ORDER.index)
 
         content = {}
         pf = props.get("productFeatures") or {}
@@ -227,9 +205,8 @@ def main():
         en = content.get("en", {"paras": [], "benefits": []})
         description = "\n\n".join(en["paras"])
 
-        category = CATEGORY.get(rng, "Performance feed")
-        if "Broodstock" in name:
-            category = "Broodstock feed"
+        categories = [c.replace("\u200b", "").strip() for c in web.get("categories", [])]
+        web_range = WEBSITE["ranges"].get(rng, {})
         is_shrimp = species == "Shrimp"
         pellet_pool = SHRIMP_PELLETS if is_shrimp else PELLETS[stages[-1]]
         pellet_sizes = pellet_pool[: random.randint(3, len(pellet_pool))]
@@ -241,9 +218,21 @@ def main():
         mk_status = "approved" if r < 0.6 else ("in_review" if r < 0.75 else "draft")
         mk_updated = random.randint(-120, -1) if mk_status == "approved" else random.randint(-21, -1)
         mk_version = random.randint(2, 6)
-        tagline = TAGLINES.get(rng, "") if random.random() < 0.9 else ""
-        selling = SELLING_POINTS.get(rng, []) if random.random() < 0.85 else []
+        random.random(), random.random()  # keep the random sequence stable
+        tagline = web_range.get("tagline", "")
+        selling = web_range.get("benefits", [])
+        sources = {}
+        if web.get("url"):
+            for f in ("description", "keyBenefits", "categories", "stages"):
+                sources[f] = web["url"]
+        if web_range.get("url"):
+            if tagline:
+                sources["tagline"] = web_range["url"]
+            if selling:
+                sources["sellingPoints"] = web_range["url"]
         short = first_sentence(description) if description and random.random() < 0.85 else ""
+        if short and web.get("url"):
+            sources["shortDescription"] = web["url"]
         if not description:
             mk_status = "draft"
 
@@ -259,13 +248,14 @@ def main():
             vstatus = "approved" if vr < 0.74 else ("in_review" if vr < 0.83 else "draft")
             outdated = random.random() < 0.15
             editor = LOCAL_EDITOR_FOR.get(c, "u-ingrid")
+            web_loc = web_range.get("locales", {}).get(c, {})
             variants[c] = {
                 "localName": "",
                 "shortDescription": "" if same_as_global else (first_sentence(loc["paras"][0]) if loc["paras"] and random.random() < 0.88 else ""),
-                "tagline": "",
+                "tagline": "" if same_as_global or web_loc.get("tagline") == tagline else web_loc.get("tagline", ""),
                 "description": "" if same_as_global else "\n\n".join(loc["paras"]),
                 "keyBenefits": [] if same_as_global else loc["benefits"],
-                "sellingPoints": [],
+                "sellingPoints": [] if same_as_global or web_loc.get("benefits") == selling else web_loc.get("benefits", []),
                 "notes": "Uses global English copy." if same_as_global else "",
                 "inheritsGlobal": same_as_global,
                 "websiteStatus": "live" if vstatus == "approved" and random.random() < 0.85 else "not_live",
@@ -343,13 +333,14 @@ def main():
             "name": name,
             "species": species,
             "range": rng,
-            "category": category,
+            "categories": categories,
             "stages": stages,
             "feedType": "Microdiet" if "Hatchery" in stages and rng == "LARVIVA" else ("Sinking pellet" if is_shrimp or species in ("Sea Bream", "Sea Bass", "Sturgeon", "Eel") else "Extruded pellet"),
             "pelletSizes": pellet_sizes,
             "packaging": ["25 kg bag", "500 kg big bag"] if stages[-1] == "Grower" else ["10 kg bag", "20 kg bag"],
             "regulatoryNotes": "",
             "sampleFields": SAMPLE_FIELDS,
+            "sources": sources,
             "owner": owner,
             "lifecycle": "active",
             "info": {"status": info_status, "updatedBy": owner, "updatedAt": iso(random.randint(-300, -5) if info_status == "approved" else random.randint(-15, -1))},
@@ -370,7 +361,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 4, "users": USERS, "products": products}
+    seed = {"version": 5, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")

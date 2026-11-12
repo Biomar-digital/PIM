@@ -90,6 +90,9 @@ p { margin: 0 0 8px; }
 .sidebar-brand { text-align: center; padding: 6px 0 22px; position: relative; }
 .brand-logo { width: 84px; height: auto; display: block; margin: 0 auto; }
 .sample-tag { display: inline-block; margin-left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--review); background: var(--review-bg); border-radius: 3px; padding: 0 6px; vertical-align: 1px; cursor: help; }
+.source-tag { display: inline-block; margin-left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .02em; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 3px; padding: 0 6px; vertical-align: 1px; }
+.source-link { text-decoration: none; }
+.source-link:hover .source-tag { text-decoration: underline; }
 .sidebar-app { font-weight: 600; font-size: 13.5px; margin-top: 6px; }
 .sidebar-close { display: none; position: absolute; right: 0; top: 0; color: #fff; }
 .sidebar-nav { display: grid; gap: 4px; }
@@ -346,7 +349,7 @@ a.prod-cell:hover strong { text-decoration: underline; }
 .lock { display: inline-flex; align-items: center; gap: 4px; }
 
 .dl { margin: 0; padding: 4px 18px 12px; }
-.dl-row { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.dl-row { display: grid; grid-template-columns: 230px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .dl-row:last-child { border-bottom: 0; }
 .dl dt { color: var(--muted); font-weight: 500; }
 .dl dd { margin: 0; }

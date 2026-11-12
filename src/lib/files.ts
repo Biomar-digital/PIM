@@ -75,7 +75,7 @@ export function datasheetPdf(p: Product, a: Asset): Blob {
   add(`${a.type === 'brochure' ? 'Product brochure' : ASSET_LABEL[a.type]}${a.scope !== 'global' ? ' - ' + marketLabel(a.scope) : ''}`, 12)
   add('')
   const facts: [string, string][] = [
-    ['Product code', p.code], ['Range', p.range], ['Category', p.category], ['Species', p.species],
+    ['Product code', p.code], ['Range', p.range], ['Category', p.categories.join(', ')], ['Species', p.species],
     ['Production stage', p.stages.join(', ')], ['Feed type', p.feedType], ['Pellet sizes', p.pelletSizes.join(', ')],
     ['Packaging', p.packaging.join(', ')], ['Lifecycle', LIFECYCLE_LABEL[p.lifecycle]],
   ]

@@ -45,11 +45,13 @@ export const RANGES = [
   'POWER', 'Blue Impact', 'SmartCare', 'ORBIT', 'EFICO', 'INICIO', 'INTRO', 'CPK', 'LARVIVA',
   'MAXIO', 'EXIA', 'Ecolife', 'EGGSTRA', 'DAN-EX', 'FINESTA', 'Symbio', 'TRI-X',
 ]
+/** Product categories as used on biomar.com */
 export const CATEGORIES = [
-  'Performance feed', 'Functional health feed', 'Low-impact feed', 'RAS feed', 'Starter feed',
-  'Hatchery feed', 'Broodstock feed', 'Cleaner fish feed',
+  'Top performance', 'High Performance', 'Standard Performance', 'Health', 'Sustainability', 'Organic', 'RAS',
+  'First feeding', 'Larval', 'Post larval/Weaning', 'Nursery', 'Live feed', 'Broodstock', 'Finisher',
 ]
-export const STAGES = ['Hatchery', 'Fry & fingerling', 'Smolt transfer', 'Grower']
+/** Production stages as used on biomar.com (Hatchery Feed, Starter Feed, …) */
+export const STAGES = ['Hatchery', 'Starter', 'Transfer', 'Grower']
 export const SPECIES = [
   'Atlantic Salmon', 'Coho Salmon', 'Triploid Salmon', 'Trout', 'Arctic Char', 'Sea Bass', 'Sea Bream', 'Meagre', 'Sturgeon',
   'Shrimp', 'Tilapia', 'Eel', 'Lumpfish', 'Ballan Wrasse', 'Yellowtail Kingfish', 'Turbot', 'Barramundi',

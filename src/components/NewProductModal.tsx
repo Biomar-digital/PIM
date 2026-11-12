@@ -4,7 +4,7 @@ import { createProduct } from '../data/store'
 import { Modal } from './ui'
 
 export function NewProductModal({ onClose, onCreated }: { onClose: () => void; onCreated: (id: string) => void }) {
-  const [f, setF] = useState({ name: '', species: SPECIES[0], range: RANGES[0], category: CATEGORIES[0], stages: ['Grower'] })
+  const [f, setF] = useState({ name: '', species: SPECIES[0], range: RANGES[0], categories: [CATEGORIES[0]], stages: ['Grower'] })
   const valid = f.name.trim().length > 1 && f.stages.length > 0
   const submit = () => valid && onCreated(createProduct({ ...f, name: f.name.trim() }))
   return (
@@ -32,7 +32,7 @@ export function NewProductModal({ onClose, onCreated }: { onClose: () => void; o
         </label>
         <label className="field">
           <span>Category</span>
-          <select value={f.category} onChange={(e) => setF({ ...f, category: e.target.value })}>{CATEGORIES.map((s) => <option key={s}>{s}</option>)}</select>
+          <select value={f.categories[0]} onChange={(e) => setF({ ...f, categories: [e.target.value] })}>{CATEGORIES.map((s) => <option key={s}>{s}</option>)}</select>
         </label>
         <fieldset className="field">
           <legend>Production stage</legend>

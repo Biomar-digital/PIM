@@ -130,6 +130,11 @@ export function sectionLabel(section: Section): string {
   return marketLabel(section)
 }
 
+/** An edited value no longer comes from the website, so its source link goes. */
+function withoutKeys(src: Record<string, string> | undefined, keys: readonly string[]) {
+  return src && Object.fromEntries(Object.entries(src).filter(([k]) => !keys.includes(k)))
+}
+
 /** Editing approved content puts it back to draft so changes are always reviewed. */
 const afterEdit = (s: Status): Status => (s === 'approved' ? 'draft' : s)
 
@@ -147,6 +152,7 @@ export function saveInfo(id: string, patch: Partial<Pick<Product, InfoField>>) {
     if (!changed.length) return p
     next.info = { ...p.info, status: afterEdit(p.info.status), updatedBy: state.userId, updatedAt: now() }
     next.sampleFields = p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f))
+    next.sources = withoutKeys(p.sources, changed)
     next.history = [historyEntry('info', 'edited', `Updated ${changed.length} field${changed.length > 1 ? 's' : ''}: ${changed.join(', ')}`, pick(next, INFO_FIELDS)), ...p.history]
     return next
   })
@@ -164,6 +170,7 @@ export function saveMarketing(id: string, patch: Partial<Omit<MarketingContent, 
     return {
       ...p,
       sampleFields: p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f)),
+      sources: withoutKeys(p.sources, changed),
       marketing: m,
       history: [historyEntry('marketing', 'edited', `Edited ${changed.join(', ')}`, pick(m, MARKETING_FIELDS)), ...p.history],
     }
@@ -345,7 +352,7 @@ export function removeAsset(id: string, assetId: string) {
 
 /* ---------------- Products ---------------- */
 
-export function createProduct(input: { name: string; species: string; range: string; category: string; stages: string[] }): string {
+export function createProduct(input: { name: string; species: string; range: string; categories: string[]; stages: string[] }): string {
   const slugBase = `${input.name}-${input.species}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
   let slug = slugBase
   let i = 2
@@ -358,7 +365,7 @@ export function createProduct(input: { name: string; species: string; range: str
     name: input.name,
     species: input.species,
     range: input.range,
-    category: input.category,
+    categories: input.categories,
     stages: input.stages,
     feedType: 'Extruded pellet',
     pelletSizes: [],

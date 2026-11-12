@@ -16,7 +16,7 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
   const local = context !== 'global'
 
   const start = () => setDraft({
-    name: p.name, species: p.species, range: p.range, category: p.category, stages: [...p.stages], feedType: p.feedType,
+    name: p.name, species: p.species, range: p.range, categories: [...p.categories], stages: [...p.stages], feedType: p.feedType,
     pelletSizes: [...p.pelletSizes], packaging: [...p.packaging], code: p.code, owner: p.owner, lifecycle: p.lifecycle, regulatoryNotes: p.regulatoryNotes,
   })
   const save = () => { if (draft) { saveInfo(p.id, draft); setDraft(null) } }
@@ -33,7 +33,14 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
           <label className="field"><span>Product code</span><input value={draft.code} onChange={(e) => set('code', e.target.value)} /></label>
           <label className="field"><span>Species</span><select value={draft.species} onChange={(e) => set('species', e.target.value)}>{[...new Set([draft.species, ...SPECIES])].map((s) => <option key={s}>{s}</option>)}</select></label>
           <label className="field"><span>Product range</span><select value={draft.range} onChange={(e) => set('range', e.target.value)}>{[...new Set([draft.range, ...RANGES])].map((s) => <option key={s}>{s}</option>)}</select></label>
-          <label className="field"><span>Category</span><select value={draft.category} onChange={(e) => set('category', e.target.value)}>{CATEGORIES.map((s) => <option key={s}>{s}</option>)}</select></label>
+          <fieldset className="field span-2">
+            <legend>Categories</legend>
+            <div className="checks">
+              {CATEGORIES.map((c) => (
+                <label key={c} className="check"><input type="checkbox" checked={draft.categories.includes(c)} onChange={(e) => set('categories', e.target.checked ? [...draft.categories, c] : draft.categories.filter((x) => x !== c))} />{c}</label>
+              ))}
+            </div>
+          </fieldset>
           <label className="field"><span>Feed type</span><select value={draft.feedType} onChange={(e) => set('feedType', e.target.value)}>{FEED_TYPES.map((s) => <option key={s}>{s}</option>)}</select></label>
           <fieldset className="field span-2">
             <legend>Production stage</legend>
@@ -58,9 +65,9 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
     ['Product name', p.name],
     ['Product code', p.code, 'code'],
     ['Product range', p.range],
-    ['Category', p.category],
+    ['Categories', p.categories.length ? <span className="tags">{p.categories.map((c) => <span className="tag" key={c}>{c}</span>)}</span> : null, 'categories'],
     ['Species', p.species],
-    ['Production stage', p.stages.join(', ')],
+    ['Production stage', p.stages.join(', '), 'stages'],
     ['Feed type', p.feedType, 'feedType'],
     ['Pellet sizes', p.pelletSizes.length ? <span className="tags">{p.pelletSizes.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null, 'pelletSizes'],
     ['Packaging', p.packaging.length ? <span className="tags">{p.packaging.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null, 'packaging'],
@@ -80,7 +87,7 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
         {local && <p className="pad-x pad-t small muted">Product information is shared by all markets and maintained globally.</p>}
         {hasSample && (
           <p className="pad-x pad-t small muted">
-            Name, range, category, species and stage come from the BioMar website. Fields marked <SampleTag /> are not on the website,
+            Fields marked <SourceTag /> were imported from biomar.com. Fields marked <SampleTag /> are not on the website,
             so the prototype shows example values. In the live PIM the global product team maintains them here, or they are
             imported from the ERP item master and technical datasheets. The tag disappears when someone edits the field.
           </p>
@@ -88,7 +95,7 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
         <dl className="dl">
           {rows.map(([k, v, field]) => (
             <div key={k} className="dl-row">
-              <dt>{k}{field && p.sampleFields?.includes(field) && <SampleTag />}</dt>
+              <dt>{k}{field && p.sampleFields?.includes(field) && <SampleTag />}{field && p.sources?.[field] && <SourceTag url={p.sources[field]} />}</dt>
               <dd>{v || <span className="missing">Missing</span>}</dd>
             </div>
           ))}
@@ -126,4 +133,9 @@ function LocalInfo({ p, user, context }: { p: Product; user: User; context: stri
 
 export function SampleTag() {
   return <span className="sample-tag" title="Example value – not from the BioMar website. Replace it by editing the field.">Sample</span>
+}
+
+export function SourceTag({ url }: { url?: string }) {
+  const tag = <span className="source-tag" title={url ? `Imported from ${url}` : 'Imported from biomar.com'}>biomar.com</span>
+  return url ? <a href={url} target="_blank" rel="noreferrer" className="source-link">{tag}</a> : tag
 }

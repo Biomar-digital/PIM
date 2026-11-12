@@ -66,7 +66,7 @@ export function completeness(p: Product): { score: number; checks: Check[]; miss
   const m = p.marketing
   const checks: Check[] = [
     { id: 'name', group: 'info', label: 'Product name & code', ok: !!p.name && !!p.code },
-    { id: 'classification', group: 'info', label: 'Range, category & species', ok: !!p.range && !!p.category && !!p.species },
+    { id: 'classification', group: 'info', label: 'Range, category & species', ok: !!p.range && p.categories.length > 0 && !!p.species },
     { id: 'stages', group: 'info', label: 'Production stage', ok: p.stages.length > 0 },
     { id: 'pellets', group: 'info', label: 'Pellet sizes', ok: p.pelletSizes.length > 0 },
     { id: 'packaging', group: 'info', label: 'Packaging', ok: p.packaging.length > 0 },

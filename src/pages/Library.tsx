@@ -46,12 +46,12 @@ export default function Library() {
       .map((p) => ({ p, c: completeness(p) }))
       .filter(({ p, c }) => {
         if (q) {
-          const hay = [p.name, p.species, p.range, p.code, p.category, p.marketing.tagline, p.marketing.shortDescription].join(' ').toLowerCase()
+          const hay = [p.name, p.species, p.range, p.code, ...p.categories, p.marketing.tagline, p.marketing.shortDescription].join(' ').toLowerCase()
           if (!q.split(/\s+/).every((t) => hay.includes(t))) return false
         }
         if (get('range') && p.range !== get('range')) return false
         if (get('species') && p.species !== get('species')) return false
-        if (get('category') && p.category !== get('category')) return false
+        if (get('category') && !p.categories.includes(get('category'))) return false
         if (get('stage') && !p.stages.includes(get('stage'))) return false
         if (get('market') && !p.markets.includes(get('market'))) return false
         if (get('language') && !Object.keys(p.variants).some((l) => MARKET_BY_ID[l]?.language === get('language'))) return false
@@ -190,7 +190,7 @@ export default function Library() {
                       </span>
                     </Link>
                   </td>
-                  <td className="hide-md"><span className="small">{p.range}</span><span className="muted small block">{p.category}</span></td>
+                  <td className="hide-md"><span className="small">{p.range}</span><span className="muted small block">{p.categories.join(', ')}</span></td>
                   <td className="hide-lg small">{p.stages.join(', ')}</td>
                   <td>{local ? <StatusBadge status={variantState(p, context)} small /> : <StatusBadge status={overallStatus(p)} small />}</td>
                   <td style={{ minWidth: 130 }}><CompletenessBar score={c.score} /></td>
