@@ -1,62 +1,34 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertTriangle, CheckCircle2, CircleDashed, Clock, Image as ImageIcon, X, XCircle } from 'lucide-react'
-import type { Status } from '../types'
-import { STATUS_LABEL } from '../data/reference'
-import { VARIANT_STATE_LABEL, type VariantState } from '../data/rules'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { AlertTriangle, Check, CheckCircle2, ChevronDown, CircleDashed, Clock, Copy, X } from 'lucide-react'
+import { MARKET_STATE_LABEL, type MarketState } from '../data/rules'
 import { initials } from '../lib/format'
-import { useStore, userName } from '../data/store'
+import { copyText } from '../lib/files'
+import { toast, useStore, userName } from '../data/store'
 
 /* ---------- Status ---------- */
 
-const STATUS_ICON = {
+const STATUS_ICON: Record<MarketState, typeof Clock> = {
   approved: CheckCircle2,
   in_review: Clock,
   draft: CircleDashed,
-  outdated: AlertTriangle,
-  missing: XCircle,
+  needs_update: AlertTriangle,
+  not_started: CircleDashed,
 }
 
-export function StatusBadge({ status, small }: { status: Status | VariantState; small?: boolean }) {
+export function StatusBadge({ status, small }: { status: MarketState; small?: boolean }) {
   const Icon = STATUS_ICON[status]
-  const label = (STATUS_LABEL as Record<string, string>)[status] ?? VARIANT_STATE_LABEL[status as VariantState]
   return (
     <span className={`badge badge-${status}${small ? ' badge-sm' : ''}`}>
       <Icon size={small ? 12 : 14} aria-hidden />
-      {label}
+      {MARKET_STATE_LABEL[status]}
     </span>
   )
 }
 
-/* ---------- Completeness ---------- */
+/* ---------- Empty values ---------- */
 
-export function scoreTone(score: number) {
-  return score === 100 ? 'good' : score >= 75 ? 'ok' : score >= 50 ? 'warn' : 'bad'
-}
-
-export function CompletenessBar({ score, showLabel = true }: { score: number; showLabel?: boolean }) {
-  return (
-    <div className="cbar" title={`${score}% complete`}>
-      <div className="cbar-track">
-        <div className={`cbar-fill tone-${scoreTone(score)}`} style={{ width: `${score}%` }} />
-      </div>
-      {showLabel && <span className="cbar-label">{score}%</span>}
-    </div>
-  )
-}
-
-export function CompletenessRing({ score, size = 64 }: { score: number; size?: number }) {
-  const r = size / 2 - 5
-  const c = 2 * Math.PI * r
-  return (
-    <svg width={size} height={size} className={`ring tone-${scoreTone(score)}`} role="img" aria-label={`${score}% complete`}>
-      <circle cx={size / 2} cy={size / 2} r={r} className="ring-track" />
-      <circle
-        cx={size / 2} cy={size / 2} r={r} className="ring-fill"
-        strokeDasharray={`${(score / 100) * c} ${c}`} transform={`rotate(-90 ${size / 2} ${size / 2})`}
-      />
-      <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle">{score}%</text>
-    </svg>
-  )
+export function Empty({ text = 'Not added yet' }: { text?: string }) {
+  return <span className="empty-value">{text}</span>
 }
 
 /* ---------- People ---------- */
@@ -71,12 +43,34 @@ export function Avatar({ name, size = 28 }: { name: string; size?: number }) {
   )
 }
 
+export function When({ at }: { at: string }) {
+  return <time dateTime={at} title={new Date(at).toLocaleString('en-GB')}>{new Date(at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
+}
+
 export function UpdatedBy({ by, at }: { by: string; at: string }) {
-  useStore((s) => s.db.users) // re-render on user rename
+  useStore((s) => s.db.users) // re-render when people change
+  return <span>{userName(by)}, <When at={at} /></span>
+}
+
+/* ---------- Copy ---------- */
+
+export function CopyButton({ text, label = 'Copy' }: { text: string; label?: string }) {
+  const [done, setDone] = useState(false)
+  if (!text.trim()) return null
   return (
-    <span className="muted small">
-      {userName(by)} · <time dateTime={at} title={new Date(at).toLocaleString('en-GB')}>{new Date(at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
-    </span>
+    <button
+      type="button"
+      className={`copy-btn${done ? ' done' : ''}`}
+      onClick={async () => {
+        const ok = await copyText(text)
+        if (ok) { setDone(true); setTimeout(() => setDone(false), 1500) } else toast('Copy is blocked here. Select the text instead.', 'info')
+      }}
+      title={label}
+      aria-label={label}
+    >
+      {done ? <Check size={14} /> : <Copy size={14} />}
+      <span>{done ? 'Copied' : label}</span>
+    </button>
   )
 }
 
@@ -102,7 +96,23 @@ export function Modal({ title, onClose, children, footer, wide }: { title: strin
   )
 }
 
-/* ---------- Dropdown ---------- */
+/** Small confirm/note dialog for "Send back". */
+export function SendBackModal({ what, onClose, onSend }: { what: string; onClose: () => void; onSend: (note: string) => void }) {
+  const [note, setNote] = useState('')
+  return (
+    <Modal title="Send back to the editor" onClose={onClose} footer={<>
+      <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
+      <button className="btn btn-primary" disabled={!note.trim()} onClick={() => onSend(note.trim())}>Send back</button>
+    </>}>
+      <p className="muted">{what} goes back to draft. Tell the editor what to change.</p>
+      <label className="field"><span>What needs to change?</span>
+        <textarea id="send-back-note" rows={4} autoFocus value={note} onChange={(e) => setNote(e.target.value)} placeholder="For example: please align the benefits with the latest datasheet." />
+      </label>
+    </Modal>
+  )
+}
+
+/* ---------- Dropdown menu ---------- */
 
 export function useClickOutside<T extends HTMLElement>(onOutside: () => void) {
   const ref = useRef<T>(null)
@@ -114,9 +124,29 @@ export function useClickOutside<T extends HTMLElement>(onOutside: () => void) {
   return ref
 }
 
+export function Menu({ label, icon, items }: { label: string; icon?: ReactNode; items: { label: string; icon?: ReactNode; onClick: () => void }[] }) {
+  const [open, setOpen] = useState(false)
+  const close = useCallback(() => setOpen(false), [])
+  const ref = useClickOutside<HTMLDivElement>(close)
+  return (
+    <div className="menu" ref={ref}>
+      <button className="btn btn-secondary" onClick={() => setOpen(!open)} aria-expanded={open}>
+        {icon}{label}<ChevronDown size={16} />
+      </button>
+      {open && (
+        <div className="menu-pop" role="menu">
+          {items.map((i) => (
+            <button key={i.label} role="menuitem" className="menu-item" onClick={() => { setOpen(false); i.onClick() }}>{i.icon}{i.label}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ---------- List editor (benefits, pellet sizes...) ---------- */
 
-export function ListEditor({ value, onChange, placeholder, multiline }: { value: string[]; onChange: (v: string[]) => void; placeholder?: string; multiline?: boolean }) {
+export function ListEditor({ id, value, onChange, placeholder, multiline }: { id: string; value: string[]; onChange: (v: string[]) => void; placeholder?: string; multiline?: boolean }) {
   const [draft, setDraft] = useState('')
   const add = () => {
     if (!draft.trim()) return
@@ -128,16 +158,16 @@ export function ListEditor({ value, onChange, placeholder, multiline }: { value:
       {value.map((item, i) => (
         <div className="list-editor-row" key={i}>
           {multiline ? (
-            <textarea rows={2} value={item} onChange={(e) => onChange(value.map((v, j) => (j === i ? e.target.value : v)))} />
+            <textarea id={`${id}-${i}`} rows={2} value={item} onChange={(e) => onChange(value.map((v, j) => (j === i ? e.target.value : v)))} />
           ) : (
-            <input value={item} onChange={(e) => onChange(value.map((v, j) => (j === i ? e.target.value : v)))} />
+            <input id={`${id}-${i}`} value={item} onChange={(e) => onChange(value.map((v, j) => (j === i ? e.target.value : v)))} />
           )}
           <button type="button" className="icon-btn" aria-label="Remove" onClick={() => onChange(value.filter((_, j) => j !== i))}><X size={16} /></button>
         </div>
       ))}
       <div className="list-editor-row">
         <input
-          value={draft} placeholder={placeholder ?? 'Add item'} onChange={(e) => setDraft(e.target.value)}
+          id={`${id}-new`} value={draft} placeholder={placeholder ?? 'Add and press Enter'} onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); add() } }}
         />
         <button type="button" className="btn btn-secondary btn-sm" onClick={add}>Add</button>
@@ -153,10 +183,7 @@ export function Toasts() {
   return (
     <div className="toasts" role="status" aria-live="polite">
       {toasts.map((t) => (
-        <div key={t.id} className={`toast toast-${t.tone}`}>
-          {t.tone === 'warn' ? <AlertTriangle size={16} /> : <CheckCircle2 size={16} />}
-          {t.text}
-        </div>
+        <div key={t.id} className={`toast toast-${t.tone}`}><CheckCircle2 size={16} />{t.text}</div>
       ))}
     </div>
   )
@@ -186,11 +213,6 @@ export function Card({ title, actions, children, className = '' }: { title?: Rea
   )
 }
 
-export function Thumb({ url, size = 44 }: { url: string | null; size?: number }) {
-  return url ? (
-    <img src={url} alt="" className="thumb" style={{ width: size, height: size }} />
-  ) : (
-    <span className="thumb thumb-empty" style={{ width: size, height: size }} title="No hero image"><ImageIcon size={size * 0.4} /></span>
-  )
+export function Thumb({ url, size = 44 }: { url: string; size?: number }) {
+  return <img src={url} alt="" className="thumb" style={{ width: size, height: size }} />
 }
-

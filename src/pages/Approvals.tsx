@@ -1,88 +1,79 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Check, ClipboardCheck, X } from 'lucide-react'
-import { currentUser, setContext, transition, useStore, userName } from '../data/store'
-import { allBlocks, label, type ReviewItem } from '../data/insights'
+import { Link, useNavigate } from 'react-router-dom'
+import { Check, ClipboardCheck, Undo2 } from 'lucide-react'
+import { currentUser, transition, useStore, userName } from '../data/store'
+import { allBlocks, blockHref, blockLabel, type Block } from '../data/insights'
 import { can } from '../data/rules'
-import { MARKETS } from '../data/reference'
+import { MARKETS, marketLabel } from '../data/reference'
+import { productImage } from '../lib/files'
 import { timeAgo } from '../lib/format'
-import { productThumb } from '../lib/artwork'
-import { EmptyState, Modal, StatusBadge, Thumb } from '../components/ui'
+import { EmptyState, SendBackModal, Thumb } from '../components/ui'
 
-type TabId = 'review' | 'changes' | 'approved'
+type TabId = 'waiting' | 'sent_back'
 
 export default function Approvals() {
   const products = useStore((s) => s.db.products)
   const user = useStore(currentUser)
   const blobUrls = useStore((s) => s.blobUrls)
   const navigate = useNavigate()
-  const [tab, setTab] = useState<TabId>('review')
+  const [tab, setTab] = useState<TabId>('waiting')
   const [market, setMarket] = useState('')
-  const [asking, setAsking] = useState<ReviewItem | null>(null)
-  const [note, setNote] = useState('')
+  const [sendBack, setSendBack] = useState<Block | null>(null)
 
   const blocks = useMemo(() => allBlocks(products), [products])
-  const filterMarket = (b: ReviewItem) => !market || (market === 'global' ? b.section === 'info' || b.section === 'marketing' : b.section === market)
-  const lists: Record<TabId, ReviewItem[]> = {
-    review: blocks.filter((b) => b.status === 'in_review'),
-    changes: blocks.filter((b) => b.status === 'draft' && b.reviewNote),
-    approved: blocks.filter((b) => b.status === 'approved').sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 40),
+  const byMarket = (b: Block) => !market || (market === 'global' ? b.section === 'global' : b.section === market)
+  const lists: Record<TabId, Block[]> = {
+    waiting: blocks.filter((b) => b.status === 'in_review').sort((a, b) => a.updatedAt.localeCompare(b.updatedAt)),
+    sent_back: blocks.filter((b) => b.status === 'draft' && b.reviewNote).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)),
   }
-  const list = lists[tab].filter(filterMarket).sort((a, b) => (tab === 'approved' ? 0 : a.updatedAt.localeCompare(b.updatedAt)))
+  const list = lists[tab].filter(byMarket)
   const approver = can.approve(user)
-  const open = (b: ReviewItem) => {
-    const local = b.section !== 'info' && b.section !== 'marketing'
-    setContext(local ? b.section : 'global')
-    navigate(`/products/${b.product.id}/${b.section === 'info' ? 'information' : 'marketing'}`)
-  }
 
   return (
     <div className="page">
       <div className="page-head">
         <div>
           <h1>Approvals</h1>
-          <p className="muted">{approver ? 'Review content submitted by global and local editors.' : 'Content waiting for approval. Only approvers can approve or send back.'}</p>
+          <p className="muted">{approver ? 'Content sent for approval by the global and local teams. Oldest first.' : 'Content waiting for an approver. Only approvers can approve.'}</p>
         </div>
       </div>
       <div className="toolbar">
         <div className="seg seg-text" role="tablist">
-          <button className={tab === 'review' ? 'on' : ''} onClick={() => setTab('review')}>Waiting for review ({lists.review.length})</button>
-          <button className={tab === 'changes' ? 'on' : ''} onClick={() => setTab('changes')}>Changes requested ({lists.changes.length})</button>
-          <button className={tab === 'approved' ? 'on' : ''} onClick={() => setTab('approved')}>Recently approved</button>
+          <button role="tab" aria-selected={tab === 'waiting'} className={tab === 'waiting' ? 'on' : ''} onClick={() => setTab('waiting')}>Waiting ({lists.waiting.length})</button>
+          <button role="tab" aria-selected={tab === 'sent_back'} className={tab === 'sent_back' ? 'on' : ''} onClick={() => setTab('sent_back')}>Sent back ({lists.sent_back.length})</button>
         </div>
-        <select value={market} onChange={(e) => setMarket(e.target.value)} aria-label="Filter by market">
-          <option value="">All content</option>
+        <select id="approvals-market" value={market} onChange={(e) => setMarket(e.target.value)} aria-label="Show content for">
+          <option value="">Global and all markets</option>
           <option value="global">Global content only</option>
-          {MARKETS.map((m) => <option key={m.id} value={m.id}>{m.market} – {m.language}</option>)}
+          {MARKETS.map((m) => <option key={m.id} value={m.id}>{marketLabel(m.id)}</option>)}
         </select>
       </div>
 
       {list.length === 0 ? (
-        <EmptyState icon={<ClipboardCheck size={32} />} title={tab === 'review' ? 'Nothing waiting for review' : 'Nothing here'}><p className="muted">All caught up.</p></EmptyState>
+        <EmptyState icon={<ClipboardCheck size={32} />} title={tab === 'waiting' ? 'Nothing is waiting for approval' : 'Nothing has been sent back'}><p className="muted">All caught up.</p></EmptyState>
       ) : (
         <div className="card table-wrap">
           <table className="table">
-            <thead><tr><th>Product</th><th>Content</th><th className="hide-md">{tab === 'review' ? 'Submitted' : 'Updated'}</th><th>Status</th><th /></tr></thead>
+            <thead><tr><th>Product</th><th>What</th><th className="hide-md">{tab === 'waiting' ? 'Sent by' : 'Sent back by'}</th><th /></tr></thead>
             <tbody>
               {list.map((b) => (
-                <tr key={`${b.product.id}-${b.section}`} className="row-click" onClick={() => open(b)}>
+                <tr key={`${b.product.id}-${b.section}`} className="row-click" onClick={() => navigate(blockHref(b.product.id, b.section))}>
                   <td>
                     <span className="prod-cell">
-                      <Thumb url={productThumb(b.product, blobUrls)} size={36} />
-                      <span><strong>{b.product.name}</strong><span className="muted small block">{b.product.species}</span></span>
+                      <Thumb url={productImage(b.product, blobUrls)} size={36} />
+                      <span><strong>{b.product.name} – {b.product.species}</strong><span className="muted small block">{b.product.range}</span></span>
                     </span>
                   </td>
-                  <td>{label(b.section)}{b.reviewNote && tab === 'changes' && <span className="small muted block clamp-1">“{b.reviewNote}”</span>}</td>
+                  <td>{blockLabel(b.section)}{b.reviewNote && tab === 'sent_back' && <span className="small muted block clamp-1">“{b.reviewNote}”</span>}</td>
                   <td className="hide-md small">{userName(b.updatedBy)}<span className="muted block">{timeAgo(b.updatedAt)}</span></td>
-                  <td><StatusBadge status={b.status} small /></td>
-                  <td className="nowrap" onClick={(e) => e.stopPropagation()}>
-                    {tab === 'review' && approver ? (
-                      <div className="row-gap">
-                        <button className="btn btn-approve btn-sm" onClick={() => transition(b.product.id, b.section, 'approved')}><Check size={14} /> Approve</button>
-                        <button className="btn btn-secondary btn-sm" onClick={() => setAsking(b)}><X size={14} /> <span className="hide-sm">Request changes</span></button>
+                  <td className="nowrap right" onClick={(e) => e.stopPropagation()}>
+                    {tab === 'waiting' && approver ? (
+                      <div className="row-gap end">
+                        <button className="btn btn-approve btn-sm" onClick={() => transition(b.product.id, b.section, 'approved')}><Check size={14} />Approve</button>
+                        <button className="btn btn-secondary btn-sm" onClick={() => setSendBack(b)}><Undo2 size={14} /><span className="hide-sm">Send back</span></button>
                       </div>
                     ) : (
-                      <button className="btn btn-secondary btn-sm" onClick={() => open(b)}>Open</button>
+                      <Link className="btn btn-secondary btn-sm" to={blockHref(b.product.id, b.section)}>Open</Link>
                     )}
                   </td>
                 </tr>
@@ -91,14 +82,12 @@ export default function Approvals() {
           </table>
         </div>
       )}
-      {asking && (
-        <Modal title="Request changes" onClose={() => setAsking(null)} footer={<>
-          <button className="btn btn-secondary" onClick={() => setAsking(null)}>Cancel</button>
-          <button className="btn btn-primary" disabled={!note.trim()} onClick={() => { transition(asking.product.id, asking.section, 'draft', note.trim()); setAsking(null); setNote('') }}>Send back to editor</button>
-        </>}>
-          <p className="muted">{label(asking.section)} for {asking.product.name} – {asking.product.species} goes back to draft with your note.</p>
-          <label className="field"><span>What needs to change?</span><textarea rows={4} autoFocus value={note} onChange={(e) => setNote(e.target.value)} /></label>
-        </Modal>
+      {sendBack && (
+        <SendBackModal
+          what={`${blockLabel(sendBack.section)} for ${sendBack.product.name} – ${sendBack.product.species}`}
+          onClose={() => setSendBack(null)}
+          onSend={(note) => { transition(sendBack.product.id, sendBack.section, 'draft', note); setSendBack(null) }}
+        />
       )}
     </div>
   )

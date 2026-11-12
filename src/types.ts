@@ -1,5 +1,5 @@
-// Core data model for the BioMar PIM.
-// One Product = one global master record. Market/language variants hang off it.
+// Data model for BioMar Product Information.
+// One Product = one global record. Each market (locale) can have its own translated version.
 
 export type Status = 'draft' | 'in_review' | 'approved'
 
@@ -10,51 +10,49 @@ export interface User {
   name: string
   title: string
   role: Role
-  /** Locale ids (e.g. "nn-NO") the user is responsible for. Empty = all / global. */
+  /** Locale ids (e.g. "nn-NO") the user is responsible for. Empty = all markets. */
   markets: string[]
 }
 
-/** Workflow metadata carried by every editable content block. */
+/** Workflow state of a block of content (the global content, or one market version). */
 export interface Meta {
   status: Status
   updatedBy: string
   updatedAt: string
-  /** Set when an approver sends content back. Cleared on next submit. */
+  /** Set when an approver sends content back. Cleared on the next submit. */
   reviewNote?: string
 }
 
-export interface MarketingContent {
-  shortDescription: string
+/** Marketing copy. The same shape is used for the global version and for each market version. */
+export interface Copy {
   tagline: string
+  shortDescription: string
   description: string
   keyBenefits: string[]
   sellingPoints: string[]
-  /** Incremented each time global marketing content is approved. Variants record which version they were based on. */
+}
+
+export interface GlobalContent extends Copy {
+  /** Goes up by one each time the global content is approved. Market versions record the version they follow. */
   version: number
-  meta: Meta
 }
 
 export type WebsiteStatus = 'live' | 'not_live'
 
-/** A market + language specific variation of a product (keyed by locale, e.g. "nn-NO"). */
-export interface Variant {
+/** A market and language version of a product, keyed by locale (e.g. "nn-NO"). */
+export interface Variant extends Copy {
   localName: string
-  shortDescription: string
-  tagline: string
-  description: string
-  keyBenefits: string[]
-  sellingPoints: string[]
   notes: string
-  /** True when the market deliberately uses the global (English) copy as-is. */
+  /** The market uses the global English text as it is. */
   inheritsGlobal: boolean
-  /** Tracked manually - the website manages its own publishing. */
+  /** Tracked by hand. The website manages its own publishing. */
   websiteStatus: WebsiteStatus
-  /** Global marketing version this variant was written/checked against. */
+  /** Global content version this translation follows. */
   sourceVersion: number
   meta: Meta
 }
 
-export type AssetType = 'hero' | 'highres' | 'bag' | 'datasheet' | 'brochure' | 'other'
+export type AssetType = 'logo' | 'bag' | 'photo' | 'datasheet' | 'brochure' | 'other'
 
 export interface Asset {
   id: string
@@ -64,12 +62,9 @@ export interface Asset {
   sizeKb: number
   /** "global" or a locale id */
   scope: string
-  /**
-   * "bundled" = real file shipped with the app (e.g. packshots imported from biomar.com),
-   * "generated" = sample artwork rendered by the app, "upload" = file stored in the browser
-   */
-  source: 'bundled' | 'generated' | 'upload'
-  /** Bundled file name in src/assets/bags */
+  /** "bundled" = file shipped with the app (logos, packshots), "upload" = file stored in this browser */
+  source: 'bundled' | 'upload'
+  /** Path of a bundled file inside src/assets, e.g. "bags/power-atlantic-salmon.webp" */
   file?: string
   /** Where a bundled file was imported from */
   sourceUrl?: string
@@ -77,11 +72,12 @@ export interface Asset {
   uploadedAt: string
 }
 
-export type Section = 'info' | 'marketing' | 'assets' | string // string = locale id for a variant
+/** 'global', 'assets' or a locale id */
+export type Section = string
 
 export type HistoryAction =
-  | 'created' | 'edited' | 'submitted' | 'approved' | 'changes_requested'
-  | 'restored' | 'asset_added' | 'asset_removed' | 'market_added' | 'market_removed' | 'variant_created'
+  | 'created' | 'edited' | 'submitted' | 'approved' | 'changes_requested' | 'restored'
+  | 'asset_added' | 'asset_removed' | 'market_added' | 'market_removed' | 'variant_created'
 
 export interface HistoryEntry {
   id: string
@@ -90,7 +86,7 @@ export interface HistoryEntry {
   section: Section
   action: HistoryAction
   summary: string
-  /** Copy of the section content after the change - used to view and restore old versions. */
+  /** The content after the change, so earlier versions can be viewed and restored. */
   snapshot?: Record<string, unknown>
 }
 
@@ -98,26 +94,26 @@ export type Lifecycle = 'active' | 'phasing_out' | 'discontinued'
 
 export interface Product {
   id: string
-  code: string
   name: string
   species: string
   range: string
-  /** Website categories, e.g. High Performance, Health, First feeding */
   categories: string[]
   stages: string[]
+  code: string
   feedType: string
   pelletSizes: string[]
   packaging: string[]
-  regulatoryNotes: string
-  /** Fields still holding illustrative sample values (not from the website import). Cleared field by field on edit. */
-  sampleFields?: string[]
-  /** Field -> biomar.com page the value was imported from. Dropped when someone edits the field. */
-  sources?: Record<string, string>
+  notes: string
   owner: string
   lifecycle: Lifecycle
-  info: Meta
-  marketing: MarketingContent
-  /** Locale ids of the markets this product is sold in (= variants that should exist). */
+  /** Page name on biomar.com */
+  websiteSlug?: string
+  /** Field -> biomar.com page the value was imported from (kept for reference) */
+  sources?: Record<string, string>
+  /** Workflow state of the global content (details + marketing copy) */
+  status: Meta
+  content: GlobalContent
+  /** Locale ids of the markets where the product is sold */
   markets: string[]
   variants: Record<string, Variant>
   assets: Asset[]
@@ -131,12 +127,11 @@ export interface Database {
   products: Product[]
 }
 
-/** Fields of the global product information block (used by forms and history snapshots). */
-export const INFO_FIELDS = [
-  'name', 'species', 'range', 'categories', 'stages', 'feedType', 'pelletSizes',
-  'packaging', 'code', 'owner', 'lifecycle', 'regulatoryNotes',
+export const DETAIL_FIELDS = [
+  'name', 'species', 'range', 'categories', 'stages', 'code', 'feedType', 'pelletSizes', 'packaging',
+  'owner', 'lifecycle', 'notes',
 ] as const
-export type InfoField = (typeof INFO_FIELDS)[number]
+export type DetailField = (typeof DETAIL_FIELDS)[number]
 
-export const MARKETING_FIELDS = ['tagline', 'shortDescription', 'description', 'keyBenefits', 'sellingPoints'] as const
-export type MarketingField = (typeof MARKETING_FIELDS)[number]
+export const COPY_FIELDS = ['tagline', 'shortDescription', 'description', 'keyBenefits', 'sellingPoints'] as const
+export type CopyField = (typeof COPY_FIELDS)[number]

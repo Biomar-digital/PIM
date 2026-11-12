@@ -1,25 +1,23 @@
-// Application state + actions.
+// Application state and actions.
 //
 // For the prototype all data lives in the browser (IndexedDB), seeded from seed.json.
-// Every write goes through the action functions below, so replacing this module's
-// persistence with calls to a REST API later is a contained change.
+// Every write goes through the functions below, so moving to a server later only
+// means replacing the persistence in this file.
 import { useSyncExternalStore } from 'react'
 import seed from './seed.json'
 import type {
-  Asset, AssetType, Database, HistoryAction, HistoryEntry, InfoField, MarketingContent, Product, Section, Status, User, Variant,
+  Asset, AssetType, Copy, Database, DetailField, HistoryAction, HistoryEntry, Product, Section, Status, User, Variant,
 } from '../types'
-import { INFO_FIELDS, MARKETING_FIELDS } from '../types'
+import { COPY_FIELDS, DETAIL_FIELDS } from '../types'
 import { idb } from '../lib/idb'
-import { marketLabel } from './reference'
+import { ASSET_LABEL, marketLabel } from './reference'
 
-export interface Toast { id: number; text: string; tone: 'ok' | 'info' | 'warn' }
+export interface Toast { id: number; text: string; tone: 'ok' | 'info' }
 
 export interface State {
   ready: boolean
   db: Database
   userId: string
-  /** Working context: 'global' or a locale id. Shared by the top bar and product pages. */
-  context: string
   toasts: Toast[]
   /** Object URLs for uploaded files, keyed by asset id */
   blobUrls: Record<string, string>
@@ -27,19 +25,11 @@ export interface State {
 
 const SEED = seed as unknown as Database
 
-let state: State = {
-  ready: false,
-  db: SEED,
-  userId: 'u-ingrid',
-  context: 'global',
-  toasts: [],
-  blobUrls: {},
-}
+let state: State = { ready: false, db: SEED, userId: 'u-ingrid', toasts: [], blobUrls: {} }
 
 const listeners = new Set<() => void>()
 function emit() { listeners.forEach((l) => l()) }
 function subscribe(l: () => void) { listeners.add(l); return () => { listeners.delete(l) } }
-export function getState() { return state }
 
 /** Select a slice of state. Selectors must return existing references (no new objects). */
 export function useStore<T>(selector: (s: State) => T): T {
@@ -56,7 +46,7 @@ function setState(patch: Partial<State>, persist = true) {
     window.clearTimeout(saveTimer)
     saveTimer = window.setTimeout(() => {
       idb.set('kv', 'db', state.db).catch(() => {})
-      idb.set('kv', 'session', { userId: state.userId, context: state.context }).catch(() => {})
+      idb.set('kv', 'session', { userId: state.userId }).catch(() => {})
     }, 250)
   }
 }
@@ -64,7 +54,7 @@ function setState(patch: Partial<State>, persist = true) {
 export async function init() {
   try {
     const db = await idb.get<Database>('kv', 'db')
-    const session = await idb.get<{ userId: string; context: string }>('kv', 'session')
+    const session = await idb.get<{ userId: string }>('kv', 'session')
     const blobs = await idb.entries<Blob>('blobs')
     const blobUrls: Record<string, string> = {}
     for (const [k, b] of blobs) blobUrls[k] = URL.createObjectURL(b)
@@ -72,12 +62,11 @@ export async function init() {
       ...state,
       db: db && db.version === SEED.version ? db : SEED,
       userId: session?.userId ?? state.userId,
-      context: session?.context ?? state.context,
       blobUrls,
       ready: true,
     }
   } catch {
-    state = { ...state, ready: true } // storage blocked (private mode etc.) - run in memory
+    state = { ...state, ready: true } // storage blocked (private window etc.): run in memory
   }
   emit()
 }
@@ -86,8 +75,8 @@ export async function resetDemo() {
   await idb.clear('kv').catch(() => {})
   await idb.clear('blobs').catch(() => {})
   Object.values(state.blobUrls).forEach((u) => URL.revokeObjectURL(u))
-  setState({ db: SEED, blobUrls: {}, context: 'global' })
-  toast('Demo data has been reset', 'info')
+  setState({ db: SEED, blobUrls: {} })
+  toast('Demo data reset', 'info')
 }
 
 /* ---------------- Helpers ---------------- */
@@ -100,14 +89,14 @@ export function currentUser(s: State = state): User {
   return s.db.users.find((u) => u.id === s.userId) ?? s.db.users[0]
 }
 export function userName(id: string): string {
-  return state.db.users.find((u) => u.id === id)?.name ?? (id === 'website' ? 'biomar.com import' : 'Website import')
+  return state.db.users.find((u) => u.id === id)?.name ?? (id === 'website' ? 'biomar.com' : 'Website import')
 }
 
 let toastId = 0
 export function toast(text: string, tone: Toast['tone'] = 'ok') {
   const t = { id: ++toastId, text, tone }
   setState({ toasts: [...state.toasts, t] }, false)
-  window.setTimeout(() => setState({ toasts: state.toasts.filter((x) => x.id !== t.id) }, false), 3500)
+  window.setTimeout(() => setState({ toasts: state.toasts.filter((x) => x.id !== t.id) }, false), 3200)
 }
 
 function updateProduct(id: string, fn: (p: Product) => Product) {
@@ -118,117 +107,105 @@ function historyEntry(section: Section, action: HistoryAction, summary: string, 
   return { id: newId('h'), at: now(), by: state.userId, section, action, summary, snapshot }
 }
 
-function pick<T extends object>(obj: T, keys: readonly string[]): Record<string, unknown> {
+function pick(obj: object, keys: readonly string[]): Record<string, unknown> {
   const o = obj as Record<string, unknown>
   return Object.fromEntries(keys.map((k) => [k, structuredClone(o[k])]))
 }
 
+const FIELD_NAMES: Record<string, string> = {
+  name: 'name', species: 'species', range: 'range', categories: 'category', stages: 'stage', code: 'product code',
+  feedType: 'feed type', pelletSizes: 'pellet sizes', packaging: 'packaging', owner: 'owner', lifecycle: 'lifecycle',
+  notes: 'notes', tagline: 'tagline', shortDescription: 'short description', description: 'description',
+  keyBenefits: 'key benefits', sellingPoints: 'selling points', localName: 'local name', inheritsGlobal: 'language setting',
+}
+const listFields = (keys: readonly string[]) => keys.map((k) => FIELD_NAMES[k] ?? k).join(', ')
+
 export function sectionLabel(section: Section): string {
-  if (section === 'info') return 'Product information'
-  if (section === 'marketing') return 'Marketing content'
-  if (section === 'assets') return 'Assets'
+  if (section === 'global') return 'Global content'
+  if (section === 'assets') return 'Files'
   return marketLabel(section)
 }
 
-/** An edited value no longer comes from the website, so its source link goes. */
-function withoutKeys(src: Record<string, string> | undefined, keys: readonly string[]) {
-  return src && Object.fromEntries(Object.entries(src).filter(([k]) => !keys.includes(k)))
-}
-
-/** Editing approved content puts it back to draft so changes are always reviewed. */
+/** Editing approved content turns it into a new draft, so changes always get approved. */
 const afterEdit = (s: Status): Status => (s === 'approved' ? 'draft' : s)
 
-/* ---------------- Session ---------------- */
-
 export function setUser(userId: string) { setState({ userId }) }
-export function setContext(context: string) { setState({ context }) }
 
-/* ---------------- Product information ---------------- */
+/* ---------------- Global content ---------------- */
 
-export function saveInfo(id: string, patch: Partial<Pick<Product, InfoField>>) {
+const GLOBAL_FIELDS = [...DETAIL_FIELDS, ...COPY_FIELDS] as const
+
+export function saveGlobal(id: string, patch: Partial<Pick<Product, DetailField>> & Partial<Copy>) {
+  let changedCount = 0
   updateProduct(id, (p) => {
-    const next = { ...p, ...patch }
-    const changed = INFO_FIELDS.filter((k) => JSON.stringify(p[k]) !== JSON.stringify(next[k]))
+    const before = { ...p, ...p.content } as Record<string, unknown>
+    const after = { ...before, ...patch }
+    const changed = GLOBAL_FIELDS.filter((k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]))
+    changedCount = changed.length
     if (!changed.length) return p
-    next.info = { ...p.info, status: afterEdit(p.info.status), updatedBy: state.userId, updatedAt: now() }
-    next.sampleFields = p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f))
-    next.sources = withoutKeys(p.sources, changed)
-    next.history = [historyEntry('info', 'edited', `Updated ${changed.length} field${changed.length > 1 ? 's' : ''}: ${changed.join(', ')}`, pick(next, INFO_FIELDS)), ...p.history]
+    const next: Product = { ...p }
+    for (const k of changed) {
+      if ((COPY_FIELDS as readonly string[]).includes(k)) next.content = { ...next.content, [k]: after[k] }
+      else Object.assign(next, { [k]: after[k] })
+    }
+    next.status = { ...p.status, status: afterEdit(p.status.status), updatedBy: state.userId, updatedAt: now() }
+    next.history = [historyEntry('global', 'edited', `Changed ${listFields(changed)}`, { ...pick(next, DETAIL_FIELDS), ...pick(next.content, COPY_FIELDS) }), ...p.history]
     return next
   })
-  toast('Product information saved')
+  if (changedCount) toast('Saved as draft')
 }
 
-/* ---------------- Marketing ---------------- */
-
-export function saveMarketing(id: string, patch: Partial<Omit<MarketingContent, 'version' | 'meta'>>) {
-  updateProduct(id, (p) => {
-    const m = { ...p.marketing, ...patch }
-    const changed = MARKETING_FIELDS.filter((k) => JSON.stringify(p.marketing[k]) !== JSON.stringify(m[k]))
-    if (!changed.length) return p
-    m.meta = { ...m.meta, status: afterEdit(m.meta.status), updatedBy: state.userId, updatedAt: now() }
-    return {
-      ...p,
-      sampleFields: p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f)),
-      sources: withoutKeys(p.sources, changed),
-      marketing: m,
-      history: [historyEntry('marketing', 'edited', `Edited ${changed.join(', ')}`, pick(m, MARKETING_FIELDS)), ...p.history],
-    }
-  })
-  toast('Marketing content saved as draft')
-}
-
-/* ---------------- Variants ---------------- */
-
-export function emptyVariant(p: Product, fromGlobal: boolean, inherit = false): Variant {
-  const m = p.marketing
-  return {
-    localName: '',
-    shortDescription: fromGlobal ? m.shortDescription : '',
-    tagline: fromGlobal ? m.tagline : '',
-    description: fromGlobal ? m.description : '',
-    keyBenefits: fromGlobal ? [...m.keyBenefits] : [],
-    sellingPoints: fromGlobal ? [...m.sellingPoints] : [],
-    notes: inherit ? 'Uses global English copy.' : '',
-    inheritsGlobal: inherit,
-    websiteStatus: 'not_live',
-    sourceVersion: m.version,
-    meta: { status: 'draft', updatedBy: state.userId, updatedAt: now() },
-  }
-}
+/* ---------------- Market versions ---------------- */
 
 export function createVariant(id: string, locale: string, mode: 'copy' | 'empty' | 'inherit') {
-  updateProduct(id, (p) => ({
-    ...p,
-    markets: p.markets.includes(locale) ? p.markets : [...p.markets, locale],
-    variants: { ...p.variants, [locale]: emptyVariant(p, mode === 'copy', mode === 'inherit') },
-    history: [historyEntry(locale, 'variant_created', `${marketLabel(locale)} variant created${mode === 'copy' ? ' from global copy' : mode === 'inherit' ? ' (uses global copy)' : ''}`), ...p.history],
-  }))
-  toast(`${marketLabel(locale)} variant created`)
+  updateProduct(id, (p) => {
+    const c = p.content
+    const fromGlobal = mode === 'copy'
+    const v: Variant = {
+      localName: '',
+      tagline: fromGlobal ? c.tagline : '',
+      shortDescription: fromGlobal ? c.shortDescription : '',
+      description: fromGlobal ? c.description : '',
+      keyBenefits: fromGlobal ? [...c.keyBenefits] : [],
+      sellingPoints: fromGlobal ? [...c.sellingPoints] : [],
+      notes: '',
+      inheritsGlobal: mode === 'inherit',
+      websiteStatus: 'not_live',
+      sourceVersion: c.version,
+      meta: { status: 'draft', updatedBy: state.userId, updatedAt: now() },
+    }
+    return {
+      ...p,
+      markets: p.markets.includes(locale) ? p.markets : [...p.markets, locale],
+      variants: { ...p.variants, [locale]: v },
+      history: [historyEntry(locale, 'variant_created', mode === 'inherit' ? 'Set to use the English text' : mode === 'copy' ? 'Translation started from the English text' : 'Translation started'), ...p.history],
+    }
+  })
+  toast(`${marketLabel(locale)} started`)
 }
 
-const VARIANT_FIELDS = ['localName', 'tagline', 'shortDescription', 'description', 'keyBenefits', 'sellingPoints', 'notes', 'inheritsGlobal'] as const
+const VARIANT_FIELDS = ['localName', ...COPY_FIELDS, 'notes', 'inheritsGlobal'] as const
 
 export function saveVariant(id: string, locale: string, patch: Partial<Variant>, quiet = false) {
   updateProduct(id, (p) => {
     const old = p.variants[locale]
     if (!old) return p
     const v = { ...old, ...patch }
-    const contentChanged = VARIANT_FIELDS.filter((k) => JSON.stringify(old[k]) !== JSON.stringify(v[k]))
-    if (contentChanged.length) {
+    const changed = VARIANT_FIELDS.filter((k) => JSON.stringify(old[k]) !== JSON.stringify(v[k]))
+    if (changed.length) {
       v.meta = { ...v.meta, status: afterEdit(v.meta.status), updatedBy: state.userId, updatedAt: now() }
-      v.sourceVersion = p.marketing.version // editor has worked against the current global copy
+      v.sourceVersion = p.content.version // the editor has worked against the current English text
     }
-    const summary = contentChanged.length
-      ? `Edited ${contentChanged.join(', ')}`
-      : patch.websiteStatus ? `Website status set to ${patch.websiteStatus === 'live' ? 'live' : 'not live'}` : 'Updated'
+    const summary = changed.length
+      ? `Changed ${listFields(changed)}`
+      : patch.websiteStatus ? `Marked as ${patch.websiteStatus === 'live' ? 'live' : 'not live'} on the website` : 'Updated'
     return {
       ...p,
       variants: { ...p.variants, [locale]: v },
-      history: [historyEntry(locale, 'edited', summary, contentChanged.length ? pick(v, VARIANT_FIELDS) : undefined), ...p.history],
+      history: [historyEntry(locale, 'edited', summary, changed.length ? pick(v, VARIANT_FIELDS) : undefined), ...p.history],
     }
   })
-  if (!quiet) toast('Local content saved')
+  if (!quiet) toast('Saved as draft')
 }
 
 export function markVariantUpToDate(id: string, locale: string) {
@@ -237,47 +214,43 @@ export function markVariantUpToDate(id: string, locale: string) {
     if (!v) return p
     return {
       ...p,
-      variants: { ...p.variants, [locale]: { ...v, sourceVersion: p.marketing.version, meta: { ...v.meta, updatedBy: state.userId, updatedAt: now() } } },
-      history: [historyEntry(locale, 'edited', `Checked against global v${p.marketing.version} – no local changes needed`), ...p.history],
+      variants: { ...p.variants, [locale]: { ...v, sourceVersion: p.content.version, meta: { ...v.meta, updatedBy: state.userId, updatedAt: now() } } },
+      history: [historyEntry(locale, 'edited', `Checked against global version ${p.content.version}, no change needed`), ...p.history],
     }
   })
-  toast('Marked as up to date with global content')
+  toast('Marked as up to date')
 }
 
 export function setMarkets(id: string, add?: string, remove?: string) {
   updateProduct(id, (p) => {
     let markets = p.markets
     const h: HistoryEntry[] = []
-    if (add && !markets.includes(add)) { markets = [...markets, add]; h.push(historyEntry(add, 'market_added', `Added ${marketLabel(add)} as a target market`)) }
-    if (remove) { markets = markets.filter((m) => m !== remove); h.push(historyEntry(remove, 'market_removed', `Removed ${marketLabel(remove)} as a target market`)) }
+    if (add && !markets.includes(add)) { markets = [...markets, add]; h.push(historyEntry(add, 'market_added', `Added ${marketLabel(add)}`)) }
+    if (remove) { markets = markets.filter((m) => m !== remove); h.push(historyEntry(remove, 'market_removed', `Removed ${marketLabel(remove)}`)) }
     return { ...p, markets, history: [...h, ...p.history] }
   })
+  if (add) toast(`${marketLabel(add)} added`)
+  if (remove) toast(`${marketLabel(remove)} removed`, 'info')
 }
 
-/* ---------------- Workflow ---------------- */
-
-function getMeta(p: Product, section: Section) {
-  if (section === 'info') return p.info
-  if (section === 'marketing') return p.marketing.meta
-  return p.variants[section]?.meta
-}
+/* ---------------- Approval ---------------- */
 
 export function transition(id: string, section: Section, to: Status, note?: string) {
   updateProduct(id, (p) => {
-    const meta = getMeta(p, section)
+    const meta = section === 'global' ? p.status : p.variants[section]?.meta
     if (!meta) return p
     const newMeta = { ...meta, status: to, updatedBy: state.userId, updatedAt: now(), reviewNote: to === 'draft' ? note : undefined }
     const action: HistoryAction = to === 'approved' ? 'approved' : to === 'in_review' ? 'submitted' : 'changes_requested'
-    let next: Product = { ...p }
-    let summary = `${sectionLabel(section)} ${to === 'approved' ? 'approved' : to === 'in_review' ? 'submitted for review' : 'sent back with requested changes'}`
-    if (note) summary += ` – “${note}”`
+    const next: Product = { ...p }
+    let summary = to === 'approved' ? 'Approved' : to === 'in_review' ? 'Sent for approval' : `Sent back: “${note}”`
     let snapshot: Record<string, unknown> | undefined
-    if (section === 'info') { next.info = newMeta; snapshot = pick(p, INFO_FIELDS) }
-    else if (section === 'marketing') {
-      const version = to === 'approved' ? p.marketing.version + 1 : p.marketing.version
-      next.marketing = { ...p.marketing, meta: newMeta, version }
-      if (to === 'approved') summary = `Marketing content approved as v${version}`
-      snapshot = pick(next.marketing, MARKETING_FIELDS)
+    if (section === 'global') {
+      next.status = newMeta
+      if (to === 'approved') {
+        next.content = { ...p.content, version: p.content.version + 1 }
+        summary = `Approved as version ${next.content.version}`
+      }
+      snapshot = { ...pick(p, DETAIL_FIELDS), ...pick(p.content, COPY_FIELDS) }
     } else {
       const v = p.variants[section]
       next.variants = { ...p.variants, [section]: { ...v, meta: newMeta } }
@@ -286,9 +259,8 @@ export function transition(id: string, section: Section, to: Status, note?: stri
     next.history = [historyEntry(section, action, summary, to === 'approved' ? snapshot : undefined), ...p.history]
     return next
   })
-  toast(to === 'approved' ? `${sectionLabel(section)} approved` : to === 'in_review' ? 'Submitted for review' : 'Changes requested', to === 'draft' ? 'info' : 'ok')
+  toast(to === 'approved' ? 'Approved' : to === 'in_review' ? 'Sent for approval' : 'Sent back to the editor', to === 'draft' ? 'info' : 'ok')
 }
-
 
 /* ---------------- History ---------------- */
 
@@ -296,45 +268,37 @@ export function restoreVersion(id: string, entryId: string) {
   updateProduct(id, (p) => {
     const e = p.history.find((h) => h.id === entryId)
     if (!e?.snapshot) return p
-    const snap = structuredClone(e.snapshot)
+    const snap = structuredClone(e.snapshot) as Record<string, unknown>
     const next: Product = { ...p }
-    if (e.section === 'info') {
-      Object.assign(next, snap)
-      next.info = { ...p.info, status: 'draft', updatedBy: state.userId, updatedAt: now() }
-    } else if (e.section === 'marketing') {
-      next.marketing = { ...p.marketing, ...snap, meta: { ...p.marketing.meta, status: 'draft', updatedBy: state.userId, updatedAt: now() } }
+    if (e.section === 'global') {
+      for (const k of DETAIL_FIELDS) if (k in snap) Object.assign(next, { [k]: snap[k] })
+      next.content = { ...p.content, ...pick(snap, COPY_FIELDS.filter((k) => k in snap)) }
+      next.status = { ...p.status, status: 'draft', updatedBy: state.userId, updatedAt: now() }
     } else if (p.variants[e.section]) {
       const v = p.variants[e.section]
       next.variants = { ...p.variants, [e.section]: { ...v, ...snap, meta: { ...v.meta, status: 'draft', updatedBy: state.userId, updatedAt: now() } } }
     }
-    next.history = [historyEntry(e.section, 'restored', `Restored ${sectionLabel(e.section).toLowerCase()} from ${new Date(e.at).toLocaleDateString('en-GB')}`, snap), ...p.history]
+    next.history = [historyEntry(e.section, 'restored', `Restored the version from ${new Date(e.at).toLocaleDateString('en-GB')}`, snap), ...p.history]
     return next
   })
-  toast('Previous version restored as a draft')
+  toast('Earlier version restored as a draft')
 }
 
-/* ---------------- Assets ---------------- */
+/* ---------------- Files ---------------- */
 
 export async function addAsset(id: string, file: File, type: AssetType, scope: string) {
   const asset: Asset = {
-    id: newId('a'),
-    type,
-    fileName: file.name,
-    mime: file.type || 'application/octet-stream',
-    sizeKb: Math.max(1, Math.round(file.size / 1024)),
-    scope,
-    source: 'upload',
-    uploadedBy: state.userId,
-    uploadedAt: now(),
+    id: newId('a'), type, fileName: file.name, mime: file.type || 'application/octet-stream',
+    sizeKb: Math.max(1, Math.round(file.size / 1024)), scope, source: 'upload', uploadedBy: state.userId, uploadedAt: now(),
   }
   await idb.set('blobs', asset.id, file).catch(() => {})
   setState({ blobUrls: { ...state.blobUrls, [asset.id]: URL.createObjectURL(file) } }, false)
   updateProduct(id, (p) => ({
     ...p,
     assets: [asset, ...p.assets],
-    history: [historyEntry('assets', 'asset_added', `Uploaded ${file.name} (${type}${scope !== 'global' ? `, ${marketLabel(scope, true)}` : ''})`), ...p.history],
+    history: [historyEntry('assets', 'asset_added', `Added ${file.name} (${ASSET_LABEL[type]}${scope !== 'global' ? `, ${marketLabel(scope, true)}` : ''})`), ...p.history],
   }))
-  toast(`${file.name} uploaded`)
+  toast(`${file.name} added`)
 }
 
 export function removeAsset(id: string, assetId: string) {
@@ -343,11 +307,11 @@ export function removeAsset(id: string, assetId: string) {
     return {
       ...p,
       assets: p.assets.filter((x) => x.id !== assetId),
-      history: [historyEntry('assets', 'asset_removed', `Removed ${a?.fileName ?? 'asset'}`), ...p.history],
+      history: [historyEntry('assets', 'asset_removed', `Deleted ${a?.fileName ?? 'a file'}`), ...p.history],
     }
   })
   idb.del('blobs', assetId).catch(() => {})
-  toast('Asset removed', 'info')
+  toast('File deleted', 'info')
 }
 
 /* ---------------- Products ---------------- */
@@ -358,27 +322,13 @@ export function createProduct(input: { name: string; species: string; range: str
   let i = 2
   while (state.db.products.some((p) => p.id === slug)) slug = `${slugBase}-${i++}`
   const t = now()
-  const meta = { status: 'draft' as Status, updatedBy: state.userId, updatedAt: t }
   const p: Product = {
-    id: slug,
-    code: 'BM-' + input.name.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6) + '-' + input.species.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 3),
-    name: input.name,
-    species: input.species,
-    range: input.range,
-    categories: input.categories,
-    stages: input.stages,
-    feedType: 'Extruded pellet',
-    pelletSizes: [],
-    packaging: [],
-    regulatoryNotes: '',
-    owner: state.userId,
-    lifecycle: 'active',
-    info: meta,
-    marketing: { shortDescription: '', tagline: '', description: '', keyBenefits: [], sellingPoints: [], version: 0, meta: { ...meta } },
-    markets: [],
-    variants: {},
-    assets: [],
-    history: [historyEntry('info', 'created', 'Product record created')],
+    id: slug, name: input.name, species: input.species, range: input.range, categories: input.categories, stages: input.stages,
+    code: '', feedType: '', pelletSizes: [], packaging: [], notes: '', owner: state.userId, lifecycle: 'active',
+    status: { status: 'draft', updatedBy: state.userId, updatedAt: t },
+    content: { tagline: '', shortDescription: '', description: '', keyBenefits: [], sellingPoints: [], version: 0 },
+    markets: [], variants: {}, assets: [],
+    history: [historyEntry('global', 'created', 'Product created')],
     createdAt: t,
   }
   setState({ db: { ...state.db, products: [p, ...state.db.products] } })

@@ -1,6 +1,6 @@
-// Business rules: permissions, completeness and variant state. Pure functions, no UI.
+// Business rules: permissions, market version state and what is still missing. Pure functions, no UI.
 import type { Product, Status, User, Variant } from '../types'
-import { ASSET_TYPES } from './reference'
+import { ASSET_TYPES, marketLabel } from './reference'
 
 /* ---------------- Permissions ---------------- */
 
@@ -8,98 +8,96 @@ export const can = {
   editGlobal: (u: User) => u.role === 'admin' || u.role === 'global_editor',
   editMarket: (u: User, locale: string) =>
     u.role === 'admin' || u.role === 'global_editor' || (u.role === 'local_editor' && u.markets.includes(locale)),
-  /** Edit the section shown in a context ('global' or a locale) */
-  editContext: (u: User, ctx: string) => (ctx === 'global' ? can.editGlobal(u) : can.editMarket(u, ctx)),
+  edit: (u: User, section: string) => (section === 'global' ? can.editGlobal(u) : can.editMarket(u, section)),
   approve: (u: User) => u.role === 'admin' || u.role === 'approver',
   createProduct: (u: User) => u.role === 'admin' || u.role === 'global_editor',
   manageUsers: (u: User) => u.role === 'admin',
 }
 
-/* ---------------- Variant state ---------------- */
+/* ---------------- Market versions ---------------- */
 
-export type VariantState = 'missing' | 'outdated' | Status
+/** State of a market version as people see it */
+export type MarketState = Status | 'needs_update' | 'not_started'
 
-export function variantState(p: Product, locale: string): VariantState {
-  const v = p.variants[locale]
-  if (!v) return 'missing'
-  if (v.meta.status === 'approved' && isOutdated(p, v)) return 'outdated'
-  return v.meta.status
+export const MARKET_STATE_LABEL: Record<MarketState, string> = {
+  not_started: 'Not started',
+  needs_update: 'Needs update',
+  draft: 'Draft',
+  in_review: 'Waiting for approval',
+  approved: 'Approved',
 }
 
 export function isOutdated(p: Product, v: Variant): boolean {
-  return !v.inheritsGlobal && v.sourceVersion < p.marketing.version
+  return !v.inheritsGlobal && v.sourceVersion < p.content.version
 }
 
-export const VARIANT_STATE_LABEL: Record<VariantState, string> = {
-  missing: 'Missing', outdated: 'Outdated', draft: 'Draft', in_review: 'In review', approved: 'Approved',
+export function marketState(p: Product, locale: string): MarketState {
+  const v = p.variants[locale]
+  if (!v) return 'not_started'
+  if (v.meta.status === 'approved' && isOutdated(p, v)) return 'needs_update'
+  return v.meta.status
 }
 
-/* ---------------- Overall status ---------------- */
+/** Text a translation still lacks (nothing when the market uses the English text). */
+export function variantGaps(v: Variant): string[] {
+  if (v.inheritsGlobal) return []
+  const out: string[] = []
+  if (!v.description.trim()) out.push('description')
+  if (!v.shortDescription.trim()) out.push('short description')
+  if (v.keyBenefits.filter(Boolean).length === 0) out.push('key benefits')
+  return out
+}
 
-/** Lowest workflow status across the global blocks (info + marketing). */
-export function overallStatus(p: Product): Status {
-  const s = [p.info.status, p.marketing.meta.status]
-  if (s.includes('draft')) return 'draft'
-  if (s.includes('in_review')) return 'in_review'
-  return 'approved'
+/* ---------------- To do ---------------- */
+
+export type TodoArea = 'details' | 'copy' | 'files' | 'markets'
+
+export const TODO_AREA_LABEL: Record<TodoArea, string> = {
+  details: 'Product details',
+  copy: 'Marketing copy',
+  files: 'Files',
+  markets: 'Translations',
+}
+
+export interface Todo {
+  id: string
+  area: TodoArea
+  label: string
+  /** For translation items */
+  locale?: string
+  /** 'update' = exists but has to be checked again */
+  kind: 'missing' | 'update'
+}
+
+/** Everything a product still needs, in the order people usually fill it in. */
+export function todos(p: Product): Todo[] {
+  const out: Todo[] = []
+  const add = (area: TodoArea, id: string, label: string, ok: boolean) => { if (!ok) out.push({ id, area, label, kind: 'missing' }) }
+  const c = p.content
+  add('copy', 'tagline', 'Tagline', !!c.tagline.trim())
+  add('copy', 'shortDescription', 'Short description', !!c.shortDescription.trim())
+  add('copy', 'description', 'Description', !!c.description.trim())
+  add('copy', 'keyBenefits', 'Key benefits', c.keyBenefits.filter(Boolean).length > 0)
+  add('copy', 'sellingPoints', 'Selling points', c.sellingPoints.filter(Boolean).length > 0)
+  add('details', 'code', 'Product code', !!p.code.trim())
+  add('details', 'feedType', 'Feed type', !!p.feedType.trim())
+  add('details', 'pelletSizes', 'Pellet sizes', p.pelletSizes.length > 0)
+  add('details', 'packaging', 'Packaging', p.packaging.length > 0)
+  add('details', 'categories', 'Category', p.categories.length > 0)
+  for (const t of ASSET_TYPES.filter((a) => a.required)) {
+    add('files', `file-${t.id}`, t.label, p.assets.some((a) => a.type === t.id && a.scope === 'global'))
+  }
+  for (const loc of p.markets) {
+    const st = marketState(p, loc)
+    const v = p.variants[loc]
+    if (st === 'not_started') out.push({ id: `m-${loc}`, area: 'markets', label: `${marketLabel(loc)}: not started`, locale: loc, kind: 'missing' })
+    else if (st === 'needs_update') out.push({ id: `m-${loc}`, area: 'markets', label: `${marketLabel(loc)}: check against the new global text`, locale: loc, kind: 'update' })
+    else if (v && variantGaps(v).length) out.push({ id: `m-${loc}`, area: 'markets', label: `${marketLabel(loc)}: add ${variantGaps(v).join(', ')}`, locale: loc, kind: 'missing' })
+  }
+  return out
 }
 
 export function lastUpdated(p: Product): string {
-  const dates = [p.info.updatedAt, p.marketing.meta.updatedAt, ...Object.values(p.variants).map((v) => v.meta.updatedAt)]
+  const dates = [p.status.updatedAt, ...Object.values(p.variants).map((v) => v.meta.updatedAt)]
   return dates.sort().at(-1) ?? p.createdAt
-}
-
-/* ---------------- Completeness ---------------- */
-
-export type CheckGroup = 'info' | 'marketing' | 'assets' | 'markets'
-export interface Check {
-  id: string
-  group: CheckGroup
-  label: string
-  ok: boolean
-  /** 'missing' = required info absent, 'outdated' = exists but needs review, 'incomplete' = variant lacks fields */
-  problem?: 'missing' | 'outdated' | 'incomplete'
-  locale?: string
-}
-
-export function completeness(p: Product): { score: number; checks: Check[]; missing: Check[] } {
-  const m = p.marketing
-  const checks: Check[] = [
-    { id: 'name', group: 'info', label: 'Product name & code', ok: !!p.name && !!p.code },
-    { id: 'classification', group: 'info', label: 'Range, category & species', ok: !!p.range && p.categories.length > 0 && !!p.species },
-    { id: 'stages', group: 'info', label: 'Production stage', ok: p.stages.length > 0 },
-    { id: 'pellets', group: 'info', label: 'Pellet sizes', ok: p.pelletSizes.length > 0 },
-    { id: 'packaging', group: 'info', label: 'Packaging', ok: p.packaging.length > 0 },
-    { id: 'tagline', group: 'marketing', label: 'Tagline', ok: !!m.tagline.trim() },
-    { id: 'short', group: 'marketing', label: 'Short description', ok: !!m.shortDescription.trim() },
-    { id: 'description', group: 'marketing', label: 'Product description', ok: m.description.trim().length > 40 },
-    { id: 'benefits', group: 'marketing', label: 'At least 3 key benefits', ok: m.keyBenefits.filter(Boolean).length >= 3 },
-    { id: 'selling', group: 'marketing', label: 'Selling points', ok: m.sellingPoints.filter(Boolean).length > 0 },
-  ]
-  for (const t of ASSET_TYPES.filter((a) => a.required)) {
-    checks.push({ id: `asset-${t.id}`, group: 'assets', label: t.label, ok: p.assets.some((a) => a.type === t.id && a.scope === 'global') })
-  }
-  for (const loc of p.markets) {
-    const st = variantState(p, loc)
-    const v = p.variants[loc]
-    const incomplete = !!v && variantMissingFields(v).length > 0
-    checks.push({
-      id: `market-${loc}`, group: 'markets', locale: loc, label: loc,
-      ok: st !== 'missing' && st !== 'outdated' && !incomplete,
-      problem: st === 'missing' ? 'missing' : st === 'outdated' ? 'outdated' : incomplete ? 'incomplete' : undefined,
-    })
-  }
-  for (const c of checks) if (!c.ok && !c.problem) c.problem = 'missing'
-  const okCount = checks.filter((c) => c.ok).length
-  return { score: Math.round((okCount / checks.length) * 100), checks, missing: checks.filter((c) => !c.ok) }
-}
-
-/** Fields a local variant must have (unless it deliberately uses the global copy). */
-export function variantMissingFields(v: Variant): string[] {
-  if (v.inheritsGlobal) return []
-  const out: string[] = []
-  if (!v.description.trim()) out.push('Description')
-  if (!v.shortDescription.trim()) out.push('Short description')
-  if (v.keyBenefits.filter(Boolean).length < 3) out.push('Key benefits')
-  return out
 }

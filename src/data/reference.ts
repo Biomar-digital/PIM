@@ -34,11 +34,12 @@ export const MARKETS: Market[] = [
 export const MARKET_BY_ID: Record<string, Market> = Object.fromEntries(MARKETS.map((m) => [m.id, m]))
 export const LANGUAGES = [...new Set(MARKETS.map((m) => m.language))].sort()
 
+/** "Norway (Norwegian)", or just "Norway" when short */
 export function marketLabel(id: string, short = false): string {
-  if (id === 'global') return short ? 'Global' : 'Global – English (master)'
+  if (id === 'global') return short ? 'Global' : 'Global (English)'
   const m = MARKET_BY_ID[id]
   if (!m) return id
-  return short ? m.market : `${m.market} – ${m.language}`
+  return short ? m.market : `${m.market} (${m.language})`
 }
 
 export const RANGES = [
@@ -50,7 +51,7 @@ export const CATEGORIES = [
   'Top performance', 'High Performance', 'Standard Performance', 'Health', 'Sustainability', 'Organic', 'RAS',
   'First feeding', 'Larval', 'Post larval/Weaning', 'Nursery', 'Live feed', 'Broodstock', 'Finisher',
 ]
-/** Production stages as used on biomar.com (Hatchery Feed, Starter Feed, …) */
+/** Production stages as used on biomar.com (Hatchery Feed, Starter Feed and so on) */
 export const STAGES = ['Hatchery', 'Starter', 'Transfer', 'Grower']
 export const SPECIES = [
   'Atlantic Salmon', 'Coho Salmon', 'Triploid Salmon', 'Trout', 'Arctic Char', 'Sea Bass', 'Sea Bream', 'Meagre', 'Sturgeon',
@@ -58,14 +59,7 @@ export const SPECIES = [
 ]
 export const FEED_TYPES = ['Extruded pellet', 'Sinking pellet', 'Microdiet', 'Crumble']
 
-/** Brand-ish colour per range, used only for sample artwork. */
-export const RANGE_COLORS: Record<string, string> = {
-  POWER: '#c8102e', 'Blue Impact': '#0077c8', SmartCare: '#00857c', ORBIT: '#6b4fbb', EFICO: '#e87722',
-  INICIO: '#d99a00', INTRO: '#5f9e1f', CPK: '#5c6f7b', LARVIVA: '#0093c9', MAXIO: '#a6192e', EXIA: '#c4006a',
-  Ecolife: '#3a913f', EGGSTRA: '#e35205', 'DAN-EX': '#8a6d3b', FINESTA: '#b58500', Symbio: '#00a499', 'TRI-X': '#16a085',
-}
-
-export const STATUS_LABEL: Record<Status, string> = { draft: 'Draft', in_review: 'In review', approved: 'Approved' }
+export const STATUS_LABEL: Record<Status, string> = { draft: 'Draft', in_review: 'Waiting for approval', approved: 'Approved' }
 
 export const ROLE_LABEL: Record<Role, string> = {
   admin: 'Administrator',
@@ -76,10 +70,10 @@ export const ROLE_LABEL: Record<Role, string> = {
 }
 export const ROLE_DESCRIPTION: Record<Role, string> = {
   admin: 'Full access, manages users, roles and markets.',
-  global_editor: 'Maintains global product information, marketing copy and assets. Can edit any market.',
-  approver: 'Reviews and approves global and local content. Can request changes.',
-  local_editor: 'Contributes local content and assets for assigned markets and submits them for review.',
-  viewer: 'Can find, preview and download approved content.',
+  global_editor: 'Maintains global product details, marketing copy and assets. Can edit every market.',
+  approver: 'Approves global and local content, or sends it back with a note.',
+  local_editor: 'Writes the translations and local files for their own markets and sends them for approval.',
+  viewer: 'Finds, copies and downloads product content.',
 }
 
 export const LIFECYCLE_LABEL: Record<Lifecycle, string> = {
@@ -87,11 +81,20 @@ export const LIFECYCLE_LABEL: Record<Lifecycle, string> = {
 }
 
 export const ASSET_TYPES: { id: AssetType; label: string; required: boolean; hint: string }[] = [
-  { id: 'hero', label: 'Hero image', required: true, hint: 'Main product image used on websites and in presentations' },
-  { id: 'bag', label: 'Product bag design', required: true, hint: 'Packaging artwork / packshot' },
-  { id: 'datasheet', label: 'Technical datasheet', required: true, hint: 'PDF with technical specifications' },
-  { id: 'highres', label: 'High-res image', required: false, hint: 'Print-quality photography' },
-  { id: 'brochure', label: 'Brochure', required: false, hint: 'Sales and marketing material' },
-  { id: 'other', label: 'Other', required: false, hint: 'Certificates, presentations, other files' },
+  { id: 'logo', label: 'Logo', required: true, hint: 'Product logo from the brand logo pack' },
+  { id: 'bag', label: 'Packshot', required: true, hint: 'Image of the bag or packaging' },
+  { id: 'datasheet', label: 'Technical datasheet', required: true, hint: 'PDF with the technical specification' },
+  { id: 'photo', label: 'Product photos', required: false, hint: 'Pellets, farm and lifestyle photography' },
+  { id: 'brochure', label: 'Brochures', required: false, hint: 'Sales and marketing material' },
+  { id: 'other', label: 'Other files', required: false, hint: 'Certificates, presentations and anything else' },
 ]
 export const ASSET_LABEL: Record<AssetType, string> = Object.fromEntries(ASSET_TYPES.map((a) => [a.id, a.label])) as Record<AssetType, string>
+
+/** Labels for the marketing copy fields */
+export const COPY_LABEL = {
+  tagline: 'Tagline',
+  shortDescription: 'Short description',
+  description: 'Description',
+  keyBenefits: 'Key benefits',
+  sellingPoints: 'Selling points',
+} as const

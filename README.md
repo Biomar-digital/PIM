@@ -21,18 +21,21 @@ npm run build:single # one self-contained HTML file in dist-single/ (easy to sha
 
 ## What's in it
 
+Built for product managers, heads of product marketing and local marketing managers.
+
 | Area | What it does |
 |---|---|
-| **Overview** | Personal "needs your attention" queue (per role), approval count, outdated local versions, missing assets, content status, completeness by range, local coverage by market, recent activity. |
-| **Product library** | Search plus filters for range, species, category, production stage, market, language, status and completeness. Table or grid view. Filters live in the URL, so a filtered view can be shared as a link. |
-| **Product page** | Tabs for *Product information*, *Marketing content*, *Assets*, *Markets & languages* and *History*, with a workflow panel and a completeness checklist beside them. |
-| **Global ↔ market switch** | The selector in the top bar (and on each product page) switches between the **global master** and a **market version** (e.g. Norway – Norwegian). In a market, local copy sits next to the global text, and empty fields fall back to global. |
-| **Workflow** | Draft → In review → Approved for each content block: global product information, global marketing content, and each market version. Approvers can approve or send content back with a note. Editing approved content creates a new draft. |
-| **Outdated detection** | Approving global marketing content raises its version number. Market versions written against an older version are flagged as *Outdated* until a local editor updates them or confirms that no change is needed. |
-| **Assets** | Hero image, bag design and technical datasheet are required; high-res images, brochures and other files are optional. Assets are global or market-specific, with drag-and-drop upload, preview and download. |
-| **History** | Every change is logged with who and when. Approved and edited versions keep a snapshot that can be viewed and restored (the restored version comes back as a draft). |
-| **Roles** | Viewer, Local editor (assigned markets), Approver, Global editor and Administrator. Use the user menu in the top right to try the tool as different people. |
-| **Website status** | Each market version has a manual "Live / Not live" flag. The website keeps its own translations and publishing; the PIM only tracks them. |
+| **Home** | Your personal to-do list (things to approve, content sent back to you, translations to update, drafts not yet sent), four key numbers and the latest changes. |
+| **Products** | Search and filter by range, species, market, status and missing information, with more filters on demand. Cards or a list. Filters are kept in the link, so a filtered view can be shared. |
+| **Product page** | Overview with the marketing copy (copy any text with one click) and product details, a plain "To do" list of what is missing, the packshot and the markets. Tabs for Translations, Files and History. Export the text or a one-page product sheet (PDF). |
+| **Translation page** | One page per market: the English text and the local text side by side, its own approval, a warning when the English text has changed, and a "live on the website" flag. |
+| **Approval** | One status for the global content and one per market: Draft, Waiting for approval, Approved. Approvers approve or send back with a note. Editing approved content creates a new draft. |
+| **Files** | Logo (from the brand logo packs), packshot (from biomar.com) and technical datasheet are expected for every product; photos, brochures and other files are optional. Upload, preview and download. |
+| **Markets** | How far each market is with its translations, and who the local editors are. |
+| **Administration** | People, roles and what each role can do. The user menu switches between people to try each role. |
+
+Empty fields show "Not added yet". The prototype contains no invented product data: product codes,
+feed type, pellet sizes, packaging and datasheets are empty until someone adds them.
 
 ## Structure
 
@@ -81,12 +84,10 @@ python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json
 
 Product names, ranges, species, production stages, descriptions, key benefits and the local
 translations come from the CMS export. Taglines and selling points (including their translations),
-categories and production stages come from biomar.com via `scripts/fetch_website_content.py`; the app
-marks these fields with a *biomar.com* tag that links to the source page. The website does not hold
-product codes, feed type, pellet sizes, packaging, product owner or lifecycle. The seed fills these with
-**example values**, and the app labels them *Sample* until someone edits them. In production they
-would be maintained in the PIM by the global product team or imported from the ERP item master and
-technical datasheets. Workflow states, people and dates are also sample data, as are all asset files except the bag packshots, which come from biomar.com. Edits are saved in the browser. *Administration → Reset demo data*
+categories and production stages come from biomar.com via `scripts/fetch_website_content.py`.
+The website does not hold product codes, feed type, pellet sizes, packaging or datasheets, so these
+are left empty. In production they would be maintained in the PIM by the global product team or
+imported from the ERP item master. Workflow states, people and dates are sample data. Edits are saved in the browser. *Administration → Reset demo data*
 restores the seed.
 
 ## Product logos

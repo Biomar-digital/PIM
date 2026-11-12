@@ -8,9 +8,11 @@ name, feed solution (range), production stages, the published cultures and
 the rich-text "productFeatures" field per culture, then turn that into the PIM
 data model (one global master record + market/language variants).
 
-Website copy is real. Workflow status, people, dates, pellet sizes, product
-codes and assets are illustrative sample values so the prototype can show the
-full workflow. Everything is deterministic (fixed random seed).
+Product copy comes from the export and biomar.com; logos and packshots are real
+files. Workflow status, people and dates are sample values so the prototype can
+show the full workflow. Everything is deterministic (fixed random seed).
+Fields that are not on the website (product code, pellet sizes, packaging, feed
+type) are left empty.
 """
 
 import glob
@@ -63,9 +65,6 @@ SELECTION = [
     "Maxio BARRA - Barramundi", "LARVIVA Mysis - Shrimp", "LARVIVA Pronurse - Barramundi", "ORBIT CPK - Atlantic Salmon",
 ]
 
-# Fields not present in the website export. The seed fills them with illustrative values and
-# the app labels them "Sample" until someone edits them.
-SAMPLE_FIELDS = ["code", "feedType", "pelletSizes", "packaging", "owner", "lifecycle"]
 
 RANGE_FROM_NAME = {
     "INICIO": "INICIO", "INTRO": "INTRO", "CPK": "CPK", "DAN-EX": "DAN-EX", "Ecolife": "Ecolife",
@@ -78,13 +77,6 @@ WEBSITE_PATH = "src/data/website.json"
 WEBSITE = json.load(open(WEBSITE_PATH, encoding="utf-8")) if os.path.exists(WEBSITE_PATH) else {"ranges": {}, "products": {}}
 
 STAGE_ORDER = ["Hatchery", "Starter", "Transfer", "Grower"]
-PELLETS = {
-    "Hatchery": ["0.1–0.2 mm", "0.2–0.3 mm", "0.3–0.5 mm", "0.5–0.8 mm"],
-    "Starter": ["0.5 mm", "0.8 mm", "1.0 mm", "1.5 mm", "2.0 mm"],
-    "Transfer": ["2.0 mm", "3.0 mm", "4.0 mm"],
-    "Grower": ["3.0 mm", "4.5 mm", "6.0 mm", "9.0 mm", "12.0 mm"],
-}
-SHRIMP_PELLETS = ["Crumble 0.4–0.6 mm", "Crumble 0.8–1.2 mm", "1.6 mm", "2.0 mm", "2.4 mm"]
 
 # People in the sample organisation
 USERS = [
@@ -135,12 +127,11 @@ def clean(markup):
     return paras, items
 
 
-def first_sentence(text, limit=150):
+def first_sentence(text, limit=240):
+    """First full sentence of a text, or "" when it is too long to work as a short description."""
     m = re.match(r"(.+?[.!?。])(\s|$)", text)
     s = m.group(1) if m else text
-    if len(s) > limit:
-        s = s[:limit].rsplit(" ", 1)[0] + "…"
-    return s
+    return s if len(s) <= limit else ""
 
 
 def slugify(s):
@@ -152,6 +143,14 @@ def iso(day_offset, hour=9):
     import datetime as dt
     d = dt.datetime(2026, 11, 12, hour, 0) + dt.timedelta(days=day_offset, minutes=random.randint(0, 59))
     return d.strftime("%Y-%m-%dT%H:%M:00Z")
+
+
+LOGOS = json.load(open("src/assets/logos/index.json", encoding="utf-8")) if os.path.exists("src/assets/logos/index.json") else {}
+
+
+def norm(s):
+    """Same matching key as scripts/import_logos.py and src/lib/logos.ts."""
+    return re.sub(r"[^A-Z0-9]", "", s.upper().replace("+", "PLUS"))
 
 
 BAGS_INDEX = "src/assets/bags/index.json"
@@ -207,13 +206,8 @@ def main():
 
         categories = [c.replace("\u200b", "").strip() for c in web.get("categories", [])]
         web_range = WEBSITE["ranges"].get(rng, {})
-        is_shrimp = species == "Shrimp"
-        pellet_pool = SHRIMP_PELLETS if is_shrimp else PELLETS[stages[-1]]
-        pellet_sizes = pellet_pool[: random.randint(3, len(pellet_pool))]
 
         # --- workflow state (illustrative) ---
-        r = random.random()
-        info_status = "approved" if r < 0.86 else ("in_review" if r < 0.92 else "draft")
         r = random.random()
         mk_status = "approved" if r < 0.6 else ("in_review" if r < 0.75 else "draft")
         mk_updated = random.randint(-120, -1) if mk_status == "approved" else random.randint(-21, -1)
@@ -256,7 +250,7 @@ def main():
                 "description": "" if same_as_global else "\n\n".join(loc["paras"]),
                 "keyBenefits": [] if same_as_global else loc["benefits"],
                 "sellingPoints": [] if same_as_global or web_loc.get("benefits") == selling else web_loc.get("benefits", []),
-                "notes": "Uses global English copy." if same_as_global else "",
+                "notes": "",
                 "inheritsGlobal": same_as_global,
                 "websiteStatus": "live" if vstatus == "approved" and random.random() < 0.85 else "not_live",
                 "sourceVersion": mk_version - 1 if outdated else mk_version,
@@ -275,93 +269,76 @@ def main():
                 targets.append(m)
 
         owner = "u-ingrid" if random.random() < 0.7 else "u-sofie"
-        code = "BM-" + re.sub(r"[^A-Z0-9]", "", name.upper())[:6] + "-" + re.sub(r"[^A-Z]", "", species.upper())[:3]
         slug = slugify(f"{name}-{species}")
         url_names = props.get("umbracoUrlName") or {}
         website_slug = (url_names.get("en") if isinstance(url_names, dict) else None) or slugify(full)
 
-        # --- assets (metadata; preview images are rendered by the app) ---
+        # --- assets: only real files (product logo from the brand packs, packshot from biomar.com) ---
         assets = []
-        def add_asset(kind, fname, size_kb, scope="global", days=None):
+        logo_key = next((k for k in (norm(name) + norm(species), norm(name), norm(rng)) if k in LOGOS), None)
+        if logo_key:
             assets.append({
-                "id": f"a-{slug}-{len(assets)+1}", "type": kind, "fileName": fname,
-                "mime": "application/pdf" if fname.endswith(".pdf") else ("image/png" if fname.endswith(".png") else "image/jpeg"),
-                "sizeKb": size_kb, "scope": scope, "source": "generated",
-                "uploadedBy": owner, "uploadedAt": iso(days if days is not None else random.randint(-400, -10)),
+                "id": f"a-{slug}-logo", "type": "logo", "fileName": f"{LOGOS[logo_key]['label'].replace(' (shrimp)', '')} logo.png",
+                "mime": "image/png", "sizeKb": max(1, os.path.getsize(f"src/assets/logos/{LOGOS[logo_key]['file']}") // 1024),
+                "scope": "global", "source": "bundled", "file": f"logos/{LOGOS[logo_key]['file']}",
+                "uploadedBy": "u-sofie", "uploadedAt": "2026-11-12T11:00:00Z",
             })
-        base = slugify(full)
-        if random.random() < 0.85:
-            add_asset("hero", f"{base}-hero.jpg", random.randint(800, 2400))
-        if random.random() < 0.6:
-            add_asset("highres", f"{base}-pellets-highres.jpg", random.randint(6000, 14000))
-        random.random()  # keeps the random sequence stable for the values below
         bag = BAGS.get(slug)
         if bag:
-            # Real packshot downloaded from biomar.com by scripts/fetch_bags.py
             assets.append({
                 "id": f"a-{slug}-bag", "type": "bag", "fileName": bag["fileName"], "mime": "image/webp",
-                "sizeKb": bag["sizeKb"], "scope": "global", "source": "bundled", "file": bag["file"],
+                "sizeKb": bag["sizeKb"], "scope": "global", "source": "bundled", "file": f"bags/{bag['file']}",
                 "sourceUrl": bag["url"], "uploadedBy": "website", "uploadedAt": "2026-11-12T12:00:00Z",
             })
-        if random.random() < 0.75:
-            add_asset("datasheet", f"{base}-technical-datasheet.pdf", random.randint(180, 600))
-        if rng in ("POWER", "SmartCare", "Blue Impact", "LARVIVA", "ORBIT") and random.random() < 0.6:
-            add_asset("brochure", f"biomar-{slugify(rng)}-brochure.pdf", random.randint(2000, 8000))
-        for c in list(variants)[:2]:
-            if random.random() < 0.35:
-                add_asset("datasheet", f"{base}-datasheet-{c.lower()}.pdf", random.randint(180, 600), scope=c)
 
         # --- history ---
         history = []
         created = iso(random.randint(-700, -400))
-        history.append({"id": f"h-{slug}-1", "at": created, "by": owner, "section": "info", "action": "created", "summary": "Product record created from website import"})
+        history.append({"id": f"h-{slug}-1", "at": created, "by": owner, "section": "global", "action": "created", "summary": "Product created from the website import"})
         if description:
-            history.append({"id": f"h-{slug}-2", "at": iso(mk_updated - random.randint(30, 200)), "by": owner, "section": "marketing", "action": "approved", "summary": f"Marketing content approved (v{mk_version - 1})"})
-        history.append({"id": f"h-{slug}-3", "at": iso(mk_updated), "by": owner, "section": "marketing",
+            history.append({"id": f"h-{slug}-2", "at": iso(mk_updated - random.randint(30, 200)), "by": owner, "section": "global", "action": "approved", "summary": f"Global content approved (version {mk_version - 1})"})
+        history.append({"id": f"h-{slug}-3", "at": iso(mk_updated), "by": owner, "section": "global",
                         "action": {"approved": "approved", "in_review": "submitted", "draft": "edited"}[mk_status],
-                        "summary": {"approved": f"Marketing content approved (v{mk_version})", "in_review": "Marketing content submitted for review", "draft": "Marketing content edited"}[mk_status]})
+                        "summary": {"approved": f"Global content approved (version {mk_version})", "in_review": "Global content submitted for approval", "draft": "Global content edited"}[mk_status]})
         for c, v in variants.items():
             history.append({"id": f"h-{slug}-{c}", "at": v["meta"]["updatedAt"], "by": v["meta"]["updatedBy"], "section": c,
                             "action": {"approved": "approved", "in_review": "submitted", "draft": "edited"}[v["meta"]["status"]],
-                            "summary": f"{c} variant " + {"approved": "approved", "in_review": "submitted for review", "draft": "edited"}[v["meta"]["status"]]})
+                            "summary": {"approved": "Translation approved", "in_review": "Translation submitted for approval", "draft": "Translation edited"}[v["meta"]["status"]]})
         history.sort(key=lambda h: h["at"], reverse=True)
 
         products.append({
             "id": slug,
-            "code": code,
+            "code": "",
             "websiteSlug": website_slug,
             "name": name,
             "species": species,
             "range": rng,
             "categories": categories,
             "stages": stages,
-            "feedType": "Microdiet" if "Hatchery" in stages and rng == "LARVIVA" else ("Sinking pellet" if is_shrimp or species in ("Sea Bream", "Sea Bass", "Sturgeon", "Eel") else "Extruded pellet"),
-            "pelletSizes": pellet_sizes,
-            "packaging": ["25 kg bag", "500 kg big bag"] if stages[-1] == "Grower" else ["10 kg bag", "20 kg bag"],
-            "regulatoryNotes": "",
-            "sampleFields": SAMPLE_FIELDS,
+            "feedType": "",
+            "pelletSizes": [],
+            "packaging": [],
+            "notes": "",
             "sources": sources,
             "owner": owner,
             "lifecycle": "active",
-            "info": {"status": info_status, "updatedBy": owner, "updatedAt": iso(random.randint(-300, -5) if info_status == "approved" else random.randint(-15, -1))},
-            "marketing": {
+            "status": {"status": mk_status, "updatedBy": owner if mk_status != "approved" else "u-marco", "updatedAt": iso(mk_updated)},
+            "content": {
                 "shortDescription": short,
                 "tagline": tagline,
                 "description": description,
                 "keyBenefits": en["benefits"],
                 "sellingPoints": selling,
                 "version": mk_version,
-                "meta": {"status": mk_status, "updatedBy": owner if mk_status != "approved" else "u-marco", "updatedAt": iso(mk_updated)},
             },
             "markets": targets,
             "variants": variants,
             "assets": assets,
             "history": history,
-            "comments": [],
             "createdAt": created,
         })
 
-    seed = {"version": 5, "users": USERS, "products": products}
+    seed = {"version": 6, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")

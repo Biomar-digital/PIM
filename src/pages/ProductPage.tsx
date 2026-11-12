@@ -1,114 +1,82 @@
 import { useMemo } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ChevronRight, Globe2, MapPin } from 'lucide-react'
-import { currentUser, setContext, useStore, userName } from '../data/store'
-import { completeness, overallStatus, variantState, VARIANT_STATE_LABEL } from '../data/rules'
-import { LIFECYCLE_LABEL, marketLabel } from '../data/reference'
-import { productThumb } from '../lib/artwork'
-import { CompletenessRing, EmptyState, StatusBadge, Thumb } from '../components/ui'
-import { InfoTab } from './product/InfoTab'
-import { MarketingTab } from './product/MarketingTab'
-import { AssetsTab } from './product/AssetsTab'
-import { MarketsTab } from './product/MarketsTab'
+import { ChevronRight, ClipboardCopy, Download, FileDown } from 'lucide-react'
+import { currentUser, toast, useStore, userName } from '../data/store'
+import { todos } from '../data/rules'
+import { LIFECYCLE_LABEL } from '../data/reference'
+import { copyText, downloadProductSheet, productAsText, productImage } from '../lib/files'
+import { EmptyState, Menu, StatusBadge, When } from '../components/ui'
+import { ApprovalActions, SentBackNote, StatusHint } from '../components/approval'
+import { Overview } from './product/Overview'
+import { TranslationsTab } from './product/TranslationsTab'
+import { FilesTab } from './product/FilesTab'
 import { HistoryTab } from './product/HistoryTab'
-import { SidePanel } from './product/SidePanel'
-
-export const TABS = [
-  { id: 'information', label: 'Product information', group: 'info' },
-  { id: 'marketing', label: 'Marketing content', group: 'marketing' },
-  { id: 'assets', label: 'Assets', group: 'assets' },
-  { id: 'markets', label: 'Markets & languages', group: 'markets' },
-  { id: 'history', label: 'History', group: '' },
-] as const
 
 export default function ProductPage() {
-  const { id, tab = 'information' } = useParams()
+  const { id, tab = 'overview' } = useParams()
   const product = useStore((s) => s.db.products.find((p) => p.id === id))
-  const context = useStore((s) => s.context)
   const user = useStore(currentUser)
   const blobUrls = useStore((s) => s.blobUrls)
   const navigate = useNavigate()
-  const comp = useMemo(() => (product ? completeness(product) : null), [product])
+  const t = useMemo(() => (product ? todos(product) : []), [product])
 
-  if (!product || !comp) {
-    return (
-      <div className="page">
-        <EmptyState title="Product not found"><Link to="/products" className="btn btn-secondary">Back to the library</Link></EmptyState>
-      </div>
-    )
+  if (!product) {
+    return <div className="page"><EmptyState title="Product not found"><Link to="/products" className="btn btn-secondary">Back to products</Link></EmptyState></div>
   }
   const p = product
-  const local = context !== 'global'
-  const missingBy = (g: string) => comp.missing.filter((m) => m.group === g).length
-  const otherMarkets = local && !p.markets.includes(context)
+  const translationIssues = t.filter((x) => x.area === 'markets').length
+  const tabs = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'translations', label: `Translations (${p.markets.length})`, alert: translationIssues },
+    { id: 'files', label: `Files (${p.assets.length})`, alert: t.filter((x) => x.area === 'files').length },
+    { id: 'history', label: 'History' },
+  ]
 
   return (
     <div className="page product-page">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/products">Product library</Link><ChevronRight size={14} /><span>{p.name} – {p.species}</span>
+        <Link to="/products">Products</Link><ChevronRight size={14} /><span>{p.name} – {p.species}</span>
       </nav>
 
       <header className="phead card">
-        <Thumb url={productThumb(p, blobUrls)} size={88} />
+        <img src={productImage(p, blobUrls)} alt="" className="phead-logo" />
         <div className="phead-main">
-          <div className="phead-kicker">{p.range}{p.categories.length ? ` · ${p.categories.join(', ')}` : ''}</div>
-          <h1>{p.name} <span className="phead-species">{p.species}</span></h1>
-          <div className="phead-meta">
-            <StatusBadge status={overallStatus(p)} />
-            <span className="muted small">{p.code}</span>
-            <span className="muted small">{p.stages.join(', ')}</span>
-            {p.lifecycle !== 'active' && <span className="tag tag-warn">{LIFECYCLE_LABEL[p.lifecycle]}</span>}
-            <span className="muted small">Owner: {userName(p.owner)}</span>
+          <h1>{p.name} <span className="phead-species">– {p.species}</span></h1>
+          <p className="phead-sub">{[p.range, ...p.categories, ...p.stages].filter(Boolean).join(' · ')}{p.lifecycle !== 'active' && ` · ${LIFECYCLE_LABEL[p.lifecycle]}`}</p>
+          <div className="phead-status">
+            <StatusBadge status={p.status.status} />
+            <StatusHint meta={p.status} user={user} section="global" />
           </div>
+          <p className="muted small">Owner {userName(p.owner)} · Last change by {userName(p.status.updatedBy)}, <When at={p.status.updatedAt} /></p>
         </div>
-        <button className="phead-score" onClick={() => document.getElementById('checklist')?.scrollIntoView({ behavior: 'smooth' })} title="See what is missing">
-          <CompletenessRing score={comp.score} size={72} />
-          <span className="small muted">{comp.missing.length ? `${comp.missing.length} item${comp.missing.length > 1 ? 's' : ''} to fix` : 'Complete'}</span>
-        </button>
+        <div className="phead-actions">
+          <ApprovalActions p={p} section="global" meta={p.status} user={user} />
+          <Menu
+            label="Export"
+            icon={<Download size={16} />}
+            items={[
+              { label: 'Copy all text', icon: <ClipboardCopy size={16} />, onClick: async () => toast((await copyText(productAsText(p))) ? 'Product text copied' : 'Copy is blocked here', 'info') },
+              { label: 'Download product sheet (PDF)', icon: <FileDown size={16} />, onClick: () => downloadProductSheet(p) },
+            ]}
+          />
+        </div>
       </header>
-
-      {/* Context switch: global master vs. a market variant */}
-      <div className="ctx-bar" role="group" aria-label="Choose global or market version">
-        <span className="ctx-bar-label">Showing</span>
-        <button className={`ctx-pill${!local ? ' on' : ''}`} onClick={() => setContext('global')}>
-          <Globe2 size={15} /> Global master
-        </button>
-        <div className={`ctx-pill ctx-pill-select${local ? ' on' : ''}`}>
-          <MapPin size={15} />
-          <select value={local ? context : ''} onChange={(e) => e.target.value && setContext(e.target.value)} aria-label="Market version">
-            <option value="" disabled>Market version…</option>
-            <optgroup label="Markets for this product">
-              {p.markets.map((m) => (
-                <option key={m} value={m}>{marketLabel(m)} · {VARIANT_STATE_LABEL[variantState(p, m)]}</option>
-              ))}
-            </optgroup>
-            {local && otherMarkets && <option value={context}>{marketLabel(context)} · not a target market</option>}
-          </select>
-        </div>
-      </div>
+      <SentBackNote meta={p.status} />
 
       <div className="tabs" role="tablist">
-        {TABS.map((t) => {
-          const n = t.group ? missingBy(t.group) : 0
-          return (
-            <button key={t.id} role="tab" aria-selected={tab === t.id} className={`tab${tab === t.id ? ' on' : ''}`} onClick={() => navigate(`/products/${p.id}/${t.id}`, { replace: true })}>
-              {t.label}
-              {n > 0 && <span className="tab-count" title={`${n} missing or outdated`}>{n}</span>}
-            </button>
-          )
-        })}
+        {tabs.map((x) => (
+          <button key={x.id} role="tab" aria-selected={tab === x.id} className={`tab${tab === x.id ? ' on' : ''}`}
+            onClick={() => navigate(x.id === 'overview' ? `/products/${p.id}` : `/products/${p.id}/${x.id}`, { replace: true })}>
+            {x.label}
+            {!!x.alert && <span className="tab-dot" title={`${x.alert} to do`} />}
+          </button>
+        ))}
       </div>
 
-      <div className="product-layout">
-        <div className="product-main">
-          {tab === 'information' && <InfoTab p={p} user={user} context={context} />}
-          {tab === 'marketing' && <MarketingTab p={p} user={user} context={context} />}
-          {tab === 'assets' && <AssetsTab p={p} user={user} context={context} />}
-          {tab === 'markets' && <MarketsTab p={p} user={user} />}
-          {tab === 'history' && <HistoryTab p={p} user={user} />}
-        </div>
-        <SidePanel p={p} user={user} context={context} checks={comp.checks} />
-      </div>
+      {tab === 'overview' && <Overview p={p} user={user} todos={t} />}
+      {tab === 'translations' && <TranslationsTab p={p} user={user} />}
+      {tab === 'files' && <FilesTab p={p} user={user} />}
+      {tab === 'history' && <HistoryTab p={p} user={user} />}
     </div>
   )
 }
