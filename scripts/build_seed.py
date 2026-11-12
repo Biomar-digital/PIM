@@ -36,39 +36,32 @@ STAGES = {
     "bf5dd5": "Grower", "85bc5c": "Hatchery", "1ccfa4": "Fry & fingerling", "215c58": "Smolt transfer",
 }
 
-# The products used in the prototype (website name -> overrides)
-SELECTION = [
-    "POWER - Atlantic Salmon", "POWER Extreme - Atlantic Salmon", "POWER Rainbow - Trout",
-    "Blue Impact - Atlantic Salmon", "Blue Impact - Sturgeon",
-    "SmartCare Resist Lice - Atlantic Salmon", "SmartCare Intro Q+ - Atlantic Salmon",
-    "SmartCare Assist Skin - Atlantic Salmon", "SmartCare Focus - Trout", "SmartCare BeneFIT - Trout",
-    "SmartCare Robust - Sea Bass", "SmartCare Forte - Sea Bream", "SmartCare Endurance - Atlantic Salmon",
-    "ORBIT - Atlantic Salmon", "ORBIT - Trout", "ORBIT Intro - Atlantic Salmon",
-    "EFICO Enviro - Trout", "EFICO Alpha - Trout", "EFICO Genio - Trout", "EFICO Sigma - Sturgeon",
-    "EFICO - Sea Bream", "EFICO - Sea Bass", "EFICO Cromis - Tilapia",
-    "INICIO Plus - Trout", "INICIO Plus S - Atlantic Salmon", "INICIO Plus M - Sea Bream",
-    "INTRO Plus MT - Sea Bass", "INTRO - Atlantic Salmon", "CPK - Atlantic Salmon",
-    "LARVIVA Prostart - Trout", "LARVIVA Prostart - Sea Bream", "LARVIVA Multigain - Sea Bass",
-    "LARVIVA Prowean - Sturgeon", "LARVIVA PL - Shrimp", "LARVIVA Zoea - Shrimp",
-    "LARVIVA Broodstock - Sea Bass",
-    "MAXIO - Sea Bream", "MAXIO - Meagre",
-    "EXIA Prime - Shrimp", "EXIA MAXIO - Shrimp",
-    "Ecolife Pearl - Atlantic Salmon - Grower", "EGGSTRA - Trout",
-    "DAN-EX - Eel - Grower", "FINESTA - Sea Bream",
-    "Symbio Lumpfish", "Symbio Plus - Ballan Wrasse",
-    "INICIO Pro - Shrimp", "INICIO Focus - Shrimp", "INICIO Plus - Shrimp", "INICIO Akai - Coho Salmon",
-    "EXIA Perform - Shrimp", "EXIA ACTIVA - Shrimp",
-    "POWER Smolt - Atlantic Salmon", "POWER Akai - Coho Salmon", "POWER Fusion - Atlantic Salmon",
-    "Tri-X - Triploid Salmon", "Tri Plus - Triploid Salmon",
-    "SmartCare QARDIO HP - Atlantic Salmon", "SmartCare Control Gill - Atlantic Salmon",
-    "SmartCare TotalCare - Atlantic Salmon", "SmartCare Resist X Pro - Trout",
-    "Maxio BARRA - Barramundi", "LARVIVA Mysis - Shrimp", "LARVIVA Pronurse - Barramundi", "ORBIT CPK - Atlantic Salmon",
-]
+# Spelling and naming differences between website pages -> one species name
+SPECIES_FIX = {
+    "trout": "Trout", "largemouth bass": "Largemouth Bass", "stripped bass": "Striped Bass", "stribed bass": "Striped Bass",
+    "berggylt": "Ballan Wrasse", "barra": "Barramundi", "salmon": "Atlantic Salmon", "kingfish": "Yellowtail Kingfish",
+    "seriola": "Yellowtail Kingfish", "yellowtail": "Longfin Yellowtail",
+}
+
+# Product pages that are not real products (archived, duplicates, test pages)
+SKIP = re.compile(r"ARCHIVED|DUPLICATE|TEST|EXISTS|\(1\)")
+PRODUCT_TYPE = "d835ea"  # Umbraco document type of product pages
+
+# Species written in Chinese on China-market pages
+CN_SPECIES = {
+    "鲟鱼": "Sturgeon", "大菱鲆": "Turbot", "大黄鱼": "Large Yellow Croaker", "石斑鱼": "Grouper", "金鲳鱼": "Golden Pompano",
+    "鳟鱼": "Trout", "加州鲈": "Largemouth Bass", "鳗鱼": "Eel", "对虾": "Shrimp",
+}
 
 
+# Range for products without a feed solution in the export, by the start of the name (case-insensitive)
 RANGE_FROM_NAME = {
     "INICIO": "INICIO", "INTRO": "INTRO", "CPK": "CPK", "DAN-EX": "DAN-EX", "Ecolife": "Ecolife",
     "EGGSTRA": "EGGSTRA", "FINESTA": "FINESTA", "EFICO": "EFICO", "Symbio": "Symbio", "Tri": "TRI-X",
+    "New Power": "POWER", "Power": "POWER", "Golden": "Golden", "Rainbow": "Rainbow", "Classic": "Classic",
+    "Label Rouge": "Label Rouge", "Ocean King": "Ocean King", "King": "Ocean King", "ENERGY": "ENERGY", "Quinnat": "Quinnat", "SIRCLE": "SIRCLE",
+    "Maxio": "MAXIO", "LARVIVA": "LARVIVA", "SmartCare": "SmartCare", "ORBIT": "ORBIT", "EXIA": "EXIA",
+    "Blue Impact": "Blue Impact",
 }
 
 # Website content (taglines, range benefits, categories, stages) collected by
@@ -193,30 +186,54 @@ def main():
     docs = {}
     for f in glob.glob(EXPORT_DIR + "/*.uda"):
         j = json.load(open(f, encoding="utf-8"))
-        if j.get("PublishedVersion"):
-            docs[j["Name"].strip()] = j
+        n = j["Name"].strip()
+        if j.get("PublishedVersion") and j.get("ContentType", "").endswith(PRODUCT_TYPE) and not SKIP.search(n):
+            docs[n] = j
+
+    # Species ids in the export -> English species name, learned from the English page names
+    species_votes = {}
+    for n, j in docs.items():
+        parts = [x.strip() for x in n.split(" - ")]
+        sp = j["PublishedVersion"]["Properties"].get("species")
+        if len(parts) > 1 and isinstance(sp, str) and sp and re.match(r"^[A-Za-z ]+$", parts[1]):
+            species_votes.setdefault(sp[-6:], {}).setdefault(parts[1], 0)
+            species_votes[sp[-6:]][parts[1]] += 1
+    SPECIES_BY_ID = {k: max(v, key=v.get) for k, v in species_votes.items()}
 
     products = []
-    for idx, full in enumerate(SELECTION):
+    used_ids = set()
+    for full in sorted(docs, key=str.lower):
         j = docs[full]
         props = j["PublishedVersion"]["Properties"]
-        parts = [p.strip() for p in full.split(" - ")]
+        parts = [p.strip() for p in re.sub(r"\s*-\s*$", "", full).split(" - ")]
         name = parts[0]
-        species = parts[1] if len(parts) > 1 else "Lumpfish"
+        species = parts[1] if len(parts) > 1 else ""
+        if len(parts) > 2:  # e.g. "DAN-EX - Eel - Grower" -> "DAN-EX Grower"
+            name = f"{name} {parts[2]}"
         if name == "Symbio Lumpfish":
             name, species = "Symbio", "Lumpfish"
-        if name == "DAN-EX":
-            species = "Eel"
+        sp_id = props.get("species") if isinstance(props.get("species"), str) else ""
+        if not species or not re.match(r"^[A-Za-z ]+$", species):
+            species = CN_SPECIES.get(species) or SPECIES_BY_ID.get(sp_id.split(",")[0][-6:], "") or species or "Various"
+        species = SPECIES_FIX.get(species.lower(), species)
         fs = props.get("feedSolution")
         rng = FEED_SOLUTIONS.get(fs[-6:]) if isinstance(fs, str) and fs else None
         if not rng:
-            rng = next((v for k, v in RANGE_FROM_NAME.items() if name.startswith(k)), name.split()[0])
-        if name.startswith("INICIO") or name.startswith("INTRO"):
-            rng = name.split()[0]
+            rng = next((v for k, v in RANGE_FROM_NAME.items() if name.lower().startswith(k.lower())), name.split()[0])
+        if name.upper().startswith("INICIO") or name.upper().startswith("INTRO"):
+            rng = name.split()[0].upper()
+        # Unique product id; China-market pages get a "-cn" suffix
+        slug = slugify(f"{name}-{species}")
+        if re.search(r"[^\x00-\x7f]", full):
+            slug += "-cn"
+        base, k = slug, 2
+        while slug in used_ids:
+            slug, k = f"{base}-{k}", k + 1
+        used_ids.add(slug)
         stages_raw = props.get("stages") if isinstance(props.get("stages"), str) else ""
         stages = [STAGES[s[-6:]] for s in stages_raw.split(",") if s and s[-6:] in STAGES] or ["Grower"]
         # The export's stage ids are unlabelled; prefer the stages shown on the product page.
-        web = WEBSITE["products"].get(slugify(f"{name}-{species}"), {})
+        web = WEBSITE["products"].get(slug, {})
         web_stages = [x.replace(" Feed", "") for x in web.get("stages", [])]
         stages = web_stages or [{"Fry & fingerling": "Starter", "Smolt transfer": "Transfer"}.get(x, x) for x in stages]
         stages = sorted(set(stages), key=STAGE_ORDER.index)
@@ -308,7 +325,6 @@ def main():
                 targets.append(m)
 
         owner = "u-ingrid" if random.random() < 0.7 else "u-sofie"
-        slug = slugify(f"{name}-{species}")
         url_names = props.get("umbracoUrlName") or {}
         website_slug = (url_names.get("en") if isinstance(url_names, dict) else None) or slugify(full)
 
@@ -381,9 +397,9 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 7, "users": USERS, "products": products}
+    seed = {"version": 8, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
-        json.dump(seed, fh, ensure_ascii=False, indent=1)
+        json.dump(seed, fh, ensure_ascii=False, separators=(",", ":"))
     print(f"Wrote {len(products)} products to {OUT}")
 
 

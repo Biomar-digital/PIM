@@ -152,11 +152,17 @@ def main():
         data["ranges"][rng] = parsed
         print(f"{rng:12} {parsed['tagline']!r} | {len(parsed['benefits'])} benefits | locales: {', '.join(parsed['locales']) or '-'}")
 
-    for p in seed["products"]:
+    from concurrent.futures import ThreadPoolExecutor
+
+    def product(p):
         url = f"{SITE}/feed-services/all-feed/{p['websiteSlug']}"
         info = parse_product(get(url))
         info["url"] = url
-        data["products"][p["id"]] = info
+        return p["id"], info
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for pid, info in pool.map(product, seed["products"]):
+            data["products"][pid] = info
     cats = sorted({c for v in data["products"].values() for c in v.get("categories", [])})
     print(f"\n{len(data['products'])} product pages. Categories: {cats}")
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

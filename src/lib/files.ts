@@ -26,7 +26,7 @@ const cache = new Map<string, string>()
 function nameTile(p: Product): string {
   const key = `${p.name}`
   if (!cache.has(key)) {
-    const size = Math.min(64, Math.floor(860 / Math.max(1, p.name.length)))
+    const size = Math.min(64, Math.floor(620 / Math.max(1, p.name.length)))
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270"><rect width="480" height="270" fill="#ffffff"/>${
       BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="205" y="30" width="70" height="70"/>` : ''
     }<text x="240" y="${150 + size * 0.6}" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${size}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text></svg>`

@@ -256,7 +256,7 @@
     "da-DK": {
      "tagline": "Start Strong. Stay Strong.",
      "subheadline": "Foder til klækkerier. Til alle dine behov.",
-     "intro": "LARVIVA tilbyder et komplet udvalg af klækkerifoder, der er skræddersyet til fisk og rejer. Det er specielt udviklet til at maksimere succesen i klækkeriet, give dine larver en stærk start og sikre robust yngel og post-larver af høj kvalitet, der er godt forberedt til vækststadierne. Fjeldørred Helt Laks Regnbueørred Sandart Stør Yellowtail Kingfish Livsstadier Yngelfoder (18) Kategori Avlsfoder (3) Larver (9) Levende foder (4) Start foder (3) Yngel/Tilvænning (8) 0\" x-cloak=\"\"> Nulstil Sortér Å-A A-Å Relevans Vælg venligst en art LARVIVA klækkerisortiment til rejer tilbyder et komplet udvalg af produkter i topkvalitet, der er specielt formuleret til at understøtte de krævende ernæringsmæssige behov hos hurtigtvoksende larver og post-larver. Vores sofistikerede produktionsteknologi giver mulighed for optimal næringsstoftilgængelighed, og inkluderingen af dokumenteret effektive tilsætningsstoffer sikrer robuste post-larver i kortere produktionscyklusser. LARVIVA klækkerisortiment til fisk tilbyder et komplet udvalg af produkter i topkvalitet, der dækker alle de ernæringsmæssige behov hos fiskelarver, små yngel og avlsfisk. Klækkerisortimentet omfatter premium- og standardproduktprogrammer til larve-, post-fravænnings- og opvækststadier, der passer til de forskellige anlægsmål og protokoller. Højkvalitets yngelfoder til både vedligeholdelses- og modningsperioder og en berigelsesdiæt til hjuldyr og artemia fuldender sortimentet. Kontakt os Inquiry Message How can we help you? Country Where is your business located? Afghanistan Albania Algeria Andorra Angola Antigua and Barbuda Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belgium Belize Benin Bhutan Bolivia Bosnia and Herzegovina Botswana Brazil Brunei Bulgaria Burkina Faso Burundi Cabo Verde Cambodia Cameroon Canada Central African Republic Chad Chile China Colombia Comoros Congo Costa Rica Croatia Cuba Cyprus Czechia Democratic Republic of the Congo Denmark Djibouti Dominica Dominican Republic Ecuador Egypt El Salvador Equatorial Guinea Eritrea Estonia Eswatini Ethiopia Fiji Finland France Gabon Gambia Georgia Germany Ghana Greece Grenada Guatemala Guinea Guinea-Bissau Guyana Haiti Holy See Honduras Hungary Iceland India Indonesia Iran Iraq Ireland Israel Italy Ivory Coast Jamaica Japan Jordan Kazakhstan Kenya Kiribati Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Madagascar Malawi Malaysia Maldives Mali Malta Marshall Islands Mauritania Mauritius Mexico Micronesia Moldova Monaco Mongolia Montenegro Morocco Mozambique Myanmar Namibia Nauru Nepal Netherlands New Zealand Nicaragua Niger Nigeria North Macedonia Norway Oman Pakistan Palau Palestine State Panama Papua New Guinea Paraguay Peru Philippines Poland Portugal Qatar Romania Rwanda Saint Kitts and Nevis Saint Lucia Saint Vincent and the Grenadines Samoa San Marino Sao Tome and Principe Saudi Arabia Senegal Serbia Seychelles Sierra Leone Singapore Slovakia Slovenia Solomon Islands Somalia South Africa South Korea South Sudan Spain Sri Lanka Sudan Suriname Sweden Switzerland Syria Tajikistan Tanzania Thailand Timor-Leste Togo Tonga Trinidad and Tobago Tunisia Turkey Turkmenistan Tuvalu Uganda Ukraine United Arab Emirates United Kingdom United States of America Uruguay Uzbekistan Vanuatu Venezuela Vietnam Yemen Zambia Zimbabwe Close",
+     "intro": "LARVIVA tilbyder et komplet udvalg af klækkerifoder, der er skræddersyet til fisk og rejer. Det er specielt udviklet til at maksimere succesen i klækkeriet, give dine larver en stærk start og sikre robust yngel og post-larver af høj kvalitet, der er godt forberedt til vækststadierne. Fjeldørred Helt Laks Regnbueørred Sandart Stør",
      "benefits": [],
      "url": "https://www.biomar.com/da-dk/foder-og-serviceydelser/foderloesninger/larviva"
     },
@@ -291,7 +291,7 @@
     "fr-FR": {
      "tagline": "Start Strong. Stay Strong.",
      "subheadline": "Aliments pour écloseries. Pour tous vos besoins.",
-     "intro": "LARVIVA propose une gamme complète d'aliments d'écloserie adaptés aux poissons et aux crevettes. Ils sont spécialement développés pour maximiser le succès des opérations d'écloserie en donnant à vos larves un bon départ, en garantissant des alevins et des post-larves robustes et de haute qualité, bien préparés pour les étapes de croissance. Bar Daurade Esturgeon Maigre Ombrine Tropicale Poisson-chat Sole",
+     "intro": "LARVIVA propose une gamme complète d'aliments d'écloserie adaptés aux poissons et aux crevettes. Ils sont spécialement développés pour maximiser le succès des opérations d'écloserie en donnant à vos larves un bon départ, en garantissant des alevins et des post-larves robustes et de haute qualité, bien préparés pour les étapes de croissance. Bar Daurade Esturgeon Maigre Ombrine Tropicale Poisson-chat",
      "benefits": [],
      "url": "https://www.biomar.com/fr-fr/aliments-et-services/solutions/larviva"
     },
@@ -698,46 +698,6 @@
   }
  },
  "products": {
-  "power-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "brand": "POWER",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "High Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/power-atlantic-salmon"
-  },
-  "power-extreme-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "brand": "POWER",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "High Performance",
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/power-extreme-atlantic-salmon"
-  },
-  "power-rainbow-trout": {
-   "species": [
-    "Trout"
-   ],
-   "brand": "POWER",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "High Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/power-rainbow-trout"
-  },
   "blue-impact-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
@@ -752,6 +712,19 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/blue-impact-atlantic-salmon"
   },
+  "blue-impact-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "Blue Impact",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Sustainability"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/blue-impact-shrimp"
+  },
   "blue-impact-sturgeon": {
    "species": [
     "Sturgeon"
@@ -765,110 +738,3305 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/blue-impact-sturgeon"
   },
-  "smartcare-resist-lice-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "brand": "SmartCare",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-lice-atlantic-salmon"
-  },
-  "smartcare-intro-q-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "brand": "SmartCare",
-   "stages": [
-    "Transfer Feed",
-    "Grower Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-intro-q-plus-atlantic-salmon"
-  },
-  "smartcare-assist-skin-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "brand": "SmartCare",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-skin-atlantic-salmon"
-  },
-  "smartcare-focus-trout": {
+  "blue-impact-trout": {
    "species": [
     "Trout"
    ],
-   "brand": "SmartCare",
+   "brand": "Blue Impact",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
-    "Health"
+    "Sustainability",
+    "Top performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-trout"
+   "url": "https://www.biomar.com/feed-services/all-feed/blue-impact-aqua-trout"
   },
-  "smartcare-benefit-trout": {
+  "classic-cod": {
+   "url": "https://www.biomar.com/feed-services/all-feed/classic-cod"
+  },
+  "classic-marine-cod": {
+   "species": [
+    "Cod"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/classic-marine-cod"
+  },
+  "cpk-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [],
+   "url": "https://www.biomar.com/feed-services/all-feed/cpk-atlantic-salmon"
+  },
+  "cpk-intro-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Transfer Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/cpk-intro-atlantic-salmon"
+  },
+  "cpk-q-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/cpk-q-atlantic-salmon"
+  },
+  "dan-ex-grower-eel": {
+   "species": [
+    "Eel"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/dan-ex-eel-grower"
+  },
+  "dan-ex-starter-eel": {
+   "species": [
+    "Eel"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "RAS",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/dan-ex-eel-starter"
+  },
+  "ecolife-pearl-grower-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Organic"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/ecolife-pearl-atlantic-salmon-grower"
+  },
+  "ecolife-pearl-starter-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Organic"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/ecolife-pearl-atlantic-salmon-starter"
+  },
+  "ecolife-pearl-trout": {
    "species": [
     "Trout"
    ],
-   "brand": "SmartCare",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
-    "Health"
+    "Organic"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-benefit-trout"
+   "url": "https://www.biomar.com/feed-services/all-feed/ecolife-pearl-trout"
   },
-  "smartcare-robust-sea-bass": {
+  "efico-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-barra-barramundi"
+  },
+  "efico-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-meagre"
+  },
+  "efico-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-pike-perch"
+  },
+  "efico-sea-bass": {
    "species": [
     "Sea Bass"
    ],
-   "brand": "SmartCare",
+   "brand": "EFICO",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
-    "Health"
+    "Top performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-robust-sea-bass"
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sea-bass"
   },
-  "smartcare-forte-sea-bream": {
+  "efico-sea-bream": {
    "species": [
     "Sea Bream"
    ],
-   "brand": "SmartCare",
+   "brand": "EFICO",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
-    "Health"
+    "Top performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-forte-sea-bream"
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sea-bream"
   },
-  "smartcare-endurance-atlantic-salmon": {
+  "efico-largemouth-bass-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-turbot-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-large-yellow-croaker-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-grouper-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-golden-pompano-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-sturgeon-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-trout-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico"
+  },
+  "efico-alpha-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-alpha-arctic-char"
+  },
+  "efico-alpha-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-alpha-catfish"
+  },
+  "efico-alpha-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-alpha-trout"
+  },
+  "efico-alpha-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-alpha-whitefish"
+  },
+  "efico-black-gold-sturgeon": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-black-gold-sturgeon"
+  },
+  "efico-cromis-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-cromis-tilapia"
+  },
+  "efico-diamond-large-yellow-croaker": {
+   "species": [
+    "Large Yellow Croaker"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-diamond-large-yellow-croaker"
+  },
+  "efico-diamond-largemouth-bass": {
+   "species": [
+    "Largemouth Bass"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-diamond-large-mouth-bass"
+  },
+  "efico-diamond-trout": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-diamond-trout"
+  },
+  "efico-diamond-sturgeon-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-diamond"
+  },
+  "efico-emerald-sturgeon-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-emerald"
+  },
+  "efico-enviro-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-enviro-arctic-char"
+  },
+  "efico-enviro-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
    ],
-   "brand": "SmartCare",
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-enviro-atlantic-salmon"
+  },
+  "efico-enviro-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-enviro-trout"
+  },
+  "efico-enviro-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-enviro-whitefish"
+  },
+  "efico-fg-red-tilapia": {
+   "species": [
+    "Red Tilapia"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-fg-red-tilapia"
+  },
+  "efico-fg-striped-catfish": {
+   "species": [
+    "Striped Catfish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-fg-striped-catfish"
+  },
+  "efico-genio-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-arctic-char"
+  },
+  "efico-genio-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-atlantic-salmon"
+  },
+  "efico-genio-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-catfish"
+  },
+  "efico-genio-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-tilapia"
+  },
+  "efico-genio-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-trout"
+  },
+  "efico-pg-striped-catfish": {
+   "species": [
+    "Striped Catfish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-pg-striped-catfish"
+  },
+  "efico-pondi-murray-cod": {
+   "species": [
+    "Murray Cod"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-pondi-murray-cod"
+  },
+  "efico-ruby-golden-pompano": {
+   "species": [
+    "Golden Pompano"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-ruby-golden-pompano"
+  },
+  "efico-ruby-largemouth-bass": {
+   "species": [
+    "Largemouth Bass"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-ruby-large-mouth-bass"
+  },
+  "efico-ruby-sturgeon": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-ruby-sturgeon"
+  },
+  "efico-ruby-trout": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-ruby-trout"
+  },
+  "efico-sapphire-large-yellow-croaker": {
+   "species": [
+    "Large Yellow Croaker"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire-large-yellow-croaker"
+  },
+  "efico-sapphire-sturgeon": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire-sturgeon"
+  },
+  "efico-sapphire-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire-turbot"
+  },
+  "efico-sapphire-grouper-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire"
+  },
+  "efico-sapphire-eel-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire"
+  },
+  "efico-sapphire-trout-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sapphire"
+  },
+  "efico-sigma-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-cobia"
+  },
+  "efico-sigma-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-yellowtail-kingfish"
+  },
+  "efico-sigma-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-longfin-yellowtail"
+  },
+  "efico-sigma-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-pike-perch"
+  },
+  "efico-sigma-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-red-drum"
+  },
+  "efico-sigma-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-red-sea-bream"
+  },
+  "efico-sigma-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-snapper"
+  },
+  "efico-sigma-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-sole"
+  },
+  "efico-sigma-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-striped-bass"
+  },
+  "efico-sigma-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Finisher",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-sturgeon"
+  },
+  "efico-sigma-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-totoaba"
+  },
+  "efico-sigma-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-turbot"
+  },
+  "efico-smartcare-sturgeon-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-smartcare"
+  },
+  "efico-smartcare-trout-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-smartcare"
+  },
+  "efico-smartcare-sturgeon-cn-2": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-smartcare"
+  },
+  "efico-smartcare-trout-cn-2": {
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-smartcare"
+  },
+  "efico-tl-red-tilapia": {
+   "species": [
+    "Red Tilapia"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-tl-red-tilapia"
+  },
+  "efico-tl-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-tl-tilapia"
+  },
+  "efico-ys-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-ys-trout"
+  },
+  "efico-zeta-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "brand": "EFICO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/efico-zeta-grouper"
+  },
+  "eggstra-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Finisher"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/eggstra-trout"
+  },
+  "energy-x-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/energy-x-atlantic-salmon"
+  },
+  "exia-activa-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-activa-shrimp"
+  },
+  "exia-activa-comet-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-activa-comet-shrimp"
+  },
+  "exia-focus-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
     "Health"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-endurance-atlantic-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-focus-shrimp"
+  },
+  "exia-maxio-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-maxio-shrimp"
+  },
+  "exia-maxio-boost-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-maxio-boost-shrimp"
+  },
+  "exia-perform-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-perform-shrimp"
+  },
+  "exia-perform-nova-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-perform-nova-shrimp"
+  },
+  "exia-prime-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-prime-shrimp"
+  },
+  "exia-prime-star-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-prime-star-shrimp"
+  },
+  "exia-pro-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "EXIA",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-pro-shrimp"
+  },
+  "exia-ruby-shrimp-cn": {
+   "url": "https://www.biomar.com/feed-services/all-feed/exia-ruby"
+  },
+  "finesta-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Finisher"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/finesta-sea-bream"
+  },
+  "golden-reprodcuctor-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/golden-reproductor-coho-salmon"
+  },
+  "golden-reproductor-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/golden-reproductor-atlantic-salmon"
+  },
+  "golden-reproductor-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/golden-reproductor-trout"
+  },
+  "inicio-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-arctic-char"
+  },
+  "inicio-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-trout"
+  },
+  "inicio-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-whitefish"
+  },
+  "inicio-akai-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-akai-coho-salmon"
+  },
+  "inicio-cromis-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-cromis-tilapia"
+  },
+  "inicio-focus-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-focus-shrimp"
+  },
+  "inicio-maxio-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-maxio-shrimp"
+  },
+  "inicio-plus-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-arctic-char"
+  },
+  "inicio-plus-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-catfish"
+  },
+  "inicio-plus-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-meagre"
+  },
+  "inicio-plus-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-red-drum"
+  },
+  "inicio-plus-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-salmon"
+  },
+  "inicio-plus-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-sea-bass"
+  },
+  "inicio-plus-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-sea-bream"
+  },
+  "inicio-plus-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-shrimp"
+  },
+  "inicio-plus-sole": {
+   "species": [
+    "Sole"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-sole"
+  },
+  "inicio-plus-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-tilapia"
+  },
+  "inicio-plus-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Starter Feed",
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-trout"
+  },
+  "inicio-plus-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-turbot"
+  },
+  "inicio-plus-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-whitefish"
+  },
+  "inicio-plus-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-yellowtail-kingfish"
+  },
+  "inicio-plus-m-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-barramundi"
+  },
+  "inicio-plus-m-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-catfish"
+  },
+  "inicio-plus-m-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-cobia"
+  },
+  "inicio-plus-m-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-grouper"
+  },
+  "inicio-plus-m-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-meagre"
+  },
+  "inicio-plus-m-murray-cod": {
+   "species": [
+    "Murray Cod"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-murray-cod"
+  },
+  "inicio-plus-m-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-pike-perch"
+  },
+  "inicio-plus-m-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-red-drum"
+  },
+  "inicio-plus-m-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-red-sea-bream"
+  },
+  "inicio-plus-m-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-sea-bass"
+  },
+  "inicio-plus-m-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-sea-bream"
+  },
+  "inicio-plus-m-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-sturgeon"
+  },
+  "inicio-plus-m-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-tilapia"
+  },
+  "inicio-plus-m-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-yellowtail-kingfish"
+  },
+  "inicio-plus-s-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-s-atlantic-salmon"
+  },
+  "inicio-plus-s-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-s-coho-salmon"
+  },
+  "inicio-plus-s-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-s-trout"
+  },
+  "inicio-prime-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-prime-shrimp"
+  },
+  "inicio-pro-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-pro-shrimp"
+  },
+  "inicio-quinnat-chinook-salmon": {
+   "species": [
+    "Chinook Salmon"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-quinnat-chinook-salmon"
+  },
+  "inicio-rainbow-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/inicio-rainbow-trout"
+  },
+  "intro-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Transfer Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-atlantic-salmon"
+  },
+  "intro-plus-mt-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-barramundi"
+  },
+  "intro-plus-mt-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-cobia"
+  },
+  "intro-plus-mt-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-grouper"
+  },
+  "intro-plus-mt-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-meagre"
+  },
+  "intro-plus-mt-murray-cod": {
+   "species": [
+    "Murray Cod"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-murray-cod"
+  },
+  "intro-plus-mt-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-pike-perch"
+  },
+  "intro-plus-mt-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-red-drum"
+  },
+  "intro-plus-mt-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-red-sea-bream"
+  },
+  "intro-plus-mt-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-sea-bass"
+  },
+  "intro-plus-mt-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-sea-bream"
+  },
+  "intro-plus-mt-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-sturgeon"
+  },
+  "intro-plus-mt-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-tilapia"
+  },
+  "intro-plus-mt-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-yellowtail-kingfish"
+  },
+  "king-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/king-yellowtail-kingfish"
+  },
+  "label-rouge-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/label-rouge-atlantic-salmon"
+  },
+  "larviva-broodstock-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-cobia"
+  },
+  "larviva-broodstock-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-yellowtail-kingfish"
+  },
+  "larviva-broodstock-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-meagre"
+  },
+  "larviva-broodstock-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-pike-perch"
+  },
+  "larviva-broodstock-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-red-drum"
+  },
+  "larviva-broodstock-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-red-sea-bream"
+  },
+  "larviva-broodstock-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-sea-bass"
+  },
+  "larviva-broodstock-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-sea-bream"
+  },
+  "larviva-broodstock-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-snapper"
+  },
+  "larviva-broodstock-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-sole"
+  },
+  "larviva-broodstock-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-striped-bass"
+  },
+  "larviva-broodstock-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-sturgeon"
+  },
+  "larviva-broodstock-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-totoaba"
+  },
+  "larviva-broodstock-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-trout"
+  },
+  "larviva-broodstock-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-turbot"
+  },
+  "larviva-broodstock-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-longfin-yellowtail"
+  },
+  "larviva-broodstock-maturation-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-maturation-meagre"
+  },
+  "larviva-broodstock-maturation-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-maturation-red-sea-bream"
+  },
+  "larviva-broodstock-maturation-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-maturation-sea-bass"
+  },
+  "larviva-broodstock-maturation-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-maturation-sea-bream"
+  },
+  "larviva-multigain-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-cobia"
+  },
+  "larviva-multigain-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-longfin-yellowtail"
+  },
+  "larviva-multigain-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-ballan-wrasse"
+  },
+  "larviva-multigain-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-catfish"
+  },
+  "larviva-multigain-cod": {
+   "species": [
+    "Cod"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-cod"
+  },
+  "larviva-multigain-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-yellowtail-kingfish"
+  },
+  "larviva-multigain-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-meagre"
+  },
+  "larviva-multigain-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-pike-perch"
+  },
+  "larviva-multigain-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-red-drum"
+  },
+  "larviva-multigain-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-red-sea-bream"
+  },
+  "larviva-multigain-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-sea-bass"
+  },
+  "larviva-multigain-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-sea-bream"
+  },
+  "larviva-multigain-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-snapper"
+  },
+  "larviva-multigain-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-sole"
+  },
+  "larviva-multigain-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-striped-bass"
+  },
+  "larviva-multigain-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-sturgeon"
+  },
+  "larviva-multigain-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-tilapia"
+  },
+  "larviva-multigain-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-totoaba"
+  },
+  "larviva-multigain-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-turbot"
+  },
+  "larviva-multigain-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Live feed"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-whitefish"
+  },
+  "larviva-mysis-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-mysis-shrimp"
+  },
+  "larviva-orbit-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-meagre"
+  },
+  "larviva-orbit-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-red-drum"
+  },
+  "larviva-orbit-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-red-sea-bream"
+  },
+  "larviva-orbit-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-sea-bass"
+  },
+  "larviva-orbit-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-sea-bream"
+  },
+  "larviva-orbit-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-sole"
+  },
+  "larviva-orbit-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-sturgeon"
+  },
+  "larviva-orbit-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-orbit-turbot"
+  },
+  "larviva-pl-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pl-shrimp"
+  },
+  "larviva-pronurse-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-barramundi"
+  },
+  "larviva-pronurse-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-cobia"
+  },
+  "larviva-pronurse-golden-pompano": {
+   "species": [
+    "Golden Pompano"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-golden-pompano"
+  },
+  "larviva-pronurse-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-grouper"
+  },
+  "larviva-pronurse-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-longfin-yellowtail"
+  },
+  "larviva-pronurse-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-snapper"
+  },
+  "larviva-pronurse-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-striped-bass"
+  },
+  "larviva-pronurse-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-sturgeon"
+  },
+  "larviva-pronurse-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-totoaba"
+  },
+  "larviva-prostart-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-arctic-char"
+  },
+  "larviva-prostart-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-atlantic-salmon"
+  },
+  "larviva-prostart-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-ballan-wrasse"
+  },
+  "larviva-prostart-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-barramundi"
+  },
+  "larviva-prostart-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-catfish"
+  },
+  "larviva-prostart-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-cobia"
+  },
+  "larviva-prostart-golden-pompano": {
+   "species": [
+    "Golden Pompano"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-golden-pompano"
+  },
+  "larviva-prostart-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-grouper"
+  },
+  "larviva-prostart-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-yellowtail-kingfish"
+  },
+  "larviva-prostart-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-longfin-yellowtail"
+  },
+  "larviva-prostart-lumpfish": {
+   "species": [
+    "Cod"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-lumpfish"
+  },
+  "larviva-prostart-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​",
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-meagre"
+  },
+  "larviva-prostart-murray-cod": {
+   "species": [
+    "Murray Cod"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-murray-cod"
+  },
+  "larviva-prostart-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-pike-perch"
+  },
+  "larviva-prostart-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-red-drum"
+  },
+  "larviva-prostart-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-red-sea-bream"
+  },
+  "larviva-prostart-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-sea-bass"
+  },
+  "larviva-prostart-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-sea-bream"
+  },
+  "larviva-prostart-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-snapper"
+  },
+  "larviva-prostart-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-sole"
+  },
+  "larviva-prostart-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-striped-bass"
+  },
+  "larviva-prostart-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-sturgeon"
+  },
+  "larviva-prostart-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-tilapia"
+  },
+  "larviva-prostart-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-totoaba"
+  },
+  "larviva-prostart-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-trout"
+  },
+  "larviva-prostart-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-turbot"
+  },
+  "larviva-prostart-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-whitefish"
+  },
+  "larviva-prowean-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-ballan-wrasse"
+  },
+  "larviva-prowean-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-barramundi"
+  },
+  "larviva-prowean-catfish": {
+   "species": [
+    "Catfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-catfish"
+  },
+  "larviva-prowean-cobia": {
+   "species": [
+    "Cobia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-cobia"
+  },
+  "larviva-prowean-golden-pompano": {
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-golden-pompona"
+  },
+  "larviva-prowean-grouper": {
+   "species": [
+    "Grouper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-grouper"
+  },
+  "larviva-prowean-longfin-yellowtail": {
+   "species": [
+    "Longfin Yellowtail"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-longfin-yellowtail"
+  },
+  "larviva-prowean-lumpfish": {
+   "species": [
+    "Lumpfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-lumpfish"
+  },
+  "larviva-prowean-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-meagre"
+  },
+  "larviva-prowean-murray-cod": {
+   "species": [
+    "Murray Cod"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-murray-cod"
+  },
+  "larviva-prowean-pike-perch": {
+   "species": [
+    "Pike Perch"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-pike-perch"
+  },
+  "larviva-prowean-red-drum": {
+   "species": [
+    "Red Drum"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-red-drum"
+  },
+  "larviva-prowean-red-sea-bream": {
+   "species": [
+    "Red Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-red-sea-bream"
+  },
+  "larviva-prowean-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-sea-bass"
+  },
+  "larviva-prowean-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-sea-bream"
+  },
+  "larviva-prowean-snapper": {
+   "species": [
+    "Snapper"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-snapper"
+  },
+  "larviva-prowean-sole": {
+   "species": [
+    "Sole"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-sole"
+  },
+  "larviva-prowean-striped-bass": {
+   "species": [
+    "Striped Bass"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-striped-bass"
+  },
+  "larviva-prowean-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-sturgeon"
+  },
+  "larviva-prowean-tilapia": {
+   "species": [
+    "Tilapia"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-tilapia"
+  },
+  "larviva-prowean-totoaba": {
+   "species": [
+    "Totoaba"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-totoaba"
+  },
+  "larviva-prowean-turbot": {
+   "species": [
+    "Turbot"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Post larval/Weaning​",
+    "Nursery"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-turbot"
+  },
+  "larviva-prowean-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-whitefish"
+  },
+  "larviva-prowean-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval",
+    "Post larval/Weaning​"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-yellowtail-kingfish"
+  },
+  "larviva-zoea-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "LARVIVA",
+   "stages": [
+    "Hatchery Feed"
+   ],
+   "categories": [
+    "Larval"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/larviva-zoea-shrimp"
+  },
+  "maxio-meagre": {
+   "species": [
+    "Meagre"
+   ],
+   "brand": "MAXIO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/maxio-meagre"
+  },
+  "maxio-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "MAXIO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/maxio-sea-bass"
+  },
+  "maxio-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "MAXIO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/maxio-sea-bream"
+  },
+  "maxio-barra-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "MAXIO",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/maxio-barra-barramundi"
+  },
+  "new-power-akai-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/new-power-akai-coho-salmon"
+  },
+  "ocean-king-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/ocean-king-yellowtail-kingfish"
+  },
+  "orbit-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-arctic-char"
   },
   "orbit-atlantic-salmon": {
    "species": [
@@ -898,6 +4066,96 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/orbit-trout"
   },
+  "orbit-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-whitefish"
+  },
+  "orbit-cpk-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-cpk-atlantic-salmon"
+  },
+  "orbit-ex-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "ORBIT",
+   "categories": [
+    "RAS",
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-orbit-ex-atlantic-salmon"
+  },
+  "orbit-ex-intro-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "ORBIT",
+   "categories": [
+    "RAS",
+    "Health",
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-orbit-ex-intro-atlantic-salmon"
+  },
+  "orbit-inicio-plus-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-inicio-plus-arctic-char"
+  },
+  "orbit-inicio-plus-trout": {
+   "species": [
+    "Trout",
+    "Whitefish"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-inicio-plus-trout"
+  },
+  "orbit-inicio-plus-whitefish": {
+   "species": [
+    "Whitefish"
+   ],
+   "brand": "ORBIT",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/orbit-inicio-plus-whitefish"
+  },
   "orbit-intro-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
@@ -913,466 +4171,7 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/orbit-intro-atlantic-salmon"
   },
-  "efico-enviro-trout": {
-   "species": [
-    "Trout"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-enviro-trout"
-  },
-  "efico-alpha-trout": {
-   "species": [
-    "Trout"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-alpha-trout"
-  },
-  "efico-genio-trout": {
-   "species": [
-    "Trout"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Broodstock"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-genio-trout"
-  },
-  "efico-sigma-sturgeon": {
-   "species": [
-    "Sturgeon"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Finisher",
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-sigma-sturgeon"
-  },
-  "efico-sea-bream": {
-   "species": [
-    "Sea Bream"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-sea-bream"
-  },
-  "efico-sea-bass": {
-   "species": [
-    "Sea Bass"
-   ],
-   "brand": "EFICO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-sea-bass"
-  },
-  "efico-cromis-tilapia": {
-   "species": [
-    "Tilapia"
-   ],
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "High Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/efico-cromis-tilapia"
-  },
-  "inicio-plus-trout": {
-   "species": [
-    "Trout"
-   ],
-   "stages": [
-    "Starter Feed",
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "First feeding",
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-trout"
-  },
-  "inicio-plus-s-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "First feeding"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-s-atlantic-salmon"
-  },
-  "inicio-plus-m-sea-bream": {
-   "species": [
-    "Sea Bream"
-   ],
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Nursery",
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-m-sea-bream"
-  },
-  "intro-plus-mt-sea-bass": {
-   "species": [
-    "Sea Bass"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/intro-plus-mt-sea-bass"
-  },
-  "intro-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "stages": [
-    "Transfer Feed",
-    "Starter Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/intro-atlantic-salmon"
-  },
-  "cpk-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [],
-   "url": "https://www.biomar.com/feed-services/all-feed/cpk-atlantic-salmon"
-  },
-  "larviva-prostart-trout": {
-   "species": [
-    "Trout"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "First feeding"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-trout"
-  },
-  "larviva-prostart-sea-bream": {
-   "species": [
-    "Sea Bream"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Larval",
-    "Post larval/Weaning​"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prostart-sea-bream"
-  },
-  "larviva-multigain-sea-bass": {
-   "species": [
-    "Sea Bass"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Live feed"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-multigain-sea-bass"
-  },
-  "larviva-prowean-sturgeon": {
-   "species": [
-    "Sturgeon"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Larval",
-    "Post larval/Weaning​"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-prowean-sturgeon"
-  },
-  "larviva-pl-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Larval"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pl-shrimp"
-  },
-  "larviva-zoea-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Larval"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-zoea-shrimp"
-  },
-  "larviva-broodstock-sea-bass": {
-   "species": [
-    "Sea Bass"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Broodstock"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-broodstock-sea-bass"
-  },
-  "maxio-sea-bream": {
-   "species": [
-    "Sea Bream"
-   ],
-   "brand": "MAXIO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/maxio-sea-bream"
-  },
-  "maxio-meagre": {
-   "species": [
-    "Meagre"
-   ],
-   "brand": "MAXIO",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/maxio-meagre"
-  },
-  "exia-prime-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "EXIA",
-   "stages": [
-    "Grower Feed",
-    "Starter Feed"
-   ],
-   "categories": [
-    "High Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/exia-prime-shrimp"
-  },
-  "exia-maxio-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "EXIA",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/exia-maxio-shrimp"
-  },
-  "ecolife-pearl-atlantic-salmon": {
-   "species": [
-    "Atlantic Salmon"
-   ],
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Organic"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/ecolife-pearl-atlantic-salmon-grower"
-  },
-  "eggstra-trout": {
-   "species": [
-    "Trout"
-   ],
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Finisher"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/eggstra-trout"
-  },
-  "dan-ex-eel": {
-   "species": [
-    "Eel"
-   ],
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/dan-ex-eel-grower"
-  },
-  "finesta-sea-bream": {
-   "species": [
-    "Sea Bream"
-   ],
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Finisher"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/finesta-sea-bream"
-  },
-  "symbio-lumpfish": {
-   "species": [
-    "Lumpfish"
-   ],
-   "brand": "Symbio",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Standard Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/symbio-lumpfish"
-  },
-  "symbio-plus-ballan-wrasse": {
-   "species": [
-    "Ballan Wrasse"
-   ],
-   "brand": "Symbio",
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Standard Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/symbio-plus-ballan-wrasse"
-  },
-  "inicio-pro-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-pro-shrimp"
-  },
-  "inicio-focus-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-focus-shrimp"
-  },
-  "inicio-plus-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Health"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-plus-shrimp"
-  },
-  "inicio-akai-coho-salmon": {
-   "species": [
-    "Coho Salmon"
-   ],
-   "stages": [
-    "Starter Feed"
-   ],
-   "categories": [
-    "Top performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/inicio-akai-coho-salmon"
-  },
-  "exia-perform-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "EXIA",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Standard Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/exia-perform-shrimp"
-  },
-  "exia-activa-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "EXIA",
-   "stages": [
-    "Grower Feed"
-   ],
-   "categories": [
-    "Standard Performance"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/exia-activa-shrimp"
-  },
-  "power-smolt-atlantic-salmon": {
+  "power-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
    ],
@@ -1381,9 +4180,9 @@
     "Grower Feed"
    ],
    "categories": [
-    "Top performance"
+    "High Performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/power-smolt-atlantic-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/power-atlantic-salmon"
   },
   "power-akai-coho-salmon": {
    "species": [
@@ -1398,6 +4197,20 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/power-akai-coho-salmon"
   },
+  "power-extreme-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance",
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-extreme-atlantic-salmon"
+  },
   "power-fusion-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
@@ -1411,9 +4224,126 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/power-fusion-atlantic-salmon"
   },
-  "tri-x-triploid-salmon": {
+  "power-h2o-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-h2o-atlantic-salmon"
+  },
+  "power-ndq-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-ndq-atlantic-salmon"
+  },
+  "power-quinnat-chinook-salmon": {
+   "species": [
+    "Chinook Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-quinnat-chinook-salmon"
+  },
+  "power-rainbow-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-rainbow-trout"
+  },
+  "power-rainbow-extreme-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-rainbow-extreme-trout"
+  },
+  "power-smolt-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-smolt-atlantic-salmon"
+  },
+  "power-smolt-akai-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-smolt-akai-coho-salmon"
+  },
+  "power-tri-triploid-salmon": {
    "species": [
     "Triploid Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "High Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/power-tri-triploid-salmon"
+  },
+  "quinnat-hp-chinook-salmon": {
+   "species": [
+    "Chinook Salmon"
+   ],
+   "brand": "POWER",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/quinnat-hp-chinook-salmon"
+  },
+  "rainbow-trout": {
+   "species": [
+    "Trout"
    ],
    "stages": [
     "Grower Feed"
@@ -1421,22 +4351,34 @@
    "categories": [
     "Standard Performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/tri-x-triploid-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/rainbow-trout"
   },
-  "tri-plus-triploid-salmon": {
+  "rainbow-basic-trout": {
    "species": [
-    "Triploid Salmon"
+    "Trout"
    ],
    "stages": [
-    "Hatchery Feed",
-    "Starter Feed"
+    "Grower Feed"
    ],
    "categories": [
-    "First feeding"
+    "Standard Performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/tri-plus-triploid-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/rainbow-basic-trout"
   },
-  "smartcare-qardio-hp-atlantic-salmon": {
+  "sircle-trout": {
+   "species": [
+    "Trout"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Top performance",
+    "RAS"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/sircle-trout"
+  },
+  "smartcare-assist-gill-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
    ],
@@ -1447,7 +4389,166 @@
    "categories": [
     "Health"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-hp-atlantic-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-gill-atlantic-salmon"
+  },
+  "smartcare-assist-ictericia-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-ictericia-coho-salmon"
+  },
+  "smartcare-assist-plus-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-plus-atlantic-salmon"
+  },
+  "smartcare-assist-plus-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-plus-coho-salmon"
+  },
+  "smartcare-assist-plus-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-plus-trout"
+  },
+  "smartcare-assist-skin-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-skin-atlantic-salmon"
+  },
+  "smartcare-assist-skin-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-skin-coho-salmon"
+  },
+  "smartcare-assist-skin-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-assist-skin-trout"
+  },
+  "smartcare-assist-vital-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-vital-trout"
+  },
+  "smartcare-balance-h-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "SmartCare",
+   "categories": [
+    "Water treatment"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-balance-h-shrimp"
+  },
+  "smartcare-balance-p-shrimp": {
+   "species": [
+    "Shrimp"
+   ],
+   "brand": "SmartCare",
+   "categories": [
+    "Water treatment"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-balance-p-shrimp"
+  },
+  "smartcare-barra-se-barramundi": {
+   "species": [
+    "Barramundi"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-barra-se-barramundi"
+  },
+  "smartcare-benefit-sea-bass": {
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-benefit-sea-bass"
+  },
+  "smartcare-benefit-sea-bream": {
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-benefit-sea-bream"
+  },
+  "smartcare-benefit-yellowtail-kingfish": {
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-benefit-seriola"
+  },
+  "smartcare-benefit-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-benefit-trout"
   },
   "smartcare-control-gill-atlantic-salmon": {
    "species": [
@@ -1462,7 +4563,33 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-gill-atlantic-salmon"
   },
-  "smartcare-totalcare-atlantic-salmon": {
+  "smartcare-control-gill-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-gill-coho-salmon"
+  },
+  "smartcare-control-gill-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-gill-trout"
+  },
+  "smartcare-control-gill-q-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
    ],
@@ -1473,7 +4600,386 @@
    "categories": [
     "Health"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-total-care-atlantic-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-gill-q-atlantic-salmon"
+  },
+  "smartcare-control-q-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-q-atlantic-salmon"
+  },
+  "smartcare-control-qardio-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-qardio-atlantic-salmon"
+  },
+  "smartcare-control-qardio-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-qardio-coho-salmon"
+  },
+  "smartcare-control-quick-m-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-control-quick-m-coho-salmon"
+  },
+  "smartcare-defence-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-defence-sea-bass"
+  },
+  "smartcare-endurance-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-endurance-atlantic-salmon"
+  },
+  "smartcare-extreme-m-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-extreme-m-atlantic-salmon"
+  },
+  "smartcare-focus-arctic-char": {
+   "species": [
+    "Arctic Char"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-arctic-char"
+  },
+  "smartcare-focus-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-sea-bass"
+  },
+  "smartcare-focus-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-sea-bream"
+  },
+  "smartcare-focus-sturgeon": {
+   "species": [
+    "Sturgeon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-sturgeon"
+  },
+  "smartcare-focus-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-trout"
+  },
+  "smartcare-focus-plus-yellowtail-kingfish": {
+   "species": [
+    "Yellowtail Kingfish"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-focus-plus-yellowtail-kingfish"
+  },
+  "smartcare-forte-sea-bass": {
+   "species": [
+    "Sea Bass"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-forte-sea-bass"
+  },
+  "smartcare-forte-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-forte-sea-bream"
+  },
+  "smartcare-intro-q-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed",
+    "Transfer Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-intro-q-atlantic-salmon"
+  },
+  "smartcare-intro-q-atlantic-salmon-2": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Transfer Feed",
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-intro-q-plus-atlantic-salmon"
+  },
+  "smartcare-peak-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-peak-atlantic-salmon"
+  },
+  "smartcare-qardio-sea-bream": {
+   "species": [
+    "Sea Bream"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-sea-bream"
+  },
+  "smartcare-qardio-akai-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Starter Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-akai-coho-salmon"
+  },
+  "smartcare-qardio-hp-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-hp-atlantic-salmon"
+  },
+  "smartcare-qardio-intro-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Transfer Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-intro-atlantic-salmon"
+  },
+  "smartcare-qardio-peak-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-qardio-peak-atlantic-salmon"
+  },
+  "smartcare-quinnat-assist-chinook-salmon": {
+   "species": [
+    "Chinook Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-quinnat-assist-chinook-salmon"
+  },
+  "smartcare-resist-lice-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-lice-atlantic-salmon"
+  },
+  "smartcare-resist-lice-trout": {
+   "species": [
+    "Trout"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-lice-trout"
+  },
+  "smartcare-resist-x-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-x-atlantic-salmon"
+  },
+  "smartcare-resist-x-pro-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-x-pro-atlantic-salmon"
+  },
+  "smartcare-resist-x-pro-coho-salmon": {
+   "species": [
+    "Coho Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-x-pro-coho-salmon"
   },
   "smartcare-resist-x-pro-trout": {
    "species": [
@@ -1488,57 +4994,143 @@
    ],
    "url": "https://www.biomar.com/feed-services/all-feed/smartcare-resist-x-pro-trout"
   },
-  "maxio-barra-barramundi": {
+  "smartcare-robust-sea-bass": {
    "species": [
-    "Barramundi"
+    "Sea Bass"
    ],
-   "brand": "MAXIO",
+   "brand": "SmartCare",
    "stages": [
     "Grower Feed"
    ],
    "categories": [
-    "Top performance"
+    "Health"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/maxio-barra-barramundi"
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-robust-sea-bass"
   },
-  "larviva-mysis-shrimp": {
-   "species": [
-    "Shrimp"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Larval"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-mysis-shrimp"
-  },
-  "larviva-pronurse-barramundi": {
-   "species": [
-    "Barramundi"
-   ],
-   "brand": "LARVIVA",
-   "stages": [
-    "Hatchery Feed"
-   ],
-   "categories": [
-    "Nursery"
-   ],
-   "url": "https://www.biomar.com/feed-services/all-feed/larviva-pronurse-barramundi"
-  },
-  "orbit-cpk-atlantic-salmon": {
+  "smartcare-summer-ndq-atlantic-salmon": {
    "species": [
     "Atlantic Salmon"
    ],
-   "brand": "ORBIT",
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-summer-ndq-atlantic-salmon"
+  },
+  "smartcare-totalcare-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-total-care-atlantic-salmon"
+  },
+  "smartcare-totalcare-gill-atlantic-salmon": {
+   "species": [
+    "Atlantic Salmon"
+   ],
+   "brand": "SmartCare",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/smartcare-total-care-s-atlantic-salmon"
+  },
+  "symbio-broodstock-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "Symbio",
+   "categories": [
+    "Broodstock"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/symbio-broodstock-ballan-wrasse"
+  },
+  "symbio-lumpfish": {
+   "species": [
+    "Lumpfish"
+   ],
+   "brand": "Symbio",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/symbio-lumpfish"
+  },
+  "symbio-maintenance-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "Symbio",
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/symbio-maintenance-ballan-wrasse"
+  },
+  "symbio-plus-ballan-wrasse": {
+   "species": [
+    "Ballan Wrasse"
+   ],
+   "brand": "Symbio",
    "stages": [
     "Starter Feed"
    ],
    "categories": [
-    "RAS"
+    "Standard Performance"
    ],
-   "url": "https://www.biomar.com/feed-services/all-feed/orbit-cpk-atlantic-salmon"
+   "url": "https://www.biomar.com/feed-services/all-feed/symbio-plus-ballan-wrasse"
+  },
+  "tri-cpk-intro-triploid-salmon": {
+   "species": [
+    "Triploid Salmon"
+   ],
+   "stages": [
+    "Transfer Feed"
+   ],
+   "categories": [
+    "Health"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/tri-cpk-intro-triploid-salmon"
+  },
+  "tri-plus-triploid-salmon": {
+   "species": [
+    "Triploid Salmon"
+   ],
+   "stages": [
+    "Hatchery Feed",
+    "Starter Feed"
+   ],
+   "categories": [
+    "First feeding"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/tri-plus-triploid-salmon"
+  },
+  "tri-x-triploid-salmon": {
+   "species": [
+    "Triploid Salmon"
+   ],
+   "stages": [
+    "Grower Feed"
+   ],
+   "categories": [
+    "Standard Performance"
+   ],
+   "url": "https://www.biomar.com/feed-services/all-feed/tri-x-triploid-salmon"
   }
  }
 }

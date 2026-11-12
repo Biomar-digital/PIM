@@ -43,19 +43,17 @@ export function marketLabel(id: string, short = false): string {
 }
 
 export const RANGES = [
-  'POWER', 'Blue Impact', 'SmartCare', 'ORBIT', 'EFICO', 'INICIO', 'INTRO', 'CPK', 'LARVIVA',
-  'MAXIO', 'EXIA', 'Ecolife', 'EGGSTRA', 'DAN-EX', 'FINESTA', 'Symbio', 'TRI-X',
+  'Blue Impact', 'Classic', 'CPK', 'DAN-EX', 'Ecolife', 'EFICO', 'EGGSTRA', 'ENERGY', 'EXIA', 'FINESTA', 'Golden', 'INICIO', 'INTRO', 'Label Rouge', 'LARVIVA', 'MAXIO', 'Ocean King', 'ORBIT', 'POWER', 'Rainbow', 'SIRCLE', 'SmartCare', 'Symbio', 'TRI-X',
 ]
 /** Product categories as used on biomar.com */
 export const CATEGORIES = [
   'Top performance', 'High Performance', 'Standard Performance', 'Health', 'Sustainability', 'Organic', 'RAS',
-  'First feeding', 'Larval', 'Post larval/Weaning', 'Nursery', 'Live feed', 'Broodstock', 'Finisher',
+  'First feeding', 'Larval', 'Post larval/Weaning', 'Nursery', 'Live feed', 'Broodstock', 'Finisher', 'Water treatment',
 ]
 /** Production stages as used on biomar.com (Hatchery Feed, Starter Feed and so on) */
 export const STAGES = ['Hatchery', 'Starter', 'Transfer', 'Grower']
 export const SPECIES = [
-  'Atlantic Salmon', 'Coho Salmon', 'Triploid Salmon', 'Trout', 'Arctic Char', 'Sea Bass', 'Sea Bream', 'Meagre', 'Sturgeon',
-  'Shrimp', 'Tilapia', 'Eel', 'Lumpfish', 'Ballan Wrasse', 'Yellowtail Kingfish', 'Turbot', 'Barramundi',
+  'Arctic Char', 'Atlantic Salmon', 'Ballan Wrasse', 'Barramundi', 'Catfish', 'Chinook Salmon', 'Cobia', 'Cod', 'Coho Salmon', 'Eel', 'Golden Pompano', 'Grouper', 'Large Yellow Croaker', 'Largemouth Bass', 'Longfin Yellowtail', 'Lumpfish', 'Meagre', 'Murray Cod', 'Pike Perch', 'Red Drum', 'Red Sea Bream', 'Red Tilapia', 'Sea Bass', 'Sea Bream', 'Shrimp', 'Snapper', 'Sole', 'Striped Bass', 'Striped Catfish', 'Sturgeon', 'Tilapia', 'Totoaba', 'Triploid Salmon', 'Trout', 'Turbot', 'Whitefish', 'Yellowtail Kingfish',
 ]
 export const FEED_TYPES = ['Extruded pellet', 'Sinking pellet', 'Microdiet', 'Crumble']
 

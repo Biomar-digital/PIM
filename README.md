@@ -4,7 +4,7 @@ A simple, central place to find, maintain, review and approve BioMar product inf
 global master data, marketing copy, digital assets and market/language versions.
 
 This is a **functional prototype** focused on user experience and information structure.
-It runs entirely in the browser – no backend needed – and is seeded with 65 real products
+It runs entirely in the browser – no backend needed – and is seeded with all 360 products
 imported from the BioMar website content export, shown with their own product logos.
 
 ## Run it
@@ -80,7 +80,9 @@ scripts/fetch_website_content.py  collects taglines, range benefits, categories 
 ## Sample data
 
 `scripts/build_seed.py` reads the website export (one `.uda` JSON file per product page) and
-builds `src/data/seed.json`:
+builds `src/data/seed.json` with every published product page (360), leaving out archived,
+duplicate and test pages. Chinese species names on China-market pages are translated, and spelling
+differences between pages are merged into one species name:
 
 ```bash
 python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json
@@ -118,5 +120,6 @@ python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json   # 
 ```
 
 `fetch_bags.py` opens each product page (`/feed-services/all-feed/<website slug>`), takes the page's
-product image (`og:image`), saves a 600 px WebP copy to `src/assets/bags/` and records the source URL.
-The asset card shows "Imported from biomar.com" and links back to the original.
+product image (`og:image`) and saves a small WebP copy to `src/assets/bags/`. Products that share a
+packshot share one file (334 products, 151 images). 26 products have no page on biomar.com (mostly
+China-market EFICO pages) and show the packshot as missing.
