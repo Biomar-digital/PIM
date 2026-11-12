@@ -49,7 +49,8 @@ def parse(name: str):
     base = os.path.basename(name)
     if not base.lower().endswith(".png") or not base.startswith("Logo-") or " + " in base or "Tagline" in base:
         return None
-    parts = base[5:-4].split("-")
+    stem = re.sub(r"png$", "", base[5:-4], flags=re.I)  # e.g. "EFICO ZETA-Bluepng.png"
+    parts = stem.split("-")
     colours = []
     while len(parts) > 1 and parts[-1].strip().lower() in COLOURS:
         colours.insert(0, parts.pop().strip())

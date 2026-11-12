@@ -24,6 +24,76 @@
   "colour": "Blue-OceanBlue",
   "file": "danex.png"
  },
+ "EFICOALPHA": {
+  "label": "EFICO ALPHA",
+  "colour": "Blue-Green",
+  "file": "eficoalpha.png"
+ },
+ "EFICOBARRA": {
+  "label": "EFICO BARRA",
+  "colour": "Blue-Green",
+  "file": "eficobarra.png"
+ },
+ "EFICOBLACKGOLD": {
+  "label": "EFICO BLACK GOLD",
+  "colour": "Blue-Green",
+  "file": "eficoblackgold.png"
+ },
+ "EFICOCROMIS": {
+  "label": "EFICO CROMIS",
+  "colour": "Blue-Green",
+  "file": "eficocromis.png"
+ },
+ "EFICODIAMOND": {
+  "label": "EFICO DIAMOND",
+  "colour": "Blue-Green",
+  "file": "eficodiamond.png"
+ },
+ "EFICOEMERALD": {
+  "label": "EFICO EMERALD",
+  "colour": "Blue-Green",
+  "file": "eficoemerald.png"
+ },
+ "EFICOENVIRO": {
+  "label": "EFICO ENVIRO",
+  "colour": "Blue-Green",
+  "file": "eficoenviro.png"
+ },
+ "EFICOGENIO": {
+  "label": "EFICO GENIO",
+  "colour": "Blue-Green",
+  "file": "eficogenio.png"
+ },
+ "EFICOPONDI": {
+  "label": "EFICO PONDI",
+  "colour": "Blue-Green",
+  "file": "eficopondi.png"
+ },
+ "EFICORUBY": {
+  "label": "EFICO RUBY",
+  "colour": "Blue-Green",
+  "file": "eficoruby.png"
+ },
+ "EFICOSAPPHIRE": {
+  "label": "EFICO SAPPHIRE",
+  "colour": "Blue-Green",
+  "file": "eficosapphire.png"
+ },
+ "EFICOSIGMA": {
+  "label": "EFICO SIGMA",
+  "colour": "Blue-Green",
+  "file": "eficosigma.png"
+ },
+ "EFICOYS": {
+  "label": "EFICO YS",
+  "colour": "Blue-Green",
+  "file": "eficoys.png"
+ },
+ "EFICOZETA": {
+  "label": "EFICO ZETA",
+  "colour": "Blue-Green",
+  "file": "eficozeta.png"
+ },
  "EXIA": {
   "label": "EXIA",
   "colour": "Blue",
