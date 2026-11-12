@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { AlertTriangle, CheckCheck, ChevronRight, Copy as CopyIcon, FilePlus2, Globe2, Lock, Pencil } from 'lucide-react'
+import { AlertTriangle, ArrowRight, CheckCheck, ChevronRight, Copy as CopyIcon, FilePlus2, Globe2, Lock, Pencil } from 'lucide-react'
 import type { Copy, Variant } from '../types'
 import { COPY_FIELDS } from '../types'
 import { can, isOutdated, marketState, variantGaps } from '../data/rules'
@@ -10,6 +10,8 @@ import { productImage } from '../lib/files'
 import { Card, CopyButton, Empty, EmptyState, StatusBadge, UpdatedBy } from '../components/ui'
 import { ApprovalActions, SentBackNote, StatusHint } from '../components/approval'
 import { CopyInput, CopyValue } from './product/Overview'
+import { ChangeList, DiffLegend, DiffValue, englishChangesSince, variantChanges } from '../components/changes'
+import { workItems } from '../data/insights'
 
 type Draft = Copy & { localName: string; notes: string; inheritsGlobal: boolean }
 const asText = (v: string | string[]) => (Array.isArray(v) ? v.filter(Boolean).map((x) => `• ${x}`).join('\n') : v)
@@ -21,6 +23,13 @@ export default function TranslationPage() {
   const blobUrls = useStore((s) => s.blobUrls)
   const navigate = useNavigate()
   const [draft, setDraft] = useState<Draft | null>(null)
+  const [highlight, setHighlight] = useState(true)
+  const products = useStore((s) => s.db.products)
+  // The next translation on this person's to-do list, so they can work through it without going back
+  const next = useMemo(
+    () => workItems(products, user).find((w) => w.href.includes('/translations/') && w.href !== `/products/${id}/translations/${locale}`),
+    [products, user, id, locale],
+  )
 
   if (!p || !MARKET_BY_ID[locale]) {
     return <div className="page"><EmptyState title="Not found"><Link to="/products" className="btn btn-secondary">Back to products</Link></EmptyState></div>
@@ -39,6 +48,10 @@ export default function TranslationPage() {
     setDraft(null)
   }
   const inherit = draft ? draft.inheritsGlobal : v?.inheritsGlobal
+  const outdated = !!v && isOutdated(p, v)
+  const english = v && outdated ? englishChangesSince(p, v) : null
+  const showDiff = !!english && highlight
+  const ownChanges = v && v.meta.status !== 'approved' ? variantChanges(v) : null
 
   return (
     <div className="page product-page">
@@ -55,12 +68,19 @@ export default function TranslationPage() {
           <p className="phead-sub">{p.name} – {p.species}</p>
           <div className="phead-status">
             <StatusBadge status={state} />
-            {v && <StatusHint meta={v.meta} user={user} section={locale} />}
+            {v && (outdated
+              ? <span className="muted small">{canEdit ? 'Check the changes in the English text below.' : 'The local team has to check the new English text.'}</span>
+              : <StatusHint meta={v.meta} user={user} section={locale} />)}
           </div>
           {v && <p className="muted small">Last change by <UpdatedBy by={v.meta.updatedBy} at={v.meta.updatedAt} /></p>}
         </div>
         <div className="phead-actions">
           {v && <ApprovalActions p={p} section={locale} meta={v.meta} user={user} />}
+          {next && (
+            <Link className="btn btn-secondary" to={next.href} title={`${next.title}: ${next.detail}`}>
+              Next: {next.product.name} – {next.product.species}<ArrowRight size={16} />
+            </Link>
+          )}
           <select id="switch-market" className="market-switch" value={locale} onChange={(e) => navigate(`/products/${p.id}/translations/${e.target.value}`)} aria-label="Go to another market">
             {[...new Set([locale, ...p.markets])].map((l) => <option key={l} value={l}>{marketLabel(l)}</option>)}
           </select>
@@ -86,11 +106,14 @@ export default function TranslationPage() {
       ) : (
         <div className="stack-gap">
           <SentBackNote meta={v.meta} />
-          {isOutdated(p, v) && !draft && (
+          {outdated && !draft && (
             <div className="note note-warn">
               <AlertTriangle size={18} />
               <div>
-                <strong>The English text has changed since this translation was made.</strong> Compare the two columns below and update the {m.language} text, or confirm that nothing needs to change.
+                <strong>The English text has changed since this translation was made.</strong>{' '}
+                {english?.fields.length
+                  ? <>Changed: {english.fields.map((f) => COPY_LABEL[f as keyof typeof COPY_LABEL].toLowerCase()).join(', ')}. The changes are highlighted in the English column below. Update the {m.language} text, or confirm that nothing needs to change.</>
+                  : <>Compare the two columns below and update the {m.language} text, or confirm that nothing needs to change.</>}
                 {canEdit && (
                   <div className="row-gap mt">
                     <button className="btn btn-primary btn-sm" onClick={startEdit}><Pencil size={14} />Update translation</button>
@@ -100,7 +123,12 @@ export default function TranslationPage() {
               </div>
             </div>
           )}
-          {!isOutdated(p, v) && !draft && variantGaps(v).length > 0 && (
+          {ownChanges && (ownChanges.fields.length > 0 || !ownChanges.before) && !draft && (
+            <Card title={v.meta.status === 'in_review' ? 'Changes to approve' : 'Changes in this draft'} actions={<DiffLegend />}>
+              <div className="pad"><ChangeList changes={ownChanges} /></div>
+            </Card>
+          )}
+          {!outdated && !draft && variantGaps(v).length > 0 && (
             <div className="note note-info"><AlertTriangle size={16} /><span>Still to add: {variantGaps(v).join(', ')}. Until then the English text is used.</span></div>
           )}
 
@@ -128,12 +156,25 @@ export default function TranslationPage() {
               </dl>
             ) : null}
             {inherit && !draft && <div className="note note-info mx"><Globe2 size={16} />{m.market} uses the global English text as it is.</div>}
-            <div className="compare-head"><span>English (global)</span><span>{m.language}</span></div>
+            <div className="compare-head">
+              <span className="row-gap wrap">
+                English (global)
+                {english && english.fields.length > 0 && (
+                  <label className="check check-sm"><input type="checkbox" checked={highlight} onChange={(e) => setHighlight(e.target.checked)} />Highlight changes</label>
+                )}
+                {showDiff && <DiffLegend />}
+              </span>
+              <span>{m.language}</span>
+            </div>
             <div className="fields">
               {COPY_FIELDS.map((f) => (
                 <div className="compare" key={f}>
-                  <h3 className="compare-label">{COPY_LABEL[f]}</h3>
-                  <div className="compare-global"><CopyValue value={p.content[f]} empty={<Empty text="Not added in English" />} /></div>
+                  <h3 className="compare-label">{COPY_LABEL[f]}{showDiff && english!.fields.includes(f) && <span className="changed-tag">Changed in English</span>}</h3>
+                  <div className={`compare-global${showDiff && english!.fields.includes(f) ? ' changed' : ''}`}>
+                    {showDiff && english!.fields.includes(f)
+                      ? <DiffValue before={english!.before?.[f]} after={english!.after[f]} />
+                      : <CopyValue value={p.content[f]} empty={<Empty text="Not added in English" />} />}
+                  </div>
                   <div className="compare-local">
                     {draft && !draft.inheritsGlobal ? (
                       <div className="field"><CopyInput field={f} value={draft[f]} onChange={(val) => setDraft({ ...draft, [f]: val })} placeholder="Leave empty to use the English text" /></div>

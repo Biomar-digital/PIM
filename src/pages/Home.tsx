@@ -1,6 +1,6 @@
-import { useMemo, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Languages, Package, Undo2 } from 'lucide-react'
+import { AlertTriangle, ArrowRight, ChevronDown, ChevronRight, ClipboardCheck, FileText, Languages, Package, Undo2 } from 'lucide-react'
 import { currentUser, useStore, userName } from '../data/store'
 import { homeNumbers, workItems, type WorkItem } from '../data/insights'
 import { ROLE_LABEL } from '../data/reference'
@@ -36,7 +36,7 @@ export default function Home() {
 
       <div className="kpis">
         <Kpi icon={<Package />} value={n.products} label="Products" to="/products" />
-        <Kpi icon={<ClipboardCheck />} value={n.waiting} label="Waiting for approval" to="/approvals" tone="review" />
+        <Kpi icon={<ClipboardCheck />} value={n.waiting} label="In approval" to="/approvals" tone="review" />
         <Kpi icon={<Languages />} value={n.needsUpdate} label="Translations to update" to="/products?market_state=needs_update" tone="update" />
         <Kpi icon={<FileText />} value={n.copyIncomplete} label="Marketing copy incomplete" to="/products?todo=copy" tone="missing" />
       </div>
@@ -47,25 +47,11 @@ export default function Home() {
             <p className="muted pad">All done. Nice work.</p>
           ) : (
             <ul className="work-list">
-              {work.slice(0, 9).map((w) => {
-                const Icon = TONE_ICON[w.tone]
-                return (
-                  <li key={w.key}>
-                    <Link className="work-item" to={w.href}>
-                      <Thumb url={productImage(w.product, blobUrls)} size={44} />
-                      <span className="work-text">
-                        <span className={`work-title tone-${w.tone}`}><Icon size={14} />{w.title}</span>
-                        <strong>{productTitle(w.product)}</strong>
-                        <span className="muted small clamp-1">{w.detail}</span>
-                      </span>
-                      <ArrowRight size={16} className="muted" />
-                    </Link>
-                  </li>
-                )
-              })}
+              {groupWork(work).map((g) => g.items.length >= 3
+                ? <WorkGroup key={g.title} items={g.items} blobUrls={blobUrls} />
+                : g.items.map((w) => <WorkRow key={w.key} w={w} blobUrls={blobUrls} />))}
             </ul>
           )}
-          {work.length > 9 && <p className="pad small muted">And {work.length - 9} more.</p>}
         </Card>
 
         <Card title="Latest changes" className="home-recent">
@@ -84,6 +70,51 @@ export default function Home() {
         </Card>
       </div>
     </div>
+  )
+}
+
+/** Items with the same title, in the order they first appear (most urgent first). */
+function groupWork(items: WorkItem[]) {
+  const groups = new Map<string, WorkItem[]>()
+  for (const w of items) groups.set(w.title, [...(groups.get(w.title) ?? []), w])
+  return [...groups.entries()].map(([title, list]) => ({ title, items: list }))
+}
+
+function WorkRow({ w, blobUrls }: { w: WorkItem; blobUrls: Record<string, string> }) {
+  const Icon = TONE_ICON[w.tone]
+  return (
+    <li>
+      <Link className="work-item" to={w.href}>
+        <Thumb url={productImage(w.product, blobUrls)} size={44} />
+        <span className="work-text">
+          <span className={`work-title tone-${w.tone}`}><Icon size={14} />{w.title}</span>
+          <strong>{productTitle(w.product)}</strong>
+          <span className="muted small clamp-1">{w.detail}</span>
+        </span>
+        <ArrowRight size={16} className="muted" />
+      </Link>
+    </li>
+  )
+}
+
+/** Several similar items folded into one line, e.g. "12 drafts not sent for approval". */
+function WorkGroup({ items, blobUrls }: { items: WorkItem[]; blobUrls: Record<string, string> }) {
+  const [open, setOpen] = useState(false)
+  const w = items[0]
+  const Icon = TONE_ICON[w.tone]
+  return (
+    <li className={`work-group${open ? ' open' : ''}`}>
+      <button className="work-item" onClick={() => setOpen(!open)} aria-expanded={open}>
+        <span className="work-stack">{items.slice(0, 3).map((x) => <Thumb key={x.key} url={productImage(x.product, blobUrls)} size={30} />)}</span>
+        <span className="work-text">
+          <span className={`work-title tone-${w.tone}`}><Icon size={14} />{w.title}</span>
+          <strong>{items.length} products</strong>
+          <span className="muted small clamp-1">{items.slice(0, 3).map((x) => productTitle(x.product)).join(', ')}{items.length > 3 ? ' and more' : ''}</span>
+        </span>
+        {open ? <ChevronDown size={16} className="muted" /> : <ChevronRight size={16} className="muted" />}
+      </button>
+      {open && <ul className="work-sub">{items.map((x) => <WorkRow key={x.key} w={x} blobUrls={blobUrls} />)}</ul>}
+    </li>
   )
 }
 

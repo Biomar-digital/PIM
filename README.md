@@ -25,11 +25,13 @@ Built for product managers, heads of product marketing and local marketing manag
 
 | Area | What it does |
 |---|---|
-| **Home** | Your personal to-do list (things to approve, content sent back to you, translations to update, drafts not yet sent), four key numbers and the latest changes. |
-| **Products** | Search and filter by range, species, market, status and missing information, with more filters on demand. Cards or a list. Filters are kept in the link, so a filtered view can be shared. |
+| **Home** | Your personal to-do list (things to approve, content sent back to you, translations to update, drafts not yet sent), with similar items grouped. Four key numbers and the latest changes. |
+| **Products** | Grouped by range. Local editors see the products sold in their own markets first, with *All products* one click away. Search and filter by range, species, market, status and translation status, with more filters on demand. Cards or a list. Filters are kept in the link, so a filtered view can be shared. |
 | **Product page** | Overview with the marketing copy (copy any text with one click) and product details, a plain "To do" list of what is missing, the packshot and the markets. Tabs for Translations, Files and History. Export the text or a one-page product sheet (PDF). |
-| **Translation page** | One page per market: the English text and the local text side by side, its own approval, a warning when the English text has changed, and a "live on the website" flag. |
-| **Approval** | One status for the global content and one per market: Draft, Waiting for approval, Approved. Approvers approve or send back with a note. Editing approved content creates a new draft. |
+| **Translation page** | One page per market: the English text and the local text side by side, its own approval and a "live on the website" flag. When the English text changes, the changed words are highlighted so the translator only has to look at what is new. A *Next* button goes to the next translation on your list. |
+| **Approval** | One status for the global content and one per market: Draft, In approval, Approved. Approvers see exactly what changed since the last approved version (added text in green, removed text struck through), then approve or send back with a note. Editing approved content creates a new draft. |
+| **Ready to use** | A product is *Ready to use* when it is approved and has its marketing copy, packshot and datasheet. Sending a product for approval with any of these missing asks for confirmation first. |
+| **To do** | Split into *Needed before approval* (tagline, short description, description, key benefits, packshot, datasheet) and *Nice to have* (selling points, product code, feed type, pellet sizes, packaging, logo). Lists only count the essentials. |
 | **Files** | Logo (from the brand logo packs), packshot (from biomar.com) and technical datasheet are expected for every product; photos, brochures and other files are optional. Upload, preview and download. |
 | **Markets** | How far each market is with its translations, and who the local editors are. |
 | **Administration** | People, roles and what each role can do. The user menu switches between people to try each role. |

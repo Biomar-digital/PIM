@@ -6,7 +6,7 @@
 import { useSyncExternalStore } from 'react'
 import seed from './seed.json'
 import type {
-  Asset, AssetType, Copy, Database, DetailField, HistoryAction, HistoryEntry, Product, Section, Status, User, Variant,
+  Asset, AssetType, Copy, Database, DetailField, HistoryAction, HistoryEntry, Product, Section, Status, User, Variant, VersionText,
 } from '../types'
 import { COPY_FIELDS, DETAIL_FIELDS } from '../types'
 import { idb } from '../lib/idb'
@@ -248,12 +248,15 @@ export function transition(id: string, section: Section, to: Status, note?: stri
       next.status = newMeta
       if (to === 'approved') {
         next.content = { ...p.content, version: p.content.version + 1 }
+        // Keep the approved English text, so translators and approvers can see what changed later
+        next.versions = { ...p.versions, [next.content.version]: { ...pick(p.content, COPY_FIELDS), ...pick(p, DETAIL_FIELDS) } as unknown as VersionText }
         summary = `Approved as version ${next.content.version}`
       }
       snapshot = { ...pick(p, DETAIL_FIELDS), ...pick(p.content, COPY_FIELDS) }
     } else {
       const v = p.variants[section]
-      next.variants = { ...p.variants, [section]: { ...v, meta: newMeta } }
+      const approved = to === 'approved' ? (pick(v, COPY_FIELDS) as unknown as Copy) : v.approved
+      next.variants = { ...p.variants, [section]: { ...v, meta: newMeta, approved } }
       snapshot = pick(v, VARIANT_FIELDS)
     }
     next.history = [historyEntry(section, action, summary, to === 'approved' ? snapshot : undefined), ...p.history]

@@ -35,7 +35,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
           <NavLink key={to} to={to} end={end} className="nav-item">
             <Icon size={18} aria-hidden />
             <span>{label}</span>
-            {!!badge && <span className="nav-badge" title={`${badge} waiting for approval`}>{badge}</span>}
+            {!!badge && <span className="nav-badge" title={`${badge} in approval`}>{badge}</span>}
           </NavLink>
         ))}
       </nav>

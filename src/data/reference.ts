@@ -59,7 +59,7 @@ export const SPECIES = [
 ]
 export const FEED_TYPES = ['Extruded pellet', 'Sinking pellet', 'Microdiet', 'Crumble']
 
-export const STATUS_LABEL: Record<Status, string> = { draft: 'Draft', in_review: 'Waiting for approval', approved: 'Approved' }
+export const STATUS_LABEL: Record<Status, string> = { draft: 'Draft', in_review: 'In approval', approved: 'Approved' }
 
 export const ROLE_LABEL: Record<Role, string> = {
   admin: 'Administrator',

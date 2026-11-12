@@ -157,6 +157,37 @@ BAGS_INDEX = "src/assets/bags/index.json"
 BAGS = json.load(open(BAGS_INDEX, encoding="utf-8")) if os.path.exists(BAGS_INDEX) else {}
 
 
+COPY_KEYS = ("tagline", "shortDescription", "description", "keyBenefits", "sellingPoints")
+
+
+def earlier_version(copy):
+    """A believable earlier version of a text: before the tagline and selling points were added
+    (they came later from the range pages), or with one key benefit fewer."""
+    prev = dict(copy)
+    if copy.get("tagline") or copy.get("sellingPoints"):
+        prev["tagline"] = ""
+        prev["sellingPoints"] = []
+        if len(copy.get("keyBenefits", [])) >= 3:
+            prev["keyBenefits"] = copy["keyBenefits"][:-1]
+        return prev
+    if len(copy.get("keyBenefits", [])) >= 2:
+        prev["keyBenefits"] = copy["keyBenefits"][:-1]
+        return prev
+    return None
+
+
+def english_versions(status, version, copy):
+    """English text of each approved version, keyed by version number.
+    Approved product: the current text is the latest version. Draft or in approval:
+    the current text is a proposed change on top of the last approved version."""
+    prev = earlier_version(copy) or copy
+    if status == "approved":
+        return {str(version - 1): prev, str(version): copy}
+    # The last approved version is `prev`; the one before it had one key benefit fewer
+    before = dict(prev, keyBenefits=prev["keyBenefits"][:-1]) if len(prev.get("keyBenefits", [])) >= 2 else prev
+    return {str(version - 1): before, str(version): prev}
+
+
 def main():
     random.seed(42)
     docs = {}
@@ -257,6 +288,14 @@ def main():
                 "meta": {"status": vstatus, "updatedBy": editor, "updatedAt": iso(random.randint(-200, -2) if vstatus == "approved" else random.randint(-18, -1)),
                          **({"reviewNote": next_note()} if vstatus == "draft" and random.random() < 0.25 else {})},
             }
+            # Last approved text of the translation, used to show approvers what changed
+            vcopy = {k: variants[c][k] for k in COPY_KEYS}
+            if vstatus == "approved":
+                variants[c]["approved"] = vcopy
+            else:
+                prev_v = earlier_version(vcopy)
+                if prev_v:
+                    variants[c]["approved"] = prev_v
         # target markets: where variants exist + sometimes a market we have no copy for yet
         targets = list(variants.keys())
         extra_pool = {
@@ -331,6 +370,10 @@ def main():
                 "sellingPoints": selling,
                 "version": mk_version,
             },
+            "versions": english_versions(mk_status, mk_version, {
+                "tagline": tagline, "shortDescription": short, "description": description,
+                "keyBenefits": en["benefits"], "sellingPoints": selling,
+            }),
             "markets": targets,
             "variants": variants,
             "assets": assets,
@@ -338,7 +381,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 6, "users": USERS, "products": products}
+    seed = {"version": 7, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")

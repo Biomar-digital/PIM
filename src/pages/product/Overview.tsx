@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { AlertTriangle, CheckCircle2, Circle, Lock, Pencil } from 'lucide-react'
 import type { Copy, CopyField, DetailField, Product, User } from '../../types'
 import { COPY_FIELDS } from '../../types'
-import { TODO_AREA_LABEL, can, marketState, type Todo, type TodoArea } from '../../data/rules'
+import { TODO_AREA_LABEL, can, marketState, type Todo } from '../../data/rules'
+import { ChangeList, DiffLegend, globalChanges } from '../../components/changes'
 import { saveGlobal, useStore } from '../../data/store'
 import { CATEGORIES, COPY_LABEL, FEED_TYPES, LIFECYCLE_LABEL, RANGES, SPECIES, STAGES, marketLabel } from '../../data/reference'
 import { productPackshot } from '../../lib/files'
@@ -56,6 +57,7 @@ export function Overview({ p, user, todos }: { p: Product; user: User; todos: To
   return (
     <div className="overview">
       <div className="overview-main">
+        <ChangesCard p={p} />
         <div ref={copyRef}><CopyCard p={p} editing={editing === 'copy'} canEdit={canEdit} onEdit={() => setEditing('copy')} onDone={() => setEditing(null)} /></div>
         <div ref={detailsRef}><DetailsCard p={p} editing={editing === 'details'} canEdit={canEdit} onEdit={() => setEditing('details')} onDone={() => setEditing(null)} /></div>
       </div>
@@ -174,41 +176,59 @@ function DetailsCard({ p, editing, canEdit, onEdit, onDone }: { p: Product; edit
 
 /* ---------------- Side cards ---------------- */
 
-const AREA_ORDER: TodoArea[] = ['copy', 'details', 'files', 'markets']
-
 function TodoCard({ p, todos, canEdit, onEdit }: { p: Product; todos: Todo[]; canEdit: boolean; onEdit: (what: 'copy' | 'details') => void }) {
-  if (!todos.length) {
-    return (
-      <Card title="To do">
-        <p className="pad done-line"><CheckCircle2 size={18} />Everything is in place.</p>
-      </Card>
-    )
+  const essential = todos.filter((t) => t.essential)
+  const optional = todos.filter((t) => !t.essential && t.area !== 'markets')
+  const markets = todos.filter((t) => t.area === 'markets')
+  const item = (t: Todo) => {
+    const icon = t.kind === 'update' ? <AlertTriangle size={14} className="warn-text" /> : <Circle size={14} />
+    const label = t.area === 'files' ? `${t.label} (file)` : t.label
+    const inner = <>{icon}<span>{label}</span></>
+    if (t.area === 'markets') return <li key={t.id}><Link className="todo-item" to={`/products/${p.id}/translations/${t.locale}`}>{inner}</Link></li>
+    if (t.area === 'files') return <li key={t.id}><Link className="todo-item" to={`/products/${p.id}/files`}>{inner}</Link></li>
+    return <li key={t.id}>{canEdit ? <button className="todo-item" onClick={() => onEdit(t.area as 'copy' | 'details')}>{inner}</button> : <span className="todo-item static">{inner}</span>}</li>
   }
   return (
-    <Card title={<>To do <span className="count">{todos.length}</span></>}>
+    <Card title={<>To do{essential.length > 0 && <span className="count count-warn">{essential.length}</span>}</>}>
       <div className="todo">
-        {AREA_ORDER.map((area) => {
-          const items = todos.filter((t) => t.area === area)
-          if (!items.length) return null
-          return (
-            <div key={area} className="todo-group">
-              <div className="todo-head">{TODO_AREA_LABEL[area]}</div>
-              <ul>
-                {items.map((t) => {
-                  const icon = t.kind === 'update' ? <AlertTriangle size={14} className="warn-text" /> : <Circle size={14} />
-                  const inner = <>{icon}<span>{t.label}</span></>
-                  if (area === 'markets') return <li key={t.id}><Link className="todo-item" to={`/products/${p.id}/translations/${t.locale}`}>{inner}</Link></li>
-                  if (area === 'files') return <li key={t.id}><Link className="todo-item" to={`/products/${p.id}/files`}>{inner}</Link></li>
-                  return (
-                    <li key={t.id}>
-                      {canEdit ? <button className="todo-item" onClick={() => onEdit(area as 'copy' | 'details')}>{inner}</button> : <span className="todo-item static">{inner}</span>}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )
-        })}
+        {essential.length === 0 ? (
+          <p className="done-line"><CheckCircle2 size={18} />Everything essential is in place.</p>
+        ) : (
+          <div className="todo-group">
+            <div className="todo-head">Needed before approval</div>
+            <ul>{essential.map(item)}</ul>
+          </div>
+        )}
+        {markets.length > 0 && (
+          <div className="todo-group">
+            <div className="todo-head">{TODO_AREA_LABEL.markets}</div>
+            <ul>{markets.map(item)}</ul>
+          </div>
+        )}
+        {optional.length > 0 && (
+          <details className="todo-group todo-optional">
+            <summary className="todo-head">Nice to have ({optional.length})</summary>
+            <ul>{optional.map(item)}</ul>
+          </details>
+        )}
+      </div>
+    </Card>
+  )
+}
+
+/** Proposed changes compared with the last approved version, shown while the content is a draft or in approval. */
+function ChangesCard({ p }: { p: Product }) {
+  if (p.status.status === 'approved') return null
+  const changes = globalChanges(p)
+  if (changes.before && !changes.fields.length) return null
+  return (
+    <Card
+      className="changes-card"
+      title={p.status.status === 'in_review' ? `Changes to approve (version ${p.content.version + 1})` : 'Changes in this draft'}
+      actions={<DiffLegend />}
+    >
+      <div className="pad">
+        <ChangeList changes={changes} />
       </div>
     </Card>
   )

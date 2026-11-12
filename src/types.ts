@@ -49,8 +49,13 @@ export interface Variant extends Copy {
   websiteStatus: WebsiteStatus
   /** Global content version this translation follows. */
   sourceVersion: number
+  /** Text of the last approved version of this translation, to show approvers what changed. */
+  approved?: Copy
   meta: Meta
 }
+
+/** Snapshot of an approved global version: the copy, plus product details when known. */
+export type VersionText = Copy & Partial<Record<DetailField, unknown>>
 
 export type AssetType = 'logo' | 'bag' | 'photo' | 'datasheet' | 'brochure' | 'other'
 
@@ -113,6 +118,8 @@ export interface Product {
   /** Workflow state of the global content (details + marketing copy) */
   status: Meta
   content: GlobalContent
+  /** English text of each approved version, keyed by version number. */
+  versions?: Record<string, VersionText>
   /** Locale ids of the markets where the product is sold */
   markets: string[]
   variants: Record<string, Variant>

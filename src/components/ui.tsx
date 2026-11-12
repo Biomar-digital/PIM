@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertTriangle, Check, CheckCircle2, ChevronDown, CircleDashed, Clock, Copy, X } from 'lucide-react'
+import { AlertTriangle, BadgeCheck, Check, CheckCircle2, ChevronDown, CircleDashed, Clock, Copy, X } from 'lucide-react'
 import { MARKET_STATE_LABEL, type MarketState } from '../data/rules'
 import { initials } from '../lib/format'
 import { copyText } from '../lib/files'
@@ -23,6 +23,11 @@ export function StatusBadge({ status, small }: { status: MarketState; small?: bo
       {MARKET_STATE_LABEL[status]}
     </span>
   )
+}
+
+/** Approved and nothing essential missing: markets can use it. */
+export function ReadyBadge({ small }: { small?: boolean }) {
+  return <span className={`badge badge-ready${small ? ' badge-sm' : ''}`} title="Approved, with marketing copy, packshot and datasheet in place"><BadgeCheck size={small ? 12 : 14} aria-hidden />Ready to use</span>
 }
 
 /* ---------- Empty values ---------- */

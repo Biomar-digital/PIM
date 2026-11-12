@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Check, ClipboardCheck, Undo2 } from 'lucide-react'
+import { Check, ChevronDown, ChevronRight, ClipboardCheck, Undo2 } from 'lucide-react'
 import { currentUser, transition, useStore, userName } from '../data/store'
 import { allBlocks, blockHref, blockLabel, type Block } from '../data/insights'
 import { can } from '../data/rules'
@@ -8,6 +8,7 @@ import { MARKETS, marketLabel } from '../data/reference'
 import { productImage } from '../lib/files'
 import { timeAgo } from '../lib/format'
 import { EmptyState, SendBackModal, Thumb } from '../components/ui'
+import { ChangeList, DiffLegend, globalChanges, variantChanges, type ChangeSet } from '../components/changes'
 
 type TabId = 'waiting' | 'sent_back'
 
@@ -19,6 +20,8 @@ export default function Approvals() {
   const [tab, setTab] = useState<TabId>('waiting')
   const [market, setMarket] = useState('')
   const [sendBack, setSendBack] = useState<Block | null>(null)
+  const [open, setOpen] = useState<string | null>(null)
+  const changesOf = (b: Block): ChangeSet => (b.section === 'global' ? globalChanges(b.product) : variantChanges(b.product.variants[b.section]))
 
   const blocks = useMemo(() => allBlocks(products), [products])
   const byMarket = (b: Block) => !market || (market === 'global' ? b.section === 'global' : b.section === market)
@@ -50,21 +53,33 @@ export default function Approvals() {
       </div>
 
       {list.length === 0 ? (
-        <EmptyState icon={<ClipboardCheck size={32} />} title={tab === 'waiting' ? 'Nothing is waiting for approval' : 'Nothing has been sent back'}><p className="muted">All caught up.</p></EmptyState>
+        <EmptyState icon={<ClipboardCheck size={32} />} title={tab === 'waiting' ? 'Nothing is in approval' : 'Nothing has been sent back'}><p className="muted">All caught up.</p></EmptyState>
       ) : (
         <div className="card table-wrap">
           <table className="table">
             <thead><tr><th>Product</th><th>What</th><th className="hide-md">{tab === 'waiting' ? 'Sent by' : 'Sent back by'}</th><th /></tr></thead>
             <tbody>
-              {list.map((b) => (
-                <tr key={`${b.product.id}-${b.section}`} className="row-click" onClick={() => navigate(blockHref(b.product.id, b.section))}>
+              {list.map((b) => {
+                const key = `${b.product.id}-${b.section}`
+                const ch = changesOf(b)
+                const isOpen = open === key
+                return (
+                <Fragment key={key}>
+                <tr className={`row-click${isOpen ? ' row-open' : ''}`} onClick={() => navigate(blockHref(b.product.id, b.section))}>
                   <td>
                     <span className="prod-cell">
                       <Thumb url={productImage(b.product, blobUrls)} size={36} />
                       <span><strong>{b.product.name} – {b.product.species}</strong><span className="muted small block">{b.product.range}</span></span>
                     </span>
                   </td>
-                  <td>{blockLabel(b.section)}{b.reviewNote && tab === 'sent_back' && <span className="small muted block clamp-1">“{b.reviewNote}”</span>}</td>
+                  <td>
+                    {blockLabel(b.section)}
+                    {b.reviewNote && tab === 'sent_back' && <span className="small muted block clamp-1">“{b.reviewNote}”</span>}
+                    <button className="link-btn small block-btn" onClick={(e) => { e.stopPropagation(); setOpen(isOpen ? null : key) }} aria-expanded={isOpen}>
+                      {isOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                      {!ch.before ? 'See the text (first version)' : ch.fields.length ? `See changes (${ch.fields.length} ${ch.fields.length === 1 ? 'field' : 'fields'})` : 'No text changes'}
+                    </button>
+                  </td>
                   <td className="hide-md small">{userName(b.updatedBy)}<span className="muted block">{timeAgo(b.updatedAt)}</span></td>
                   <td className="nowrap right" onClick={(e) => e.stopPropagation()}>
                     {tab === 'waiting' && approver ? (
@@ -77,7 +92,19 @@ export default function Approvals() {
                     )}
                   </td>
                 </tr>
-              ))}
+                {isOpen && (
+                  <tr className="changes-row">
+                    <td colSpan={4}>
+                      <div className="changes-panel">
+                        <div className="row-gap"><strong className="grow">What changed since the last approved version</strong><DiffLegend /></div>
+                        <ChangeList changes={ch} />
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                </Fragment>
+                )
+              })}
             </tbody>
           </table>
         </div>

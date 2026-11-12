@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChevronRight, ClipboardCopy, Download, FileDown } from 'lucide-react'
 import { currentUser, toast, useStore, userName } from '../data/store'
-import { todos } from '../data/rules'
+import { isReady, todos } from '../data/rules'
 import { LIFECYCLE_LABEL } from '../data/reference'
 import { copyText, downloadProductSheet, productAsText, productImage } from '../lib/files'
-import { EmptyState, Menu, StatusBadge, When } from '../components/ui'
+import { EmptyState, Menu, ReadyBadge, StatusBadge, When } from '../components/ui'
 import { ApprovalActions, SentBackNote, StatusHint } from '../components/approval'
 import { Overview } from './product/Overview'
 import { TranslationsTab } from './product/TranslationsTab'
@@ -45,6 +45,7 @@ export default function ProductPage() {
           <p className="phead-sub">{[p.range, ...p.categories, ...p.stages].filter(Boolean).join(' · ')}{p.lifecycle !== 'active' && ` · ${LIFECYCLE_LABEL[p.lifecycle]}`}</p>
           <div className="phead-status">
             <StatusBadge status={p.status.status} />
+            {isReady(p) && <ReadyBadge />}
             <StatusHint meta={p.status} user={user} section="global" />
           </div>
           <p className="muted small">Owner {userName(p.owner)} · Last change by {userName(p.status.updatedBy)}, <When at={p.status.updatedAt} /></p>

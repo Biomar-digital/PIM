@@ -1,18 +1,33 @@
 import { useState } from 'react'
 import { Check, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
 import type { Meta, Product, Section, User } from '../types'
-import { can } from '../data/rules'
+import { can, essentialTodos } from '../data/rules'
 import { sectionLabel, transition, userName } from '../data/store'
-import { SendBackModal } from './ui'
+import { Modal, SendBackModal } from './ui'
 
-/** The one or two buttons that move content through Draft, Waiting for approval and Approved. */
+/** The one or two buttons that move content through Draft, In approval and Approved. */
 export function ApprovalActions({ p, section, meta, user }: { p: Product; section: Section; meta: Meta; user: User }) {
   const [sendBack, setSendBack] = useState(false)
+  const [confirmSend, setConfirmSend] = useState<string[] | null>(null)
   const editable = can.edit(user, section)
+  const send = () => {
+    const missing = section === 'global' ? essentialTodos(p).map((t) => t.label) : []
+    if (missing.length) setConfirmSend(missing)
+    else transition(p.id, section, 'in_review')
+  }
   return (
     <>
       {meta.status === 'draft' && editable && (
-        <button className="btn btn-primary" onClick={() => transition(p.id, section, 'in_review')}><Send size={16} />Send for approval</button>
+        <button className="btn btn-primary" onClick={send}><Send size={16} />Send for approval</button>
+      )}
+      {confirmSend && (
+        <Modal title="Some essentials are still missing" onClose={() => setConfirmSend(null)} footer={<>
+          <button className="btn btn-secondary" onClick={() => setConfirmSend(null)}>Go back and add them</button>
+          <button className="btn btn-primary" onClick={() => { transition(p.id, section, 'in_review'); setConfirmSend(null) }}>Send anyway</button>
+        </>}>
+          <p>{p.name} – {p.species} can be approved, but it will not be <strong>ready to use</strong> until these are added:</p>
+          <ul className="bullets">{confirmSend.map((m) => <li key={m}>{m}</li>)}</ul>
+        </Modal>
       )}
       {meta.status === 'in_review' && can.approve(user) && (
         <>
