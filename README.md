@@ -41,37 +41,39 @@ feed type, pellet sizes, packaging and datasheets are empty until someone adds t
 
 ```
 src/
-  types.ts              data model (Product, Variant, Asset, HistoryEntry, User…)
+  types.ts              data model (Product, Variant, Asset, HistoryEntry, User)
   data/
-    seed.json           sample data (generated, see below)
-    reference.ts        markets/languages, ranges, categories, stages, labels
-    rules.ts            permissions, completeness checks, variant state
-    insights.ts         derived views: work queues, market coverage
-    store.ts            state + all write actions (edit, workflow, assets, history)
-  lib/                  IndexedDB wrapper, sample artwork, PDF/download helpers
-  components/           layout, shared UI, charts, asset components
-  pages/                Dashboard, Library, ProductPage (+ product/* tabs), AssetLibrary, Approvals, Markets, Admin
-scripts/build_seed.py   builds seed.json from the Umbraco website export
-scripts/import_logos.py imports product logos from the brand logo packs into src/assets/logos
-scripts/fetch_bags.py   downloads product bag packshots from biomar.com into src/assets/bags
+    seed.json           product data (generated, see below)
+    website.json        content collected from biomar.com
+    reference.ts        markets and languages, ranges, categories, stages, labels
+    rules.ts            permissions, market version state, the "To do" list
+    insights.ts         to-do lists, approval queue, home numbers, market coverage
+    store.ts            state and every write action (edit, approval, files, history)
+  assets/               product logos and packshots
+  lib/                  browser storage, files, copy, product sheet PDF, logo matching
+  components/           layout, shared UI, approval buttons, file cards
+  pages/                Home, Products, ProductPage (+ product/* tabs), TranslationPage, Files, Approvals, Markets, Admin
+scripts/build_seed.py   builds seed.json from the website export
+scripts/import_logos.py imports product logos from the brand logo packs
+scripts/fetch_bags.py   downloads product packshots from biomar.com
 scripts/fetch_website_content.py  collects taglines, range benefits, categories and stages from biomar.com
 ```
 
 ### Data model in short
 
-- **Product** = one global master record (one product per range + species, as on the website).
-  It holds classification, pellet sizes, packaging, owner, lifecycle, global marketing content and assets.
-- **Variant** = market + language version keyed by locale (`nn-NO`, `es-CL`…). It holds local copy,
-  notes, workflow status, website status and the global version it was based on.
-- **markets** on a product = the markets where it is sold. A market without a variant counts as *missing*.
+- **Product** = one global record (one product per range and species, as on the website).
+  It holds the product details, the English marketing copy, files and one approval status.
+- **Variant** = the version for one market and language, keyed by locale (`nn-NO`, `es-CL`). It holds
+  the translated copy, its own approval status, the website flag and the English version it follows.
+- **markets** on a product = where it is sold. A market without a variant shows as *Not started*.
 
 ### Extending it
 
 - **Backend:** every write goes through `src/data/store.ts`. To move to a server, swap the
   IndexedDB persistence there for API calls and keep the same action functions. The UI does not change.
 - **New markets, ranges or required fields:** edit `src/data/reference.ts` and the checks in `src/data/rules.ts`.
-- **Real assets:** replace the generated sample artwork (`src/lib/artwork.ts`) with file storage
-  (for example blob storage or a DAM), and keep the `Asset` record as metadata.
+- **File storage:** uploads are kept in the browser. In production, store files in blob storage or a
+  DAM and keep the `Asset` record as metadata.
 
 ## Sample data
 
