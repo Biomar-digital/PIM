@@ -26,8 +26,10 @@ Built for product managers, heads of product marketing and local marketing manag
 | Area | What it does |
 |---|---|
 | **Home** | Your personal to-do list (things to approve, content sent back to you, translations to update, drafts not yet sent), with similar items grouped. Four key numbers and the latest changes. |
+| **Spreadsheet** | In Products, switch to *Spreadsheet*: one row per product, one column per field, grouped as Classification, Specification, Marketing copy and Ownership. Click a cell to edit it, or tick several rows and set a field for all of them at once (replace or add to a list). |
+| **Excel** | *Export to Excel* downloads the products currently shown (Products, Translations and a How to use sheet with the allowed values). Edit it and use *Import from Excel*: every change is listed before anything is saved, rows with unknown products or values are skipped with a reason, and imported changes become drafts that need approval. |
 | **Products** | Grouped by range. Local editors see the products sold in their own markets first, with *All products* one click away. Search and filter by range, species, market, status and translation status, with more filters on demand. Cards or a list. Filters are kept in the link, so a filtered view can be shared. |
-| **Product page** | Overview with the marketing copy (copy any text with one click) and product details, a plain "To do" list of what is missing, the packshot and the markets. Tabs for Translations, Files and History. Export the text or a one-page product sheet (PDF). |
+| **Product page** | Overview with the fields in four groups (Marketing copy, Classification, Specification, Ownership), each in a label and value layout with its own Edit button and copy buttons for text, a plain "To do" list of what is missing, the packshot and the markets. Tabs for Translations, Files and History. Export the text or a one-page product sheet (PDF). |
 | **Translation page** | One page per market: the English text and the local text side by side, its own approval and a "live on the website" flag. When the English text changes, the changed words are highlighted so the translator only has to look at what is new. A *Next* button goes to the next translation on your list. |
 | **Approval** | One status for the global content and one per market: Draft, In approval, Approved. Approvers see exactly what changed since the last approved version (added text in green, removed text struck through), then approve or send back with a note. Editing approved content creates a new draft. |
 | **Ready to use** | A product is *Ready to use* when it is approved and has its marketing copy, packshot and datasheet. Sending a product for approval with any of these missing asks for confirmation first. |
@@ -52,7 +54,8 @@ src/
     insights.ts         to-do lists, approval queue, home numbers, market coverage
     store.ts            state and every write action (edit, approval, files, history)
   assets/               product logos and packshots
-  lib/                  browser storage, files, copy, product sheet PDF, logo matching
+  lib/                  browser storage, files, downloads, product sheet PDF, logo matching,
+                        fields.ts (one definition of every field), excel.ts (export and import)
   components/           layout, shared UI, approval buttons, file cards
   pages/                Home, Products, ProductPage (+ product/* tabs), TranslationPage, Files, Approvals, Markets, Admin
 scripts/build_seed.py   builds seed.json from the website export

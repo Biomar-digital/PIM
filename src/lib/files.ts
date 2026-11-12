@@ -2,6 +2,7 @@
 import type { Asset, Product } from '../types'
 import { LIFECYCLE_LABEL } from '../data/reference'
 import { BIOMAR_LOGO, logoFor } from './logos'
+import { saveFile } from './save'
 
 /* ---------- Bundled files (src/assets/logos, src/assets/bags) ---------- */
 
@@ -50,16 +51,7 @@ export function productPackshot(p: Product, blobUrls: Record<string, string>): s
 
 /* ---------- Download & copy ---------- */
 
-function save(blob: Blob, name: string) {
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = name
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 2000)
-}
+const save = (blob: Blob, name: string) => saveFile(blob, name)
 
 export async function downloadAsset(a: Asset, blobUrls: Record<string, string>) {
   const url = assetUrl(a, blobUrls)

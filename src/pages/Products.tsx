@@ -1,17 +1,20 @@
 import { Fragment, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { LayoutGrid, List, Search, SlidersHorizontal, X } from 'lucide-react'
+import { Download, LayoutGrid, List, Search, SlidersHorizontal, Table2, Upload, X } from 'lucide-react'
 import type { Product } from '../types'
 import { currentUser, useStore } from '../data/store'
 import { CATEGORIES, LANGUAGES, MARKETS, MARKET_BY_ID, STAGES, marketLabel } from '../data/reference'
-import { MARKET_STATE_LABEL, TODO_AREA_LABEL, isReady, lastUpdated, marketState, todos, type MarketState, type TodoArea } from '../data/rules'
+import { can, MARKET_STATE_LABEL, TODO_AREA_LABEL, isReady, lastUpdated, marketState, todos, type MarketState, type TodoArea } from '../data/rules'
 import { productImage } from '../lib/files'
 import { timeAgo } from '../lib/format'
 import { EmptyState, ReadyBadge, StatusBadge, Thumb } from '../components/ui'
+import { Sheet } from '../components/Sheet'
+import { ImportModal } from '../components/ImportModal'
+import { exportProducts } from '../lib/excel'
 
-type View = 'table' | 'grid'
+type View = 'table' | 'grid' | 'sheet'
 function loadView(): View {
-  try { return (localStorage.getItem('pim.view') as View) || 'grid' } catch { return 'grid' }
+  try { return (localStorage.getItem('pim.view') as View) || 'table' } catch { return 'table' }
 }
 
 const STATUS_OPTIONS: [string, string][] = [['ready', 'Ready to use'], ['approved', 'Approved'], ['in_review', 'In approval'], ['draft', 'Draft']]
@@ -28,6 +31,8 @@ export default function Products() {
   const [params, setParams] = useSearchParams()
   const [view, setView] = useState<View>(loadView)
   const [more, setMore] = useState(false)
+  const [importing, setImporting] = useState(false)
+  const users = useStore((s) => s.db.users)
   const get = (k: string) => params.get(k) ?? ''
   const set = (k: string, v: string) => {
     const next = new URLSearchParams(params)
@@ -130,13 +135,19 @@ export default function Products() {
           <h1>Products</h1>
           <p className="muted">{rows.length} {rows.length === 1 ? 'product' : 'products'}{onlyMine ? ` sold in your markets (${user.markets.map((m) => marketLabel(m, true)).join(', ')})` : ''}</p>
         </div>
-        {hasMarkets && (
+        <div className="row-gap wrap">
+          <button className="btn btn-secondary" onClick={() => exportProducts(rows.map((r) => r.p), users)} title="Download the products shown below as an Excel file"><Download size={16} />Export to Excel</button>
+          {can.editGlobal(user) && <button className="btn btn-secondary" onClick={() => setImporting(true)}><Upload size={16} />Import from Excel</button>}
+        </div>
+      </div>
+      {hasMarkets && (
+        <div className="scope-row">
           <div className="seg seg-text" role="group" aria-label="Which products">
             <button className={onlyMine ? 'on' : ''} onClick={() => set('scope', '')}>Your markets ({mineCount})</button>
             <button className={!onlyMine ? 'on' : ''} onClick={() => set('scope', 'all')}>All products ({products.length})</button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="toolbar">
         <label className="search">
@@ -144,8 +155,9 @@ export default function Products() {
           <input id="product-search" type="search" placeholder="Search by name, species, range or code" value={get('q')} onChange={(e) => set('q', e.target.value)} aria-label="Search products" />
         </label>
         <div className="seg" role="group" aria-label="View">
-          <button className={view === 'grid' ? 'on' : ''} onClick={() => changeView('grid')} aria-label="Cards"><LayoutGrid size={18} /></button>
-          <button className={view === 'table' ? 'on' : ''} onClick={() => changeView('table')} aria-label="List"><List size={18} /></button>
+          <button className={view === 'table' ? 'on' : ''} onClick={() => changeView('table')} title="List"><List size={18} /><span className="hide-sm">List</span></button>
+          <button className={view === 'grid' ? 'on' : ''} onClick={() => changeView('grid')} title="Cards"><LayoutGrid size={18} /><span className="hide-sm">Cards</span></button>
+          <button className={view === 'sheet' ? 'on' : ''} onClick={() => changeView('sheet')} title="Spreadsheet: edit many products at once"><Table2 size={18} /><span className="hide-sm">Spreadsheet</span></button>
         </div>
       </div>
 
@@ -181,6 +193,8 @@ export default function Products() {
           <p className="muted">Try another search or clear the filters.</p>
           <button className="btn btn-secondary" onClick={() => setParams(new URLSearchParams(), { replace: true })}>Clear search and filters</button>
         </EmptyState>
+      ) : view === 'sheet' ? (
+        <Sheet products={rows.map((r) => r.p)} users={users} canEdit={can.editGlobal(user)} />
       ) : view === 'grid' ? (
         grouped ? (
           <div className="range-groups">
@@ -233,6 +247,7 @@ export default function Products() {
           </table>
         </div>
       )}
+      {importing && <ImportModal products={products} users={users} onClose={() => setImporting(false)} />}
     </div>
   )
 }

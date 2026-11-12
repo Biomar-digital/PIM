@@ -135,24 +135,47 @@ export function setUser(userId: string) { setState({ userId }) }
 
 const GLOBAL_FIELDS = [...DETAIL_FIELDS, ...COPY_FIELDS] as const
 
-export function saveGlobal(id: string, patch: Partial<Pick<Product, DetailField>> & Partial<Copy>) {
-  let changedCount = 0
-  updateProduct(id, (p) => {
-    const before = { ...p, ...p.content } as Record<string, unknown>
-    const after = { ...before, ...patch }
-    const changed = GLOBAL_FIELDS.filter((k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]))
-    changedCount = changed.length
-    if (!changed.length) return p
-    const next: Product = { ...p }
-    for (const k of changed) {
-      if ((COPY_FIELDS as readonly string[]).includes(k)) next.content = { ...next.content, [k]: after[k] }
-      else Object.assign(next, { [k]: after[k] })
-    }
-    next.status = { ...p.status, status: afterEdit(p.status.status), updatedBy: state.userId, updatedAt: now() }
-    next.history = [historyEntry('global', 'edited', `Changed ${listFields(changed)}`, { ...pick(next, DETAIL_FIELDS), ...pick(next.content, COPY_FIELDS) }), ...p.history]
+export type GlobalPatch = Partial<Pick<Product, DetailField>> & Partial<Copy>
+
+/** Apply a change to one product: new draft, history entry. Returns the product unchanged when nothing changed. */
+function applyGlobal(p: Product, patch: GlobalPatch, how = ''): Product {
+  const before = { ...p, ...p.content } as Record<string, unknown>
+  const after = { ...before, ...patch }
+  const changed = GLOBAL_FIELDS.filter((k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]))
+  if (!changed.length) return p
+  const next: Product = { ...p }
+  for (const k of changed) {
+    if ((COPY_FIELDS as readonly string[]).includes(k)) next.content = { ...next.content, [k]: after[k] }
+    else Object.assign(next, { [k]: after[k] })
+  }
+  next.status = { ...p.status, status: afterEdit(p.status.status), updatedBy: state.userId, updatedAt: now() }
+  next.history = [historyEntry('global', 'edited', `Changed ${listFields(changed)}${how}`, { ...pick(next, DETAIL_FIELDS), ...pick(next.content, COPY_FIELDS) }), ...p.history]
+  return next
+}
+
+export function saveGlobal(id: string, patch: GlobalPatch, quiet = false) {
+  const p = state.db.products.find((x) => x.id === id)
+  if (!p) return
+  const next = applyGlobal(p, patch)
+  if (next === p) return
+  updateProduct(id, () => next)
+  toast(quiet ? 'Saved' : 'Saved as draft')
+}
+
+/** Save changes to many products at once (spreadsheet bulk edit, Excel import). Returns how many products changed. */
+export function saveGlobalMany(changes: { id: string; patch: GlobalPatch }[], how: string): number {
+  const byId = new Map(changes.map((c) => [c.id, c.patch]))
+  let count = 0
+  const products = state.db.products.map((p) => {
+    const patch = byId.get(p.id)
+    if (!patch) return p
+    const next = applyGlobal(p, patch, how)
+    if (next !== p) count++
     return next
   })
-  if (changedCount) toast('Saved as draft')
+  setState({ db: { ...state.db, products } })
+  toast(count ? `${count} ${count === 1 ? 'product' : 'products'} updated` : 'Nothing changed', count ? 'ok' : 'info')
+  return count
 }
 
 /* ---------------- Market versions ---------------- */
