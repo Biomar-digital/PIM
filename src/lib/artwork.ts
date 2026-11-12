@@ -58,24 +58,16 @@ ${bubbles}${fishes}${pellets}
 
 /** Product hero image: the product's own logo on a clean BioMar panel. Falls back to the BioMar logo + name. */
 export function heroSvg(p: Product, w = 1200, h = 750): string {
-  const c = rangeColor(p.range)
   const logo = logoFor(p)
-  const r = rng(p.id + 'wave')
-  const amp = 18 + r() * 14
-  const wave = (y: number, a: number, ph: number) =>
-    `M0,${y} C300,${y - a + ph} 500,${y + a} 800,${y - ph} S1100,${y + a / 2} 1200,${y - a / 3} L1200,750 L0,750 Z`
   const mark = logo
-    ? `<image href="${logo.url}" x="140" y="150" width="920" height="330" preserveAspectRatio="xMidYMid meet"/>`
-    : `${BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="530" y="110" width="140" height="140" preserveAspectRatio="xMidYMid meet"/>` : ''}
-<text x="600" y="380" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 14 ? 76 : 96}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text>`
+    ? `<image href="${logo.url}" x="140" y="190" width="920" height="330" preserveAspectRatio="xMidYMid meet"/>`
+    : `${BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="530" y="160" width="140" height="140" preserveAspectRatio="xMidYMid meet"/>` : ''}
+<text x="600" y="430" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 14 ? 76 : 96}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text>`
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="${w}" height="${h}">
-<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef3f8"/></linearGradient></defs>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f1f5f9"/></linearGradient></defs>
 <rect width="1200" height="750" fill="url(#bg)"/>
-<path d="${wave(610, amp, 6)}" fill="#dbe8f3"/>
-<path d="${wave(650, amp * 0.8, -8)}" fill="#1d3463" opacity=".9"/>
-<path d="${wave(690, amp * 0.6, 4)}" fill="${c}" opacity=".85"/>
 ${mark}
-<text x="600" y="${logo ? 545 : 450}" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="38" font-weight="500" fill="#44546a">${esc(p.species)}</text>
+<text x="600" y="${logo ? 590 : 510}" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="38" font-weight="500" fill="#44546a">${esc(p.species)}</text>
 </svg>`
 }
 
@@ -148,7 +140,7 @@ export function logoTileSvg(p: Product): string {
     ? `<image href="${logo.url}" x="40" y="80" width="320" height="240" preserveAspectRatio="xMidYMid meet"/>`
     : `${BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="150" y="70" width="100" height="100" preserveAspectRatio="xMidYMid meet"/>` : ''}
 <text x="200" y="250" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 9 ? 44 : 60}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text>`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><rect width="400" height="400" fill="#ffffff"/>${inner}<rect y="380" width="400" height="20" fill="${rangeColor(p.range)}"/></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><rect width="400" height="400" fill="#ffffff"/>${inner}</svg>`
 }
 
 const cache = new Map<string, string>()
