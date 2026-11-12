@@ -43,7 +43,7 @@ export function marketLabel(id: string, short = false): string {
 
 export const RANGES = [
   'POWER', 'Blue Impact', 'SmartCare', 'ORBIT', 'EFICO', 'INICIO', 'INTRO', 'CPK', 'LARVIVA',
-  'MAXIO', 'EXIA', 'Ecolife', 'EGGSTRA', 'DAN-EX', 'FINESTA', 'Symbio',
+  'MAXIO', 'EXIA', 'Ecolife', 'EGGSTRA', 'DAN-EX', 'FINESTA', 'Symbio', 'TRI-X',
 ]
 export const CATEGORIES = [
   'Performance feed', 'Functional health feed', 'Low-impact feed', 'RAS feed', 'Starter feed',
@@ -51,7 +51,7 @@ export const CATEGORIES = [
 ]
 export const STAGES = ['Hatchery', 'Fry & fingerling', 'Smolt transfer', 'Grower']
 export const SPECIES = [
-  'Atlantic Salmon', 'Coho Salmon', 'Trout', 'Arctic Char', 'Sea Bass', 'Sea Bream', 'Meagre', 'Sturgeon',
+  'Atlantic Salmon', 'Coho Salmon', 'Triploid Salmon', 'Trout', 'Arctic Char', 'Sea Bass', 'Sea Bream', 'Meagre', 'Sturgeon',
   'Shrimp', 'Tilapia', 'Eel', 'Lumpfish', 'Ballan Wrasse', 'Yellowtail Kingfish', 'Turbot', 'Barramundi',
 ]
 export const FEED_TYPES = ['Extruded pellet', 'Sinking pellet', 'Microdiet', 'Crumble']
@@ -60,7 +60,7 @@ export const FEED_TYPES = ['Extruded pellet', 'Sinking pellet', 'Microdiet', 'Cr
 export const RANGE_COLORS: Record<string, string> = {
   POWER: '#c8102e', 'Blue Impact': '#0077c8', SmartCare: '#00857c', ORBIT: '#6b4fbb', EFICO: '#e87722',
   INICIO: '#d99a00', INTRO: '#5f9e1f', CPK: '#5c6f7b', LARVIVA: '#0093c9', MAXIO: '#a6192e', EXIA: '#c4006a',
-  Ecolife: '#3a913f', EGGSTRA: '#e35205', 'DAN-EX': '#8a6d3b', FINESTA: '#b58500', Symbio: '#00a499',
+  Ecolife: '#3a913f', EGGSTRA: '#e35205', 'DAN-EX': '#8a6d3b', FINESTA: '#b58500', Symbio: '#00a499', 'TRI-X': '#16a085',
 }
 
 export const STATUS_LABEL: Record<Status, string> = { draft: 'Draft', in_review: 'In review', approved: 'Approved' }

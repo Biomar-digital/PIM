@@ -54,20 +54,21 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
   }
 
   const users_ = Object.fromEntries(users.map((u) => [u.id, u.name]))
-  const rows: [string, ReactNode][] = [
+  const rows: [string, ReactNode, string?][] = [
     ['Product name', p.name],
-    ['Product code', p.code],
+    ['Product code', p.code, 'code'],
     ['Product range', p.range],
     ['Category', p.category],
     ['Species', p.species],
     ['Production stage', p.stages.join(', ')],
-    ['Feed type', p.feedType],
-    ['Pellet sizes', p.pelletSizes.length ? <span className="tags">{p.pelletSizes.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null],
-    ['Packaging', p.packaging.length ? <span className="tags">{p.packaging.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null],
-    ['Lifecycle', LIFECYCLE_LABEL[p.lifecycle]],
-    ['Product owner', users_[p.owner] ?? p.owner],
+    ['Feed type', p.feedType, 'feedType'],
+    ['Pellet sizes', p.pelletSizes.length ? <span className="tags">{p.pelletSizes.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null, 'pelletSizes'],
+    ['Packaging', p.packaging.length ? <span className="tags">{p.packaging.map((s) => <span className="tag" key={s}>{s}</span>)}</span> : null, 'packaging'],
+    ['Lifecycle', LIFECYCLE_LABEL[p.lifecycle], 'lifecycle'],
+    ['Product owner', users_[p.owner] ?? p.owner, 'owner'],
     ['Regulatory / internal notes', p.regulatoryNotes || <span className="muted">—</span>],
   ]
+  const hasSample = (p.sampleFields?.length ?? 0) > 0
 
   return (
     <div className="stack-gap">
@@ -76,11 +77,18 @@ export function InfoTab({ p, user, context }: { p: Product; user: User; context:
         title={local ? 'Global product information' : 'Product information'}
         actions={canEdit ? <button className="btn btn-secondary btn-sm" onClick={start}><Pencil size={14} /> Edit</button> : <span className="muted small lock"><Lock size={14} /> Managed by global editors</span>}
       >
-        {local && <p className="pad-x small muted">Product information is shared by all markets and maintained globally.</p>}
+        {local && <p className="pad-x pad-t small muted">Product information is shared by all markets and maintained globally.</p>}
+        {hasSample && (
+          <p className="pad-x pad-t small muted">
+            Name, range, category, species and stage come from the BioMar website. Fields marked <SampleTag /> are not on the website,
+            so the prototype shows example values. In the live PIM the global product team maintains them here, or they are
+            imported from the ERP item master and technical datasheets. The tag disappears when someone edits the field.
+          </p>
+        )}
         <dl className="dl">
-          {rows.map(([k, v]) => (
+          {rows.map(([k, v, field]) => (
             <div key={k} className="dl-row">
-              <dt>{k}</dt>
+              <dt>{k}{field && p.sampleFields?.includes(field) && <SampleTag />}</dt>
               <dd>{v || <span className="missing">Missing</span>}</dd>
             </div>
           ))}
@@ -114,4 +122,8 @@ function LocalInfo({ p, user, context }: { p: Product; user: User; context: stri
       )}
     </Card>
   )
+}
+
+export function SampleTag() {
+  return <span className="sample-tag" title="Example value – not from the BioMar website. Replace it by editing the field.">Sample</span>
 }

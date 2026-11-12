@@ -4,8 +4,8 @@ A simple, central place to find, maintain, review and approve BioMar product inf
 global master data, marketing copy, digital assets and market/language versions.
 
 This is a **functional prototype** focused on user experience and information structure.
-It runs entirely in the browser – no backend needed – and is seeded with 45 real products
-imported from the BioMar website content export.
+It runs entirely in the browser – no backend needed – and is seeded with 61 real products
+imported from the BioMar website content export, shown with their own product logos.
 
 ## Run it
 
@@ -49,6 +49,7 @@ src/
   components/           layout, shared UI, charts, asset components
   pages/                Dashboard, Library, ProductPage (+ product/* tabs), AssetLibrary, Approvals, Markets, Admin
 scripts/build_seed.py   builds seed.json from the Umbraco website export
+scripts/import_logos.py imports product logos from the brand logo packs into src/assets/logos
 ```
 
 ### Data model in short
@@ -77,7 +78,23 @@ python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json
 ```
 
 Product names, ranges, species, production stages, descriptions, key benefits and the local
-translations come from the website. Workflow states, people, dates, pellet sizes, product codes,
-taglines, selling points and asset files are **illustrative sample values**, so the prototype can
-show the full workflow. Edits are saved in the browser. *Administration → Reset demo data*
+translations come from the website. The website does not hold product codes, feed type, pellet
+sizes, packaging, product owner, lifecycle, taglines or selling points. The seed fills these with
+**example values**, and the app labels them *Sample* until someone edits them. In production they
+would be maintained in the PIM by the global product team or imported from the ERP item master and
+technical datasheets. Workflow states, people, dates and asset files are also sample data. Edits are saved in the browser. *Administration → Reset demo data*
 restores the seed.
+
+## Product logos
+
+Product images use each product's own logo from the brand logo packs:
+
+```bash
+python3 -I scripts/import_logos.py path/to/POWER.zip path/to/LARVIVA.zip ...
+```
+
+The script takes the coloured "Digital versions" PNGs, keeps one per sub-brand, compresses them and
+writes `src/assets/logos/`. The app finds the most specific match for each product: name + species
+(*INICIO Plus* + *Shrimp*, *Symbio Lumpfish*), then name (*LARVIVA Multigain*), then range (*LARVIVA*).
+Products with no logo yet (for example SmartCare, EFICO, CPK) show the BioMar logo with the
+product name. Running the script with more packs adds to the existing set.

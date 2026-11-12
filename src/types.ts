@@ -101,6 +101,8 @@ export interface Product {
   pelletSizes: string[]
   packaging: string[]
   regulatoryNotes: string
+  /** Fields still holding illustrative sample values (not from the website import). Cleared field by field on edit. */
+  sampleFields?: string[]
   owner: string
   lifecycle: Lifecycle
   info: Meta

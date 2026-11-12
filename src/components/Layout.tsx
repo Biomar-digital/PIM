@@ -8,15 +8,10 @@ import { can } from '../data/rules'
 import { currentUser, setContext, setUser, useStore } from '../data/store'
 import { Avatar, Toasts, useClickOutside } from './ui'
 import { NewProductModal } from './NewProductModal'
+import { BIOMAR_LOGO } from '../lib/logos'
 
 export function Logo() {
-  return (
-    <svg viewBox="0 0 120 44" width="104" height="38" aria-label="BioMar" role="img">
-      <path d="M8 30 C 30 6, 80 2, 112 16" fill="none" stroke="#5cc3e8" strokeWidth="3" strokeLinecap="round" />
-      <path d="M14 36 C 40 20, 80 18, 108 26" fill="none" stroke="#9bd84a" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="60" y="34" textAnchor="middle" fontFamily="Montserrat, Arial, sans-serif" fontStyle="italic" fontWeight="700" fontSize="21" fill="#fff">BioMar</text>
-    </svg>
-  )
+  return BIOMAR_LOGO ? <img src={BIOMAR_LOGO.url} alt="BioMar" className="brand-logo" /> : <strong>BioMar</strong>
 }
 
 function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {

@@ -2,6 +2,7 @@
 // these SVGs stand in for the imported sample assets so every product has something to preview.
 import type { Asset, Product } from '../types'
 import { RANGE_COLORS } from '../data/reference'
+import { BIOMAR_LOGO, logoFor } from './logos'
 
 function rng(seedStr: string) {
   let h = 2166136261
@@ -27,8 +28,8 @@ function fish(x: number, y: number, s: number, flip: boolean, fill: string, op: 
   return `<path d="${d}" transform="translate(${x},${y}) scale(${flip ? -s : s},${s})" fill="${fill}" opacity="${op}"/>`
 }
 
-/** Underwater hero image with fish and pellets */
-export function heroSvg(p: Product, w = 1200, h = 750): string {
+/** Underwater scene with fish and pellets (dashboard banners) */
+export function underwaterSvg(p: Product, w = 1200, h = 750): string {
   const r = rng(p.id + 'hero')
   const c = rangeColor(p.range)
   const hue = 178 + r() * 40
@@ -55,6 +56,29 @@ ${bubbles}${fishes}${pellets}
 </svg>`
 }
 
+/** Product hero image: the product's own logo on a clean BioMar panel. Falls back to the BioMar logo + name. */
+export function heroSvg(p: Product, w = 1200, h = 750): string {
+  const c = rangeColor(p.range)
+  const logo = logoFor(p)
+  const r = rng(p.id + 'wave')
+  const amp = 18 + r() * 14
+  const wave = (y: number, a: number, ph: number) =>
+    `M0,${y} C300,${y - a + ph} 500,${y + a} 800,${y - ph} S1100,${y + a / 2} 1200,${y - a / 3} L1200,750 L0,750 Z`
+  const mark = logo
+    ? `<image href="${logo.url}" x="140" y="150" width="920" height="330" preserveAspectRatio="xMidYMid meet"/>`
+    : `${BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="530" y="110" width="140" height="140" preserveAspectRatio="xMidYMid meet"/>` : ''}
+<text x="600" y="380" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 14 ? 76 : 96}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="${w}" height="${h}">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef3f8"/></linearGradient></defs>
+<rect width="1200" height="750" fill="url(#bg)"/>
+<path d="${wave(610, amp, 6)}" fill="#dbe8f3"/>
+<path d="${wave(650, amp * 0.8, -8)}" fill="#1d3463" opacity=".9"/>
+<path d="${wave(690, amp * 0.6, 4)}" fill="${c}" opacity=".85"/>
+${mark}
+<text x="600" y="${logo ? 545 : 450}" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="38" font-weight="500" fill="#44546a">${esc(p.species)}</text>
+</svg>`
+}
+
 /** Close-up of pellets */
 export function highresSvg(p: Product, w = 1200, h = 800): string {
   const r = rng(p.id + 'hr')
@@ -71,6 +95,7 @@ export function highresSvg(p: Product, w = 1200, h = 800): string {
 export function bagSvg(p: Product, w = 800, h = 1000): string {
   const c = rangeColor(p.range)
   const kg = p.packaging[0]?.match(/\d+\s?kg/)?.[0] ?? '25 kg'
+  const logo = logoFor(p)
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
 <rect width="${w}" height="${h}" fill="#eef1f5"/>
 <ellipse cx="${w / 2}" cy="${h - 60}" rx="280" ry="26" fill="#000" opacity=".12"/>
@@ -78,7 +103,7 @@ export function bagSvg(p: Product, w = 800, h = 1000): string {
 <path d="M190,120 Q400,90 610,120 L614,190 Q400,165 186,190 Z" fill="#0f2147"/>
 <path d="M170,620 Q400,600 632,620 L640,900 Q400,935 160,900 Z" fill="${c}"/>
 <text x="400" y="160" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="700" font-style="italic" fill="#fff">BioMar</text>
-<text x="400" y="380" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 14 ? 50 : 70}" font-weight="700" fill="#0f2147">${esc(p.name)}</text>
+${logo ? `<image href="${logo.url}" x="215" y="250" width="370" height="150" preserveAspectRatio="xMidYMid meet"/>` : `<text x="400" y="380" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 14 ? 50 : 70}" font-weight="700" fill="#0f2147">${esc(p.name)}</text>`}
 <text x="400" y="440" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="34" fill="#44546a">${esc(p.species)}</text>
 <text x="400" y="720" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="30" font-weight="600" fill="#fff">${esc(p.range.toUpperCase())}</text>
 <text x="400" y="830" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="56" font-weight="700" fill="#fff">${esc(kg)}</text>
@@ -89,6 +114,7 @@ export function bagSvg(p: Product, w = 800, h = 1000): string {
 export function docSvg(p: Product, a: Asset, w = 600, h = 800): string {
   const c = rangeColor(p.range)
   const title = a.type === 'brochure' ? `${p.range} brochure` : 'Technical datasheet'
+  const logo = logoFor(p)
   let lines = ''
   for (let i = 0; i < 12; i++) lines += `<rect x="60" y="${420 + i * 26}" width="${300 + ((i * 97) % 180)}" height="9" rx="4" fill="#d6dce5"/>`
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
@@ -96,6 +122,8 @@ export function docSvg(p: Product, a: Asset, w = 600, h = 800): string {
 <text x="60" y="95" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="700" font-style="italic" fill="#fff">BioMar</text>
 <text x="60" y="${a.type === 'brochure' ? 300 : 230}" font-family="Montserrat,Arial,sans-serif" font-size="40" font-weight="700" fill="${a.type === 'brochure' ? '#fff' : '#0f2147'}">${esc(p.name)}</text>
 <text x="60" y="${a.type === 'brochure' ? 340 : 275}" font-family="Montserrat,Arial,sans-serif" font-size="24" fill="${a.type === 'brochure' ? '#fff' : '#44546a'}">${esc(title)}${a.scope !== 'global' ? ' · ' + esc(a.scope) : ''}</text>
+${logo && a.type !== 'brochure' ? `<image href="${logo.url}" x="330" y="170" width="220" height="90" preserveAspectRatio="xMaxYMid meet"/>` : ''}
+${logo && a.type === 'brochure' ? `<rect x="40" y="380" width="${w - 80}" height="1" fill="#d6dce5"/>` : ''}
 ${lines}
 <rect x="0" y="${h - 14}" width="${w}" height="14" fill="${c}"/>
 <text x="${w - 60}" y="${h - 40}" text-anchor="end" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="700" fill="#b4232a">PDF</text>
@@ -113,19 +141,37 @@ export function assetImageUrl(p: Product, a: Asset, blobUrls: Record<string, str
   }
 }
 
+/** Square logo tile for small thumbnails. */
+export function logoTileSvg(p: Product): string {
+  const logo = logoFor(p)
+  const inner = logo
+    ? `<image href="${logo.url}" x="40" y="80" width="320" height="240" preserveAspectRatio="xMidYMid meet"/>`
+    : `${BIOMAR_LOGO ? `<image href="${BIOMAR_LOGO.url}" x="150" y="70" width="100" height="100" preserveAspectRatio="xMidYMid meet"/>` : ''}
+<text x="200" y="250" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="${p.name.length > 9 ? 44 : 60}" font-weight="700" fill="#1d3463">${esc(p.name.toUpperCase())}</text>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><rect width="400" height="400" fill="#ffffff"/>${inner}<rect y="380" width="400" height="20" fill="${rangeColor(p.range)}"/></svg>`
+}
+
 const cache = new Map<string, string>()
-/** Cached hero thumbnail for lists. */
-export function productThumb(p: Product, blobUrls: Record<string, string>): string | null {
-  const hero = p.assets.find((a) => a.type === 'hero' && a.scope === 'global')
-  if (!hero) return null
-  if (hero.source === 'upload') return blobUrls[hero.id] ?? null
-  const key = p.id + p.range
-  if (!cache.has(key)) cache.set(key, toUrl(heroSvg(p, 480, 300)))
+const cached = (key: string, make: () => string) => {
+  if (!cache.has(key)) cache.set(key, toUrl(make()))
   return cache.get(key)!
+}
+
+export const hasHero = (p: Product) => p.assets.some((a) => a.type === 'hero' && a.scope === 'global')
+
+/**
+ * Image identifying a product in lists. An uploaded hero image wins; otherwise the product logo
+ * ('square' = logo tile for small thumbs, 'wide' = logo hero composition for cards).
+ */
+export function productThumb(p: Product, blobUrls: Record<string, string>, shape: 'square' | 'wide' = 'square'): string {
+  const hero = p.assets.find((a) => a.type === 'hero' && a.scope === 'global' && a.source === 'upload')
+  if (hero && blobUrls[hero.id]) return blobUrls[hero.id]
+  const key = `${shape}|${p.id}|${p.name}|${p.species}|${p.range}`
+  return shape === 'square' ? cached(key, () => logoTileSvg(p)) : cached(key, () => heroSvg(p, 480, 300))
 }
 
 /** Decorative banner art for dashboard cards */
 export function bannerSvg(kind: 'pellets' | 'fish'): string {
   const fake = { id: kind, range: 'POWER', name: '', species: '', packaging: [] } as unknown as Product
-  return toUrl(kind === 'fish' ? heroSvg(fake, 900, 380) : highresSvg(fake, 900, 380))
+  return toUrl(kind === 'fish' ? underwaterSvg(fake, 900, 380) : highresSvg(fake, 900, 380))
 }

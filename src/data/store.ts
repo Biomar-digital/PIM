@@ -146,6 +146,7 @@ export function saveInfo(id: string, patch: Partial<Pick<Product, InfoField>>) {
     const changed = INFO_FIELDS.filter((k) => JSON.stringify(p[k]) !== JSON.stringify(next[k]))
     if (!changed.length) return p
     next.info = { ...p.info, status: afterEdit(p.info.status), updatedBy: state.userId, updatedAt: now() }
+    next.sampleFields = p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f))
     next.history = [historyEntry('info', 'edited', `Updated ${changed.length} field${changed.length > 1 ? 's' : ''}: ${changed.join(', ')}`, pick(next, INFO_FIELDS)), ...p.history]
     return next
   })
@@ -162,6 +163,7 @@ export function saveMarketing(id: string, patch: Partial<Omit<MarketingContent, 
     m.meta = { ...m.meta, status: afterEdit(m.meta.status), updatedBy: state.userId, updatedAt: now() }
     return {
       ...p,
+      sampleFields: p.sampleFields?.filter((f) => !(changed as readonly string[]).includes(f)),
       marketing: m,
       history: [historyEntry('marketing', 'edited', `Edited ${changed.join(', ')}`, pick(m, MARKETING_FIELDS)), ...p.history],
     }

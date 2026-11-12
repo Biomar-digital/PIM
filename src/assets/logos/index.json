@@ -1,0 +1,407 @@
+{
+ "BIOMAR": {
+  "label": "BioMar",
+  "colour": "Blue",
+  "file": "biomar.png"
+ },
+ "BLUEIMPACT": {
+  "label": "Blue Impact",
+  "colour": "Blue-Green",
+  "file": "blueimpact.png"
+ },
+ "BLUEIMPACTAQUA": {
+  "label": "Blue Impact AQUA",
+  "colour": "Blue-Green",
+  "file": "blueimpactaqua.png"
+ },
+ "BLUEIMPACTQUINNAT": {
+  "label": "Blue Impact QUINNAT",
+  "colour": "Blue-Green",
+  "file": "blueimpactquinnat.png"
+ },
+ "DANEX": {
+  "label": "DAN EX",
+  "colour": "Blue-OceanBlue",
+  "file": "danex.png"
+ },
+ "EXIA": {
+  "label": "EXIA",
+  "colour": "Blue",
+  "file": "exia.png"
+ },
+ "EXIAACTIVA": {
+  "label": "EXIA ACTIVA",
+  "colour": "Blue-Green",
+  "file": "exiaactiva.png"
+ },
+ "EXIAECOLIFE": {
+  "label": "EXIA ECOLIFE",
+  "colour": "Blue-Green",
+  "file": "exiaecolife.png"
+ },
+ "EXIAFOCUS": {
+  "label": "EXIA FOCUS",
+  "colour": "Blue-FocusTeal",
+  "file": "exiafocus.png"
+ },
+ "EXIAMAXIO": {
+  "label": "EXIA MAXIO",
+  "colour": "Blue-Yellow",
+  "file": "exiamaxio.png"
+ },
+ "EXIAMAXIOBOOST": {
+  "label": "EXIA MAXIO BOOST",
+  "colour": "Blue-Yellow",
+  "file": "exiamaxioboost.png"
+ },
+ "EXIAPERFORM": {
+  "label": "EXIA PERFORM",
+  "colour": "Blue-Orange",
+  "file": "exiaperform.png"
+ },
+ "EXIAPRIME": {
+  "label": "EXIA PRIME",
+  "colour": "Blue-Grey",
+  "file": "exiaprime.png"
+ },
+ "EXIAPRO": {
+  "label": "EXIA PRO",
+  "colour": "Blue-Celeste",
+  "file": "exiapro.png"
+ },
+ "EXIASTART": {
+  "label": "EXIA START",
+  "colour": "Blue-Green",
+  "file": "exiastart.png"
+ },
+ "INICIO": {
+  "label": "INICIO",
+  "colour": "Celeste",
+  "file": "inicio.png"
+ },
+ "INICIOAKAI": {
+  "label": "INICIO AKAI",
+  "colour": "Celeste-Blue",
+  "file": "inicioakai.png"
+ },
+ "INICIOCROMIS": {
+  "label": "INICIO CROMIS",
+  "colour": "Celeste-Blue",
+  "file": "iniciocromis.png"
+ },
+ "INICIOFOCUSSHRIMP": {
+  "label": "INICIO FOCUS (shrimp)",
+  "colour": "Blue-FocusTeal",
+  "file": "iniciofocusshrimp.png"
+ },
+ "INICIOMAXIOSHRIMP": {
+  "label": "INICIO MAXIO (shrimp)",
+  "colour": "Blue-Yellow",
+  "file": "iniciomaxioshrimp.png"
+ },
+ "INICIOPERFORMSHRIMP": {
+  "label": "INICIO PERFORM (shrimp)",
+  "colour": "Blue-Orange",
+  "file": "inicioperformshrimp.png"
+ },
+ "INICIOPLUS": {
+  "label": "INICIO PLUS",
+  "colour": "Celeste-Blue",
+  "file": "inicioplus.png"
+ },
+ "INICIOPLUSG": {
+  "label": "INICIO PLUS G",
+  "colour": "Celeste-Blue",
+  "file": "inicioplusg.png"
+ },
+ "INICIOPLUSM": {
+  "label": "INICIO PLUS M",
+  "colour": "Celeste-Blue",
+  "file": "inicioplusm.png"
+ },
+ "INICIOPLUSMT": {
+  "label": "INICIO PLUS MT",
+  "colour": "Celeste-Blue",
+  "file": "inicioplusmt.png"
+ },
+ "INICIOPLUSS": {
+  "label": "INICIO PLUS S",
+  "colour": "Celeste-Blue",
+  "file": "iniciopluss.png"
+ },
+ "INICIOPLUSSHRIMP": {
+  "label": "INICIO PLUS (shrimp)",
+  "colour": "Blue-SkyBlue",
+  "file": "inicioplusshrimp.png"
+ },
+ "INICIOPRIMESHRIMP": {
+  "label": "INICIO PRIME (shrimp)",
+  "colour": "Blue-Grey",
+  "file": "inicioprimeshrimp.png"
+ },
+ "INICIOPROSHRIMP": {
+  "label": "INICIO PRO (shrimp)",
+  "colour": "Blue-Celeste",
+  "file": "inicioproshrimp.png"
+ },
+ "INICIOQUINNAT": {
+  "label": "INICIO QUINNAT",
+  "colour": "Celeste-Blue",
+  "file": "inicioquinnat.png"
+ },
+ "INICIOSHRIMP": {
+  "label": "INICIO SHRIMP",
+  "colour": "Blue",
+  "file": "inicioshrimp.png"
+ },
+ "INTRO": {
+  "label": "INTRO",
+  "colour": "Celeste",
+  "file": "intro.png"
+ },
+ "INTROPLUSMT": {
+  "label": "INTRO PLUS MT",
+  "colour": "Celeste-Blue",
+  "file": "introplusmt.png"
+ },
+ "INTROT": {
+  "label": "INTRO T",
+  "colour": "Celeste-Blue",
+  "file": "introt.png"
+ },
+ "INTROTUNING": {
+  "label": "INTRO TUNING",
+  "colour": "Celeste-Blue",
+  "file": "introtuning.png"
+ },
+ "LARVIVA": {
+  "label": "LARVIVA",
+  "colour": "Blue",
+  "file": "larviva.png"
+ },
+ "LARVIVABROODSTOCK": {
+  "label": "Larviva BROODSTOCK",
+  "colour": "Blue-Orange",
+  "file": "larvivabroodstock.png"
+ },
+ "LARVIVAMULTIGAIN": {
+  "label": "Larviva MULTIGAIN",
+  "colour": "Blue-Red",
+  "file": "larvivamultigain.png"
+ },
+ "LARVIVAMYSIS": {
+  "label": "Larviva MYSIS",
+  "colour": "Blue-Green",
+  "file": "larvivamysis.png"
+ },
+ "LARVIVAORBIT": {
+  "label": "Larviva ORBIT",
+  "colour": "OrbitLeaf",
+  "file": "larvivaorbit.png"
+ },
+ "LARVIVAPL200": {
+  "label": "Larviva PL 200",
+  "colour": "Blue-Celeste",
+  "file": "larvivapl200.png"
+ },
+ "LARVIVAPL300": {
+  "label": "Larviva PL 300",
+  "colour": "Blue-Green",
+  "file": "larvivapl300.png"
+ },
+ "LARVIVAPL400": {
+  "label": "Larviva PL 400",
+  "colour": "Blue-Orange",
+  "file": "larvivapl400.png"
+ },
+ "LARVIVAPRONURSE": {
+  "label": "Larviva PRONURSE",
+  "colour": "Blue-Green",
+  "file": "larvivapronurse.png"
+ },
+ "LARVIVAPROSTART": {
+  "label": "Larviva PROSTART",
+  "colour": "Blue-Green",
+  "file": "larvivaprostart.png"
+ },
+ "LARVIVAPROWEAN": {
+  "label": "Larviva PROWEAN",
+  "colour": "Blue-Celeste",
+  "file": "larvivaprowean.png"
+ },
+ "LARVIVAZOEA": {
+  "label": "Larviva ZOEA",
+  "colour": "Blue-Celeste",
+  "file": "larvivazoea.png"
+ },
+ "MAXIO": {
+  "label": "MAXIO",
+  "colour": "OceanBlue",
+  "file": "maxio.png"
+ },
+ "MAXIOBARRA": {
+  "label": "MAXIO BARRA",
+  "colour": "OceanBlue-Blue",
+  "file": "maxiobarra.png"
+ },
+ "ORBIT": {
+  "label": "ORBIT",
+  "colour": "ORBIT Teal",
+  "file": "orbit.png"
+ },
+ "ORBITCPK": {
+  "label": "ORBIT CPK",
+  "colour": "OrbitLeaf",
+  "file": "orbitcpk.png"
+ },
+ "ORBITEX": {
+  "label": "ORBIT EX",
+  "colour": "OrbitLeaff",
+  "file": "orbitex.png"
+ },
+ "ORBITEXINTRO": {
+  "label": "ORBIT EX INTRO",
+  "colour": "OrbitLeaf",
+  "file": "orbitexintro.png"
+ },
+ "ORBITEXT2": {
+  "label": "ORBIT EX T-2",
+  "colour": "OrbitLeaf",
+  "file": "orbitext2.png"
+ },
+ "ORBITINICIOPLUS": {
+  "label": "ORBIT INICIO PLUS",
+  "colour": "OrbitLeaf",
+  "file": "orbitinicioplus.png"
+ },
+ "ORBITINTRO": {
+  "label": "ORBIT INTRO",
+  "colour": "OrbitLeaf",
+  "file": "orbitintro.png"
+ },
+ "ORBITQUINNAT": {
+  "label": "ORBIT QUINNAT",
+  "colour": "OrbitLeaf",
+  "file": "orbitquinnat.png"
+ },
+ "POWER": {
+  "label": "POWER",
+  "colour": "Blue",
+  "file": "power.png"
+ },
+ "POWERAKAI": {
+  "label": "POWER AKAI",
+  "colour": "Blue",
+  "file": "powerakai.png"
+ },
+ "POWEREXTREME": {
+  "label": "POWER EXTREME",
+  "colour": "Blue",
+  "file": "powerextreme.png"
+ },
+ "POWERFUSION": {
+  "label": "POWER FUSION",
+  "colour": "Blue",
+  "file": "powerfusion.png"
+ },
+ "POWERNDQ": {
+  "label": "POWER NDQ",
+  "colour": "Blue",
+  "file": "powerndq.png"
+ },
+ "POWERQUINNAT": {
+  "label": "POWER QUINNAT",
+  "colour": "Blue",
+  "file": "powerquinnat.png"
+ },
+ "POWERRAINBOW": {
+  "label": "POWER RAINBOW",
+  "colour": "Blue",
+  "file": "powerrainbow.png"
+ },
+ "POWERRAINBOWEXTREME": {
+  "label": "POWER RAINBOW EXTREME",
+  "colour": "Blue",
+  "file": "powerrainbowextreme.png"
+ },
+ "POWERSMOLT": {
+  "label": "POWER SMOLT",
+  "colour": "Blue",
+  "file": "powersmolt.png"
+ },
+ "POWERSMOLTAKAI": {
+  "label": "POWER SMOLT AKAI",
+  "colour": "Blue",
+  "file": "powersmoltakai.png"
+ },
+ "SYMBIO": {
+  "label": "Symbio",
+  "colour": "Blue-Orange",
+  "file": "symbio.png"
+ },
+ "SYMBIOASSISTANCE": {
+  "label": "SYMBIO ASSISTANCE",
+  "colour": "Green-Blue",
+  "file": "symbioassistance.png"
+ },
+ "SYMBIOASSISTANCESTICK": {
+  "label": "SYMBIO ASSISTANCE STICK",
+  "colour": "Green-Blue",
+  "file": "symbioassistancestick.png"
+ },
+ "SYMBIOBROODSTOCK": {
+  "label": "SYMBIO BROODSTOCK",
+  "colour": "Blue-Green",
+  "file": "symbiobroodstock.png"
+ },
+ "SYMBIOLUMPFISH": {
+  "label": "SYMBIO LUMPFISH",
+  "colour": "Blue-Green",
+  "file": "symbiolumpfish.png"
+ },
+ "SYMBIOMAINTENANCE": {
+  "label": "SYMBIO MAINTENANCE",
+  "colour": "Blue-Green",
+  "file": "symbiomaintenance.png"
+ },
+ "SYMBIOPLUS": {
+  "label": "SYMBIO PLUS",
+  "colour": "Blue-Green",
+  "file": "symbioplus.png"
+ },
+ "TRICPK": {
+  "label": "TRI CPK",
+  "colour": "Grey",
+  "file": "tricpk.png"
+ },
+ "TRICPKINTRO": {
+  "label": "TRI CPK INTRO",
+  "colour": "Grey",
+  "file": "tricpkintro.png"
+ },
+ "TRIPLUS": {
+  "label": "TRI PLUS",
+  "colour": "Grey",
+  "file": "triplus.png"
+ },
+ "TRIPOWER": {
+  "label": "TRI POWER",
+  "colour": "Grey",
+  "file": "tripower.png"
+ },
+ "TRIX": {
+  "label": "TRIX",
+  "colour": "Grey",
+  "file": "trix.png"
+ },
+ "TRIXCPK": {
+  "label": "TRIX CPK",
+  "colour": "Grey",
+  "file": "trixcpk.png"
+ },
+ "TRIXPLUS": {
+  "label": "TRIX PLUS",
+  "colour": "Grey",
+  "file": "trixplus.png"
+ }
+}

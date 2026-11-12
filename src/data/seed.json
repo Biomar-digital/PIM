@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "users": [
   {
    "id": "u-ingrid",
@@ -113,6 +113,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -328,6 +338,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -553,6 +573,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -731,6 +761,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -974,6 +1014,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -1247,6 +1297,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -1416,6 +1476,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -1649,6 +1719,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -1874,6 +1954,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -2186,6 +2276,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -2488,6 +2588,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -2782,6 +2892,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -3066,6 +3186,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -3274,6 +3404,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -3467,6 +3607,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -3799,6 +3949,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -4122,6 +4282,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -4491,6 +4661,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -4875,6 +5055,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -5332,6 +5522,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -5707,6 +5907,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -5991,6 +6201,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -6286,6 +6506,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -6472,6 +6702,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -6915,6 +7155,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -7217,6 +7467,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -7499,6 +7759,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -7769,6 +8039,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -7982,6 +8262,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -8164,6 +8454,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -8567,6 +8867,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -8861,6 +9171,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -9154,6 +9474,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -9517,6 +9847,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -9787,6 +10127,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -10047,6 +10397,16 @@
     "20 kg bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -10312,6 +10672,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -10582,6 +10952,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -10861,6 +11241,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -11049,6 +11439,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -11265,6 +11665,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
@@ -11436,6 +11846,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -11670,6 +12090,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -12039,6 +12469,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -12291,6 +12731,16 @@
     "500 kg big bag"
    ],
    "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
@@ -12398,6 +12848,2837 @@
    ],
    "comments": [],
    "createdAt": "2025-06-08T09:30:00Z"
+  },
+  {
+   "id": "symbio-plus-ballan-wrasse",
+   "code": "BM-SYMBIO-BAL",
+   "name": "Symbio Plus",
+   "species": "Ballan Wrasse",
+   "range": "Symbio",
+   "category": "Cleaner fish feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "0.5 mm",
+    "0.8 mm",
+    "1.0 mm",
+    "1.5 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-10-17T09:11:00Z"
+   },
+   "marketing": {
+    "shortDescription": "Part of a complete Symbio range of products that uses the latest feed production technologies.",
+    "tagline": "Tailored nutrition for effective cleaner fish.",
+    "description": "Part of a complete Symbio range of products that uses the latest feed production technologies. Symbio Plus is founded on solid experience and fulfils the nutritional requirements of most cleaner fish species at most stages of production.",
+    "keyBenefits": [
+     "Contains Krill as a taste enhancer to improve palatability and digestibility.",
+     "Nutritionally supported fish are better equipped to perform in sea pens.",
+     "Supplemented with increased levels of vitamins and minerals.",
+     "Contains Bactocell that targets the reduction in deformities.",
+     "Developed at recognized research institutions and in collaboration with the industry."
+    ],
+    "sellingPoints": [],
+    "version": 4,
+    "meta": {
+     "status": "in_review",
+     "updatedBy": "u-sofie",
+     "updatedAt": "2026-10-22T09:23:00Z"
+    }
+   },
+   "markets": [
+    "en-GB"
+   ],
+   "variants": {
+    "en-GB": {
+     "localName": "",
+     "shortDescription": "Part of a complete Symbio range of products that uses the latest feed production technologies, founded on solid experience and fulfils the…",
+     "tagline": "",
+     "description": "Part of a complete Symbio range of products that uses the latest feed production technologies, founded on solid experience and fulfils the nutritional requirements of Ballan Wrasse in juvenile and grow out stages.",
+     "keyBenefits": [
+      "Nutritionally supported fish are better equipped to perform in sea pens.",
+      "Contains Krill as a taste enhancer to improve palatability and digestibility.",
+      "Supplemented with increased levels of vitamins and minerals.",
+      "Contains Bactocell that targets the reduction in deformities.",
+      "Developed at recognized research institutions and in collaboration with the industry."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "draft",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-10-30T09:21:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-symbio-plus-ballan-wrasse-1",
+     "type": "hero",
+     "fileName": "symbio-plus-ballan-wrasse-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1629,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-08-26T09:11:00Z"
+    },
+    {
+     "id": "a-symbio-plus-ballan-wrasse-2",
+     "type": "highres",
+     "fileName": "symbio-plus-ballan-wrasse-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 11384,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-05-17T09:25:00Z"
+    },
+    {
+     "id": "a-symbio-plus-ballan-wrasse-3",
+     "type": "bag",
+     "fileName": "symbio-plus-ballan-wrasse-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1028,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-01-17T09:28:00Z"
+    },
+    {
+     "id": "a-symbio-plus-ballan-wrasse-4",
+     "type": "datasheet",
+     "fileName": "symbio-plus-ballan-wrasse-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 379,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2025-10-10T09:45:00Z"
+    },
+    {
+     "id": "a-symbio-plus-ballan-wrasse-5",
+     "type": "datasheet",
+     "fileName": "symbio-plus-ballan-wrasse-datasheet-en-gb.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 322,
+     "scope": "en-GB",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-10-28T09:45:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-symbio-plus-ballan-wrasse-en-GB",
+     "at": "2026-10-30T09:21:00Z",
+     "by": "u-thomas",
+     "section": "en-GB",
+     "action": "edited",
+     "summary": "en-GB variant edited"
+    },
+    {
+     "id": "h-symbio-plus-ballan-wrasse-3",
+     "at": "2026-10-22T09:55:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "submitted",
+     "summary": "Marketing content submitted for review"
+    },
+    {
+     "id": "h-symbio-plus-ballan-wrasse-2",
+     "at": "2026-08-27T09:51:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-symbio-plus-ballan-wrasse-1",
+     "at": "2025-01-13T09:36:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-01-13T09:36:00Z"
+  },
+  {
+   "id": "inicio-pro-shrimp",
+   "code": "BM-INICIO-SHR",
+   "name": "INICIO Pro",
+   "species": "Shrimp",
+   "range": "INICIO",
+   "category": "Starter feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Sinking pellet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-04-14T09:35:00Z"
+   },
+   "marketing": {
+    "shortDescription": "INICIO Pro is part of our SmartCare® programme.",
+    "tagline": "A strong start from the very first feeding.",
+    "description": "INICIO Pro is part of our SmartCare® programme. It is a range of feeds specifically designed to enhance shrimp’s ability to respond to environmental and health challenges, thereby helping to improve their resilience and performance during the juvenile stage.",
+    "keyBenefits": [
+     "It achieves high production yields whilst maintaining control over the feed conversion ratio.",
+     "It contains organic acids with a bacteriostatic effect, which helps reduce the presence of pathogens in the digestive tract.",
+     "It contains marine extracts that improve the health of the shrimp’s digestive tract, promoting nutrient absorption and protection against infections."
+    ],
+    "sellingPoints": [],
+    "version": 5,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-08T09:10:00Z"
+    }
+   },
+   "markets": [
+    "es-EC"
+   ],
+   "variants": {
+    "es-EC": {
+     "localName": "",
+     "shortDescription": "INICIO Pro forma parte de nuestro Programa SmartCare®.",
+     "tagline": "",
+     "description": "INICIO Pro forma parte de nuestro Programa SmartCare®. Línea de alimentos diseñada específicamente para aumentar la capacidad de respuesta de los camarones ante los desafíos medioambientales y de salud, lo que contribuye a mejorar su resistencia y rendimiento en el juvenil.",
+     "keyBenefits": [
+      "Alcanza altos rendimientos productivos, manteniendo control sobre el factor de conversión alimenticia.",
+      "Contiene ácidos orgánicos con efecto bacteriostático, lo que permite reducir la presencia de patógenos en el tracto digestivo.",
+      "Contiene extractos marinos que mejoran la salud del tracto digestivo del camarón, favoreciendo la absorción de nutrientes y protección contra infecciones."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-10-01T09:11:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-inicio-pro-shrimp-1",
+     "type": "hero",
+     "fileName": "inicio-pro-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 973,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-09-17T09:08:00Z"
+    },
+    {
+     "id": "a-inicio-pro-shrimp-2",
+     "type": "highres",
+     "fileName": "inicio-pro-shrimp-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 7954,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-03-13T09:07:00Z"
+    },
+    {
+     "id": "a-inicio-pro-shrimp-3",
+     "type": "bag",
+     "fileName": "inicio-pro-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1110,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-19T09:32:00Z"
+    },
+    {
+     "id": "a-inicio-pro-shrimp-4",
+     "type": "datasheet",
+     "fileName": "inicio-pro-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 485,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-17T09:36:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-inicio-pro-shrimp-3",
+     "at": "2026-10-08T09:44:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-inicio-pro-shrimp-es-EC",
+     "at": "2026-10-01T09:11:00Z",
+     "by": "u-camila",
+     "section": "es-EC",
+     "action": "approved",
+     "summary": "es-EC variant approved"
+    },
+    {
+     "id": "h-inicio-pro-shrimp-2",
+     "at": "2026-03-30T09:34:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-inicio-pro-shrimp-1",
+     "at": "2025-03-17T09:31:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-03-17T09:31:00Z"
+  },
+  {
+   "id": "inicio-focus-shrimp",
+   "code": "BM-INICIO-SHR",
+   "name": "INICIO Focus",
+   "species": "Shrimp",
+   "range": "INICIO",
+   "category": "Starter feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Sinking pellet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-03-17T09:49:00Z"
+   },
+   "marketing": {
+    "shortDescription": "",
+    "tagline": "A strong start from the very first feeding.",
+    "description": "INICIO Focus is part of our SmartCare® Programme and promotes the development of healthy and resilient juveniles by controlling the spread of pathogens and strengthening the shrimp's immune system. Ideal for intensive pre-breeding and raceway crops.",
+    "keyBenefits": [
+     "High nutritional level and great use by post-larvae allow high growth rates and the production of healthy and strong juveniles.",
+     "Extruded mini pellets with excellent physical properties that protect water quality. Their uniform size, combined with high nutrition and specialized health, results in accelerated and even growth of the shrimp.",
+     "Contains B-WYSE™ (selected yeast extracts) and probiotics, which in combination modulate the intestinal microbiota of the shrimp, offering greater resistance in periods of stress and promoting an optimal environment for the growth of the juvenile."
+    ],
+    "sellingPoints": [],
+    "version": 5,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-30T09:51:00Z"
+    }
+   },
+   "markets": [
+    "es-CR",
+    "es-EC",
+    "vi-VN",
+    "en-AU"
+   ],
+   "variants": {
+    "es-CR": {
+     "localName": "",
+     "shortDescription": "INICIO Focus forma parte de nuestro Programa SmartCare® y promueve el desarrollo de un juvenil sano y resiliente al controlar la propagación de…",
+     "tagline": "",
+     "description": "INICIO Focus forma parte de nuestro Programa SmartCare® y promueve el desarrollo de un juvenil sano y resiliente al controlar la propagación de patógenos y reforzar el sistema inmune del camarón. Ideal para precrías intensivas y cultivos en raceway.",
+     "keyBenefits": [
+      "Alto nivel nutricional y gran aprovechamiento por parte de las post-larvas permiten altas tasas de crecimiento y la producción de juveniles sanos y fuertes.",
+      "Mini pellets extruidos con excelentes propiedades físicas que cuidan la calidad del agua. Su tamaño uniforme, combinado con una alta nutrición y salud especializada, resultan en un crecimiento acelerado y parejo del camarón.",
+      "Contiene B-WYSE™ (extractos de levadura seleccionados) y probióticos, que en combinación modulan la microbiota intestinal del camarón, ofreciendo mayor resistencia en periodos de estrés y promueven un ambiente óptimo para el crecimiento del juvenil."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-10-10T09:31:00Z"
+     }
+    },
+    "es-EC": {
+     "localName": "",
+     "shortDescription": "INICIO Focus forma parte de nuestro Programa SmartCare® y promueve el desarrollo de un juvenil sano y resiliente al controlar la propagación de…",
+     "tagline": "",
+     "description": "INICIO Focus forma parte de nuestro Programa SmartCare® y promueve el desarrollo de un juvenil sano y resiliente al controlar la propagación de patógenos y reforzar el sistema inmune del camarón. Ideal para precrías intensivas y cultivos en raceway.",
+     "keyBenefits": [
+      "Alto nivel nutricional y gran aprovechamiento por parte de las post-larvas permiten altas tasas de crecimiento y la producción de juveniles sanos y fuertes.",
+      "Mini pellets extruidos con excelentes propiedades físicas que cuidan la calidad del agua. Su tamaño uniforme, combinado con una alta nutrición y salud especializada, resultan en un crecimiento acelerado y parejo del camarón.",
+      "Contiene B-WYSE™ (extractos de levadura seleccionados) y probióticos, que en combinación modulan la microbiota intestinal del camarón, ofreciendo mayor resistencia en periodos de estrés y promueven un ambiente óptimo para el crecimiento del juvenil."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-06-07T09:05:00Z"
+     }
+    },
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "INICIO Focus là một phần của Chương trình SmartCare® của BioMar, giúp thúc đẩy sự phát triển của tôm ương vèo khỏe mạnh và có sức chống chịu tốt bằng…",
+     "tagline": "",
+     "description": "INICIO Focus là một phần của Chương trình SmartCare® của BioMar, giúp thúc đẩy sự phát triển của tôm ương vèo khỏe mạnh và có sức chống chịu tốt bằng cách kiểm soát sự lây lan của mầm bệnh và tăng cường hệ miễn dịch của tôm. Sản phẩm phù hợp cho các ao ương vèo thâm canh mật độ cao và hệ thống nuôi raceway.",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-06-22T09:34:00Z"
+     }
+    },
+    "en-AU": {
+     "localName": "",
+     "shortDescription": "INICIO Focus is part of our SmartCare® Programme and promotes the development of healthy and resilient juveniles by controlling the spread of…",
+     "tagline": "",
+     "description": "INICIO Focus is part of our SmartCare® Programme and promotes the development of healthy and resilient juveniles by controlling the spread of pathogens and strengthening the prawns immune system. Ideal for intensive pre-breeding and raceway crops.",
+     "keyBenefits": [
+      "High nutritional level and great use by post-larvae allow high growth rates and the production of healthy and strong juveniles.",
+      "Extruded mini pellets with excellent physical properties that protect water quality. Their uniform size, combined with high nutrition and specialized health, results in accelerated and even growth of the prawn.",
+      "Contains B-WYSE™ (selected yeast extracts) and probiotics, which in combination modulate the intestinal microbiota of the prawn, offering greater resistance in periods of stress and promoting an optimal environment for the growth of the juvenile."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-08-30T09:35:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-inicio-focus-shrimp-1",
+     "type": "hero",
+     "fileName": "inicio-focus-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1348,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-07-13T09:52:00Z"
+    },
+    {
+     "id": "a-inicio-focus-shrimp-2",
+     "type": "bag",
+     "fileName": "inicio-focus-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1174,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-29T09:48:00Z"
+    },
+    {
+     "id": "a-inicio-focus-shrimp-3",
+     "type": "datasheet",
+     "fileName": "inicio-focus-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 459,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-01-27T09:27:00Z"
+    },
+    {
+     "id": "a-inicio-focus-shrimp-4",
+     "type": "datasheet",
+     "fileName": "inicio-focus-shrimp-datasheet-es-cr.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 514,
+     "scope": "es-CR",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-10-27T09:15:00Z"
+    },
+    {
+     "id": "a-inicio-focus-shrimp-5",
+     "type": "datasheet",
+     "fileName": "inicio-focus-shrimp-datasheet-es-ec.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 196,
+     "scope": "es-EC",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-26T09:16:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-inicio-focus-shrimp-3",
+     "at": "2026-10-30T09:55:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-es-CR",
+     "at": "2026-10-10T09:31:00Z",
+     "by": "u-camila",
+     "section": "es-CR",
+     "action": "approved",
+     "summary": "es-CR variant approved"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-2",
+     "at": "2026-09-08T09:28:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-en-AU",
+     "at": "2026-08-30T09:35:00Z",
+     "by": "u-minh",
+     "section": "en-AU",
+     "action": "approved",
+     "summary": "en-AU variant approved"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-vi-VN",
+     "at": "2026-06-22T09:34:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-es-EC",
+     "at": "2026-06-07T09:05:00Z",
+     "by": "u-camila",
+     "section": "es-EC",
+     "action": "approved",
+     "summary": "es-EC variant approved"
+    },
+    {
+     "id": "h-inicio-focus-shrimp-1",
+     "at": "2025-06-08T09:55:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-06-08T09:55:00Z"
+  },
+  {
+   "id": "inicio-plus-shrimp",
+   "code": "BM-INICIO-SHR",
+   "name": "INICIO Plus",
+   "species": "Shrimp",
+   "range": "INICIO",
+   "category": "Starter feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Sinking pellet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-05-22T09:48:00Z"
+   },
+   "marketing": {
+    "shortDescription": "INICIO Plus is part of our SmartCare® Program, which focuses on promoting healthy and resilient postlarvae development by controlling the spread of…",
+    "tagline": "A strong start from the very first feeding.",
+    "description": "INICIO Plus is part of our SmartCare® Program, which focuses on promoting healthy and resilient postlarvae development by controlling the spread of pathogens and strengthening the immune system.",
+    "keyBenefits": [
+     "Contains B-WYSE™ (selected yeast extract) and probiotic Bactocell®, which together regulate the shrimp's intestinal microbiota, providing better resistance during sensitive times and promoting an optimal environment for development of baby shrimp.",
+     "Extruded pellets have excellent physical properties that help protect water quality. Their uniform size, combined with their exceptional nutritional and health-supporting composition, helps shrimp grow quickly and evenly.",
+     "Ideal for intensive farming and ditch farming."
+    ],
+    "sellingPoints": [],
+    "version": 6,
+    "meta": {
+     "status": "in_review",
+     "updatedBy": "u-sofie",
+     "updatedAt": "2026-11-02T09:53:00Z"
+    }
+   },
+   "markets": [
+    "vi-VN"
+   ],
+   "variants": {
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "INICIO Plus là một phần thuộc Chương trình SmartCare® của BioMar, tập trung vào việc thúc đẩy sự phát triển khỏe mạnh và tăng cường sức chống chịu…",
+     "tagline": "",
+     "description": "INICIO Plus là một phần thuộc Chương trình SmartCare® của BioMar, tập trung vào việc thúc đẩy sự phát triển khỏe mạnh và tăng cường sức chống chịu của tôm ương vèo bằng cách kiểm soát sự lây lan của mầm bệnh và củng cố hệ miễn dịch.",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 6,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-07-06T09:38:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-inicio-plus-shrimp-1",
+     "type": "hero",
+     "fileName": "inicio-plus-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1347,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-06-28T09:57:00Z"
+    },
+    {
+     "id": "a-inicio-plus-shrimp-2",
+     "type": "bag",
+     "fileName": "inicio-plus-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1168,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-05-06T09:58:00Z"
+    },
+    {
+     "id": "a-inicio-plus-shrimp-3",
+     "type": "datasheet",
+     "fileName": "inicio-plus-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 321,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-09-08T09:08:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-inicio-plus-shrimp-3",
+     "at": "2026-11-02T09:20:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "submitted",
+     "summary": "Marketing content submitted for review"
+    },
+    {
+     "id": "h-inicio-plus-shrimp-2",
+     "at": "2026-08-27T09:45:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-inicio-plus-shrimp-vi-VN",
+     "at": "2026-07-06T09:38:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-inicio-plus-shrimp-1",
+     "at": "2025-02-17T09:15:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-02-17T09:15:00Z"
+  },
+  {
+   "id": "inicio-akai-coho-salmon",
+   "code": "BM-INICIO-COH",
+   "name": "INICIO Akai",
+   "species": "Coho Salmon",
+   "range": "INICIO",
+   "category": "Starter feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "0.5 mm",
+    "0.8 mm",
+    "1.0 mm",
+    "1.5 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-11-07T09:08:00Z"
+   },
+   "marketing": {
+    "shortDescription": "INICIO Akai is BioMar’s top performance freshwater feed for Coho salmon.",
+    "tagline": "A strong start from the very first feeding.",
+    "description": "INICIO Akai is BioMar’s top performance freshwater feed for Coho salmon.",
+    "keyBenefits": [
+     "Boosted with additional vitamins, organic minerals, and micro-nutrients to support bone mineralization, skin, and scale integrity and mucus production.",
+     "Specifically designed for Coho salmon, supporting efficient development and growth.",
+     "Formulated with the probiotic Bactocell®, supporting intestinal integrity and health."
+    ],
+    "sellingPoints": [],
+    "version": 4,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-03T09:36:00Z"
+    }
+   },
+   "markets": [
+    "es-CL"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "Inicio AKAI es el alimento de agua dulce de alta calidad de BioMar para salmón Coho.",
+     "tagline": "",
+     "description": "Inicio AKAI es el alimento de agua dulce de alta calidad de BioMar para salmón Coho.",
+     "keyBenefits": [
+      "Diseñado específicamente para salmón Coho, apoyando a un desarrollo y crecimiento eficiente.",
+      "Reforzado con vitaminas, minerales orgánicos y micronutrientes para apoyar la mineralización ósea, la integridad de la piel y las escamas y la producción de mucus.",
+      "Formulado con el probiótico Bactocell®, que apoya la integridad y la salud intestinal."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "in_review",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-11-02T09:44:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-inicio-akai-coho-salmon-1",
+     "type": "highres",
+     "fileName": "inicio-akai-coho-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 6020,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-10-18T09:05:00Z"
+    },
+    {
+     "id": "a-inicio-akai-coho-salmon-2",
+     "type": "bag",
+     "fileName": "inicio-akai-coho-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 869,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-29T09:42:00Z"
+    },
+    {
+     "id": "a-inicio-akai-coho-salmon-3",
+     "type": "datasheet",
+     "fileName": "inicio-akai-coho-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 212,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-07-08T09:25:00Z"
+    },
+    {
+     "id": "a-inicio-akai-coho-salmon-4",
+     "type": "datasheet",
+     "fileName": "inicio-akai-coho-salmon-datasheet-es-cl.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 399,
+     "scope": "es-CL",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-01-24T09:31:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-inicio-akai-coho-salmon-es-CL",
+     "at": "2026-11-02T09:44:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "submitted",
+     "summary": "es-CL variant submitted for review"
+    },
+    {
+     "id": "h-inicio-akai-coho-salmon-3",
+     "at": "2026-10-03T09:35:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-inicio-akai-coho-salmon-2",
+     "at": "2026-06-23T09:21:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-inicio-akai-coho-salmon-1",
+     "at": "2025-04-28T09:20:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-04-28T09:20:00Z"
+  },
+  {
+   "id": "exia-perform-shrimp",
+   "code": "BM-EXIAPE-SHR",
+   "name": "EXIA Perform",
+   "species": "Shrimp",
+   "range": "EXIA",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Sinking pellet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-05-11T09:33:00Z"
+   },
+   "marketing": {
+    "shortDescription": "EXIA Perform is a feed designed to generate sustained growth, with excellent economic returns during cultivation.",
+    "tagline": "Consistent results in intensive shrimp farming.",
+    "description": "EXIA Perform is a feed designed to generate sustained growth, with excellent economic returns during cultivation.",
+    "keyBenefits": [
+     "Complete diet, with good digestibility, especially adapted to promote efficiency and high productive results.",
+     "Feed with good stability in water, exceptional physical composition and high attractability.",
+     "The design of this feed is focused on better growth with low feed conversion factors."
+    ],
+    "sellingPoints": [
+     "Formulated for high-density (200+ shrimp/m²) systems"
+    ],
+    "version": 2,
+    "meta": {
+     "status": "draft",
+     "updatedBy": "u-ingrid",
+     "updatedAt": "2026-10-23T09:43:00Z"
+    }
+   },
+   "markets": [
+    "es-EC",
+    "vi-VN"
+   ],
+   "variants": {
+    "es-EC": {
+     "localName": "",
+     "shortDescription": "EXIA Perform es un alimento diseñado para generar crecimientos sostenidos, con excelentes retornos económicos durante el cultivo.",
+     "tagline": "",
+     "description": "EXIA Perform es un alimento diseñado para generar crecimientos sostenidos, con excelentes retornos económicos durante el cultivo.",
+     "keyBenefits": [
+      "Dieta completa, de buena digestibilidad, especialmente adaptada para promover eficiencia y altos resultados productivos.",
+      "El diseño de este alimento está enfocado a buscar mejores crecimientos con bajos factores de conversión alimenticia.",
+      "Alimento con buena estabilidad en el agua, excelente composición física y de alta atractabilidad."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-08-13T09:12:00Z"
+     }
+    },
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "EXIA Perform – Thức ăn chuyên biệt cho tôm thẻ thâm canh (100-200 con/m²), giúp tăng trưởng liên tục, tôm chắc thịt và khỏe mạnh.",
+     "keyBenefits": [
+      "Dinh dưỡng vượt trội: Nguồn đạm chất lượng cao và dễ tiêu hóa với đầy đủ dưỡng chất (omega 3-6, EPA/DHA, vitamin, khoáng chất), phù hợp cả vùng độ mặn thấp.",
+      "Tăng sức đề kháng: Các chất tăng cường miễn dịch giúp tôm chống lại mầm bệnh, giảm stress, cải thiện chất lượng và màu sắc khi thu hoạch.",
+      "Hiệu suất tối ưu: Tỉ lệ chuyển đổi thức ăn (FCR) thấp, rút ngắn thời gian nuôi, mang lại lợi nhuận tối ưu."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "draft",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-11-03T09:10:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-exia-perform-shrimp-1",
+     "type": "hero",
+     "fileName": "exia-perform-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 968,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-04-16T09:42:00Z"
+    },
+    {
+     "id": "a-exia-perform-shrimp-2",
+     "type": "bag",
+     "fileName": "exia-perform-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 805,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-24T09:19:00Z"
+    },
+    {
+     "id": "a-exia-perform-shrimp-3",
+     "type": "datasheet",
+     "fileName": "exia-perform-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 566,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-04T09:27:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-exia-perform-shrimp-vi-VN",
+     "at": "2026-11-03T09:10:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "edited",
+     "summary": "vi-VN variant edited"
+    },
+    {
+     "id": "h-exia-perform-shrimp-3",
+     "at": "2026-10-23T09:08:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "edited",
+     "summary": "Marketing content edited"
+    },
+    {
+     "id": "h-exia-perform-shrimp-es-EC",
+     "at": "2026-08-13T09:12:00Z",
+     "by": "u-camila",
+     "section": "es-EC",
+     "action": "approved",
+     "summary": "es-EC variant approved"
+    },
+    {
+     "id": "h-exia-perform-shrimp-2",
+     "at": "2026-05-24T09:04:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v1)"
+    },
+    {
+     "id": "h-exia-perform-shrimp-1",
+     "at": "2024-12-12T09:13:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2024-12-12T09:13:00Z"
+  },
+  {
+   "id": "exia-activa-shrimp",
+   "code": "BM-EXIAAC-SHR",
+   "name": "EXIA ACTIVA",
+   "species": "Shrimp",
+   "range": "EXIA",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Sinking pellet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-03-20T09:37:00Z"
+   },
+   "marketing": {
+    "shortDescription": "EXIA Activa – High-quality daily feed, the optimal choice for shrimp farming at densities of less than 100 shrimp per m².",
+    "tagline": "Consistent results in intensive shrimp farming.",
+    "description": "EXIA Activa – High-quality daily feed, the optimal choice for shrimp farming at densities of less than 100 shrimp per m².",
+    "keyBenefits": [
+     "Stable growth: A scientifically designed nutritional formula that supports uniform shrimp growth, enhances health and maximises yield.",
+     "Balanced nutrition: Utilises carefully selected natural ingredients to provide a full range of essential nutrients such as amino acids, phospholipids, cholesterol, choline, trace minerals, vitamins and fatty acids, ensuring comprehensive shrimp development.",
+     "Economic efficiency: Optimises the feed conversion ratio (FCR) and achieves high survival rates, making it particularly suitable for sparse-stocking and improved extensive farming systems, delivering stable profits."
+    ],
+    "sellingPoints": [
+     "Formulated for high-density (200+ shrimp/m²) systems"
+    ],
+    "version": 5,
+    "meta": {
+     "status": "in_review",
+     "updatedBy": "u-sofie",
+     "updatedAt": "2026-10-25T09:46:00Z"
+    }
+   },
+   "markets": [
+    "vi-VN"
+   ],
+   "variants": {
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "EXIA Activa – Thức ăn hàng ngày chất lượng cao, lựa chọn tối ưu cho mô hình nuôi tôm mật độ <100 con/m².",
+     "tagline": "",
+     "description": "EXIA Activa – Thức ăn hàng ngày chất lượng cao, lựa chọn tối ưu cho mô hình nuôi tôm mật độ <100 con/m².",
+     "keyBenefits": [
+      "Phát triển ổn định: Công thức dinh dưỡng được thiết kế khoa học, hỗ trợ tôm tăng trưởng đồng đều, nâng cao sức khỏe và đạt năng suất tối đa.",
+      "Dinh dưỡng cân đối: Sử dụng nguyên liệu tự nhiên chọn lọc, cung cấp đầy đủ các yếu tố thiết yếu như amino acid, phospholipid, cholesterol, choline, vi khoáng, vitamin và acid béo, đảm bảo tôm phát triển toàn diện.",
+      "Hiệu quả kinh tế: Tối ưu hóa hệ số chuyển đổi thức ăn (FCR), đạt đầu con, đặc biệt phù hợp với mô hình nuôi thưa và quảng canh cải tiến, mang lại lợi nhuận ổn định."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-07-11T09:08:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-exia-activa-shrimp-1",
+     "type": "hero",
+     "fileName": "exia-activa-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 2186,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2025-12-20T09:04:00Z"
+    },
+    {
+     "id": "a-exia-activa-shrimp-2",
+     "type": "highres",
+     "fileName": "exia-activa-shrimp-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 6069,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-08-16T09:41:00Z"
+    },
+    {
+     "id": "a-exia-activa-shrimp-3",
+     "type": "bag",
+     "fileName": "exia-activa-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 759,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-10-12T09:13:00Z"
+    },
+    {
+     "id": "a-exia-activa-shrimp-4",
+     "type": "datasheet",
+     "fileName": "exia-activa-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 257,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-05-06T09:39:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-exia-activa-shrimp-3",
+     "at": "2026-10-25T09:48:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "submitted",
+     "summary": "Marketing content submitted for review"
+    },
+    {
+     "id": "h-exia-activa-shrimp-2",
+     "at": "2026-08-31T09:08:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-exia-activa-shrimp-vi-VN",
+     "at": "2026-07-11T09:08:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-exia-activa-shrimp-1",
+     "at": "2025-04-02T09:05:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-04-02T09:05:00Z"
+  },
+  {
+   "id": "power-smolt-atlantic-salmon",
+   "code": "BM-POWERS-ATL",
+   "name": "POWER Smolt",
+   "species": "Atlantic Salmon",
+   "range": "POWER",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm",
+    "9.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-02-22T09:01:00Z"
+   },
+   "marketing": {
+    "shortDescription": "POWER Smolt has been developed to increase productive performance post-transfer by maximizing growth and reducing feed conversion.",
+    "tagline": "Maximum growth. Shorter time at sea.",
+    "description": "POWER Smolt has been developed to increase productive performance post-transfer by maximizing growth and reducing feed conversion.",
+    "keyBenefits": [
+     "Improves the productive performance of smolts in the post-transfer stage.",
+     "Fish achieve higher yield and harvest weight when used in combination with POWER Extreme.",
+     "Represents the best option in terms of cost per kilogram of salmon produced in the post-transfer stage."
+    ],
+    "sellingPoints": [
+     "BioMar's best-selling salmon feed",
+     "Shorter production cycle frees up licence capacity"
+    ],
+    "version": 3,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-24T09:37:00Z"
+    }
+   },
+   "markets": [
+    "es-CL",
+    "en-AU"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "POWER Smolt ha sido desarollado para aumentar el rendimiento productivo post transferencia al maximizar el crecimiento y reducir la conversión.",
+     "tagline": "",
+     "description": "POWER Smolt ha sido desarollado para aumentar el rendimiento productivo post transferencia al maximizar el crecimiento y reducir la conversión.",
+     "keyBenefits": [
+      "Mejora el desempeño productivo de smolts en la etapa post transferencia.",
+      "Peces logran un mayor rendimiento y peso de cosecha cuando se usa en combinacion con POWER Extreme.",
+      "Representa la mejor opción en términos de costo, por kilo de salmón producido en la etapa de post transferencia."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 3,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-05-02T09:54:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-power-smolt-atlantic-salmon-1",
+     "type": "hero",
+     "fileName": "power-smolt-atlantic-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1602,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-03-08T09:41:00Z"
+    },
+    {
+     "id": "a-power-smolt-atlantic-salmon-2",
+     "type": "highres",
+     "fileName": "power-smolt-atlantic-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 13355,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-07T09:31:00Z"
+    },
+    {
+     "id": "a-power-smolt-atlantic-salmon-3",
+     "type": "bag",
+     "fileName": "power-smolt-atlantic-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 646,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-06-20T09:40:00Z"
+    },
+    {
+     "id": "a-power-smolt-atlantic-salmon-4",
+     "type": "datasheet",
+     "fileName": "power-smolt-atlantic-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 450,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-14T09:23:00Z"
+    },
+    {
+     "id": "a-power-smolt-atlantic-salmon-5",
+     "type": "datasheet",
+     "fileName": "power-smolt-atlantic-salmon-datasheet-es-cl.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 471,
+     "scope": "es-CL",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-11T09:23:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-power-smolt-atlantic-salmon-3",
+     "at": "2026-10-24T09:30:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-power-smolt-atlantic-salmon-2",
+     "at": "2026-08-11T09:48:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-power-smolt-atlantic-salmon-es-CL",
+     "at": "2026-05-02T09:54:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "approved",
+     "summary": "es-CL variant approved"
+    },
+    {
+     "id": "h-power-smolt-atlantic-salmon-1",
+     "at": "2025-09-17T09:43:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-09-17T09:43:00Z"
+  },
+  {
+   "id": "power-akai-coho-salmon",
+   "code": "BM-POWERA-COH",
+   "name": "POWER Akai",
+   "species": "Coho Salmon",
+   "range": "POWER",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-08-26T09:07:00Z"
+   },
+   "marketing": {
+    "shortDescription": "POWER Akai is part of our line of diets specifically developed to meet the needs of Coho Salmon.",
+    "tagline": "",
+    "description": "POWER Akai is part of our line of diets specifically developed to meet the needs of Coho Salmon.",
+    "keyBenefits": [
+     "Combines the protein and digestible energy requirements, available EAA and the seasonal growth profile of Coho salmon.",
+     "Promotes optimal muscle texture and firmness to obtain a fish of the highest quality.",
+     "It is designed for high growth and greater harvest performance."
+    ],
+    "sellingPoints": [
+     "BioMar's best-selling salmon feed",
+     "Shorter production cycle frees up licence capacity"
+    ],
+    "version": 2,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-11-10T09:29:00Z"
+    }
+   },
+   "markets": [
+    "es-CL"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "POWER Akai es parte de nuestra línea de dietas específicamente desarrolladas para cumplir con las necesidades de salmón Coho.",
+     "tagline": "",
+     "description": "POWER Akai es parte de nuestra línea de dietas específicamente desarrolladas para cumplir con las necesidades de salmón Coho.",
+     "keyBenefits": [
+      "Combina los requisitos de proteína y energía digestible, EAA disponibles y el perfil de crecimiento estacional del salmón Coho.",
+      "Es diseñada para un alto crecimiento y mayor rendimiento en la cosecha.",
+      "Promueve una óptima textura y firmeza del músculo para obtener un filete de la más alta calidad."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-10-06T09:34:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-power-akai-coho-salmon-1",
+     "type": "hero",
+     "fileName": "power-akai-coho-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 961,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-06-26T09:58:00Z"
+    },
+    {
+     "id": "a-power-akai-coho-salmon-2",
+     "type": "highres",
+     "fileName": "power-akai-coho-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 12619,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-26T09:34:00Z"
+    },
+    {
+     "id": "a-power-akai-coho-salmon-3",
+     "type": "bag",
+     "fileName": "power-akai-coho-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1000,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-28T09:48:00Z"
+    },
+    {
+     "id": "a-power-akai-coho-salmon-4",
+     "type": "datasheet",
+     "fileName": "power-akai-coho-salmon-datasheet-es-cl.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 537,
+     "scope": "es-CL",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-19T09:46:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-power-akai-coho-salmon-3",
+     "at": "2026-11-10T09:59:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-power-akai-coho-salmon-es-CL",
+     "at": "2026-10-06T09:34:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "approved",
+     "summary": "es-CL variant approved"
+    },
+    {
+     "id": "h-power-akai-coho-salmon-2",
+     "at": "2026-08-10T09:05:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v1)"
+    },
+    {
+     "id": "h-power-akai-coho-salmon-1",
+     "at": "2025-04-13T09:03:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-04-13T09:03:00Z"
+  },
+  {
+   "id": "power-fusion-atlantic-salmon",
+   "code": "BM-POWERF-ATL",
+   "name": "POWER Fusion",
+   "species": "Atlantic Salmon",
+   "range": "POWER",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm",
+    "9.0 mm",
+    "12.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-11-02T09:10:00Z"
+   },
+   "marketing": {
+    "shortDescription": "POWER Fusion is a line of high-energy diets that delivers high performance and end-product yield, combined with reduced use of marine ingredients and…",
+    "tagline": "Maximum growth. Shorter time at sea.",
+    "description": "POWER Fusion is a line of high-energy diets that delivers high performance and end-product yield, combined with reduced use of marine ingredients and the inclusion of innovative raw materials.",
+    "keyBenefits": [
+     "Lower cost per kg of salmon produced.",
+     "High harvest yield and end-product quality.",
+     "Delivers superior performance with minimal levels of fishmeal."
+    ],
+    "sellingPoints": [
+     "BioMar's best-selling salmon feed",
+     "Shorter production cycle frees up licence capacity"
+    ],
+    "version": 3,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-17T09:23:00Z"
+    }
+   },
+   "markets": [
+    "es-CL",
+    "nn-NO",
+    "en-GB"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "POWER Fusion es una línea de dietas de alta energía que otorga un alto desempeño y rendimiento del producto final, en combinacion con una menor…",
+     "tagline": "",
+     "description": "POWER Fusion es una línea de dietas de alta energía que otorga un alto desempeño y rendimiento del producto final, en combinacion con una menor utilización de ingredientes marinos y la inclusión de materias primas innovadoras.",
+     "keyBenefits": [
+      "Menor costo por kg de salmón producido.",
+      "Alto rendimiento en la cosecha y calidad del producto final.",
+      "Ofrece un mayor rendimiento con niveles mínimos de harina de pescado."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 3,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-10-27T09:16:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-power-fusion-atlantic-salmon-1",
+     "type": "bag",
+     "fileName": "power-fusion-atlantic-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1226,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-15T09:17:00Z"
+    },
+    {
+     "id": "a-power-fusion-atlantic-salmon-2",
+     "type": "datasheet",
+     "fileName": "power-fusion-atlantic-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 314,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-10-07T09:36:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-power-fusion-atlantic-salmon-es-CL",
+     "at": "2026-10-27T09:16:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "approved",
+     "summary": "es-CL variant approved"
+    },
+    {
+     "id": "h-power-fusion-atlantic-salmon-3",
+     "at": "2026-10-17T09:54:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-power-fusion-atlantic-salmon-2",
+     "at": "2026-09-03T09:31:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-power-fusion-atlantic-salmon-1",
+     "at": "2025-08-30T09:23:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-08-30T09:23:00Z"
+  },
+  {
+   "id": "tri-x-triploid-salmon",
+   "code": "BM-TRIX-TRI",
+   "name": "Tri-X",
+   "species": "Triploid Salmon",
+   "range": "TRI-X",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-02-11T09:11:00Z"
+   },
+   "marketing": {
+    "shortDescription": "Tri-X is specially formulated for triploid salmon, a fish with exceptional growth potential that demands a diet precisely matched to its unique and…",
+    "tagline": "",
+    "description": "Tri-X is specially formulated for triploid salmon, a fish with exceptional growth potential that demands a diet precisely matched to its unique and elevated nutritional requirements.",
+    "keyBenefits": [
+     "Optimised levels of DP and DE to fully support the superior growth potential of triploid salmon, fuelling higher performance and energy efficiency.",
+     "Enhanced with additional essential amino acids to support robust skeletal development and help triploid salmon reach their full structural potential.",
+     "A comprehensive vitamin, mineral and micro-nutrient profile specifically tailored to meet the naturally higher nutritional demands of triploid salmon."
+    ],
+    "sellingPoints": [],
+    "version": 2,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-09-26T09:14:00Z"
+    }
+   },
+   "markets": [
+    "en-GB"
+   ],
+   "variants": {
+    "en-GB": {
+     "localName": "",
+     "shortDescription": "General description: Tri-X is specially formulated for triploid salmon, a fish with exceptional growth potential that demands a diet precisely…",
+     "tagline": "",
+     "description": "General description: Tri-X is specially formulated for triploid salmon, a fish with exceptional growth potential that demands a diet precisely matched to its unique and elevated nutritional requirements.",
+     "keyBenefits": [
+      "Optimised levels of DP and DE to fully support the superior growth potential of triploid salmon, fuelling higher performance and energy efficiency.",
+      "Enhanced with additional essential amino acids to support robust skeletal development and help triploid salmon reach their full structural potential.",
+      "A comprehensive vitamin, mineral and micro-nutrient profile specifically tailored to meet the naturally higher nutritional demands of triploid salmon."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "draft",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-11-06T09:58:00Z",
+      "reviewNote": "Please align the key benefits with the latest global version."
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-tri-x-triploid-salmon-1",
+     "type": "highres",
+     "fileName": "tri-x-triploid-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 13487,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-10-08T09:47:00Z"
+    },
+    {
+     "id": "a-tri-x-triploid-salmon-2",
+     "type": "bag",
+     "fileName": "tri-x-triploid-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 629,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-03-21T09:15:00Z"
+    },
+    {
+     "id": "a-tri-x-triploid-salmon-3",
+     "type": "datasheet",
+     "fileName": "tri-x-triploid-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 548,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-03-20T09:17:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-tri-x-triploid-salmon-en-GB",
+     "at": "2026-11-06T09:58:00Z",
+     "by": "u-thomas",
+     "section": "en-GB",
+     "action": "edited",
+     "summary": "en-GB variant edited"
+    },
+    {
+     "id": "h-tri-x-triploid-salmon-3",
+     "at": "2026-09-26T09:43:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-tri-x-triploid-salmon-2",
+     "at": "2026-07-28T09:32:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v1)"
+    },
+    {
+     "id": "h-tri-x-triploid-salmon-1",
+     "at": "2025-09-30T09:23:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-09-30T09:23:00Z"
+  },
+  {
+   "id": "tri-plus-triploid-salmon",
+   "code": "BM-TRIPLU-TRI",
+   "name": "Tri Plus",
+   "species": "Triploid Salmon",
+   "range": "TRI-X",
+   "category": "Performance feed",
+   "stages": [
+    "Hatchery",
+    "Fry & fingerling"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "0.5 mm",
+    "0.8 mm",
+    "1.0 mm",
+    "1.5 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "draft",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-11-07T09:53:00Z"
+   },
+   "marketing": {
+    "shortDescription": "",
+    "tagline": "",
+    "description": "",
+    "keyBenefits": [],
+    "sellingPoints": [],
+    "version": 5,
+    "meta": {
+     "status": "draft",
+     "updatedBy": "u-sofie",
+     "updatedAt": "2026-10-24T09:44:00Z"
+    }
+   },
+   "markets": [
+    "en-GB"
+   ],
+   "variants": {
+    "en-GB": {
+     "localName": "",
+     "shortDescription": "Tri Plus is BioMar’s high-quality extruded starter feed range for triploids, designed to give fry the very best start in life.",
+     "tagline": "",
+     "description": "Tri Plus is BioMar’s high-quality extruded starter feed range for triploids, designed to give fry the very best start in life. Its high physical quality provides optimal fish and system performance.",
+     "keyBenefits": [
+      "Specifically designed for Triploid salmon supporting efficient development and growth.",
+      "Boosted with additional vitamins, minerals, and micro-nutrients to meet the higher requirements of triploid salmon.",
+      "Suitable for both flow through and RAS hatcheries."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-07-09T09:36:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-tri-plus-triploid-salmon-1",
+     "type": "hero",
+     "fileName": "tri-plus-triploid-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1296,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-06-02T09:23:00Z"
+    },
+    {
+     "id": "a-tri-plus-triploid-salmon-2",
+     "type": "highres",
+     "fileName": "tri-plus-triploid-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 10041,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-01-16T09:46:00Z"
+    },
+    {
+     "id": "a-tri-plus-triploid-salmon-3",
+     "type": "datasheet",
+     "fileName": "tri-plus-triploid-salmon-datasheet-en-gb.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 183,
+     "scope": "en-GB",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-05-05T09:01:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-tri-plus-triploid-salmon-3",
+     "at": "2026-10-24T09:22:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "edited",
+     "summary": "Marketing content edited"
+    },
+    {
+     "id": "h-tri-plus-triploid-salmon-en-GB",
+     "at": "2026-07-09T09:36:00Z",
+     "by": "u-thomas",
+     "section": "en-GB",
+     "action": "approved",
+     "summary": "en-GB variant approved"
+    },
+    {
+     "id": "h-tri-plus-triploid-salmon-1",
+     "at": "2025-04-10T09:34:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-04-10T09:34:00Z"
+  },
+  {
+   "id": "maxio-barra-barramundi",
+   "code": "BM-MAXIOB-BAR",
+   "name": "Maxio BARRA",
+   "species": "Barramundi",
+   "range": "MAXIO",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "draft",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-11-03T09:42:00Z"
+   },
+   "marketing": {
+    "shortDescription": "BioMar Australia's high-performance diet for barramundi, designed for maximum economic performance.",
+    "tagline": "Growth and feed efficiency in balance.",
+    "description": "BioMar Australia's high-performance diet for barramundi, designed for maximum economic performance.",
+    "keyBenefits": [
+     "Designed to deliver maximum economic performance.",
+     "Optimised balance of protein and energy to deliver improved FCR and SGR.",
+     "Can be combined with the Focus Plus package to respond to environmental or disease challenges."
+    ],
+    "sellingPoints": [],
+    "version": 5,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-07T09:08:00Z"
+    }
+   },
+   "markets": [
+    "en-AU"
+   ],
+   "variants": {
+    "en-AU": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "Uses global English copy.",
+     "inheritsGlobal": true,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-05-11T09:09:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-maxio-barra-barramundi-1",
+     "type": "bag",
+     "fileName": "maxio-barra-barramundi-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1117,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-04-16T09:29:00Z"
+    },
+    {
+     "id": "a-maxio-barra-barramundi-2",
+     "type": "datasheet",
+     "fileName": "maxio-barra-barramundi-datasheet-en-au.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 228,
+     "scope": "en-AU",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-06-23T09:08:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-maxio-barra-barramundi-3",
+     "at": "2026-10-07T09:03:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-maxio-barra-barramundi-en-AU",
+     "at": "2026-05-11T09:09:00Z",
+     "by": "u-minh",
+     "section": "en-AU",
+     "action": "approved",
+     "summary": "en-AU variant approved"
+    },
+    {
+     "id": "h-maxio-barra-barramundi-2",
+     "at": "2026-04-09T09:36:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-maxio-barra-barramundi-1",
+     "at": "2025-07-01T09:04:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-07-01T09:04:00Z"
+  },
+  {
+   "id": "larviva-mysis-shrimp",
+   "code": "BM-LARVIV-SHR",
+   "name": "LARVIVA Mysis",
+   "species": "Shrimp",
+   "range": "LARVIVA",
+   "category": "Hatchery feed",
+   "stages": [
+    "Hatchery"
+   ],
+   "feedType": "Microdiet",
+   "pelletSizes": [
+    "Crumble 0.4–0.6 mm",
+    "Crumble 0.8–1.2 mm",
+    "1.6 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-02-23T09:01:00Z"
+   },
+   "marketing": {
+    "shortDescription": "LARVIVA Mysis is a microencapsulated feed for early feeding.",
+    "tagline": "Hatchery nutrition for strong, uniform juveniles.",
+    "description": "LARVIVA Mysis is a microencapsulated feed for early feeding. Designed to cover the nutritional needs of shrimp larvae during the first feedings.",
+    "keyBenefits": [
+     "Complete nutritional profile, with high levels of vitamins and a balanced profile of amino acids, n-3 fatty acids, phospholipids and essential micronutrients, to guarantee optimal development of the larvae.",
+     "Low-temperature microencapsulation technology guarantees maximum nutrient retention and high digestibility, preserving the nutritional integrity of the ingredients.",
+     "Contains the probiotic Pediococcus acidilactici MA 18/5M, which has a documented beneficial effect on shrimp. It reduces the presence of vibrios in the intestinal tract of shrimp and improves their survival rate."
+    ],
+    "sellingPoints": [
+     "Complete hatchery programme from first feeding to weaning"
+    ],
+    "version": 4,
+    "meta": {
+     "status": "draft",
+     "updatedBy": "u-ingrid",
+     "updatedAt": "2026-11-03T09:04:00Z"
+    }
+   },
+   "markets": [
+    "es-CR",
+    "es-EC",
+    "vi-VN",
+    "en-AU",
+    "en-PH"
+   ],
+   "variants": {
+    "es-CR": {
+     "localName": "",
+     "shortDescription": "Alimento microencapsulado para alimentación temprana.",
+     "tagline": "",
+     "description": "Alimento microencapsulado para alimentación temprana. Diseñado para cubrir las necesidades nutricionales de las larvas de camarón durante las primeras alimentaciones.",
+     "keyBenefits": [
+      "Perfil nutricional completo, con altos niveles de vitaminas y un perfil balanceado de amino ácidos, ácidos grasos n-3, fosfolípidos y micronutrientes esenciales, para garantizar un óptimo desarrollo de las larvas.",
+      "Tecnología de microencapsulado a baja temperatura garantiza una máxima retención de nutrientes y una alta digestibilidad, conservando la integridad nutricional de los ingredientes.",
+      "Contiene el probiótico Pediococcus acidilactici MA 18/5M, con efecto benéfico documentado en el camarón. Reduce la presencia de vibrios en el tracto intestinal del camarón y mejora su tasa de sobrevivencia."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-06-07T09:28:00Z"
+     }
+    },
+    "es-EC": {
+     "localName": "",
+     "shortDescription": "Alimento microencapsulado para alimentación temprana.",
+     "tagline": "",
+     "description": "Alimento microencapsulado para alimentación temprana. Diseñado para cubrir las necesidades nutricionales de las larvas de camarón durante las primeras alimentaciones.",
+     "keyBenefits": [
+      "Perfil nutricional completo, con altos niveles de vitaminas y un perfil balanceado de amino ácidos, ácidos grasos n-3, fosfolípidos y micronutrientes esenciales, para garantizar un óptimo desarrollo de las larvas.",
+      "Tecnología de microencapsulado a baja temperatura garantiza una máxima retención de nutrientes y una alta digestibilidad, conservando la integridad nutricional de los ingredientes.",
+      "Contiene el probiótico Pediococcus acidilactici MA 18/5M, con efecto benéfico documentado en el camarón. Reduce la presencia de vibrios en el tracto intestinal del camarón y mejora su tasa de sobrevivencia."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-06-18T09:28:00Z"
+     }
+    },
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "LARVIVA Mysis là thức ăn dạng vi bọc dành cho giai đoạn đầu đời.",
+     "tagline": "",
+     "description": "LARVIVA Mysis là thức ăn dạng vi bọc dành cho giai đoạn đầu đời. Sản phẩm được thiết kế để đáp ứng nhu cầu dinh dưỡng của ấu trùng tôm trong những lần ăn đầu tiên.\n\nChế độ dinh dưỡng hoàn chỉnh: Với hàm lượng vitamin cao cùng sự cân bằng tối ưu giữa các axit amin, axit béo n-3, phospholipid và các vi chất thiết yếu, giúp đảm bảo sự phát triển tốt nhất cho ấu trùng.\n\nCông nghệ vi bọc ở nhiệt độ thấp: Đảm bảo khả năng giữ lại dưỡng chất tối đa và độ tiêu hóa cao, đồng thời bảo toàn nguyên vẹn giá trị dinh dưỡng của các thành phần nguyên liệu cao cấp.\n\nChứa Bactocell ® (lợi khuẩn Pediococcus acidilactici MA 18/5M): Đã được chứng minh về tác động tích cực đối với tôm, giúp giảm sự hiện diện của vi khuẩn Vibrio trong đường ruột tôm và cải thiện tỷ lệ sống.",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-10-18T09:19:00Z"
+     }
+    },
+    "en-AU": {
+     "localName": "",
+     "shortDescription": "LARVIVA Mysis is a microencapsulated feed for early feeding.",
+     "tagline": "",
+     "description": "LARVIVA Mysis is a microencapsulated feed for early feeding. Designed to cover the nutritional needs of prawn larvae during the first feedings.",
+     "keyBenefits": [
+      "Complete nutritional profile, with high levels of vitamins and a balanced profile of amino acids, n-3 fatty acids, phospholipids and essential micronutrients, to guarantee optimal development of the larvae.",
+      "Low-temperature microencapsulation technology guarantees maximum nutrient retention and high digestibility, preserving the nutritional integrity of the ingredients.",
+      "Contains the probiotic Pediococcus acidilactici MA 18/5M, which has a documented beneficial effect on shrimp. It reduces the presence of vibrios in the intestinal tract of shrimp and improves their survival rate."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "in_review",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-11-04T09:09:00Z"
+     }
+    },
+    "en-PH": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "Uses global English copy.",
+     "inheritsGlobal": true,
+     "websiteStatus": "live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-ingrid",
+      "updatedAt": "2026-09-04T09:03:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-larviva-mysis-shrimp-1",
+     "type": "hero",
+     "fileName": "larviva-mysis-shrimp-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1156,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-23T09:25:00Z"
+    },
+    {
+     "id": "a-larviva-mysis-shrimp-2",
+     "type": "bag",
+     "fileName": "larviva-mysis-shrimp-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 963,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-12T09:06:00Z"
+    },
+    {
+     "id": "a-larviva-mysis-shrimp-3",
+     "type": "datasheet",
+     "fileName": "larviva-mysis-shrimp-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 591,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-18T09:07:00Z"
+    },
+    {
+     "id": "a-larviva-mysis-shrimp-4",
+     "type": "brochure",
+     "fileName": "biomar-larviva-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 3820,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-13T09:12:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-larviva-mysis-shrimp-en-AU",
+     "at": "2026-11-04T09:09:00Z",
+     "by": "u-minh",
+     "section": "en-AU",
+     "action": "submitted",
+     "summary": "en-AU variant submitted for review"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-3",
+     "at": "2026-11-03T09:58:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "edited",
+     "summary": "Marketing content edited"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-vi-VN",
+     "at": "2026-10-18T09:19:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-en-PH",
+     "at": "2026-09-04T09:03:00Z",
+     "by": "u-ingrid",
+     "section": "en-PH",
+     "action": "approved",
+     "summary": "en-PH variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-es-EC",
+     "at": "2026-06-18T09:28:00Z",
+     "by": "u-camila",
+     "section": "es-EC",
+     "action": "approved",
+     "summary": "es-EC variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-es-CR",
+     "at": "2026-06-07T09:28:00Z",
+     "by": "u-camila",
+     "section": "es-CR",
+     "action": "approved",
+     "summary": "es-CR variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-2",
+     "at": "2026-05-07T09:16:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-1",
+     "at": "2025-01-24T09:37:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-01-24T09:37:00Z"
+  },
+  {
+   "id": "larviva-pronurse-barramundi",
+   "code": "BM-LARVIV-BAR",
+   "name": "LARVIVA Pronurse",
+   "species": "Barramundi",
+   "range": "LARVIVA",
+   "category": "Hatchery feed",
+   "stages": [
+    "Hatchery"
+   ],
+   "feedType": "Microdiet",
+   "pelletSizes": [
+    "0.1–0.2 mm",
+    "0.2–0.3 mm",
+    "0.3–0.5 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "in_review",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-10-31T09:41:00Z"
+   },
+   "marketing": {
+    "shortDescription": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry.",
+    "tagline": "",
+    "description": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry. LARVIVA ProNurse includes higher protein levels than traditional fry feed and lower fat levels targeted at preventing undesirable body fat deposition.\n\n*Bactocell® is the only probiotic that is approved by the European Commission for its ability to potentially reduce deformities across fish species.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) is a functional yeast-based additive developed by BioMar’s partner Lallemand Animal Nutrition.",
+    "keyBenefits": [
+     "Contains immunomodulatory ingredients and high levels of vitamins and minerals.",
+     "Contains Bactocell® & B-WYSE*.",
+     "High digestibility and palatability."
+    ],
+    "sellingPoints": [
+     "Complete hatchery programme from first feeding to weaning"
+    ],
+    "version": 2,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-07-31T09:56:00Z"
+    }
+   },
+   "markets": [
+    "vi-VN"
+   ],
+   "variants": {
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển.",
+     "tagline": "",
+     "description": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển. Sản phẩm có hàm lượng protein cao, khả năng tiêu hóa tốt cùng với độ dẫn dụ vượt trội. Bên cạnh đó, LARVIVA ProNurse đồng thời duy trì mức chất béo thấp nhằm ngăn ngừa tình trạng tích tụ mỡ thừa không mong muốn trong cơ thể cá.\n\nSản phẩm có chứa các thành phần điều hòa miễn dịch cùng hàm lượng vitamin, khoáng chất cao.\n\nPhụ gia chức năng Bactocell® & B-WYSE™ góp phần nâng cao sức khỏe và năng suất cho cá giống.\n\nBactocell® là probiotic duy nhất được Ủy ban Châu Âu phê duyệt với khả năng giúp giảm thiểu tỷ lệ dị hình trên cá.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) là một phụ gia chức năng dựa trên chiết xuất từ nấm men, được phát triển bởi Lallemand Animal Nutrition (đối tác của BioMar)",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-10-28T09:25:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-larviva-pronurse-barramundi-1",
+     "type": "hero",
+     "fileName": "larviva-pronurse-barramundi-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1524,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-01-25T09:58:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-2",
+     "type": "highres",
+     "fileName": "larviva-pronurse-barramundi-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 8292,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-24T09:56:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-3",
+     "type": "bag",
+     "fileName": "larviva-pronurse-barramundi-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1028,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-21T09:39:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-4",
+     "type": "datasheet",
+     "fileName": "larviva-pronurse-barramundi-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 331,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-06-20T09:26:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-larviva-pronurse-barramundi-vi-VN",
+     "at": "2026-10-28T09:25:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-3",
+     "at": "2026-07-31T09:26:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-2",
+     "at": "2026-03-25T09:08:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v1)"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-1",
+     "at": "2025-01-25T09:17:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-01-25T09:17:00Z"
+  },
+  {
+   "id": "orbit-cpk-atlantic-salmon",
+   "code": "BM-ORBITC-ATL",
+   "name": "ORBIT CPK",
+   "species": "Atlantic Salmon",
+   "range": "ORBIT",
+   "category": "RAS feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "0.5 mm",
+    "0.8 mm",
+    "1.0 mm",
+    "1.5 mm",
+    "2.0 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-07-18T09:58:00Z"
+   },
+   "marketing": {
+    "shortDescription": "Specifically designed for fish production in recirculating aquaculture systems with focus on high fish and system performance for juvenile salmon.",
+    "tagline": "",
+    "description": "Specifically designed for fish production in recirculating aquaculture systems with focus on high fish and system performance for juvenile salmon. Although specifically designed for RAS, this feed is equally suitable for flow-through systems.",
+    "keyBenefits": [
+     "A balanced nutritional profile, formulated to achieve the maximum nutrient utilization and low nutrient excretion.",
+     "Designed for high faecal stability and physical pellet quality to achieve optimal water quality and low impact on the biofilters.",
+     "Orbit Intro is formulated with the probiotic Bactocell®, supporting intestinal integrity and health."
+    ],
+    "sellingPoints": [
+     "Reduces biofilter load in RAS",
+     "Also suitable for flow-through systems"
+    ],
+    "version": 2,
+    "meta": {
+     "status": "draft",
+     "updatedBy": "u-ingrid",
+     "updatedAt": "2026-11-08T09:37:00Z"
+    }
+   },
+   "markets": [
+    "nn-NO",
+    "en-AU"
+   ],
+   "variants": {
+    "nn-NO": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "ORBIT er utviklet for RAS-anlegg og kombinerer høy tilvekst med god vannkvalitet og lav belastning på biofilteret.",
+     "keyBenefits": [
+      "Bidrar til fastere fekalier og effektiv partikkelfjerning, som støtter god vannkvalitet og reduserer belastningen på RAS-systemet.",
+      "Har en balansert ernæringsprofil, med optimal næringsutnyttelse.",
+      "Pellet med høy fysisk kvalitet for å sikre god vannkvalitet i karene."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-08-03T09:17:00Z"
+     }
+    },
+    "en-AU": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "Uses global English copy.",
+     "inheritsGlobal": true,
+     "websiteStatus": "live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-07-06T09:03:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-orbit-cpk-atlantic-salmon-1",
+     "type": "hero",
+     "fileName": "orbit-cpk-atlantic-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1276,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-28T09:06:00Z"
+    },
+    {
+     "id": "a-orbit-cpk-atlantic-salmon-2",
+     "type": "highres",
+     "fileName": "orbit-cpk-atlantic-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 7975,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-21T09:34:00Z"
+    },
+    {
+     "id": "a-orbit-cpk-atlantic-salmon-3",
+     "type": "brochure",
+     "fileName": "biomar-orbit-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 3797,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-07-29T09:54:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-orbit-cpk-atlantic-salmon-3",
+     "at": "2026-11-08T09:20:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "edited",
+     "summary": "Marketing content edited"
+    },
+    {
+     "id": "h-orbit-cpk-atlantic-salmon-2",
+     "at": "2026-08-10T09:37:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v1)"
+    },
+    {
+     "id": "h-orbit-cpk-atlantic-salmon-nn-NO",
+     "at": "2026-08-03T09:17:00Z",
+     "by": "u-thomas",
+     "section": "nn-NO",
+     "action": "approved",
+     "summary": "nn-NO variant approved"
+    },
+    {
+     "id": "h-orbit-cpk-atlantic-salmon-en-AU",
+     "at": "2026-07-06T09:03:00Z",
+     "by": "u-minh",
+     "section": "en-AU",
+     "action": "approved",
+     "summary": "en-AU variant approved"
+    },
+    {
+     "id": "h-orbit-cpk-atlantic-salmon-1",
+     "at": "2025-03-10T09:11:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-03-10T09:11:00Z"
   }
  ]
 }

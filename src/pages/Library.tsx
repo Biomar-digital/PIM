@@ -5,7 +5,7 @@ import type { Product } from '../types'
 import { useStore } from '../data/store'
 import { CATEGORIES, LANGUAGES, MARKETS, MARKET_BY_ID, STAGES, marketLabel } from '../data/reference'
 import { VARIANT_STATE_LABEL, completeness, lastUpdated, overallStatus, variantState } from '../data/rules'
-import { productThumb } from '../lib/artwork'
+import { hasHero, productThumb } from '../lib/artwork'
 import { timeAgo } from '../lib/format'
 import { CompletenessBar, EmptyState, StatusBadge, Thumb } from '../components/ui'
 
@@ -205,7 +205,7 @@ export default function Library() {
         <div className="grid">
           {rows.map(({ p, c }) => (
             <Link key={p.id} to={`/products/${p.id}`} className="pcard">
-              <div className="pcard-img">{productThumb(p, blobUrls) ? <img src={productThumb(p, blobUrls)!} alt="" /> : <span className="muted small">No hero image</span>}</div>
+              <div className="pcard-img"><img src={productThumb(p, blobUrls, 'wide')} alt="" />{!hasHero(p) && <span className="pcard-flag">No hero image</span>}</div>
               <div className="pcard-body">
                 <div className="pcard-top">
                   <span className="muted small">{p.range}</span>

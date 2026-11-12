@@ -52,12 +52,21 @@ SELECTION = [
     "EXIA Prime - Shrimp", "EXIA MAXIO - Shrimp",
     "Ecolife Pearl - Atlantic Salmon - Grower", "EGGSTRA - Trout",
     "DAN-EX - Eel - Grower", "FINESTA - Sea Bream",
-    "Symbio Lumpfish",
+    "Symbio Lumpfish", "Symbio Plus - Ballan Wrasse",
+    "INICIO Pro - Shrimp", "INICIO Focus - Shrimp", "INICIO Plus - Shrimp", "INICIO Akai - Coho Salmon",
+    "EXIA Perform - Shrimp", "EXIA ACTIVA - Shrimp",
+    "POWER Smolt - Atlantic Salmon", "POWER Akai - Coho Salmon", "POWER Fusion - Atlantic Salmon",
+    "Tri-X - Triploid Salmon", "Tri Plus - Triploid Salmon",
+    "Maxio BARRA - Barramundi", "LARVIVA Mysis - Shrimp", "LARVIVA Pronurse - Barramundi", "ORBIT CPK - Atlantic Salmon",
 ]
+
+# Fields not present in the website export. The seed fills them with illustrative values and
+# the app labels them "Sample" until someone edits them.
+SAMPLE_FIELDS = ["code", "feedType", "pelletSizes", "packaging", "owner", "lifecycle", "tagline", "sellingPoints"]
 
 RANGE_FROM_NAME = {
     "INICIO": "INICIO", "INTRO": "INTRO", "CPK": "CPK", "DAN-EX": "DAN-EX", "Ecolife": "Ecolife",
-    "EGGSTRA": "EGGSTRA", "FINESTA": "FINESTA", "EFICO": "EFICO", "Symbio": "Symbio",
+    "EGGSTRA": "EGGSTRA", "FINESTA": "FINESTA", "EFICO": "EFICO", "Symbio": "Symbio", "Tri": "TRI-X",
 }
 
 CATEGORY = {
@@ -323,6 +332,7 @@ def main():
             "pelletSizes": pellet_sizes,
             "packaging": ["25 kg bag", "500 kg big bag"] if stages[-1] == "Grower" else ["10 kg bag", "20 kg bag"],
             "regulatoryNotes": "",
+            "sampleFields": SAMPLE_FIELDS,
             "owner": owner,
             "lifecycle": "active",
             "info": {"status": info_status, "updatedBy": owner, "updatedAt": iso(random.randint(-300, -5) if info_status == "approved" else random.randint(-15, -1))},
@@ -343,7 +353,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 1, "users": USERS, "products": products}
+    seed = {"version": 2, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")
