@@ -100,7 +100,7 @@ export function currentUser(s: State = state): User {
   return s.db.users.find((u) => u.id === s.userId) ?? s.db.users[0]
 }
 export function userName(id: string): string {
-  return state.db.users.find((u) => u.id === id)?.name ?? 'Website import'
+  return state.db.users.find((u) => u.id === id)?.name ?? (id === 'website' ? 'biomar.com import' : 'Website import')
 }
 
 let toastId = 0

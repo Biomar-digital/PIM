@@ -64,8 +64,15 @@ export interface Asset {
   sizeKb: number
   /** "global" or a locale id */
   scope: string
-  /** "generated" = sample artwork rendered by the app, "upload" = file stored in the browser */
-  source: 'generated' | 'upload'
+  /**
+   * "bundled" = real file shipped with the app (e.g. packshots imported from biomar.com),
+   * "generated" = sample artwork rendered by the app, "upload" = file stored in the browser
+   */
+  source: 'bundled' | 'generated' | 'upload'
+  /** Bundled file name in src/assets/bags */
+  file?: string
+  /** Where a bundled file was imported from */
+  sourceUrl?: string
   uploadedBy: string
   uploadedAt: string
 }

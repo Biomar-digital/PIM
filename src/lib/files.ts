@@ -3,6 +3,7 @@
 import type { Asset, Product } from '../types'
 import { ASSET_LABEL, LIFECYCLE_LABEL, marketLabel } from '../data/reference'
 import { bagSvg, heroSvg, highresSvg } from './artwork'
+import { bundledUrl } from './bundled'
 
 function save(blob: Blob, name: string) {
   const url = URL.createObjectURL(blob)
@@ -36,6 +37,11 @@ export async function downloadAsset(p: Product, a: Asset, blobUrls: Record<strin
     if (!url) return
     const blob = await fetch(url).then((r) => r.blob())
     return save(blob, a.fileName)
+  }
+  if (a.source === 'bundled') {
+    const url = bundledUrl(a)
+    if (!url) return
+    return save(await fetch(url).then((r) => r.blob()), a.fileName)
   }
   if (a.type === 'hero' || a.type === 'highres' || a.type === 'bag') {
     const svg = a.type === 'hero' ? heroSvg(p) : a.type === 'bag' ? bagSvg(p) : highresSvg(p)

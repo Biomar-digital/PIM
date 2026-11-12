@@ -50,6 +50,7 @@ src/
   pages/                Dashboard, Library, ProductPage (+ product/* tabs), AssetLibrary, Approvals, Markets, Admin
 scripts/build_seed.py   builds seed.json from the Umbraco website export
 scripts/import_logos.py imports product logos from the brand logo packs into src/assets/logos
+scripts/fetch_bags.py   downloads product bag packshots from biomar.com into src/assets/bags
 ```
 
 ### Data model in short
@@ -82,7 +83,7 @@ translations come from the website. The website does not hold product codes, fee
 sizes, packaging, product owner, lifecycle, taglines or selling points. The seed fills these with
 **example values**, and the app labels them *Sample* until someone edits them. In production they
 would be maintained in the PIM by the global product team or imported from the ERP item master and
-technical datasheets. Workflow states, people, dates and asset files are also sample data. Edits are saved in the browser. *Administration → Reset demo data*
+technical datasheets. Workflow states, people and dates are also sample data, as are all asset files except the bag packshots, which come from biomar.com. Edits are saved in the browser. *Administration → Reset demo data*
 restores the seed.
 
 ## Product logos
@@ -98,3 +99,16 @@ writes `src/assets/logos/`. The app finds the most specific match for each produ
 (*INICIO Plus* + *Shrimp*, *Symbio Lumpfish*), then name (*LARVIVA Multigain*), then range (*LARVIVA*).
 Products with no logo yet (EFICO, CPK, Ecolife, EGGSTRA, FINESTA, SmartCare Endurance) show the BioMar logo with the
 product name. Running the script with more packs adds to the existing set.
+
+## Product bag designs
+
+Each product's **Product bag design** asset is the real packshot from biomar.com:
+
+```bash
+python3 -I scripts/fetch_bags.py                                  # download packshots
+python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json   # attach them as assets
+```
+
+`fetch_bags.py` opens each product page (`/feed-services/all-feed/<website slug>`), takes the page's
+product image (`og:image`), saves a 600 px WebP copy to `src/assets/bags/` and records the source URL.
+The asset card shows "Imported from biomar.com" and links back to the original.

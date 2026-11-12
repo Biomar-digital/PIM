@@ -16,6 +16,7 @@ full workflow. Everything is deterministic (fixed random seed).
 import glob
 import html
 import json
+import os
 import random
 import re
 import sys
@@ -178,6 +179,10 @@ def iso(day_offset, hour=9):
     return d.strftime("%Y-%m-%dT%H:%M:00Z")
 
 
+BAGS_INDEX = "src/assets/bags/index.json"
+BAGS = json.load(open(BAGS_INDEX, encoding="utf-8")) if os.path.exists(BAGS_INDEX) else {}
+
+
 def main():
     random.seed(42)
     docs = {}
@@ -282,6 +287,8 @@ def main():
         owner = "u-ingrid" if random.random() < 0.7 else "u-sofie"
         code = "BM-" + re.sub(r"[^A-Z0-9]", "", name.upper())[:6] + "-" + re.sub(r"[^A-Z]", "", species.upper())[:3]
         slug = slugify(f"{name}-{species}")
+        url_names = props.get("umbracoUrlName") or {}
+        website_slug = (url_names.get("en") if isinstance(url_names, dict) else None) or slugify(full)
 
         # --- assets (metadata; preview images are rendered by the app) ---
         assets = []
@@ -297,8 +304,15 @@ def main():
             add_asset("hero", f"{base}-hero.jpg", random.randint(800, 2400))
         if random.random() < 0.6:
             add_asset("highres", f"{base}-pellets-highres.jpg", random.randint(6000, 14000))
-        if random.random() < 0.8:
-            add_asset("bag", f"{base}-bag-25kg.png", random.randint(400, 1300))
+        random.random()  # keeps the random sequence stable for the values below
+        bag = BAGS.get(slug)
+        if bag:
+            # Real packshot downloaded from biomar.com by scripts/fetch_bags.py
+            assets.append({
+                "id": f"a-{slug}-bag", "type": "bag", "fileName": bag["fileName"], "mime": "image/webp",
+                "sizeKb": bag["sizeKb"], "scope": "global", "source": "bundled", "file": bag["file"],
+                "sourceUrl": bag["url"], "uploadedBy": "website", "uploadedAt": "2026-11-12T12:00:00Z",
+            })
         if random.random() < 0.75:
             add_asset("datasheet", f"{base}-technical-datasheet.pdf", random.randint(180, 600))
         if rng in ("POWER", "SmartCare", "Blue Impact", "LARVIVA", "ORBIT") and random.random() < 0.6:
@@ -325,6 +339,7 @@ def main():
         products.append({
             "id": slug,
             "code": code,
+            "websiteSlug": website_slug,
             "name": name,
             "species": species,
             "range": rng,
@@ -355,7 +370,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 3, "users": USERS, "products": products}
+    seed = {"version": 4, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")

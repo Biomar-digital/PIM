@@ -3,6 +3,7 @@
 import type { Asset, Product } from '../types'
 import { RANGE_COLORS } from '../data/reference'
 import { BIOMAR_LOGO, logoFor } from './logos'
+import { bundledUrl } from './bundled'
 
 function rng(seedStr: string) {
   let h = 2166136261
@@ -125,6 +126,7 @@ ${lines}
 /** URL to show as a thumbnail/preview for an asset. */
 export function assetImageUrl(p: Product, a: Asset, blobUrls: Record<string, string>): string | null {
   if (a.source === 'upload') return a.mime.startsWith('image/') ? blobUrls[a.id] ?? null : null
+  if (a.source === 'bundled') return bundledUrl(a)
   switch (a.type) {
     case 'hero': return toUrl(heroSvg(p))
     case 'highres': return toUrl(highresSvg(p))

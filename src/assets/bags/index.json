@@ -1,0 +1,392 @@
+{
+ "power-atlantic-salmon": {
+  "file": "power-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/pztde0zs/salmon-grower-top-performance-power.png",
+  "fileName": "salmon-grower-top-performance-power.webp",
+  "sizeKb": 13
+ },
+ "power-extreme-atlantic-salmon": {
+  "file": "power-extreme-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/tnxlqeuj/salmon-grower-top-performance-power-extreme.png",
+  "fileName": "salmon-grower-top-performance-power-extreme.webp",
+  "sizeKb": 13
+ },
+ "power-rainbow-trout": {
+  "file": "power-rainbow-trout.webp",
+  "url": "https://www.biomar.com/media/hovlpksq/fish-grower-top-performance-power-rainbow.png",
+  "fileName": "fish-grower-top-performance-power-rainbow.webp",
+  "sizeKb": 13
+ },
+ "blue-impact-atlantic-salmon": {
+  "file": "blue-impact-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/mksgtq3d/salmon-grower-sustainability-blue-impact.png",
+  "fileName": "salmon-grower-sustainability-blue-impact.webp",
+  "sizeKb": 13
+ },
+ "blue-impact-sturgeon": {
+  "file": "blue-impact-sturgeon.webp",
+  "url": "https://www.biomar.com/media/iubiaiit/fish-grower-sustainability-blue-impact.png",
+  "fileName": "fish-grower-sustainability-blue-impact.webp",
+  "sizeKb": 13
+ },
+ "smartcare-resist-lice-atlantic-salmon": {
+  "file": "smartcare-resist-lice-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/utylq5i4/salmon-grower-health-smartcare-resist-lice.png",
+  "fileName": "salmon-grower-health-smartcare-resist-lice.webp",
+  "sizeKb": 14
+ },
+ "smartcare-intro-q-atlantic-salmon": {
+  "file": "smartcare-intro-q-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/yqsfclyy/salmon-grower-health-smartcare-intro-q-plus.png",
+  "fileName": "salmon-grower-health-smartcare-intro-q-plus.webp",
+  "sizeKb": 14
+ },
+ "smartcare-assist-skin-atlantic-salmon": {
+  "file": "smartcare-assist-skin-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/t1odr1tw/salmon-grower-health-smartcare-assist-skin.png",
+  "fileName": "salmon-grower-health-smartcare-assist-skin.webp",
+  "sizeKb": 14
+ },
+ "smartcare-focus-trout": {
+  "file": "smartcare-focus-trout.webp",
+  "url": "https://www.biomar.com/media/lymfjbnz/fish-grower-health-smartcare-focus.png",
+  "fileName": "fish-grower-health-smartcare-focus.webp",
+  "sizeKb": 14
+ },
+ "smartcare-benefit-trout": {
+  "file": "smartcare-benefit-trout.webp",
+  "url": "https://www.biomar.com/media/fgtkb0i5/salmon-grower-health-smartcare-benefit.png",
+  "fileName": "salmon-grower-health-smartcare-benefit.webp",
+  "sizeKb": 14
+ },
+ "smartcare-robust-sea-bass": {
+  "file": "smartcare-robust-sea-bass.webp",
+  "url": "https://www.biomar.com/media/buulnvgg/fish-grower-health-smartcare-robust-orange.png",
+  "fileName": "fish-grower-health-smartcare-robust-orange.webp",
+  "sizeKb": 17
+ },
+ "smartcare-forte-sea-bream": {
+  "file": "smartcare-forte-sea-bream.webp",
+  "url": "https://www.biomar.com/media/qxljdw55/fish-grower-health-smartcare-forte.png",
+  "fileName": "fish-grower-health-smartcare-forte.webp",
+  "sizeKb": 13
+ },
+ "smartcare-endurance-atlantic-salmon": {
+  "file": "smartcare-endurance-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/f50f3lbt/salmon-grower-health-smartcare-endurance.png",
+  "fileName": "salmon-grower-health-smartcare-endurance.webp",
+  "sizeKb": 17
+ },
+ "orbit-atlantic-salmon": {
+  "file": "orbit-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/bwmf2dy2/salmon-grower-ras-orbit.png",
+  "fileName": "salmon-grower-ras-orbit.webp",
+  "sizeKb": 12
+ },
+ "orbit-trout": {
+  "file": "orbit-trout.webp",
+  "url": "https://www.biomar.com/media/bwmf2dy2/salmon-grower-ras-orbit.png",
+  "fileName": "salmon-grower-ras-orbit.webp",
+  "sizeKb": 12
+ },
+ "orbit-intro-atlantic-salmon": {
+  "file": "orbit-intro-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/0nuiwrio/salmon-transfer-ras-orbit-intro.png",
+  "fileName": "salmon-transfer-ras-orbit-intro.webp",
+  "sizeKb": 14
+ },
+ "efico-enviro-trout": {
+  "file": "efico-enviro-trout.webp",
+  "url": "https://www.biomar.com/media/0hhgzupl/fish-grower-top-performance-efico-enviro.png",
+  "fileName": "fish-grower-top-performance-efico-enviro.webp",
+  "sizeKb": 13
+ },
+ "efico-alpha-trout": {
+  "file": "efico-alpha-trout.webp",
+  "url": "https://www.biomar.com/media/pgzfsnq0/fish-grower-high-performance-efico-alpha.png",
+  "fileName": "fish-grower-high-performance-efico-alpha.webp",
+  "sizeKb": 13
+ },
+ "efico-genio-trout": {
+  "file": "efico-genio-trout.webp",
+  "url": "https://www.biomar.com/media/dqgmm50a/hatchery-hatchery-broodstock-efico-genio.png",
+  "fileName": "hatchery-hatchery-broodstock-efico-genio.webp",
+  "sizeKb": 17
+ },
+ "efico-sigma-sturgeon": {
+  "file": "efico-sigma-sturgeon.webp",
+  "url": "https://www.biomar.com/media/t4jjvvme/fish-grower-finisher-efico-sigma.png",
+  "fileName": "fish-grower-finisher-efico-sigma.webp",
+  "sizeKb": 14
+ },
+ "efico-sea-bream": {
+  "file": "efico-sea-bream.webp",
+  "url": "https://www.biomar.com/media/l3zdclqa/fish-grower-high-performance-efico.png",
+  "fileName": "fish-grower-high-performance-efico.webp",
+  "sizeKb": 13
+ },
+ "efico-sea-bass": {
+  "file": "efico-sea-bass.webp",
+  "url": "https://www.biomar.com/media/xwfpvibf/salmon-grower-high-performance-efico.png",
+  "fileName": "salmon-grower-high-performance-efico.webp",
+  "sizeKb": 13
+ },
+ "efico-cromis-tilapia": {
+  "file": "efico-cromis-tilapia.webp",
+  "url": "https://www.biomar.com/media/kqtljwuv/fish-grower-high-performance-efico-cromis.png",
+  "fileName": "fish-grower-high-performance-efico-cromis.webp",
+  "sizeKb": 13
+ },
+ "inicio-plus-trout": {
+  "file": "inicio-plus-trout.webp",
+  "url": "https://www.biomar.com/media/x0obmvig/fish-starter-first-feeding-inicio-plus.png",
+  "fileName": "fish-starter-first-feeding-inicio-plus.webp",
+  "sizeKb": 15
+ },
+ "inicio-plus-s-atlantic-salmon": {
+  "file": "inicio-plus-s-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/ym0g3gvu/fish-starter-first-feeding-inicio-plus-s.png",
+  "fileName": "fish-starter-first-feeding-inicio-plus-s.webp",
+  "sizeKb": 15
+ },
+ "inicio-plus-m-sea-bream": {
+  "file": "inicio-plus-m-sea-bream.webp",
+  "url": "https://www.biomar.com/media/rikercay/hatchery-hatchery-top-performance-inicio-plus-m.png",
+  "fileName": "hatchery-hatchery-top-performance-inicio-plus-m.webp",
+  "sizeKb": 13
+ },
+ "intro-plus-mt-sea-bass": {
+  "file": "intro-plus-mt-sea-bass.webp",
+  "url": "https://www.biomar.com/media/n4gkbeov/fish-starter-top-performance-intro-plus-mt.png",
+  "fileName": "fish-starter-top-performance-intro-plus-mt.webp",
+  "sizeKb": 13
+ },
+ "intro-atlantic-salmon": {
+  "file": "intro-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/apxd3wg2/salmon-transfer-top-performance-intro.png",
+  "fileName": "salmon-transfer-top-performance-intro.webp",
+  "sizeKb": 13
+ },
+ "cpk-atlantic-salmon": {
+  "file": "cpk-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/v24lxf2c/salmon-starter-top-performance-cpk.png",
+  "fileName": "salmon-starter-top-performance-cpk.webp",
+  "sizeKb": 12
+ },
+ "larviva-prostart-trout": {
+  "file": "larviva-prostart-trout.webp",
+  "url": "https://www.biomar.com/media/3znflbnr/larviva-bucket-prostart-400.png",
+  "fileName": "larviva-bucket-prostart-400.webp",
+  "sizeKb": 18
+ },
+ "larviva-prostart-sea-bream": {
+  "file": "larviva-prostart-sea-bream.webp",
+  "url": "https://www.biomar.com/media/qn3lc3de/larviva_alubags_25kg_prostart-200.png",
+  "fileName": "larviva_alubags_25kg_prostart-200.webp",
+  "sizeKb": 30
+ },
+ "larviva-multigain-sea-bass": {
+  "file": "larviva-multigain-sea-bass.webp",
+  "url": "https://www.biomar.com/media/jinltwtq/larviva-multigain-alubag.png",
+  "fileName": "larviva-multigain-alubag.webp",
+  "sizeKb": 28
+ },
+ "larviva-prowean-sturgeon": {
+  "file": "larviva-prowean-sturgeon.webp",
+  "url": "https://www.biomar.com/media/ds4d0fbl/larviva_bucket_prowean-300.png",
+  "fileName": "larviva_bucket_prowean-300.webp",
+  "sizeKb": 18
+ },
+ "larviva-pl-shrimp": {
+  "file": "larviva-pl-shrimp.webp",
+  "url": "https://www.biomar.com/media/xgwk022k/larviva-pl-can-larval-shrimp-feed-400.png",
+  "fileName": "larviva-pl-can-larval-shrimp-feed-400.webp",
+  "sizeKb": 29
+ },
+ "larviva-zoea-shrimp": {
+  "file": "larviva-zoea-shrimp.webp",
+  "url": "https://www.biomar.com/media/qrahdotw/larviva-zoea-can.png",
+  "fileName": "larviva-zoea-can.webp",
+  "sizeKb": 32
+ },
+ "larviva-broodstock-sea-bass": {
+  "file": "larviva-broodstock-sea-bass.webp",
+  "url": "https://www.biomar.com/media/q2kdp0j1/larviva-broodstock-maintenance-bucket.png",
+  "fileName": "larviva-broodstock-maintenance-bucket.webp",
+  "sizeKb": 18
+ },
+ "maxio-sea-bream": {
+  "file": "maxio-sea-bream.webp",
+  "url": "https://www.biomar.com/media/sttf0a14/fish-grower-top-performance-maxio.png",
+  "fileName": "fish-grower-top-performance-maxio.webp",
+  "sizeKb": 13
+ },
+ "maxio-meagre": {
+  "file": "maxio-meagre.webp",
+  "url": "https://www.biomar.com/media/sttf0a14/fish-grower-top-performance-maxio.png",
+  "fileName": "fish-grower-top-performance-maxio.webp",
+  "sizeKb": 13
+ },
+ "exia-prime-shrimp": {
+  "file": "exia-prime-shrimp.webp",
+  "url": "https://www.biomar.com/media/a4zlrhgx/shrimp-grower-high-performance-exia-prime.png",
+  "fileName": "shrimp-grower-high-performance-exia-prime.webp",
+  "sizeKb": 12
+ },
+ "exia-maxio-shrimp": {
+  "file": "exia-maxio-shrimp.webp",
+  "url": "https://www.biomar.com/media/2h2n3ds4/shrimp-grower-top-performance-exia-maxio_1.png",
+  "fileName": "shrimp-grower-top-performance-exia-maxio_1.webp",
+  "sizeKb": 13
+ },
+ "ecolife-pearl-atlantic-salmon": {
+  "file": "ecolife-pearl-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/jhlbgysq/salmon-grower-organic-ecolife-pearl.png",
+  "fileName": "salmon-grower-organic-ecolife-pearl.webp",
+  "sizeKb": 13
+ },
+ "eggstra-trout": {
+  "file": "eggstra-trout.webp",
+  "url": "https://www.biomar.com/media/m5vpde42/fish-grower-finisher-eggstra.png",
+  "fileName": "fish-grower-finisher-eggstra.webp",
+  "sizeKb": 13
+ },
+ "dan-ex-eel": {
+  "file": "dan-ex-eel.webp",
+  "url": "https://www.biomar.com/media/51rp5bql/fish-grower-top-performance-dan-ex.png",
+  "fileName": "fish-grower-top-performance-dan-ex.webp",
+  "sizeKb": 12
+ },
+ "finesta-sea-bream": {
+  "file": "finesta-sea-bream.webp",
+  "url": "https://www.biomar.com/media/2xwennux/fish-grower-finisher-finesta.png",
+  "fileName": "fish-grower-finisher-finesta.webp",
+  "sizeKb": 13
+ },
+ "symbio-lumpfish": {
+  "file": "symbio-lumpfish.webp",
+  "url": "https://www.biomar.com/media/jeqbipmw/fish-grower-standard-performance-symbio-lumpfish.png",
+  "fileName": "fish-grower-standard-performance-symbio-lumpfish.webp",
+  "sizeKb": 12
+ },
+ "symbio-plus-ballan-wrasse": {
+  "file": "symbio-plus-ballan-wrasse.webp",
+  "url": "https://www.biomar.com/media/21sd5hqb/fish-starter-high-performance-symbio-plus.png",
+  "fileName": "fish-starter-high-performance-symbio-plus.webp",
+  "sizeKb": 13
+ },
+ "inicio-pro-shrimp": {
+  "file": "inicio-pro-shrimp.webp",
+  "url": "https://www.biomar.com/media/gyqoqf2j/shrimp-starter-health-inicio-pro.png",
+  "fileName": "shrimp-starter-health-inicio-pro.webp",
+  "sizeKb": 14
+ },
+ "inicio-focus-shrimp": {
+  "file": "inicio-focus-shrimp.webp",
+  "url": "https://www.biomar.com/media/s0rlrsub/shrimp-starter-health-inicio-focus.png",
+  "fileName": "shrimp-starter-health-inicio-focus.webp",
+  "sizeKb": 14
+ },
+ "inicio-plus-shrimp": {
+  "file": "inicio-plus-shrimp.webp",
+  "url": "https://www.biomar.com/media/uroamg54/shrimp-starter-health-inicio-plus.png",
+  "fileName": "shrimp-starter-health-inicio-plus.webp",
+  "sizeKb": 12
+ },
+ "inicio-akai-coho-salmon": {
+  "file": "inicio-akai-coho-salmon.webp",
+  "url": "https://www.biomar.com/media/4iunjyqw/salmon-starter-top-performance-inicio-akai.png",
+  "fileName": "salmon-starter-top-performance-inicio-akai.webp",
+  "sizeKb": 13
+ },
+ "exia-perform-shrimp": {
+  "file": "exia-perform-shrimp.webp",
+  "url": "https://www.biomar.com/media/wh2jwyl2/shrimp-grower-standard-performance-exia-performance.png",
+  "fileName": "shrimp-grower-standard-performance-exia-performance.webp",
+  "sizeKb": 14
+ },
+ "exia-activa-shrimp": {
+  "file": "exia-activa-shrimp.webp",
+  "url": "https://www.biomar.com/media/bg3byzvk/shrimp-grower-standard-performance-exia-activa.png",
+  "fileName": "shrimp-grower-standard-performance-exia-activa.webp",
+  "sizeKb": 16
+ },
+ "power-smolt-atlantic-salmon": {
+  "file": "power-smolt-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/kevhrrx0/salmon-transfer-top-performance-power-smolt.png",
+  "fileName": "salmon-transfer-top-performance-power-smolt.webp",
+  "sizeKb": 13
+ },
+ "power-akai-coho-salmon": {
+  "file": "power-akai-coho-salmon.webp",
+  "url": "https://www.biomar.com/media/o55dxzld/salmon-grower-high-performance-power-akai.png",
+  "fileName": "salmon-grower-high-performance-power-akai.webp",
+  "sizeKb": 13
+ },
+ "power-fusion-atlantic-salmon": {
+  "file": "power-fusion-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/gzidxgvm/salmon-grower-high-performance-power-fusion.png",
+  "fileName": "salmon-grower-high-performance-power-fusion.webp",
+  "sizeKb": 13
+ },
+ "tri-x-triploid-salmon": {
+  "file": "tri-x-triploid-salmon.webp",
+  "url": "https://www.biomar.com/media/tc2mzo3n/salmon-grower-standard-performance-tri-x.png",
+  "fileName": "salmon-grower-standard-performance-tri-x.webp",
+  "sizeKb": 11
+ },
+ "tri-plus-triploid-salmon": {
+  "file": "tri-plus-triploid-salmon.webp",
+  "url": "https://www.biomar.com/media/5zgmvhrs/hatchery-hatchery-first-feeding-tri-plus.png",
+  "fileName": "hatchery-hatchery-first-feeding-tri-plus.webp",
+  "sizeKb": 13
+ },
+ "smartcare-qardio-hp-atlantic-salmon": {
+  "file": "smartcare-qardio-hp-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/gjoj012z/salmon-grower-health-smartcare-qardio-hp.png",
+  "fileName": "salmon-grower-health-smartcare-qardio-hp.webp",
+  "sizeKb": 13
+ },
+ "smartcare-control-gill-atlantic-salmon": {
+  "file": "smartcare-control-gill-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/jxap53ip/salmon-grower-health-smartcare-control-gill.png",
+  "fileName": "salmon-grower-health-smartcare-control-gill.webp",
+  "sizeKb": 13
+ },
+ "smartcare-totalcare-atlantic-salmon": {
+  "file": "smartcare-totalcare-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/rssdhm3e/salmon-grower-health-smartcare-totalcare.png",
+  "fileName": "salmon-grower-health-smartcare-totalcare.webp",
+  "sizeKb": 14
+ },
+ "smartcare-resist-x-pro-trout": {
+  "file": "smartcare-resist-x-pro-trout.webp",
+  "url": "https://www.biomar.com/media/qrtphnxc/salmon-grower-health-smartcare-resist-x-pro.png",
+  "fileName": "salmon-grower-health-smartcare-resist-x-pro.webp",
+  "sizeKb": 14
+ },
+ "maxio-barra-barramundi": {
+  "file": "maxio-barra-barramundi.webp",
+  "url": "https://www.biomar.com/media/ugxhk0ec/fish-grower-top-performance-maxio-barra.png",
+  "fileName": "fish-grower-top-performance-maxio-barra.webp",
+  "sizeKb": 13
+ },
+ "larviva-mysis-shrimp": {
+  "file": "larviva-mysis-shrimp.webp",
+  "url": "https://www.biomar.com/media/ztbbkybd/larviva-mysis-can.png",
+  "fileName": "larviva-mysis-can.webp",
+  "sizeKb": 32
+ },
+ "larviva-pronurse-barramundi": {
+  "file": "larviva-pronurse-barramundi.webp",
+  "url": "https://www.biomar.com/media/wt0brk3r/larviva-pronurse-alubag-800.png",
+  "fileName": "larviva-pronurse-alubag-800.webp",
+  "sizeKb": 31
+ },
+ "orbit-cpk-atlantic-salmon": {
+  "file": "orbit-cpk-atlantic-salmon.webp",
+  "url": "https://www.biomar.com/media/kcrf5vsx/salmon-starter-ras-orbit-cpk.png",
+  "fileName": "salmon-starter-ras-orbit-cpk.webp",
+  "sizeKb": 12
+ }
+}

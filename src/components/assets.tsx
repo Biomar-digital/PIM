@@ -21,7 +21,7 @@ export function AssetCard({ p, a, onPreview, onDelete, showProduct }: { p: Produ
         {showProduct && <span className="small strong clamp-1">{p.name} – {p.species}</span>}
         <span className="acard-name clamp-1" title={a.fileName}>{a.fileName}</span>
         <span className="muted small">{formatSize(a.sizeKb)} · {a.scope === 'global' ? 'Global' : marketLabel(a.scope, true)}</span>
-        <span className="muted small clamp-1">{userName(a.uploadedBy)} · {formatDate(a.uploadedAt)}</span>
+        <span className="muted small clamp-1">{a.source === 'bundled' && a.sourceUrl ? 'Imported from biomar.com' : `${userName(a.uploadedBy)} · ${formatDate(a.uploadedAt)}`}</span>
       </div>
       <div className="acard-actions">
         <button className="icon-btn" onClick={onPreview} aria-label="Preview" title="Preview"><Eye size={16} /></button>
@@ -38,7 +38,10 @@ export function PreviewModal({ p, a, onClose }: { p: Product; a: Asset; onClose:
   const isUploadedPdf = a.source === 'upload' && a.mime === 'application/pdf'
   return (
     <Modal title={a.fileName} onClose={onClose} wide footer={<>
-      <span className="muted small grow">{ASSET_LABEL[a.type]} · {formatSize(a.sizeKb)} · {a.scope === 'global' ? 'Global' : marketLabel(a.scope)} · uploaded by {userName(a.uploadedBy)}, {formatDate(a.uploadedAt)}</span>
+      <span className="muted small grow">
+        {ASSET_LABEL[a.type]} · {formatSize(a.sizeKb)} · {a.scope === 'global' ? 'Global' : marketLabel(a.scope)} ·{' '}
+        {a.sourceUrl ? <>imported from <a href={a.sourceUrl} target="_blank" rel="noreferrer">biomar.com</a>, {formatDate(a.uploadedAt)}</> : <>uploaded by {userName(a.uploadedBy)}, {formatDate(a.uploadedAt)}</>}
+      </span>
       <button className="btn btn-primary" onClick={() => downloadAsset(p, a, blobUrls)}><Download size={16} /> Download</button>
     </>}>
       <div className="preview">
