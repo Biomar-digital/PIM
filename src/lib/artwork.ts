@@ -122,7 +122,7 @@ export function docSvg(p: Product, a: Asset, w = 600, h = 800): string {
 <text x="60" y="95" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="700" font-style="italic" fill="#fff">BioMar</text>
 <text x="60" y="${a.type === 'brochure' ? 300 : 230}" font-family="Montserrat,Arial,sans-serif" font-size="40" font-weight="700" fill="${a.type === 'brochure' ? '#fff' : '#0f2147'}">${esc(p.name)}</text>
 <text x="60" y="${a.type === 'brochure' ? 340 : 275}" font-family="Montserrat,Arial,sans-serif" font-size="24" fill="${a.type === 'brochure' ? '#fff' : '#44546a'}">${esc(title)}${a.scope !== 'global' ? ' · ' + esc(a.scope) : ''}</text>
-${logo && a.type !== 'brochure' ? `<image href="${logo.url}" x="330" y="170" width="220" height="90" preserveAspectRatio="xMaxYMid meet"/>` : ''}
+${logo && a.type !== 'brochure' ? `<image href="${logo.url}" x="60" y="300" width="280" height="90" preserveAspectRatio="xMinYMid meet"/>` : ''}
 ${logo && a.type === 'brochure' ? `<rect x="40" y="380" width="${w - 80}" height="1" fill="#d6dce5"/>` : ''}
 ${lines}
 <rect x="0" y="${h - 14}" width="${w}" height="14" fill="${c}"/>

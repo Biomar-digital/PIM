@@ -31,14 +31,23 @@ COLOURS = {
 }
 
 
+# Known typos in the logo packs
+LABEL_FIXES = {"ASSEST": "ASSIST"}
+
+
 def norm(s: str) -> str:
-    return re.sub(r"[^A-Z0-9]", "", s.upper())
+    """Matching key: upper case, '+' read as PLUS, everything else non-alphanumeric dropped.
+    Must stay in sync with norm() in src/lib/logos.ts."""
+    s = s.upper().replace("+", "PLUS")
+    for wrong, right in LABEL_FIXES.items():
+        s = s.replace(wrong, right)
+    return re.sub(r"[^A-Z0-9]", "", s)
 
 
 def parse(name: str):
     """'Logo-INICIO PLUS M-Celeste-Blue.png' -> ('INICIO PLUS M', ['Celeste', 'Blue'])"""
     base = os.path.basename(name)
-    if not base.lower().endswith(".png") or not base.startswith("Logo-") or "+" in base or "Tagline" in base:
+    if not base.lower().endswith(".png") or not base.startswith("Logo-") or " + " in base or "Tagline" in base:
         return None
     parts = base[5:-4].split("-")
     colours = []
@@ -87,6 +96,8 @@ def main():
             if not parsed:
                 continue
             label, colours = parsed
+            if "white" in label.lower():  # e.g. "QardioWhite-Green" (missing dash) is a white variant
+                continue
             shrimp = "INICIO SHRIMP" in path and not norm(label).endswith("SHRIMP")
             key = norm(label) + ("SHRIMP" if shrimp else "")
             if norm(label) == "BIOMAR":

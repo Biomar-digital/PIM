@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "users": [
   {
    "id": "u-ingrid",
@@ -14919,12 +14919,352 @@
    "createdAt": "2025-04-10T09:34:00Z"
   },
   {
-   "id": "maxio-barra-barramundi",
-   "code": "BM-MAXIOB-BAR",
-   "name": "Maxio BARRA",
-   "species": "Barramundi",
-   "range": "MAXIO",
-   "category": "Performance feed",
+   "id": "smartcare-qardio-hp-atlantic-salmon",
+   "code": "BM-SMARTC-ATL",
+   "name": "SmartCare QARDIO HP",
+   "species": "Atlantic Salmon",
+   "range": "SmartCare",
+   "category": "Functional health feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-sofie",
+   "lifecycle": "active",
+   "info": {
+    "status": "draft",
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-10-29T09:12:00Z"
+   },
+   "marketing": {
+    "shortDescription": "SmartCare Qardio HP is specially developed to strengthen the heart and circulation, and helps to ensure feed intake and promote recovery.",
+    "tagline": "Nutrition that supports fish health when it matters most.",
+    "description": "SmartCare Qardio HP is specially developed to strengthen the heart and circulation, and helps to ensure feed intake and promote recovery.",
+    "keyBenefits": [
+     "Contains a high dose of marine phospholipids and EPA/DHA, which is an effective strategy for enriching fish tissue with essential fatty acids that can promote a balanced immune response.",
+     "Contains a balanced ratio of fat and protein to optimize appetite and nutrient utilization in sick fish.",
+     "Contains enhanced levels of antioxidants that can protect cell membranes against damage from oxidative stress."
+    ],
+    "sellingPoints": [
+     "Developed and documented at BioMar's Aquaculture Technology Centres",
+     "Can be used strategically in high-risk periods"
+    ],
+    "version": 5,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-07T09:08:00Z"
+    }
+   },
+   "markets": [
+    "nn-NO",
+    "es-CL",
+    "en-GB",
+    "en-AU"
+   ],
+   "variants": {
+    "nn-NO": {
+     "localName": "",
+     "shortDescription": "SmartCare Qardio HP er spesielt utviklet for styrking av hjerte og sirkulasjon og bidrar til å sikre fôropptaket og fremme restitusjon.",
+     "tagline": "",
+     "description": "SmartCare Qardio HP er spesielt utviklet for styrking av hjerte og sirkulasjon og bidrar til å sikre fôropptaket og fremme restitusjon.",
+     "keyBenefits": [
+      "Inneholder en høy dose marine fosfolipider og EPA/DHA, som er en effektiv strategi for å berike fiskevev med essensielle fettsyrer som kan fremme en balansert immunrespons.",
+      "Inneholder et balansert forhold mellom fett og protein for å optimalisere appetitt og næringsutnyttelse hos syk fisk.",
+      "Inneholder forsterkede nivåer av antioksidanter som kan beskytte cellemembraner mot skader fra oksidativt stress."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-06-01T09:45:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-smartcare-qardio-hp-atlantic-salmon-1",
+     "type": "hero",
+     "fileName": "smartcare-qardio-hp-atlantic-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1562,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-05-30T09:47:00Z"
+    },
+    {
+     "id": "a-smartcare-qardio-hp-atlantic-salmon-2",
+     "type": "highres",
+     "fileName": "smartcare-qardio-hp-atlantic-salmon-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 6782,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-06-23T09:08:00Z"
+    },
+    {
+     "id": "a-smartcare-qardio-hp-atlantic-salmon-3",
+     "type": "bag",
+     "fileName": "smartcare-qardio-hp-atlantic-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 803,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2025-11-15T09:37:00Z"
+    },
+    {
+     "id": "a-smartcare-qardio-hp-atlantic-salmon-4",
+     "type": "datasheet",
+     "fileName": "smartcare-qardio-hp-atlantic-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 402,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-09-12T09:08:00Z"
+    },
+    {
+     "id": "a-smartcare-qardio-hp-atlantic-salmon-5",
+     "type": "brochure",
+     "fileName": "biomar-smartcare-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 4138,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-03-18T09:59:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-smartcare-qardio-hp-atlantic-salmon-3",
+     "at": "2026-10-07T09:14:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-smartcare-qardio-hp-atlantic-salmon-nn-NO",
+     "at": "2026-06-01T09:45:00Z",
+     "by": "u-thomas",
+     "section": "nn-NO",
+     "action": "approved",
+     "summary": "nn-NO variant approved"
+    },
+    {
+     "id": "h-smartcare-qardio-hp-atlantic-salmon-2",
+     "at": "2026-05-15T09:17:00Z",
+     "by": "u-sofie",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-smartcare-qardio-hp-atlantic-salmon-1",
+     "at": "2025-05-28T09:20:00Z",
+     "by": "u-sofie",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-05-28T09:20:00Z"
+  },
+  {
+   "id": "smartcare-control-gill-atlantic-salmon",
+   "code": "BM-SMARTC-ATL",
+   "name": "SmartCare Control Gill",
+   "species": "Atlantic Salmon",
+   "range": "SmartCare",
+   "category": "Functional health feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm",
+    "9.0 mm",
+    "12.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-09-09T09:06:00Z"
+   },
+   "marketing": {
+    "shortDescription": "SmartCare Control Gill promotes optimal gill health.",
+    "tagline": "Nutrition that supports fish health when it matters most.",
+    "description": "SmartCare Control Gill promotes optimal gill health. Proper gill function is vital for respiration and circulation in fish, as gills are continuously exposed to irritants that can reduce their functionality.",
+    "keyBenefits": [
+     "Elevated levels of antioxidants and vitamins strengthens the immune system and protects tissues from damage.",
+     "Strengthens the gill tissue and functionality.",
+     "Strengthens the mucosal barriers."
+    ],
+    "sellingPoints": [
+     "Developed and documented at BioMar's Aquaculture Technology Centres",
+     "Can be used strategically in high-risk periods"
+    ],
+    "version": 5,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-09-10T09:51:00Z"
+    }
+   },
+   "markets": [
+    "es-CL",
+    "nn-NO"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "La función branquial adecuada es vital para la respiración y la circulación en los peces.",
+     "tagline": "",
+     "description": "La función branquial adecuada es vital para la respiración y la circulación en los peces. Las branquias están continuamente expuestas a agentes irritantes que pueden reducir su funcionalidad. SmartCare Control Gill ha sido desarrollada para promover una óptima salud de las branquias.",
+     "keyBenefits": [
+      "Fortalece las barreras mucosas.",
+      "Fortalece el tejido branquial y su funcionalidad.",
+      "Los niveles elevados de antioxidantes y vitaminas fortalecen el sistema inmune y protegen del daño a los tejidos."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "in_review",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-10-28T09:05:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-smartcare-control-gill-atlantic-salmon-1",
+     "type": "hero",
+     "fileName": "smartcare-control-gill-atlantic-salmon-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1471,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-22T09:05:00Z"
+    },
+    {
+     "id": "a-smartcare-control-gill-atlantic-salmon-2",
+     "type": "datasheet",
+     "fileName": "smartcare-control-gill-atlantic-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 205,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-09-19T09:19:00Z"
+    },
+    {
+     "id": "a-smartcare-control-gill-atlantic-salmon-3",
+     "type": "brochure",
+     "fileName": "biomar-smartcare-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 3424,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-23T09:25:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-smartcare-control-gill-atlantic-salmon-es-CL",
+     "at": "2026-10-28T09:05:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "submitted",
+     "summary": "es-CL variant submitted for review"
+    },
+    {
+     "id": "h-smartcare-control-gill-atlantic-salmon-3",
+     "at": "2026-09-10T09:06:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-smartcare-control-gill-atlantic-salmon-2",
+     "at": "2026-03-24T09:15:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v4)"
+    },
+    {
+     "id": "h-smartcare-control-gill-atlantic-salmon-1",
+     "at": "2025-09-22T09:47:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-09-22T09:47:00Z"
+  },
+  {
+   "id": "smartcare-totalcare-atlantic-salmon",
+   "code": "BM-SMARTC-ATL",
+   "name": "SmartCare TotalCare",
+   "species": "Atlantic Salmon",
+   "range": "SmartCare",
+   "category": "Functional health feed",
    "stages": [
     "Grower"
    ],
@@ -14952,9 +15292,388 @@
    "owner": "u-ingrid",
    "lifecycle": "active",
    "info": {
-    "status": "draft",
+    "status": "approved",
     "updatedBy": "u-ingrid",
-    "updatedAt": "2026-11-03T09:42:00Z"
+    "updatedAt": "2026-04-21T09:17:00Z"
+   },
+   "marketing": {
+    "shortDescription": "TotalCare is our most complete SmartCare product, and the best alternative to support your fish going through complex health challenges.",
+    "tagline": "Nutrition that supports fish health when it matters most.",
+    "description": "TotalCare is our most complete SmartCare product, and the best alternative to support your fish going through complex health challenges.",
+    "keyBenefits": [
+     "Contains a high level of marine derived phospholipids and essential fatty acids that can promote heart health and a balanced immune response.",
+     "Contains ingredients that can promote an efficient mucus barrier.",
+     "Contains micronutrients that supports faster wound healing."
+    ],
+    "sellingPoints": [
+     "Developed and documented at BioMar's Aquaculture Technology Centres",
+     "Can be used strategically in high-risk periods"
+    ],
+    "version": 3,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-22T09:17:00Z"
+    }
+   },
+   "markets": [
+    "en-GB",
+    "nn-NO"
+   ],
+   "variants": {
+    "en-GB": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "Uses global English copy.",
+     "inheritsGlobal": true,
+     "websiteStatus": "live",
+     "sourceVersion": 3,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-07-01T09:58:00Z"
+     }
+    },
+    "nn-NO": {
+     "localName": "",
+     "shortDescription": "",
+     "tagline": "",
+     "description": "",
+     "keyBenefits": [
+      "TotalCare er det mest komplette SmartCare-produktet, og det beste alternativet for å støtte fisk som går igjennom komplekse helseutfordringer.",
+      "Inneholder et høyt nivå av marine fosfolipider og essensielle fettsyrer som kan fremme hjertehelse og en balansert immunrespons.",
+      "Inneholder ingredienser som kan fremme en effektiv slimbarriere.",
+      "Inneholder mikronæringsstoffer som kan bidra til raskere sårheling."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 2,
+     "meta": {
+      "status": "in_review",
+      "updatedBy": "u-thomas",
+      "updatedAt": "2026-10-27T09:12:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-smartcare-totalcare-atlantic-salmon-1",
+     "type": "bag",
+     "fileName": "smartcare-totalcare-atlantic-salmon-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 443,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-06-01T09:03:00Z"
+    },
+    {
+     "id": "a-smartcare-totalcare-atlantic-salmon-2",
+     "type": "datasheet",
+     "fileName": "smartcare-totalcare-atlantic-salmon-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 473,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-05-17T09:52:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-smartcare-totalcare-atlantic-salmon-nn-NO",
+     "at": "2026-10-27T09:12:00Z",
+     "by": "u-thomas",
+     "section": "nn-NO",
+     "action": "submitted",
+     "summary": "nn-NO variant submitted for review"
+    },
+    {
+     "id": "h-smartcare-totalcare-atlantic-salmon-3",
+     "at": "2026-10-22T09:58:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-smartcare-totalcare-atlantic-salmon-en-GB",
+     "at": "2026-07-01T09:58:00Z",
+     "by": "u-thomas",
+     "section": "en-GB",
+     "action": "approved",
+     "summary": "en-GB variant approved"
+    },
+    {
+     "id": "h-smartcare-totalcare-atlantic-salmon-2",
+     "at": "2026-06-24T09:13:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
+     "id": "h-smartcare-totalcare-atlantic-salmon-1",
+     "at": "2025-07-18T09:11:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-07-18T09:11:00Z"
+  },
+  {
+   "id": "smartcare-resist-x-pro-trout",
+   "code": "BM-SMARTC-TRO",
+   "name": "SmartCare Resist X Pro",
+   "species": "Trout",
+   "range": "SmartCare",
+   "category": "Functional health feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm",
+    "9.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "in_review",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-11-06T09:54:00Z"
+   },
+   "marketing": {
+    "shortDescription": "SRS remains the biggest bacterial challenge in Chilean aquaculture and is responsible for most of the antibiotics used during production.",
+    "tagline": "Nutrition that supports fish health when it matters most.",
+    "description": "SRS remains the biggest bacterial challenge in Chilean aquaculture and is responsible for most of the antibiotics used during production. Resist X Pro is specifically developed to improve the resistance to SRS.",
+    "keyBenefits": [
+     "A unique component helps stimulate the immune response towards SRS.",
+     "Promotes fish robustness resulting in improved survival.",
+     "Can prolong time between SRS outbreaks, reducing the amount of antibiotics needed."
+    ],
+    "sellingPoints": [
+     "Developed and documented at BioMar's Aquaculture Technology Centres",
+     "Can be used strategically in high-risk periods"
+    ],
+    "version": 6,
+    "meta": {
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-10-02T09:51:00Z"
+    }
+   },
+   "markets": [
+    "es-CL",
+    "es-ES"
+   ],
+   "variants": {
+    "es-CL": {
+     "localName": "",
+     "shortDescription": "SRS sigue siendo el mayor desafío bacteriano en la acuicultura chilena, y es responsable del mayor uso de antibioticos.",
+     "tagline": "",
+     "description": "SRS sigue siendo el mayor desafío bacteriano en la acuicultura chilena, y es responsable del mayor uso de antibioticos. SmartCare Resist X Pro ha sido desarrollado específicamente para una mayor resistencia al SRS.",
+     "keyBenefits": [
+      "Contiene un compuesto especifico, que contribuye a mejorar la respuesta inmune hacia el SRS.",
+      "Promueve la robustez de los peces, lo que resulta en una mejor supervivencia.",
+      "Puede prolongar el tiempo entre brotes de SRS, lo que podria contribuir a un menor requeriminento de uso de antibióticos."
+     ],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 5,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-camila",
+      "updatedAt": "2026-06-16T09:41:00Z"
+     }
+    },
+    "es-ES": {
+     "localName": "",
+     "shortDescription": "Test description",
+     "tagline": "",
+     "description": "Test description",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "not_live",
+     "sourceVersion": 6,
+     "meta": {
+      "status": "draft",
+      "updatedBy": "u-elena",
+      "updatedAt": "2026-11-11T09:50:00Z",
+      "reviewNote": "Short description is too long for the website product card – max 160 characters."
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-smartcare-resist-x-pro-trout-1",
+     "type": "hero",
+     "fileName": "smartcare-resist-x-pro-trout-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1458,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-04-24T09:17:00Z"
+    },
+    {
+     "id": "a-smartcare-resist-x-pro-trout-2",
+     "type": "highres",
+     "fileName": "smartcare-resist-x-pro-trout-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 8612,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-09T09:14:00Z"
+    },
+    {
+     "id": "a-smartcare-resist-x-pro-trout-3",
+     "type": "bag",
+     "fileName": "smartcare-resist-x-pro-trout-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 1230,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-28T09:03:00Z"
+    },
+    {
+     "id": "a-smartcare-resist-x-pro-trout-4",
+     "type": "brochure",
+     "fileName": "biomar-smartcare-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 4928,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-03T09:14:00Z"
+    },
+    {
+     "id": "a-smartcare-resist-x-pro-trout-5",
+     "type": "datasheet",
+     "fileName": "smartcare-resist-x-pro-trout-datasheet-es-es.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 516,
+     "scope": "es-ES",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-02-08T09:17:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-smartcare-resist-x-pro-trout-es-ES",
+     "at": "2026-11-11T09:50:00Z",
+     "by": "u-elena",
+     "section": "es-ES",
+     "action": "edited",
+     "summary": "es-ES variant edited"
+    },
+    {
+     "id": "h-smartcare-resist-x-pro-trout-3",
+     "at": "2026-10-02T09:14:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v6)"
+    },
+    {
+     "id": "h-smartcare-resist-x-pro-trout-2",
+     "at": "2026-08-19T09:48:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v5)"
+    },
+    {
+     "id": "h-smartcare-resist-x-pro-trout-es-CL",
+     "at": "2026-06-16T09:41:00Z",
+     "by": "u-camila",
+     "section": "es-CL",
+     "action": "approved",
+     "summary": "es-CL variant approved"
+    },
+    {
+     "id": "h-smartcare-resist-x-pro-trout-1",
+     "at": "2025-09-11T09:52:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-09-11T09:52:00Z"
+  },
+  {
+   "id": "maxio-barra-barramundi",
+   "code": "BM-MAXIOB-BAR",
+   "name": "Maxio BARRA",
+   "species": "Barramundi",
+   "range": "MAXIO",
+   "category": "Performance feed",
+   "stages": [
+    "Grower"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "3.0 mm",
+    "4.5 mm",
+    "6.0 mm",
+    "9.0 mm"
+   ],
+   "packaging": [
+    "25 kg bag",
+    "500 kg big bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-06-30T09:03:00Z"
    },
    "marketing": {
     "shortDescription": "BioMar Australia's high-performance diet for barramundi, designed for maximum economic performance.",
@@ -14966,11 +15685,11 @@
      "Can be combined with the Focus Plus package to respond to environmental or disease challenges."
     ],
     "sellingPoints": [],
-    "version": 5,
+    "version": 3,
     "meta": {
-     "status": "approved",
-     "updatedBy": "u-marco",
-     "updatedAt": "2026-10-07T09:08:00Z"
+     "status": "draft",
+     "updatedBy": "u-ingrid",
+     "updatedAt": "2026-10-27T09:01:00Z"
     }
    },
    "markets": [
@@ -14987,66 +15706,88 @@
      "notes": "Uses global English copy.",
      "inheritsGlobal": true,
      "websiteStatus": "live",
-     "sourceVersion": 5,
+     "sourceVersion": 3,
      "meta": {
       "status": "approved",
       "updatedBy": "u-minh",
-      "updatedAt": "2026-05-11T09:09:00Z"
+      "updatedAt": "2026-07-25T09:36:00Z"
      }
     }
    },
    "assets": [
     {
      "id": "a-maxio-barra-barramundi-1",
-     "type": "bag",
-     "fileName": "maxio-barra-barramundi-bag-25kg.png",
-     "mime": "image/png",
-     "sizeKb": 1117,
+     "type": "hero",
+     "fileName": "maxio-barra-barramundi-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1808,
      "scope": "global",
      "source": "generated",
      "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-04-16T09:29:00Z"
+     "uploadedAt": "2026-07-12T09:19:00Z"
     },
     {
      "id": "a-maxio-barra-barramundi-2",
-     "type": "datasheet",
-     "fileName": "maxio-barra-barramundi-datasheet-en-au.pdf",
-     "mime": "application/pdf",
-     "sizeKb": 228,
-     "scope": "en-AU",
+     "type": "highres",
+     "fileName": "maxio-barra-barramundi-pellets-highres.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 6310,
+     "scope": "global",
      "source": "generated",
      "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-06-23T09:08:00Z"
+     "uploadedAt": "2025-11-23T09:03:00Z"
+    },
+    {
+     "id": "a-maxio-barra-barramundi-3",
+     "type": "bag",
+     "fileName": "maxio-barra-barramundi-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 624,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-18T09:33:00Z"
+    },
+    {
+     "id": "a-maxio-barra-barramundi-4",
+     "type": "datasheet",
+     "fileName": "maxio-barra-barramundi-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 349,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-08-18T09:12:00Z"
     }
    ],
    "history": [
     {
      "id": "h-maxio-barra-barramundi-3",
-     "at": "2026-10-07T09:03:00Z",
+     "at": "2026-10-27T09:51:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "edited",
+     "summary": "Marketing content edited"
+    },
+    {
+     "id": "h-maxio-barra-barramundi-2",
+     "at": "2026-08-13T09:58:00Z",
      "by": "u-ingrid",
      "section": "marketing",
      "action": "approved",
-     "summary": "Marketing content approved (v5)"
+     "summary": "Marketing content approved (v2)"
     },
     {
      "id": "h-maxio-barra-barramundi-en-AU",
-     "at": "2026-05-11T09:09:00Z",
+     "at": "2026-07-25T09:36:00Z",
      "by": "u-minh",
      "section": "en-AU",
      "action": "approved",
      "summary": "en-AU variant approved"
     },
     {
-     "id": "h-maxio-barra-barramundi-2",
-     "at": "2026-04-09T09:36:00Z",
-     "by": "u-ingrid",
-     "section": "marketing",
-     "action": "approved",
-     "summary": "Marketing content approved (v4)"
-    },
-    {
      "id": "h-maxio-barra-barramundi-1",
-     "at": "2025-07-01T09:04:00Z",
+     "at": "2025-06-04T09:45:00Z",
      "by": "u-ingrid",
      "section": "info",
      "action": "created",
@@ -15054,7 +15795,7 @@
     }
    ],
    "comments": [],
-   "createdAt": "2025-07-01T09:04:00Z"
+   "createdAt": "2025-06-04T09:45:00Z"
   },
   {
    "id": "larviva-mysis-shrimp",
@@ -15087,12 +15828,12 @@
     "tagline",
     "sellingPoints"
    ],
-   "owner": "u-ingrid",
+   "owner": "u-sofie",
    "lifecycle": "active",
    "info": {
     "status": "approved",
-    "updatedBy": "u-ingrid",
-    "updatedAt": "2026-02-23T09:01:00Z"
+    "updatedBy": "u-sofie",
+    "updatedAt": "2026-07-06T09:28:00Z"
    },
    "marketing": {
     "shortDescription": "LARVIVA Mysis is a microencapsulated feed for early feeding.",
@@ -15103,14 +15844,12 @@
      "Low-temperature microencapsulation technology guarantees maximum nutrient retention and high digestibility, preserving the nutritional integrity of the ingredients.",
      "Contains the probiotic Pediococcus acidilactici MA 18/5M, which has a documented beneficial effect on shrimp. It reduces the presence of vibrios in the intestinal tract of shrimp and improves their survival rate."
     ],
-    "sellingPoints": [
-     "Complete hatchery programme from first feeding to weaning"
-    ],
-    "version": 4,
+    "sellingPoints": [],
+    "version": 6,
     "meta": {
      "status": "draft",
-     "updatedBy": "u-ingrid",
-     "updatedAt": "2026-11-03T09:04:00Z"
+     "updatedBy": "u-sofie",
+     "updatedAt": "2026-10-25T09:00:00Z"
     }
    },
    "markets": [
@@ -15134,12 +15873,13 @@
      "sellingPoints": [],
      "notes": "",
      "inheritsGlobal": false,
-     "websiteStatus": "live",
-     "sourceVersion": 4,
+     "websiteStatus": "not_live",
+     "sourceVersion": 6,
      "meta": {
-      "status": "approved",
+      "status": "draft",
       "updatedBy": "u-camila",
-      "updatedAt": "2026-06-07T09:28:00Z"
+      "updatedAt": "2026-11-03T09:20:00Z",
+      "reviewNote": "Check the product name: we use the global name in this market."
      }
     },
     "es-EC": {
@@ -15156,11 +15896,11 @@
      "notes": "",
      "inheritsGlobal": false,
      "websiteStatus": "not_live",
-     "sourceVersion": 4,
+     "sourceVersion": 6,
      "meta": {
       "status": "approved",
       "updatedBy": "u-camila",
-      "updatedAt": "2026-06-18T09:28:00Z"
+      "updatedAt": "2026-10-09T09:20:00Z"
      }
     },
     "vi-VN": {
@@ -15172,12 +15912,12 @@
      "sellingPoints": [],
      "notes": "",
      "inheritsGlobal": false,
-     "websiteStatus": "live",
-     "sourceVersion": 4,
+     "websiteStatus": "not_live",
+     "sourceVersion": 6,
      "meta": {
       "status": "approved",
       "updatedBy": "u-minh",
-      "updatedAt": "2026-10-18T09:19:00Z"
+      "updatedAt": "2026-07-26T09:14:00Z"
      }
     },
     "en-AU": {
@@ -15193,12 +15933,12 @@
      "sellingPoints": [],
      "notes": "",
      "inheritsGlobal": false,
-     "websiteStatus": "not_live",
-     "sourceVersion": 4,
+     "websiteStatus": "live",
+     "sourceVersion": 6,
      "meta": {
-      "status": "in_review",
+      "status": "approved",
       "updatedBy": "u-minh",
-      "updatedAt": "2026-11-04T09:09:00Z"
+      "updatedAt": "2026-07-10T09:08:00Z"
      }
     },
     "en-PH": {
@@ -15211,11 +15951,11 @@
      "notes": "Uses global English copy.",
      "inheritsGlobal": true,
      "websiteStatus": "live",
-     "sourceVersion": 4,
+     "sourceVersion": 5,
      "meta": {
       "status": "approved",
       "updatedBy": "u-ingrid",
-      "updatedAt": "2026-09-04T09:03:00Z"
+      "updatedAt": "2026-09-19T09:25:00Z"
      }
     }
    },
@@ -15225,114 +15965,103 @@
      "type": "hero",
      "fileName": "larviva-mysis-shrimp-hero.jpg",
      "mime": "image/jpeg",
-     "sizeKb": 1156,
+     "sizeKb": 1962,
      "scope": "global",
      "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2025-10-23T09:25:00Z"
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2025-10-24T09:11:00Z"
     },
     {
      "id": "a-larviva-mysis-shrimp-2",
-     "type": "bag",
-     "fileName": "larviva-mysis-shrimp-bag-25kg.png",
-     "mime": "image/png",
-     "sizeKb": 963,
+     "type": "brochure",
+     "fileName": "biomar-larviva-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 6632,
      "scope": "global",
      "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-02-12T09:06:00Z"
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2025-11-30T09:59:00Z"
     },
     {
      "id": "a-larviva-mysis-shrimp-3",
      "type": "datasheet",
-     "fileName": "larviva-mysis-shrimp-technical-datasheet.pdf",
+     "fileName": "larviva-mysis-shrimp-datasheet-es-ec.pdf",
      "mime": "application/pdf",
-     "sizeKb": 591,
-     "scope": "global",
+     "sizeKb": 219,
+     "scope": "es-EC",
      "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2025-12-18T09:07:00Z"
-    },
-    {
-     "id": "a-larviva-mysis-shrimp-4",
-     "type": "brochure",
-     "fileName": "biomar-larviva-brochure.pdf",
-     "mime": "application/pdf",
-     "sizeKb": 3820,
-     "scope": "global",
-     "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2025-12-13T09:12:00Z"
+     "uploadedBy": "u-sofie",
+     "uploadedAt": "2026-02-06T09:22:00Z"
     }
    ],
    "history": [
     {
-     "id": "h-larviva-mysis-shrimp-en-AU",
-     "at": "2026-11-04T09:09:00Z",
-     "by": "u-minh",
-     "section": "en-AU",
-     "action": "submitted",
-     "summary": "en-AU variant submitted for review"
+     "id": "h-larviva-mysis-shrimp-es-CR",
+     "at": "2026-11-03T09:20:00Z",
+     "by": "u-camila",
+     "section": "es-CR",
+     "action": "edited",
+     "summary": "es-CR variant edited"
     },
     {
      "id": "h-larviva-mysis-shrimp-3",
-     "at": "2026-11-03T09:58:00Z",
-     "by": "u-ingrid",
+     "at": "2026-10-25T09:05:00Z",
+     "by": "u-sofie",
      "section": "marketing",
      "action": "edited",
      "summary": "Marketing content edited"
     },
     {
-     "id": "h-larviva-mysis-shrimp-vi-VN",
-     "at": "2026-10-18T09:19:00Z",
-     "by": "u-minh",
-     "section": "vi-VN",
-     "action": "approved",
-     "summary": "vi-VN variant approved"
-    },
-    {
-     "id": "h-larviva-mysis-shrimp-en-PH",
-     "at": "2026-09-04T09:03:00Z",
-     "by": "u-ingrid",
-     "section": "en-PH",
-     "action": "approved",
-     "summary": "en-PH variant approved"
-    },
-    {
      "id": "h-larviva-mysis-shrimp-es-EC",
-     "at": "2026-06-18T09:28:00Z",
+     "at": "2026-10-09T09:20:00Z",
      "by": "u-camila",
      "section": "es-EC",
      "action": "approved",
      "summary": "es-EC variant approved"
     },
     {
-     "id": "h-larviva-mysis-shrimp-es-CR",
-     "at": "2026-06-07T09:28:00Z",
-     "by": "u-camila",
-     "section": "es-CR",
+     "id": "h-larviva-mysis-shrimp-en-PH",
+     "at": "2026-09-19T09:25:00Z",
+     "by": "u-ingrid",
+     "section": "en-PH",
      "action": "approved",
-     "summary": "es-CR variant approved"
+     "summary": "en-PH variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-vi-VN",
+     "at": "2026-07-26T09:14:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-larviva-mysis-shrimp-en-AU",
+     "at": "2026-07-10T09:08:00Z",
+     "by": "u-minh",
+     "section": "en-AU",
+     "action": "approved",
+     "summary": "en-AU variant approved"
     },
     {
      "id": "h-larviva-mysis-shrimp-2",
-     "at": "2026-05-07T09:16:00Z",
-     "by": "u-ingrid",
+     "at": "2026-04-16T09:56:00Z",
+     "by": "u-sofie",
      "section": "marketing",
      "action": "approved",
-     "summary": "Marketing content approved (v3)"
+     "summary": "Marketing content approved (v5)"
     },
     {
      "id": "h-larviva-mysis-shrimp-1",
-     "at": "2025-01-24T09:37:00Z",
-     "by": "u-ingrid",
+     "at": "2025-05-24T09:10:00Z",
+     "by": "u-sofie",
      "section": "info",
      "action": "created",
      "summary": "Product record created from website import"
     }
    ],
    "comments": [],
-   "createdAt": "2025-01-24T09:37:00Z"
+   "createdAt": "2025-05-24T09:10:00Z"
   },
   {
    "id": "larviva-pronurse-barramundi",
@@ -15348,171 +16077,8 @@
    "pelletSizes": [
     "0.1–0.2 mm",
     "0.2–0.3 mm",
-    "0.3–0.5 mm"
-   ],
-   "packaging": [
-    "10 kg bag",
-    "20 kg bag"
-   ],
-   "regulatoryNotes": "",
-   "sampleFields": [
-    "code",
-    "feedType",
-    "pelletSizes",
-    "packaging",
-    "owner",
-    "lifecycle",
-    "tagline",
-    "sellingPoints"
-   ],
-   "owner": "u-ingrid",
-   "lifecycle": "active",
-   "info": {
-    "status": "in_review",
-    "updatedBy": "u-ingrid",
-    "updatedAt": "2026-10-31T09:41:00Z"
-   },
-   "marketing": {
-    "shortDescription": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry.",
-    "tagline": "",
-    "description": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry. LARVIVA ProNurse includes higher protein levels than traditional fry feed and lower fat levels targeted at preventing undesirable body fat deposition.\n\n*Bactocell® is the only probiotic that is approved by the European Commission for its ability to potentially reduce deformities across fish species.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) is a functional yeast-based additive developed by BioMar’s partner Lallemand Animal Nutrition.",
-    "keyBenefits": [
-     "Contains immunomodulatory ingredients and high levels of vitamins and minerals.",
-     "Contains Bactocell® & B-WYSE*.",
-     "High digestibility and palatability."
-    ],
-    "sellingPoints": [
-     "Complete hatchery programme from first feeding to weaning"
-    ],
-    "version": 2,
-    "meta": {
-     "status": "approved",
-     "updatedBy": "u-marco",
-     "updatedAt": "2026-07-31T09:56:00Z"
-    }
-   },
-   "markets": [
-    "vi-VN"
-   ],
-   "variants": {
-    "vi-VN": {
-     "localName": "",
-     "shortDescription": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển.",
-     "tagline": "",
-     "description": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển. Sản phẩm có hàm lượng protein cao, khả năng tiêu hóa tốt cùng với độ dẫn dụ vượt trội. Bên cạnh đó, LARVIVA ProNurse đồng thời duy trì mức chất béo thấp nhằm ngăn ngừa tình trạng tích tụ mỡ thừa không mong muốn trong cơ thể cá.\n\nSản phẩm có chứa các thành phần điều hòa miễn dịch cùng hàm lượng vitamin, khoáng chất cao.\n\nPhụ gia chức năng Bactocell® & B-WYSE™ góp phần nâng cao sức khỏe và năng suất cho cá giống.\n\nBactocell® là probiotic duy nhất được Ủy ban Châu Âu phê duyệt với khả năng giúp giảm thiểu tỷ lệ dị hình trên cá.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) là một phụ gia chức năng dựa trên chiết xuất từ nấm men, được phát triển bởi Lallemand Animal Nutrition (đối tác của BioMar)",
-     "keyBenefits": [],
-     "sellingPoints": [],
-     "notes": "",
-     "inheritsGlobal": false,
-     "websiteStatus": "live",
-     "sourceVersion": 2,
-     "meta": {
-      "status": "approved",
-      "updatedBy": "u-minh",
-      "updatedAt": "2026-10-28T09:25:00Z"
-     }
-    }
-   },
-   "assets": [
-    {
-     "id": "a-larviva-pronurse-barramundi-1",
-     "type": "hero",
-     "fileName": "larviva-pronurse-barramundi-hero.jpg",
-     "mime": "image/jpeg",
-     "sizeKb": 1524,
-     "scope": "global",
-     "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-01-25T09:58:00Z"
-    },
-    {
-     "id": "a-larviva-pronurse-barramundi-2",
-     "type": "highres",
-     "fileName": "larviva-pronurse-barramundi-pellets-highres.jpg",
-     "mime": "image/jpeg",
-     "sizeKb": 8292,
-     "scope": "global",
-     "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-05-24T09:56:00Z"
-    },
-    {
-     "id": "a-larviva-pronurse-barramundi-3",
-     "type": "bag",
-     "fileName": "larviva-pronurse-barramundi-bag-25kg.png",
-     "mime": "image/png",
-     "sizeKb": 1028,
-     "scope": "global",
-     "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-08-21T09:39:00Z"
-    },
-    {
-     "id": "a-larviva-pronurse-barramundi-4",
-     "type": "datasheet",
-     "fileName": "larviva-pronurse-barramundi-technical-datasheet.pdf",
-     "mime": "application/pdf",
-     "sizeKb": 331,
-     "scope": "global",
-     "source": "generated",
-     "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-06-20T09:26:00Z"
-    }
-   ],
-   "history": [
-    {
-     "id": "h-larviva-pronurse-barramundi-vi-VN",
-     "at": "2026-10-28T09:25:00Z",
-     "by": "u-minh",
-     "section": "vi-VN",
-     "action": "approved",
-     "summary": "vi-VN variant approved"
-    },
-    {
-     "id": "h-larviva-pronurse-barramundi-3",
-     "at": "2026-07-31T09:26:00Z",
-     "by": "u-ingrid",
-     "section": "marketing",
-     "action": "approved",
-     "summary": "Marketing content approved (v2)"
-    },
-    {
-     "id": "h-larviva-pronurse-barramundi-2",
-     "at": "2026-03-25T09:08:00Z",
-     "by": "u-ingrid",
-     "section": "marketing",
-     "action": "approved",
-     "summary": "Marketing content approved (v1)"
-    },
-    {
-     "id": "h-larviva-pronurse-barramundi-1",
-     "at": "2025-01-25T09:17:00Z",
-     "by": "u-ingrid",
-     "section": "info",
-     "action": "created",
-     "summary": "Product record created from website import"
-    }
-   ],
-   "comments": [],
-   "createdAt": "2025-01-25T09:17:00Z"
-  },
-  {
-   "id": "orbit-cpk-atlantic-salmon",
-   "code": "BM-ORBITC-ATL",
-   "name": "ORBIT CPK",
-   "species": "Atlantic Salmon",
-   "range": "ORBIT",
-   "category": "RAS feed",
-   "stages": [
-    "Fry & fingerling"
-   ],
-   "feedType": "Extruded pellet",
-   "pelletSizes": [
-    "0.5 mm",
-    "0.8 mm",
-    "1.0 mm",
-    "1.5 mm",
-    "2.0 mm"
+    "0.3–0.5 mm",
+    "0.5–0.8 mm"
    ],
    "packaging": [
     "10 kg bag",
@@ -15534,11 +16100,185 @@
    "info": {
     "status": "approved",
     "updatedBy": "u-ingrid",
-    "updatedAt": "2026-07-18T09:58:00Z"
+    "updatedAt": "2026-04-10T09:38:00Z"
    },
    "marketing": {
-    "shortDescription": "Specifically designed for fish production in recirculating aquaculture systems with focus on high fish and system performance for juvenile salmon.",
-    "tagline": "",
+    "shortDescription": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry.",
+    "tagline": "Hatchery nutrition for strong, uniform juveniles.",
+    "description": "Extruded mini pellets with a specialised nutrition formulation adapted for marine fry. LARVIVA ProNurse includes higher protein levels than traditional fry feed and lower fat levels targeted at preventing undesirable body fat deposition.\n\n*Bactocell® is the only probiotic that is approved by the European Commission for its ability to potentially reduce deformities across fish species.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) is a functional yeast-based additive developed by BioMar’s partner Lallemand Animal Nutrition.",
+    "keyBenefits": [
+     "Contains immunomodulatory ingredients and high levels of vitamins and minerals.",
+     "Contains Bactocell® & B-WYSE*.",
+     "High digestibility and palatability."
+    ],
+    "sellingPoints": [
+     "Complete hatchery programme from first feeding to weaning"
+    ],
+    "version": 4,
+    "meta": {
+     "status": "in_review",
+     "updatedBy": "u-ingrid",
+     "updatedAt": "2026-11-02T09:56:00Z"
+    }
+   },
+   "markets": [
+    "vi-VN"
+   ],
+   "variants": {
+    "vi-VN": {
+     "localName": "",
+     "shortDescription": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển.",
+     "tagline": "",
+     "description": "LARVIVA ProNurse áp dụng công nghệ ép đùn siêu nhỏ với công thức dinh dưỡng chuyên biệt cho cá biển. Sản phẩm có hàm lượng protein cao, khả năng tiêu hóa tốt cùng với độ dẫn dụ vượt trội. Bên cạnh đó, LARVIVA ProNurse đồng thời duy trì mức chất béo thấp nhằm ngăn ngừa tình trạng tích tụ mỡ thừa không mong muốn trong cơ thể cá.\n\nSản phẩm có chứa các thành phần điều hòa miễn dịch cùng hàm lượng vitamin, khoáng chất cao.\n\nPhụ gia chức năng Bactocell® & B-WYSE™ góp phần nâng cao sức khỏe và năng suất cho cá giống.\n\nBactocell® là probiotic duy nhất được Ủy ban Châu Âu phê duyệt với khả năng giúp giảm thiểu tỷ lệ dị hình trên cá.\n\nB-WYSE™ (BioMar Whole Yeast Synergistic Extracts) là một phụ gia chức năng dựa trên chiết xuất từ nấm men, được phát triển bởi Lallemand Animal Nutrition (đối tác của BioMar)",
+     "keyBenefits": [],
+     "sellingPoints": [],
+     "notes": "",
+     "inheritsGlobal": false,
+     "websiteStatus": "live",
+     "sourceVersion": 4,
+     "meta": {
+      "status": "approved",
+      "updatedBy": "u-minh",
+      "updatedAt": "2026-07-31T09:22:00Z"
+     }
+    }
+   },
+   "assets": [
+    {
+     "id": "a-larviva-pronurse-barramundi-1",
+     "type": "hero",
+     "fileName": "larviva-pronurse-barramundi-hero.jpg",
+     "mime": "image/jpeg",
+     "sizeKb": 1983,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-09-06T09:48:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-2",
+     "type": "bag",
+     "fileName": "larviva-pronurse-barramundi-bag-25kg.png",
+     "mime": "image/png",
+     "sizeKb": 475,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-10-25T09:18:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-3",
+     "type": "datasheet",
+     "fileName": "larviva-pronurse-barramundi-technical-datasheet.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 313,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-11-30T09:04:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-4",
+     "type": "brochure",
+     "fileName": "biomar-larviva-brochure.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 5075,
+     "scope": "global",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2025-12-29T09:46:00Z"
+    },
+    {
+     "id": "a-larviva-pronurse-barramundi-5",
+     "type": "datasheet",
+     "fileName": "larviva-pronurse-barramundi-datasheet-vi-vn.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 227,
+     "scope": "vi-VN",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-03-30T09:38:00Z"
+    }
+   ],
+   "history": [
+    {
+     "id": "h-larviva-pronurse-barramundi-3",
+     "at": "2026-11-02T09:41:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "submitted",
+     "summary": "Marketing content submitted for review"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-2",
+     "at": "2026-09-26T09:27:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v3)"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-vi-VN",
+     "at": "2026-07-31T09:22:00Z",
+     "by": "u-minh",
+     "section": "vi-VN",
+     "action": "approved",
+     "summary": "vi-VN variant approved"
+    },
+    {
+     "id": "h-larviva-pronurse-barramundi-1",
+     "at": "2025-08-16T09:45:00Z",
+     "by": "u-ingrid",
+     "section": "info",
+     "action": "created",
+     "summary": "Product record created from website import"
+    }
+   ],
+   "comments": [],
+   "createdAt": "2025-08-16T09:45:00Z"
+  },
+  {
+   "id": "orbit-cpk-atlantic-salmon",
+   "code": "BM-ORBITC-ATL",
+   "name": "ORBIT CPK",
+   "species": "Atlantic Salmon",
+   "range": "ORBIT",
+   "category": "RAS feed",
+   "stages": [
+    "Fry & fingerling"
+   ],
+   "feedType": "Extruded pellet",
+   "pelletSizes": [
+    "0.5 mm",
+    "0.8 mm",
+    "1.0 mm",
+    "1.5 mm"
+   ],
+   "packaging": [
+    "10 kg bag",
+    "20 kg bag"
+   ],
+   "regulatoryNotes": "",
+   "sampleFields": [
+    "code",
+    "feedType",
+    "pelletSizes",
+    "packaging",
+    "owner",
+    "lifecycle",
+    "tagline",
+    "sellingPoints"
+   ],
+   "owner": "u-ingrid",
+   "lifecycle": "active",
+   "info": {
+    "status": "approved",
+    "updatedBy": "u-ingrid",
+    "updatedAt": "2026-05-30T09:14:00Z"
+   },
+   "marketing": {
+    "shortDescription": "",
+    "tagline": "High performance for fish and biofilter.",
     "description": "Specifically designed for fish production in recirculating aquaculture systems with focus on high fish and system performance for juvenile salmon. Although specifically designed for RAS, this feed is equally suitable for flow-through systems.",
     "keyBenefits": [
      "A balanced nutritional profile, formulated to achieve the maximum nutrient utilization and low nutrient excretion.",
@@ -15549,21 +16289,22 @@
      "Reduces biofilter load in RAS",
      "Also suitable for flow-through systems"
     ],
-    "version": 2,
+    "version": 3,
     "meta": {
-     "status": "draft",
-     "updatedBy": "u-ingrid",
-     "updatedAt": "2026-11-08T09:37:00Z"
+     "status": "approved",
+     "updatedBy": "u-marco",
+     "updatedAt": "2026-08-10T09:53:00Z"
     }
    },
    "markets": [
     "nn-NO",
-    "en-AU"
+    "en-AU",
+    "es-CL"
    ],
    "variants": {
     "nn-NO": {
      "localName": "",
-     "shortDescription": "",
+     "shortDescription": "ORBIT er utviklet for RAS-anlegg og kombinerer høy tilvekst med god vannkvalitet og lav belastning på biofilteret.",
      "tagline": "",
      "description": "ORBIT er utviklet for RAS-anlegg og kombinerer høy tilvekst med god vannkvalitet og lav belastning på biofilteret.",
      "keyBenefits": [
@@ -15575,11 +16316,11 @@
      "notes": "",
      "inheritsGlobal": false,
      "websiteStatus": "live",
-     "sourceVersion": 2,
+     "sourceVersion": 3,
      "meta": {
       "status": "approved",
       "updatedBy": "u-thomas",
-      "updatedAt": "2026-08-03T09:17:00Z"
+      "updatedAt": "2026-08-04T09:36:00Z"
      }
     },
     "en-AU": {
@@ -15592,11 +16333,11 @@
      "notes": "Uses global English copy.",
      "inheritsGlobal": true,
      "websiteStatus": "live",
-     "sourceVersion": 2,
+     "sourceVersion": 3,
      "meta": {
       "status": "approved",
       "updatedBy": "u-minh",
-      "updatedAt": "2026-07-06T09:03:00Z"
+      "updatedAt": "2026-04-26T09:27:00Z"
      }
     }
    },
@@ -15606,63 +16347,85 @@
      "type": "hero",
      "fileName": "orbit-cpk-atlantic-salmon-hero.jpg",
      "mime": "image/jpeg",
-     "sizeKb": 1276,
+     "sizeKb": 998,
      "scope": "global",
      "source": "generated",
      "uploadedBy": "u-ingrid",
-     "uploadedAt": "2025-12-28T09:06:00Z"
+     "uploadedAt": "2025-10-21T09:13:00Z"
     },
     {
      "id": "a-orbit-cpk-atlantic-salmon-2",
      "type": "highres",
      "fileName": "orbit-cpk-atlantic-salmon-pellets-highres.jpg",
      "mime": "image/jpeg",
-     "sizeKb": 7975,
+     "sizeKb": 8390,
      "scope": "global",
      "source": "generated",
      "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-02-21T09:34:00Z"
+     "uploadedAt": "2025-11-18T09:30:00Z"
     },
     {
      "id": "a-orbit-cpk-atlantic-salmon-3",
-     "type": "brochure",
-     "fileName": "biomar-orbit-brochure.pdf",
+     "type": "datasheet",
+     "fileName": "orbit-cpk-atlantic-salmon-technical-datasheet.pdf",
      "mime": "application/pdf",
-     "sizeKb": 3797,
+     "sizeKb": 383,
      "scope": "global",
      "source": "generated",
      "uploadedBy": "u-ingrid",
-     "uploadedAt": "2026-07-29T09:54:00Z"
+     "uploadedAt": "2026-06-06T09:31:00Z"
+    },
+    {
+     "id": "a-orbit-cpk-atlantic-salmon-4",
+     "type": "datasheet",
+     "fileName": "orbit-cpk-atlantic-salmon-datasheet-nn-no.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 508,
+     "scope": "nn-NO",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-07-13T09:24:00Z"
+    },
+    {
+     "id": "a-orbit-cpk-atlantic-salmon-5",
+     "type": "datasheet",
+     "fileName": "orbit-cpk-atlantic-salmon-datasheet-en-au.pdf",
+     "mime": "application/pdf",
+     "sizeKb": 375,
+     "scope": "en-AU",
+     "source": "generated",
+     "uploadedBy": "u-ingrid",
+     "uploadedAt": "2026-04-15T09:11:00Z"
     }
    ],
    "history": [
     {
      "id": "h-orbit-cpk-atlantic-salmon-3",
-     "at": "2026-11-08T09:20:00Z",
-     "by": "u-ingrid",
-     "section": "marketing",
-     "action": "edited",
-     "summary": "Marketing content edited"
-    },
-    {
-     "id": "h-orbit-cpk-atlantic-salmon-2",
-     "at": "2026-08-10T09:37:00Z",
+     "at": "2026-08-10T09:29:00Z",
      "by": "u-ingrid",
      "section": "marketing",
      "action": "approved",
-     "summary": "Marketing content approved (v1)"
+     "summary": "Marketing content approved (v3)"
     },
     {
      "id": "h-orbit-cpk-atlantic-salmon-nn-NO",
-     "at": "2026-08-03T09:17:00Z",
+     "at": "2026-08-04T09:36:00Z",
      "by": "u-thomas",
      "section": "nn-NO",
      "action": "approved",
      "summary": "nn-NO variant approved"
     },
     {
+     "id": "h-orbit-cpk-atlantic-salmon-2",
+     "at": "2026-05-05T09:28:00Z",
+     "by": "u-ingrid",
+     "section": "marketing",
+     "action": "approved",
+     "summary": "Marketing content approved (v2)"
+    },
+    {
      "id": "h-orbit-cpk-atlantic-salmon-en-AU",
-     "at": "2026-07-06T09:03:00Z",
+     "at": "2026-04-26T09:27:00Z",
      "by": "u-minh",
      "section": "en-AU",
      "action": "approved",
@@ -15670,7 +16433,7 @@
     },
     {
      "id": "h-orbit-cpk-atlantic-salmon-1",
-     "at": "2025-03-10T09:11:00Z",
+     "at": "2025-07-28T09:02:00Z",
      "by": "u-ingrid",
      "section": "info",
      "action": "created",
@@ -15678,7 +16441,7 @@
     }
    ],
    "comments": [],
-   "createdAt": "2025-03-10T09:11:00Z"
+   "createdAt": "2025-07-28T09:02:00Z"
   }
  ]
 }

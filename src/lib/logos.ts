@@ -9,7 +9,8 @@ const LOGOS = index as Record<string, { label: string; colour: string; file: str
 
 export interface Logo { key: string; label: string; url: string }
 
-const norm = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
+/** Same normalisation as scripts/import_logos.py: '+' reads as PLUS, other punctuation is dropped. */
+const norm = (s: string) => s.toUpperCase().replace(/\+/g, 'PLUS').replace(/[^A-Z0-9]/g, '')
 
 function get(key: string): Logo | null {
   const e = LOGOS[key]

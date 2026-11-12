@@ -164,6 +164,11 @@
   "colour": "Celeste-Blue",
   "file": "introplusmt.png"
  },
+ "INTROQPLUS": {
+  "label": "INTRO Q+",
+  "colour": "Celeste-Blue",
+  "file": "introqplus.png"
+ },
  "INTROT": {
   "label": "INTRO T",
   "colour": "Celeste-Blue",
@@ -333,6 +338,186 @@
   "label": "POWER SMOLT AKAI",
   "colour": "Blue",
   "file": "powersmoltakai.png"
+ },
+ "SMARTCAREASSIST": {
+  "label": "SmartCare Assist",
+  "colour": "Blue-Orange",
+  "file": "smartcareassist.png"
+ },
+ "SMARTCAREASSISTGILL": {
+  "label": "SmartCare Assist Gill",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistgill.png"
+ },
+ "SMARTCAREASSISTICTERICIA": {
+  "label": "SmartCare Assest Ictericia",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistictericia.png"
+ },
+ "SMARTCAREASSISTPLUS": {
+  "label": "SmartCare Assist Plus",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistplus.png"
+ },
+ "SMARTCAREASSISTSKIN": {
+  "label": "SmartCare Assist Skin",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistskin.png"
+ },
+ "SMARTCAREASSISTVITAL": {
+  "label": "SmartCare Assist Vital",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistvital.png"
+ },
+ "SMARTCAREASSISTVOX": {
+  "label": "SmartCare Assist Vox",
+  "colour": "Blue-Orange",
+  "file": "smartcareassistvox.png"
+ },
+ "SMARTCAREBALANCE": {
+  "label": "SmartCare Balance",
+  "colour": "Blue",
+  "file": "smartcarebalance.png"
+ },
+ "SMARTCAREBARRASE": {
+  "label": "SmartCare Barra SE",
+  "colour": "Blue-Orange",
+  "file": "smartcarebarrase.png"
+ },
+ "SMARTCAREBENEFIT": {
+  "label": "SmartCare BENEFIT",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcarebenefit.png"
+ },
+ "SMARTCARECALM": {
+  "label": "SmartCare Calm",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcarecalm.png"
+ },
+ "SMARTCARECONTROL": {
+  "label": "SmartCare Control",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrol.png"
+ },
+ "SMARTCARECONTROLGILL": {
+  "label": "SmartCare Control Gill",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrolgill.png"
+ },
+ "SMARTCARECONTROLGILLQ": {
+  "label": "SmartCare Control Gill Q",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrolgillq.png"
+ },
+ "SMARTCARECONTROLQ": {
+  "label": "SmartCare Control Q",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrolq.png"
+ },
+ "SMARTCARECONTROLQARDIO": {
+  "label": "SmartCare Control QARDIO",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrolqardio.png"
+ },
+ "SMARTCARECONTROLQUICKM": {
+  "label": "SmartCare Control Quick M",
+  "colour": "Blue-Green",
+  "file": "smartcarecontrolquickm.png"
+ },
+ "SMARTCAREFOCUS": {
+  "label": "SmartCare Focus",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcarefocus.png"
+ },
+ "SMARTCAREFOCUSPLUS": {
+  "label": "SmartCare Focus Plus",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcarefocusplus.png"
+ },
+ "SMARTCAREFORTE": {
+  "label": "SmartCare Forte",
+  "colour": "Blue-Orange",
+  "file": "smartcareforte.png"
+ },
+ "SMARTCAREINTROQ": {
+  "label": "SmartCare Intro Q",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareintroq.png"
+ },
+ "SMARTCAREINTROQPLUS": {
+  "label": "SmartCare Intro Q+",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareintroqplus.png"
+ },
+ "SMARTCAREQARDIO": {
+  "label": "SmartCare Qardio",
+  "colour": "Blue-Green",
+  "file": "smartcareqardio.png"
+ },
+ "SMARTCAREQARDIOAKAI": {
+  "label": "SmartCare Qardio Akai",
+  "colour": "Blue-Green",
+  "file": "smartcareqardioakai.png"
+ },
+ "SMARTCAREQARDIOGOLDENREPRODUCTOR": {
+  "label": "SmartCare Qardio Golden Reproductor",
+  "colour": "Blue-Green",
+  "file": "smartcareqardiogoldenreproductor.png"
+ },
+ "SMARTCAREQARDIOHP": {
+  "label": "SmartCare Qardio HP",
+  "colour": "Blue-Green",
+  "file": "smartcareqardiohp.png"
+ },
+ "SMARTCAREQARDIOINTRO": {
+  "label": "SmartCare Qardio Intro",
+  "colour": "Blue-Green",
+  "file": "smartcareqardiointro.png"
+ },
+ "SMARTCAREQARDIOPEAK": {
+  "label": "SmartCare Qardio Peak",
+  "colour": "Blue-Green",
+  "file": "smartcareqardiopeak.png"
+ },
+ "SMARTCARERESIST": {
+  "label": "SmartCare Resist",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareresist.png"
+ },
+ "SMARTCARERESISTLICE": {
+  "label": "SmartCare Resist Lice",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareresistlice.png"
+ },
+ "SMARTCARERESISTX": {
+  "label": "SmartCare Resist X",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareresistx.png"
+ },
+ "SMARTCARERESISTXPRO": {
+  "label": "SmartCare Resist X PRO",
+  "colour": "Blue-SkyBlue",
+  "file": "smartcareresistxpro.png"
+ },
+ "SMARTCAREROBUST": {
+  "label": "SmartCare Robust",
+  "colour": "Blue-Green",
+  "file": "smartcarerobust.png"
+ },
+ "SMARTCARESUMMERNDQ": {
+  "label": "SmartCare Summer NDQ",
+  "colour": "Blue-Green",
+  "file": "smartcaresummerndq.png"
+ },
+ "SMARTCARETOTALCARE": {
+  "label": "SmartCare TotalCare",
+  "colour": "Blue-Green",
+  "file": "smartcaretotalcare.png"
+ },
+ "SMARTCARETOTALCARES": {
+  "label": "SmartCare TotalCare S",
+  "colour": "Blue-Green",
+  "file": "smartcaretotalcares.png"
  },
  "SYMBIO": {
   "label": "Symbio",

@@ -4,7 +4,7 @@ A simple, central place to find, maintain, review and approve BioMar product inf
 global master data, marketing copy, digital assets and market/language versions.
 
 This is a **functional prototype** focused on user experience and information structure.
-It runs entirely in the browser – no backend needed – and is seeded with 61 real products
+It runs entirely in the browser – no backend needed – and is seeded with 65 real products
 imported from the BioMar website content export, shown with their own product logos.
 
 ## Run it
@@ -96,5 +96,5 @@ python3 -I scripts/import_logos.py path/to/POWER.zip path/to/LARVIVA.zip ...
 The script takes the coloured "Digital versions" PNGs, keeps one per sub-brand, compresses them and
 writes `src/assets/logos/`. The app finds the most specific match for each product: name + species
 (*INICIO Plus* + *Shrimp*, *Symbio Lumpfish*), then name (*LARVIVA Multigain*), then range (*LARVIVA*).
-Products with no logo yet (for example SmartCare, EFICO, CPK) show the BioMar logo with the
+Products with no logo yet (EFICO, CPK, Ecolife, EGGSTRA, FINESTA, SmartCare Endurance) show the BioMar logo with the
 product name. Running the script with more packs adds to the existing set.

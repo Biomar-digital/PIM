@@ -57,6 +57,8 @@ SELECTION = [
     "EXIA Perform - Shrimp", "EXIA ACTIVA - Shrimp",
     "POWER Smolt - Atlantic Salmon", "POWER Akai - Coho Salmon", "POWER Fusion - Atlantic Salmon",
     "Tri-X - Triploid Salmon", "Tri Plus - Triploid Salmon",
+    "SmartCare QARDIO HP - Atlantic Salmon", "SmartCare Control Gill - Atlantic Salmon",
+    "SmartCare TotalCare - Atlantic Salmon", "SmartCare Resist X Pro - Trout",
     "Maxio BARRA - Barramundi", "LARVIVA Mysis - Shrimp", "LARVIVA Pronurse - Barramundi", "ORBIT CPK - Atlantic Salmon",
 ]
 
@@ -353,7 +355,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 2, "users": USERS, "products": products}
+    seed = {"version": 3, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, indent=1)
     print(f"Wrote {len(products)} products to {OUT}")
