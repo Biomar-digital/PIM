@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { AlertTriangle, ArrowRight, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, ImageOff, Lock, Pencil } from 'lucide-react'
+import { AlertTriangle, ArrowRight, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
 import type { LocalCopy, LocalField, Meta, Product, User, Variant } from '../../types'
 import { LOCAL_FIELDS } from '../../types'
 import { COPY_LABEL, GLOBAL, localeLanguage, marketLabel } from '../../data/reference'
@@ -10,10 +9,10 @@ import { ChangeList, DiffLegend, DiffValue, globalChanges, variantChanges } from
 import { EditActions, SentBackNote, type SaveMode } from '../../components/approval'
 import { GROUP_LABEL, fieldsIn, getValue, isEmptyValue, type FieldGroup } from '../../lib/fields'
 import { FieldInput } from '../../components/FieldInput'
-import { copyText, downloadProductSheet, heroImage, productAsText } from '../../lib/files'
+import { copyText, downloadProductSheet, productAsText } from '../../lib/files'
 import { Card, CopyButton, Empty, GlobalLock, ListEditor, StatusBadge, UpdatedBy } from '../../components/ui'
 import { AttrValue, CopyValue, asText, cleanPatch } from './parts'
-import { localeName } from '../../components/Layout'
+import { LocaleCode, localeName } from '../../components/Layout'
 
 export const COPY_HINT: Record<LocalField, string> = {
   shortDescription: 'One or two sentences for product cards and listings',
@@ -41,7 +40,6 @@ export function ContentTab({ p, user, loc, mode, setMode }: { p: Product; user: 
         {loc === GLOBAL && <GlobalGroup p={p} user={user} group="management" />}
       </div>
       <aside className="overview-side">
-        <HeroCard p={p} />
         <UseCard p={p} loc={loc} />
         {loc === GLOBAL && <MissingCard p={p} />}
       </aside>
@@ -267,14 +265,21 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
   if (!v) return <Card><VariantStart p={p} user={user} loc={loc} /></Card>
   const current = pickLocal(v)
   const d = draft ?? current
-  const dirty = editable && !same(cleanPatch(d), current)
+  const clean = cleanPatch(d)
+  const dirty = editable && !same(clean, current)
   const outdated = isOutdated(p, v)
   const base = outdated ? p.versions?.[v.sourceVersion] : undefined
   const save = (mode: SaveMode) => {
-    saveVariant(p.id, loc, cleanPatch(d), { minor: mode === 'minor' })
+    saveVariant(p.id, loc, clean, { minor: mode === 'minor' })
     if (mode === 'submit') transition(p.id, loc, 'in_review')
   }
-  const gaps = variantGaps({ ...v, ...cleanPatch(d) })
+  const gaps = variantGaps({ ...v, ...clean })
+  const local = v.inheritsGlobal ? g.copy : clean
+  const filled = LOCAL_FIELDS.filter((k) => !isEmptyValue(local[k])).length
+  const changedIn = (k: LocalField) => !!base && JSON.stringify(base[k]) !== JSON.stringify(g.copy[k])
+  const fieldState = (k: LocalField) => (changedIn(k) ? 'changed' : isEmptyValue(local[k]) ? (isEmptyValue(g.copy[k]) ? 'none' : 'empty') : !same(clean[k], current[k]) ? 'edited' : 'done')
+  const STATE_TEXT = { changed: 'Changed in English', empty: 'Not written yet', edited: 'Unsaved change', done: 'Written', none: 'Not used' }
+  const go = (k: string) => document.getElementById(`sbs-${k}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
   return (
     <div className="sbs">
@@ -282,16 +287,31 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
         <SentBackNote meta={v.meta} />
         <ReviewBanner p={p} v={v} user={user} loc={loc} />
       </div>
-      <div className="sbs-grid card">
+
+      <div className="sbs-overview">
+        <div className="sbs-progress">
+          <strong>{filled} of {LOCAL_FIELDS.length} fields written</strong>
+          <span className="sbs-meter" aria-hidden><span style={{ width: `${(filled / LOCAL_FIELDS.length) * 100}%` }} /></span>
+        </div>
+        <nav className="sbs-nav" aria-label="Fields">
+          {LOCAL_FIELDS.map((k) => (
+            <button key={k} className={`sbs-nav-item st-${fieldState(k)}`} onClick={() => go(k)} title={STATE_TEXT[fieldState(k)]}>
+              <span className="sbs-nav-dot" aria-hidden />{COPY_LABEL[k]}
+            </button>
+          ))}
+        </nav>
+        {base && <label className="check small"><input type="checkbox" checked={highlight} onChange={(e) => setHighlight(e.target.checked)} />Highlight English changes since version {v.sourceVersion}</label>}
+      </div>
+
+      <div className="sbs-grid">
         <div className="sbs-head">
-          <div>
-            <span className="sbs-side-label"><Lock size={13} />Global English</span>
-            <span className="muted small">{g.approved ? `Approved version ${g.version}` : 'Not approved yet'} · read only</span>
-            {base && <label className="check small sbs-hl"><input type="checkbox" checked={highlight} onChange={(e) => setHighlight(e.target.checked)} />Highlight changes since version {v.sourceVersion}</label>}
+          <div className="sbs-head-global">
+            <span className="sbs-side-label"><LocaleCode id={GLOBAL} />Global English</span>
+            <span className="sbs-head-meta"><Lock size={12} />{g.approved ? `Approved version ${g.version}` : 'Not approved yet'} · read only</span>
           </div>
-          <div>
-            <span className="sbs-side-label">{marketLabel(loc)}</span>
-            <span className="row-gap small"><StatusBadge status={localeState(p, loc)} small /><span className="muted">{editable ? 'Write or edit your local copy here' : v.inheritsGlobal ? 'Uses the English text as it is' : 'Read only'}</span></span>
+          <div className="sbs-head-local">
+            <span className="sbs-side-label"><LocaleCode id={loc} />{marketLabel(loc)}</span>
+            <span className="sbs-head-meta"><StatusBadge status={localeState(p, loc)} small />{editable ? 'Editable' : v.inheritsGlobal ? 'Uses the English text as it is' : 'Read only'}</span>
           </div>
         </div>
 
@@ -301,25 +321,26 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
         </div>
 
         {LOCAL_FIELDS.map((k) => {
-          const changed = base && JSON.stringify(base[k]) !== JSON.stringify(g.copy[k])
+          const changed = changedIn(k)
           return (
-            <div key={k} className={`sbs-row${changed ? ' sbs-changed' : ''}`}>
+            <div key={k} id={`sbs-${k}`} className={`sbs-row st-${fieldState(k)}`}>
               <div className="sbs-label">
                 <span>{COPY_LABEL[k]}</span>
                 {changed && <span className="changed-tag">Changed in English</span>}
+                <span className="sbs-hint">{COPY_HINT[k]}</span>
               </div>
               <div className="sbs-cell sbs-left">
                 {changed && highlight ? <DiffValue before={base![k]} after={g.copy[k]} /> : <CopyValue value={g.copy[k]} />}
                 <div className="sbs-tools">
-                  <CopyButton text={asText(g.copy[k])} label="Copy English" />
-                  {editable && !isEmptyValue(g.copy[k]) && <button className="copy-btn" onClick={() => setDraft({ ...d, [k]: structuredClone(g.copy[k]) } as LocalCopy)} title="Replace the local text with the English text"><ArrowRight size={14} />Use in {localeName(loc)}</button>}
+                  <CopyButton text={asText(g.copy[k])} label="Copy" />
+                  {editable && !isEmptyValue(g.copy[k]) && <button className="copy-btn" onClick={() => setDraft({ ...d, [k]: structuredClone(g.copy[k]) } as LocalCopy)} title="Replace the local text with the English text"><ArrowRight size={14} />Use English text</button>}
                 </div>
               </div>
               <div className="sbs-cell sbs-right">
                 {editable
                   ? <div className="field"><CopyInput field={k} value={d[k]} onChange={(val) => setDraft({ ...d, [k]: val } as LocalCopy)} /></div>
                   : <CopyValue value={v.inheritsGlobal ? g.copy[k] : v[k]} />}
-                {!editable && <div className="sbs-tools"><CopyButton text={asText(v.inheritsGlobal ? g.copy[k] : v[k])} /></div>}
+                <div className="sbs-tools"><CopyButton text={asText(v.inheritsGlobal ? g.copy[k] : editable ? clean[k] : v[k])} label="Copy" /></div>
               </div>
             </div>
           )
@@ -330,7 +351,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
         <div className={`sbs-bar${dirty ? ' dirty' : ''}`}>
           {dirty
             ? <EditActions meta={v.meta} onCancel={() => setDraft(current)} onSave={save} />
-            : <p className="muted small">{gaps.length ? `Still to add: ${gaps.join(', ')}.` : 'All changes saved.'} {v.meta.status === 'draft' && !gaps.length && 'Send it for approval with the button at the top when it is ready.'}</p>}
+            : <p className="small"><CheckCheck size={16} className="ok-ic" />{gaps.length ? `All changes saved. Still to add: ${gaps.join(', ')}.` : 'All changes saved.'} {v.meta.status === 'draft' && !gaps.length && 'Send it for approval with the button at the top when it is ready.'}</p>}
         </div>
       )}
     </div>
@@ -338,19 +359,6 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
 }
 
 /* ---------------- Side cards ---------------- */
-
-function HeroCard({ p }: { p: Product }) {
-  const hero = heroImage(p)
-  return (
-    <Card title="Hero image" actions={<GlobalLock label="Global" />}>
-      <div className="hero-box">
-        {hero ? <img src={hero.url} alt={`${p.name} ${p.species}`} /> : <div className="hero-empty"><ImageOff size={28} /><span>No hero image yet</span></div>}
-      </div>
-      {hero && !hero.isHero && <p className="muted small pad-x">No hero image linked yet. The bag design is shown instead.</p>}
-      <p className="pad-x small"><Link to={`/products/${p.id}/assets`} className="link-sm">All assets</Link></p>
-    </Card>
-  )
-}
 
 function UseCard({ p, loc }: { p: Product; loc: string }) {
   return (

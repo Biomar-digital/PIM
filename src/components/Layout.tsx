@@ -1,19 +1,23 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { Check, ChevronDown, Cloud, HardDrive, LayoutDashboard, Menu as MenuIcon, Package, Plus, Search, Star, Users, X } from 'lucide-react'
+import { Check, ChevronDown, Globe2, Cloud, HardDrive, LayoutDashboard, Menu as MenuIcon, Package, Plus, Search, Star, Users, X } from 'lucide-react'
 import { DIVISIONS, GLOBAL, GROUP_BY_ID, MARKETS, MARKET_BY_ID, ROLE_LABEL, isGroup, localeCode, marketGroup, marketLabel } from '../data/reference'
 import { can, isGlobalUser } from '../data/rules'
 import { currentUser, setLocale, setUser, updateUser, useStore } from '../data/store'
 import { productsIn } from '../data/insights'
 import { BIOMAR_LOGO } from '../lib/logos'
+import { flagFor } from '../lib/brand'
 import { productImage } from '../lib/files'
 import { Avatar, Thumb, Toasts, useClickOutside } from './ui'
 import { NewProductModal } from './NewProductModal'
 
 export const localeName = (id: string) => (id === GLOBAL ? 'Global' : GROUP_BY_ID[id]?.name ?? MARKET_BY_ID[id]?.market ?? id)
 
+/** A market's flag, or a short code for Global, regions and divisions */
 export function LocaleCode({ id }: { id: string }) {
-  return <span className={`loc-code${id === GLOBAL ? ' global' : isGroup(id) ? ' group' : ''}`} aria-hidden>{localeCode(id)}</span>
+  const flag = flagFor(id)
+  if (flag) return <img src={flag} alt="" className="flag" title={MARKET_BY_ID[id]?.market} />
+  return <span className={`loc-code${id === GLOBAL ? ' global' : isGroup(id) ? ' group' : ''}`} aria-hidden>{id === GLOBAL ? <Globe2 size={13} /> : localeCode(id)}</span>
 }
 
 /** One line under a selection's name: its language, or how many markets it covers */

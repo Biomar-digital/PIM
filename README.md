@@ -83,7 +83,16 @@ scripts/build_seed.py   builds seed.json from the website export
 scripts/import_logos.py imports product logos from the brand logo packs
 scripts/fetch_bags.py   downloads product bag images from biomar.com
 scripts/fetch_website_content.py  collects taglines, range benefits, categories and stages from biomar.com
+scripts/fetch_brand_assets.py     downloads species icons, country flags and aquaculture photos from biomar.com
 ```
+
+## Visual design
+
+The PIM follows BioMar's other platforms: the Customer Portal's navy sidebar, simple menu and market
+selector in the top bar; The Pond's white canvas, pale-blue browsing surfaces and pill search; and
+biomar.com's colours (indigo `#152b4c` / `#1f3e77` / `#355185`, aqua `#0471ad` / `#cfe9f2`), Montserrat
+headings in semibold, species icons, flags and photography. All colours are tokens at the top of
+`src/styles.css`, with a dark theme.
 
 ### Data model in short
 

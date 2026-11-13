@@ -3,9 +3,9 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Ban, ChevronRight, ClipboardCopy, Columns2, Download, FileDown, FileText } from 'lucide-react'
 import { currentUser, setAvailability, setLocale, toast, useStore } from '../data/store'
 import { GLOBAL, LIFECYCLE_LABEL, isGroup, marketLabel, scopeLocales } from '../data/reference'
-import { can, essentialTodos, isAvailable, isReady, localeState } from '../data/rules'
-import { copyText, downloadProductSheet, productAsText, productImage } from '../lib/files'
-import { EmptyState, Menu, ReadyBadge, StatusBadge, UpdatedBy } from '../components/ui'
+import { approvedGlobal, can, essentialTodos, isAvailable, isReady, localeState } from '../data/rules'
+import { copyText, downloadProductSheet, heroImage, productAsText, productImage } from '../lib/files'
+import { EmptyState, Menu, ReadyBadge, SpeciesIcon, StatusBadge, UpdatedBy } from '../components/ui'
 import { ApprovalActions } from '../components/approval'
 import { LocaleCode, localeName } from '../components/Layout'
 import { ContentTab, type ContentMode } from './product/ContentTab'
@@ -66,6 +66,7 @@ export default function ProductPage() {
     return <div className="page"><EmptyState title="Product not found"><Link to="/products" className="btn btn-secondary">Back to products</Link></EmptyState></div>
   }
   const p = product
+  const hero = heroImage(p)
   const available = isAvailable(p, loc)
   const section = available ? loc : GLOBAL
   const meta = section === GLOBAL ? p.status : p.variants[section]?.meta
@@ -87,13 +88,24 @@ export default function ProductPage() {
         <span>{p.name} – {p.species}</span>
       </nav>
 
-      <header className="phead card">
-        <img src={productImage(p)} alt="" className="phead-logo" />
+      <header className={`phead${tab === 'content' && mode === 'side' ? ' compact' : ''}`}>
+        <div className="phead-media">
+          {hero ? <img src={hero.url} alt={`${p.name} ${p.species} bag`} className="pack" /> : <img src={productImage(p)} alt="" className="logo" />}
+          <span className="phead-media-note">{hero?.isHero ? 'Hero image' : hero ? 'Bag design' : 'No hero image yet'}</span>
+        </div>
         <div className="phead-main">
+          <img src={productImage(p)} alt={`${p.name} logo`} className="phead-logo" />
           <h1>{p.name} <span className="phead-species">– {p.species}</span></h1>
-          <p className="phead-sub">{[p.range, ...p.stages, ...p.categories].filter(Boolean).join(' · ')}{p.lifecycle !== 'active' && ` · ${LIFECYCLE_LABEL[p.lifecycle]}`}</p>
+          {p.content.tagline && <p className="phead-tagline">{approvedGlobal(p).copy.tagline || p.content.tagline}</p>}
+          <div className="phead-facts">
+            <span className="species-cell"><SpeciesIcon name={p.species} size={34} />{p.species}</span>
+            <span className="fact"><span className="muted">Range</span> {p.range}</span>
+            {p.stages.length > 0 && <span className="fact"><span className="muted">Stage</span> {p.stages.join(', ')}</span>}
+            {p.categories.length > 0 && <span className="fact"><span className="muted">Category</span> {p.categories.join(', ')}</span>}
+            {p.lifecycle !== 'active' && <span className="tag">{LIFECYCLE_LABEL[p.lifecycle]}</span>}
+          </div>
           {family.length > 0 && (
-            <p className="family small"><span className="muted">{p.name} is also made for</span>
+            <p className="family small"><span className="muted">Also made for</span>
               {family.map((f) => <Link key={f.id} to={`/products/${f.id}${keep(true)}`} className="family-link">{f.species}</Link>)}
             </p>
           )}
@@ -136,7 +148,7 @@ export default function ProductPage() {
             const st = localeState(p, m)
             return (
               <button key={m} role="tab" aria-selected={m === loc} className={`market-tab${m === loc ? ' on' : ''}${st === 'not_available' ? ' off' : ''}`} onClick={() => setMarket(m)} title={`${marketLabel(m)}: ${st === 'not_available' ? 'not available' : st.replace('_', ' ')}`}>
-                <span className={`dot dot-${st}`} />{localeName(m)}
+                <LocaleCode id={m} />{localeName(m)}<span className={`dot dot-${st}`} />
               </button>
             )
           })}

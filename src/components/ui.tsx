@@ -4,6 +4,7 @@ import { LOCALE_STATE_LABEL, type LocaleState } from '../data/rules'
 import { initials } from '../lib/format'
 import { copyText } from '../lib/files'
 import { toast, useStore, userName } from '../data/store'
+import { speciesIcon } from '../lib/brand'
 
 /* ---------- Status ---------- */
 
@@ -230,4 +231,10 @@ export function Card({ title, actions, children, className = '' }: { title?: Rea
 
 export function Thumb({ url, size = 44 }: { url: string; size?: number }) {
   return <img src={url} alt="" className="thumb" style={{ width: size, height: size }} />
+}
+
+/** Navy species icon from biomar.com */
+export function SpeciesIcon({ name, size = 30 }: { name: string; size?: number }) {
+  const url = speciesIcon(name)
+  return url ? <img src={url} alt="" className="species-ic" style={{ width: size }} /> : null
 }

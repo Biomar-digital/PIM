@@ -6,7 +6,8 @@ import { currentUser, useStore, userName } from '../data/store'
 import { CATEGORIES, GLOBAL, MARKETS, STAGES, isGroup, marketLabel, scopeLocales } from '../data/reference'
 import { can, essentialTodos, isReady, lastUpdated, localeState, LOCALE_STATE_LABEL, type LocaleState } from '../data/rules'
 import { ATTENTION_LABEL, marketsIn, matches, productsIn, type Attention } from '../data/insights'
-import { productImage } from '../lib/files'
+import { heroImage, productImage } from '../lib/files'
+import { SpeciesIcon } from '../components/ui'
 import { timeAgo } from '../lib/format'
 import { EmptyState, ReadyBadge, StatusBadge, Thumb } from '../components/ui'
 import { Sheet } from '../components/Sheet'
@@ -101,10 +102,13 @@ export default function Products() {
 
   const card = (p: Product) => (
     <Link key={p.id} to={`/products/${p.id}`} className="pcard">
-      <div className="pcard-img"><img src={productImage(p)} alt="" /></div>
+      <div className="pcard-img">
+        <img src={heroImage(p)?.url ?? productImage(p)} alt="" className={heroImage(p) ? 'pack' : 'logo'} />
+      </div>
       <div className="pcard-body">
+        <img src={productImage(p)} alt="" className="pcard-logo" />
         <strong className="pcard-name">{p.name}</strong>
-        <span className="muted small">{p.species} · {p.stages.join(', ')}</span>
+        <span className="species-cell small"><SpeciesIcon name={p.species} />{p.species}<span className="muted"> · {p.stages.join(', ')}</span></span>
         <div className="pcard-foot">
           <LocaleStatus p={p} loc={loc} />
         </div>
@@ -211,7 +215,7 @@ export default function Products() {
                             <span><strong className={sameFamily ? 'muted' : ''}>{p.name}</strong></span>
                           </Link>
                         </td>
-                        <td><Link to={`/products/${p.id}`} className="plain-link">{p.species}</Link></td>
+                        <td><Link to={`/products/${p.id}`} className="plain-link species-cell"><SpeciesIcon name={p.species} />{p.species}</Link></td>
                         <td className="hide-md small">{p.stages.join(', ')}</td>
                         <td><LocaleStatus p={p} loc={loc} /></td>
                         {global && <td className="hide-md"><LocalesSummary p={p} /></td>}
