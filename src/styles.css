@@ -803,3 +803,31 @@ td.sheet-first { padding: 6px 10px; white-space: nowrap; }
 .concept-facts dt { color: var(--muted); font-size: 12.5px; font-weight: 600; }
 .concept-facts dd { margin: 0; }
 @media (max-width: 640px) { .concept-facts div { grid-template-columns: 1fr; gap: 0; } }
+
+/* =========================================================================
+   Tagging people
+   ========================================================================= */
+.nav-badge { margin-left: auto; background: var(--aqua-500); color: #fff; border-radius: 999px; font-size: 11px; font-weight: 700; padding: 0 8px; line-height: 18px; }
+.nav-item.active .nav-badge { background: var(--indigo-600); }
+.dash-col { display: grid; gap: 34px; min-width: 0; }
+.tagged .req-list { border: 1px solid var(--aqua-100); border-left: 3px solid var(--aqua-500); }
+.requests { margin-top: 18px; border: 1px solid var(--aqua-100); border-radius: var(--radius); background: var(--tint); }
+.requests-head { display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--heading); font-size: 13.5px; }
+.requests-head svg { color: var(--aqua-500); }
+.requests-head .link-btn { margin-left: auto; }
+.requests .req-list { border-top: 1px solid var(--aqua-100); }
+.req-list { list-style: none; margin: 0; padding: 0; background: var(--surface); border-radius: 0 0 var(--radius) var(--radius); }
+.tagged .req-list { border-radius: var(--radius); }
+.req { display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; }
+.req + .req { border-top: 1px solid var(--border); }
+.req.done { opacity: .6; }
+.req-product { display: block; font-weight: 600; font-size: 13.5px; color: var(--heading); text-decoration: none; }
+.req-product:hover { text-decoration: underline; }
+.req-title { font-size: 13.5px; }
+.req-title strong { color: var(--heading); font-weight: 600; }
+.req-msg { font-size: 13.5px; color: var(--text); margin-top: 2px; font-style: italic; }
+.req-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; color: var(--muted); margin-top: 4px; }
+.req-meta .flag { width: 18px; height: 13px; }
+.req-meta .loc-code { min-width: 22px; height: 16px; font-size: 9px; padding: 0 4px; }
+.req-actions { flex-shrink: 0; }
+@media (max-width: 640px) { .req { flex-wrap: wrap; } .req-actions { width: 100%; justify-content: flex-end; } }

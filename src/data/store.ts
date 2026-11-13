@@ -7,7 +7,7 @@
 import { useSyncExternalStore } from 'react'
 import seed from './seed.json'
 import type {
-  AssetRef, Copy, Database, DetailField, HistoryAction, HistoryEntry, InternalInfo, InternalNote, LocalCopy, MarketInfo, Product, Section, Status, User, Variant, VersionText,
+  AssetRef, Copy, TagKind, TagRequest, Database, DetailField, HistoryAction, HistoryEntry, InternalInfo, InternalNote, LocalCopy, MarketInfo, Product, Section, Status, User, Variant, VersionText,
 } from '../types'
 import { COPY_FIELDS, DETAIL_FIELDS, LOCAL_FIELDS } from '../types'
 import { idb } from '../lib/idb'
@@ -28,11 +28,15 @@ export interface State {
   storage: 'shared' | 'local'
   saving: boolean
   toasts: Toast[]
+  /** Open "Tag someone" dialog */
+  tagging: TagDraft | null
 }
+
+export interface TagDraft { productId: string; locale: string; about?: string; kind?: TagKind }
 
 const SEED = seed as unknown as Database
 
-let state: State = { ready: false, db: SEED, userId: 'u-cathrine', locale: 'da-DK', storage: 'local', saving: false, toasts: [] }
+let state: State = { ready: false, db: SEED, userId: 'u-cathrine', locale: 'da-DK', storage: 'local', saving: false, toasts: [], tagging: null }
 
 const listeners = new Set<() => void>()
 function emit() { listeners.forEach((l) => l()) }
@@ -510,6 +514,44 @@ export function saveMarketInfo(id: string, locale: string, patch: Omit<MarketInf
     }
   })
   toast('Saved')
+}
+
+/* ---------------- Tagging people ---------------- */
+
+export const TAG_KIND_LABEL: Record<TagKind, string> = {
+  review: 'Review', translate: 'Translate or adapt', approve: 'Approve', update: 'Update', fyi: 'For your information',
+}
+
+export const openTag = (d: TagDraft) => set({ tagging: d })
+export const closeTag = () => set({ tagging: null })
+
+export function tagPerson(id: string, input: Pick<TagRequest, 'to' | 'kind' | 'locale' | 'about' | 'message' | 'due'>) {
+  const r: TagRequest = { ...input, id: newId('r'), from: state.userId, status: 'open', createdAt: now() }
+  updateProduct(id, (p) => ({
+    ...p,
+    requests: [r, ...(p.requests ?? [])],
+    history: [historyEntry(input.locale, 'tagged', `Tagged ${userName(input.to)}: ${TAG_KIND_LABEL[input.kind].toLowerCase()} ${input.about.toLowerCase()}${input.message ? ` (“${input.message}”)` : ''}`), ...p.history],
+  }))
+  toast(`${userName(input.to)} tagged`)
+}
+
+export function resolveRequest(id: string, requestId: string, done: boolean) {
+  updateProduct(id, (p) => {
+    const r = p.requests?.find((x) => x.id === requestId)
+    if (!r) return p
+    return {
+      ...p,
+      requests: (p.requests ?? []).map((x) => (x.id === requestId ? { ...x, status: done ? 'done' : 'open', doneAt: done ? now() : undefined } : x)),
+      history: [historyEntry(r.locale, 'request_done', `${done ? 'Done' : 'Reopened'}: ${TAG_KIND_LABEL[r.kind].toLowerCase()} ${r.about.toLowerCase()} (asked by ${userName(r.from)})`), ...p.history],
+    }
+  })
+  toast(done ? 'Marked as done' : 'Reopened', done ? 'ok' : 'info')
+}
+
+/** Open requests addressed to a person, newest first */
+export function requestsFor(products: Product[], userId: string) {
+  return products.flatMap((p) => (p.requests ?? []).filter((r) => r.to === userId && r.status === 'open').map((r) => ({ product: p, request: r })))
+    .sort((a, b) => b.request.createdAt.localeCompare(a.request.createdAt))
 }
 
 /* ---------------- Products ---------------- */

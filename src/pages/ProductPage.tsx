@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { Ban, ChevronRight, ClipboardCopy, Columns2, Download, FileDown, FileText } from 'lucide-react'
-import { currentUser, setAvailability, setLocale, toast, useStore } from '../data/store'
+import { AtSign, Ban, ChevronRight, ClipboardCopy, Columns2, Download, FileDown, FileText } from 'lucide-react'
+import { currentUser, openTag, setAvailability, setLocale, toast, useStore } from '../data/store'
+import { RequestsPanel } from '../components/tagging'
 import { GLOBAL, LIFECYCLE_LABEL, isGroup, marketLabel, scopeLocales } from '../data/reference'
 import { approvedGlobal, can, essentialTodos, isAvailable, isReady, localeState } from '../data/rules'
 import { copyText, downloadProductSheet, heroImage, productAsText, productImage } from '../lib/files'
@@ -131,6 +132,7 @@ export default function ProductPage() {
           )}
           <div className="row-gap wrap end">
             {meta && <ApprovalActions p={p} section={section} meta={meta} user={user} />}
+            <button className="btn btn-secondary" onClick={() => openTag({ productId: p.id, locale: section })}><AtSign size={16} />Tag someone</button>
             <Menu
               label="Use"
               icon={<Download size={16} />}
@@ -156,6 +158,8 @@ export default function ProductPage() {
           })}
         </div>
       )}
+
+      <RequestsPanel p={p} loc={section} />
 
       {!available && (
         <div className="note note-warn">

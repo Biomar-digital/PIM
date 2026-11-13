@@ -3,13 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Check, ChevronDown, Globe2, Cloud, HardDrive, LayoutDashboard, Menu as MenuIcon, Package, Plus, Search, Star, Users, X } from 'lucide-react'
 import { DIVISIONS, GLOBAL, GROUP_BY_ID, MARKETS, MARKET_BY_ID, ROLE_LABEL, isGroup, localeCode, marketGroup, marketLabel } from '../data/reference'
 import { can, isGlobalUser } from '../data/rules'
-import { currentUser, setLocale, setUser, updateUser, useStore } from '../data/store'
+import { currentUser, requestsFor, setLocale, setUser, updateUser, useStore } from '../data/store'
 import { productsIn } from '../data/insights'
 import { BIOMAR_LOGO } from '../lib/logos'
 import { flagFor } from '../lib/brand'
 import { productImage } from '../lib/files'
 import { Avatar, Thumb, Toasts, useClickOutside } from './ui'
 import { NewProductModal } from './NewProductModal'
+import { TagModal } from './tagging'
 
 export const localeName = (id: string) => (id === GLOBAL ? 'Global' : GROUP_BY_ID[id]?.name ?? MARKET_BY_ID[id]?.market ?? id)
 
@@ -104,9 +105,12 @@ function LocalePicker() {
 function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const storage = useStore((s) => s.storage)
   const saving = useStore((s) => s.saving)
+  const products = useStore((s) => s.db.products)
+  const me = useStore(currentUser)
+  const tagged = useMemo(() => requestsFor(products, me.id).length, [products, me.id])
   const items = [
-    { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
-    { to: '/products', label: 'Products', icon: Package },
+    { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true, badge: tagged },
+    { to: '/products', label: 'Products', icon: Package, badge: 0 },
   ]
   return (
     <aside className={`sidebar${open ? ' open' : ''}`}>
@@ -116,9 +120,10 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         <button className="icon-btn sidebar-close" onClick={onClose} aria-label="Close menu"><X size={20} /></button>
       </div>
       <nav className="sidebar-nav" onClick={onClose}>
-        {items.map(({ to, label, icon: Icon, end }) => (
+        {items.map(({ to, label, icon: Icon, end, badge }) => (
           <NavLink key={to} to={to} end={end} className="nav-item">
             <Icon size={18} aria-hidden /><span>{label}</span>
+            {badge > 0 && <span className="nav-badge" title={`${badge} ${badge === 1 ? 'request' : 'requests'} tagged for you`}>{badge}</span>}
           </NavLink>
         ))}
       </nav>
@@ -242,6 +247,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <main className="content">{children}</main>
       </div>
       {creating && <NewProductModal onClose={() => setCreating(false)} onCreated={(id) => { setCreating(false); navigate(`/products/${id}`) }} />}
+      <TagModal />
       <Toasts />
     </div>
   )

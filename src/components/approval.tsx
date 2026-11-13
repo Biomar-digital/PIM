@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Check, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
+import { AtSign, Check, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
 import type { Meta, Product, Section, User } from '../types'
 import { GLOBAL } from '../data/reference'
 import { can, essentialTodos } from '../data/rules'
-import { sectionLabel, transition, userName } from '../data/store'
+import { openTag, sectionLabel, transition, userName, type TagDraft } from '../data/store'
 import { Modal, SendBackModal } from './ui'
 
 /** The buttons that move content through Draft, In approval and Approved. */
@@ -53,13 +53,14 @@ export type SaveMode = 'draft' | 'submit' | 'minor'
  * Buttons under an edit form. Approved content offers two ways to save:
  * a small update (typo or wording fix: stays approved, nobody has to review it), or a change that needs approval.
  */
-export function EditActions({ meta, onCancel, onSave, disabled }: { meta: Meta; onCancel: () => void; onSave: (mode: SaveMode) => void; disabled?: boolean }) {
+export function EditActions({ meta, onCancel, onSave, disabled, tag }: { meta: Meta; onCancel: () => void; onSave: (mode: SaveMode) => void; disabled?: boolean; tag?: TagDraft }) {
   const approved = meta.status === 'approved'
   return (
     <div className="edit-actions">
       {approved && <p className="muted small grow">A <strong>small update</strong> (typo, wording) stays approved and does not ask other locales to review. Anything bigger goes through approval.</p>}
       <div className="row-gap wrap end">
         <button className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+        {tag && <button className="btn btn-secondary" disabled={disabled} onClick={() => { onSave('draft'); openTag(tag) }} title="Save as a draft and tag someone to review or translate it"><AtSign size={16} />Save and tag someone</button>}
         {approved && <button className="btn btn-secondary" disabled={disabled} onClick={() => onSave('minor')}>Save as small update</button>}
         {meta.status === 'in_review'
           ? <button className="btn btn-primary" disabled={disabled} onClick={() => onSave('draft')}>Save</button>

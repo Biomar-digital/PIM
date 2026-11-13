@@ -106,7 +106,7 @@ export function GlobalGroup({ p, user, group, title }: { p: Product; user: User;
           </div>
         ))}
       </dl>
-      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} />}
+      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: GLOBAL, about: title ?? GROUP_LABEL[group], kind: 'review' }} />}
     </Card>
   )
 }
@@ -168,7 +168,7 @@ function GlobalCopyCard({ p, user }: { p: Product; user: User }) {
     >
       <div className="pad-x pad-t"><StatusLine meta={p.status} version={p.content.version} /><SentBackNote meta={p.status} /></div>
       <CopyFields value={p.content} draft={draft} setDraft={setDraft} />
-      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} />}
+      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: GLOBAL, about: 'Marketing copy', kind: 'translate' }} />}
     </Card>
   )
 }
@@ -249,7 +249,7 @@ function LocalCopyCard({ p, user, loc, onCompare }: { p: Product; user: User; lo
         )}
       </div>
       <CopyFields value={v.inheritsGlobal ? english : v} draft={draft} setDraft={setDraft} />
-      {draft && <EditActions meta={v.meta} onCancel={() => setDraft(null)} onSave={save} />}
+      {draft && <EditActions meta={v.meta} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />}
     </Card>
   )
 }
@@ -351,7 +351,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
       {editable && (
         <div className={`sbs-bar${dirty ? ' dirty' : ''}`}>
           {dirty
-            ? <EditActions meta={v.meta} onCancel={() => setDraft(current)} onSave={save} />
+            ? <EditActions meta={v.meta} onCancel={() => setDraft(current)} onSave={save} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />
             : <p className="small"><CheckCheck size={16} className="ok-ic" />{gaps.length ? `All changes saved. Still to add: ${gaps.join(', ')}.` : 'All changes saved.'} {v.meta.status === 'draft' && !gaps.length && 'Send it for approval with the button at the top when it is ready.'}</p>}
         </div>
       )}

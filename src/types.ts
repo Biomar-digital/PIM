@@ -149,13 +149,35 @@ export interface InternalInfo {
   markets: Record<string, MarketInfo>
 }
 
+/* ---------- Tagging people ---------- */
+
+export type TagKind = 'review' | 'translate' | 'approve' | 'update' | 'fyi'
+
+/** A request to a person about a product: "please review the Danish description" */
+export interface TagRequest {
+  id: string
+  to: string
+  from: string
+  kind: TagKind
+  /** "global" or a locale id */
+  locale: string
+  /** What it is about, e.g. "Description" or "Assets" */
+  about: string
+  message: string
+  /** Optional due date (YYYY-MM-DD) */
+  due?: string
+  status: 'open' | 'done'
+  createdAt: string
+  doneAt?: string
+}
+
 /** 'global', 'assets' or a locale id */
 export type Section = string
 
 export type HistoryAction =
   | 'created' | 'edited' | 'minor_update' | 'submitted' | 'approved' | 'changes_requested' | 'restored' | 'reviewed'
   | 'asset_added' | 'asset_removed' | 'asset_linked' | 'asset_edited' | 'market_added' | 'market_removed' | 'variant_created'
-  | 'internal_edited'
+  | 'internal_edited' | 'tagged' | 'request_done'
 
 export interface HistoryEntry {
   id: string
@@ -199,6 +221,8 @@ export interface Product {
   assets: AssetRef[]
   /** Internal information: not published, for marketing, product and sales teams */
   internal?: InternalInfo
+  /** People tagged to do something on this product */
+  requests?: TagRequest[]
   history: HistoryEntry[]
   createdAt: string
 }

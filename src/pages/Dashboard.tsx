@@ -1,7 +1,8 @@
 import { Fragment, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2, ChevronDown, ChevronRight } from 'lucide-react'
-import { currentUser, setLocale, useStore, userName } from '../data/store'
+import { currentUser, requestsFor, setLocale, useStore, userName } from '../data/store'
+import { TaggedForYou } from '../components/tagging'
 import { DIVISIONS, GLOBAL, GROUP_BY_ID, MARKET_BY_ID, isGroup, localeLanguage, scopeLocales } from '../data/reference'
 import { photo } from '../lib/brand'
 import { can, isGlobalUser, type LocaleState } from '../data/rules'
@@ -36,6 +37,7 @@ export default function Dashboard() {
   const counts = useMemo(() => attentionCounts(all, loc), [all, loc])
   const work = useMemo(() => workItems(all, user, loc), [all, user, loc])
   const recent = useMemo(() => recentChanges(all, loc, 6), [all, loc])
+  const tagged = useMemo(() => requestsFor(all, user.id), [all, user.id])
   const global = loc === GLOBAL
   const group = isGroup(loc)
   const name = localeName(loc)
@@ -60,6 +62,7 @@ export default function Dashboard() {
         <div className="dash-hero-text">
           <h1>{greeting()}, {user.name.split(' ')[0]}</h1>
           <p className="lead">
+            {tagged.length > 0 && <>You have been tagged in <strong>{tagged.length} {tagged.length === 1 ? 'request' : 'requests'}</strong>. </>}
             {work.length ? <>There {work.length === 1 ? 'is' : 'are'} <strong>{work.length} {work.length === 1 ? 'task' : 'tasks'}</strong> waiting for you in {global ? 'the global record' : name}.</> : <>Everything in {global ? 'the global record' : name} is up to date.</>}
           </p>
           <div className="hero-scope">
@@ -79,6 +82,8 @@ export default function Dashboard() {
       </nav>
 
       <div className="dash-main">
+        <div className="dash-col">
+        <TaggedForYou items={tagged} />
         <section className="attention" aria-labelledby="attention-title">
           <header className="section-head">
             <h2 id="attention-title">Needs your attention</h2>
@@ -88,6 +93,7 @@ export default function Dashboard() {
             ? <div className="all-clear"><CheckCircle2 size={22} className="ok-ic" /><div><strong>Nothing waiting for you</strong><p className="muted small">{can.editLocale(user, loc) || can.approve(user, loc) ? 'Everything you work on here is up to date.' : 'You can find, copy and download approved content in Products.'}</p></div></div>
             : <WorkList items={work} />}
         </section>
+        </div>
 
         <aside className="dash-side">
           {!global && !group && <StatusSummary loc={loc} />}
