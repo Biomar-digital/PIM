@@ -5,7 +5,7 @@ import { CATEGORIES, FEED_TYPES, LIFECYCLE_LABEL, RANGES, SPECIES, STAGES } from
 
 export type FieldKey = DetailField | keyof Copy
 export type FieldKind = 'text' | 'longtext' | 'list' | 'select' | 'multi'
-export type FieldGroup = 'copy' | 'classification' | 'specification' | 'management'
+export type FieldGroup = 'identity' | 'technical' | 'copy' | 'management'
 
 export interface FieldDef {
   key: FieldKey
@@ -22,27 +22,29 @@ export interface FieldDef {
 const opts = (list: string[]) => () => list.map((v) => ({ value: v, label: v }))
 
 export const GROUP_LABEL: Record<FieldGroup, string> = {
+  identity: 'Product identity',
+  technical: 'Technical information',
   copy: 'Marketing copy',
-  classification: 'Classification',
-  specification: 'Specification',
   management: 'Ownership',
 }
+/** Groups managed only by the global team, the same in every locale */
+export const GLOBAL_GROUPS: FieldGroup[] = ['identity', 'technical', 'management']
 
 export const FIELDS: FieldDef[] = [
-  { key: 'tagline', label: 'Tagline', group: 'copy', kind: 'text', hint: 'One short line with the product promise', width: 260 },
+  { key: 'name', label: 'Product name', group: 'identity', kind: 'text', width: 180 },
+  { key: 'range', label: 'Range', group: 'identity', kind: 'select', options: opts(RANGES), width: 140 },
+  { key: 'categories', label: 'Category', group: 'identity', kind: 'multi', options: opts(CATEGORIES), width: 190 },
+  { key: 'species', label: 'Species', group: 'identity', kind: 'select', options: opts(SPECIES), width: 160 },
+  { key: 'stages', label: 'Production stage', group: 'identity', kind: 'multi', options: opts(STAGES), width: 160 },
+  { key: 'tagline', label: 'Tagline', group: 'identity', kind: 'text', hint: 'One short line with the product promise. The same in every locale, never translated.', width: 260 },
+  { key: 'code', label: 'Product code', group: 'technical', kind: 'text', width: 140 },
+  { key: 'feedType', label: 'Feed type', group: 'technical', kind: 'select', options: opts(FEED_TYPES), width: 150 },
+  { key: 'pelletSizes', label: 'Pellet sizes', group: 'technical', kind: 'list', hint: 'One size per line, for example 4.5 mm', width: 190 },
+  { key: 'packaging', label: 'Packaging', group: 'technical', kind: 'list', hint: 'One pack per line, for example 25 kg bag', width: 190 },
   { key: 'shortDescription', label: 'Short description', group: 'copy', kind: 'longtext', hint: 'One or two sentences for product cards', width: 320 },
   { key: 'description', label: 'Description', group: 'copy', kind: 'longtext', hint: 'Full text for websites and sales material', width: 360 },
   { key: 'keyBenefits', label: 'Key benefits', group: 'copy', kind: 'list', hint: 'What the customer gains, one per line', width: 320 },
   { key: 'sellingPoints', label: 'Selling points', group: 'copy', kind: 'list', hint: 'Arguments for sales teams, one per line', width: 300 },
-  { key: 'name', label: 'Product name', group: 'classification', kind: 'text', width: 180 },
-  { key: 'range', label: 'Range', group: 'classification', kind: 'select', options: opts(RANGES), width: 140 },
-  { key: 'categories', label: 'Category', group: 'classification', kind: 'multi', options: opts(CATEGORIES), width: 190 },
-  { key: 'species', label: 'Species', group: 'classification', kind: 'select', options: opts(SPECIES), width: 160 },
-  { key: 'stages', label: 'Production stage', group: 'classification', kind: 'multi', options: opts(STAGES), width: 160 },
-  { key: 'code', label: 'Product code', group: 'specification', kind: 'text', width: 140 },
-  { key: 'feedType', label: 'Feed type', group: 'specification', kind: 'select', options: opts(FEED_TYPES), width: 150 },
-  { key: 'pelletSizes', label: 'Pellet sizes', group: 'specification', kind: 'list', hint: 'One size per line, for example 4.5 mm', width: 190 },
-  { key: 'packaging', label: 'Packaging', group: 'specification', kind: 'list', hint: 'One pack per line, for example 25 kg bag', width: 190 },
   { key: 'owner', label: 'Owner', group: 'management', kind: 'select', options: (users) => users.map((u) => ({ value: u.id, label: u.name })), width: 160 },
   { key: 'lifecycle', label: 'Lifecycle', group: 'management', kind: 'select', options: () => Object.entries(LIFECYCLE_LABEL).map(([value, label]) => ({ value, label })), width: 130 },
   { key: 'notes', label: 'Internal notes', group: 'management', kind: 'longtext', hint: 'Anything colleagues should know', width: 240 },

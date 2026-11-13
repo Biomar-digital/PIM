@@ -3,23 +3,24 @@ import { ChevronDown, ChevronRight, RotateCcw } from 'lucide-react'
 import type { HistoryEntry, Product, User } from '../../types'
 import { can } from '../../data/rules'
 import { restoreVersion, sectionLabel, userName } from '../../data/store'
-import { COPY_LABEL } from '../../data/reference'
+import { COPY_LABEL, GLOBAL } from '../../data/reference'
 import { formatDate, timeAgo } from '../../lib/format'
 import { Avatar, Card, Modal } from '../../components/ui'
 
 const FIELD_LABEL: Record<string, string> = {
   ...COPY_LABEL, name: 'Product name', species: 'Species', range: 'Range', categories: 'Category', stages: 'Production stage',
   code: 'Product code', feedType: 'Feed type', pelletSizes: 'Pellet sizes', packaging: 'Packaging', owner: 'Owner',
-  lifecycle: 'Lifecycle', notes: 'Notes', localName: 'Local name', inheritsGlobal: 'Uses the English text',
+  lifecycle: 'Lifecycle', notes: 'Notes', inheritsGlobal: 'Uses the English text',
 }
 
-export function HistoryTab({ p, user }: { p: Product; user: User }) {
-  const [filter, setFilter] = useState('')
+export function HistoryTab({ p, user, loc }: { p: Product; user: User; loc: string }) {
+  // In a locale, start with that locale's changes plus the global ones
+  const [filter, setFilter] = useState(loc === GLOBAL ? '' : 'here')
   const [open, setOpen] = useState<string | null>(null)
   const [restore, setRestore] = useState<HistoryEntry | null>(null)
   const sections = [...new Set(p.history.map((h) => h.section))]
-  const list = p.history.filter((h) => !filter || h.section === filter)
-  const canRestore = (h: HistoryEntry) => !!h.snapshot && h.section !== 'assets' && can.edit(user, h.section)
+  const list = p.history.filter((h) => !filter || (filter === 'here' ? [loc, GLOBAL, 'assets'].includes(h.section) : h.section === filter))
+  const canRestore = (h: HistoryEntry) => !!h.snapshot && h.section !== 'assets' && can.editLocale(user, h.section)
 
   return (
     <Card
@@ -27,6 +28,7 @@ export function HistoryTab({ p, user }: { p: Product; user: User }) {
       actions={
         <select id="history-filter" value={filter} onChange={(e) => setFilter(e.target.value)} aria-label="Show changes for">
           <option value="">All changes</option>
+          {loc !== GLOBAL && <option value="here">{sectionLabel(loc)} and global</option>}
           {sections.map((s) => <option key={s} value={s}>{sectionLabel(s)}</option>)}
         </select>
       }

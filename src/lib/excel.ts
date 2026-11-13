@@ -3,8 +3,8 @@
 import * as XLSX from 'xlsx'
 import type { Product, User } from '../types'
 import { FIELDS, fromCell, getValue, sameValue, toCell, type FieldDef } from './fields'
-import { MARKET_STATE_LABEL, essentialTodos } from '../data/rules'
-import { STATUS_LABEL } from '../data/reference'
+import { LOCALE_STATE_LABEL, essentialTodos, localeState } from '../data/rules'
+import { STATUS_LABEL, marketLabel } from '../data/reference'
 import { saveFile } from './save'
 
 const ID = 'Product ID'
@@ -28,13 +28,13 @@ export function exportProducts(products: Product[], users: User[], fileName = 'b
   sheet['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: rows.length, c: header.length - 1 } }) }
   sheet['!freeze'] = { xSplit: 2, ySplit: 1 }
 
-  // Translations, for reference (read only in this version)
-  const tHeader = [ID, 'Product', 'Market', 'Status', 'Tagline', 'Short description', 'Description', 'Key benefits']
+  // Local versions, for reference (read only in this version)
+  const tHeader = [ID, 'Product', 'Locale', 'Status', 'Short description', 'Description', 'Key benefits', 'Selling points']
   const tRows = products.flatMap((p) => Object.entries(p.variants).map(([loc, v]) => [
-    p.id, `${p.name} – ${p.species}`, loc, MARKET_STATE_LABEL[v.meta.status], v.tagline, v.shortDescription, v.description, v.keyBenefits.join('\n'),
+    p.id, `${p.name} – ${p.species}`, marketLabel(loc), LOCALE_STATE_LABEL[localeState(p, loc)], v.shortDescription, v.description, v.keyBenefits.join('\n'), v.sellingPoints.join('\n'),
   ]))
   const tSheet = XLSX.utils.aoa_to_sheet([tHeader, ...tRows])
-  tSheet['!cols'] = [{ wch: 30 }, { wch: 34 }, { wch: 8 }, { wch: 18 }, { wch: 40 }, { wch: 50 }, { wch: 70 }, { wch: 50 }]
+  tSheet['!cols'] = [{ wch: 30 }, { wch: 34 }, { wch: 8 }, { wch: 24 }, { wch: 18 }, { wch: 50 }, { wch: 70 }, { wch: 50 }, { wch: 50 }]
 
   const help = [
     ['How to use this file'],
@@ -54,7 +54,7 @@ export function exportProducts(products: Product[], users: User[], fileName = 'b
 
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, sheet, 'Products')
-  XLSX.utils.book_append_sheet(wb, tSheet, 'Translations')
+  XLSX.utils.book_append_sheet(wb, tSheet, 'Local versions')
   XLSX.utils.book_append_sheet(wb, hSheet, 'How to use')
   save(XLSX.write(wb, { bookType: 'xlsx', type: 'array' }), fileName)
 }

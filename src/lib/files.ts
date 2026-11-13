@@ -1,29 +1,27 @@
-// Files: bundled assets (logos, packshots), uploads, thumbnails, downloads, copy and the product sheet PDF.
-import type { Asset, Product } from '../types'
-import { LIFECYCLE_LABEL } from '../data/reference'
+// Asset previews, product images, copying text and the product sheet PDF.
+import type { AssetRef, Copy, Product } from '../types'
+import { GLOBAL, LIFECYCLE_LABEL, marketLabel } from '../data/reference'
+import { approvedContent } from '../data/rules'
 import { BIOMAR_LOGO, logoFor } from './logos'
 import { saveFile } from './save'
 
-/* ---------- Bundled files (src/assets/logos, src/assets/bags) ---------- */
+/* ---------- Bundled previews (src/assets/logos, src/assets/bags) ---------- */
 
 const bundled = {
   ...import.meta.glob('../assets/bags/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../assets/logos/*.png', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>
 
-export function assetUrl(a: Asset, blobUrls: Record<string, string>): string | null {
-  if (a.source === 'upload') return blobUrls[a.id] ?? null
-  return a.file ? bundled[`../assets/${a.file}`] ?? null : null
+export function previewUrl(a: AssetRef): string | null {
+  return a.preview ? bundled[`../assets/${a.preview}`] ?? null : null
 }
 
-export const isImage = (a: Asset) => a.mime.startsWith('image/')
-
-/* ---------- Product thumbnail ---------- */
+/* ---------- Product images ---------- */
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const cache = new Map<string, string>()
 
-/** Square tile with the BioMar mark and the product name, for products without a logo. */
+/** Tile with the BioMar mark and the product name, for products without a logo. */
 function nameTile(p: Product): string {
   const key = `${p.name}`
   if (!cache.has(key)) {
@@ -37,26 +35,25 @@ function nameTile(p: Product): string {
 }
 
 /** The image that identifies a product in lists: its logo, or a name tile. */
-export function productImage(p: Product, blobUrls: Record<string, string>): string {
-  const logo = p.assets.find((a) => a.type === 'logo' && a.scope === 'global' && isImage(a))
-  const url = logo && assetUrl(logo, blobUrls)
-  return url ?? logoFor(p)?.url ?? nameTile(p)
+export function productImage(p: Product): string {
+  const logo = p.assets.find((a) => a.type === 'logo' && a.scope === GLOBAL)
+  return (logo && previewUrl(logo)) ?? logoFor(p)?.url ?? nameTile(p)
 }
 
-/** Packshot for the product page header. */
-export function productPackshot(p: Product, blobUrls: Record<string, string>): string | null {
-  const bag = p.assets.find((a) => a.type === 'bag' && a.scope === 'global' && isImage(a))
-  return bag ? assetUrl(bag, blobUrls) : null
+/** The hero image, or the bag design until a hero image is linked */
+export function heroImage(p: Product): { url: string; isHero: boolean } | null {
+  const hero = p.assets.find((a) => a.type === 'hero' && previewUrl(a))
+  if (hero) return { url: previewUrl(hero)!, isHero: true }
+  const bag = p.assets.find((a) => a.type === 'bag' && a.scope === GLOBAL && previewUrl(a))
+  return bag ? { url: previewUrl(bag)!, isHero: false } : null
 }
 
 /* ---------- Download & copy ---------- */
 
-const save = (blob: Blob, name: string) => saveFile(blob, name)
-
-export async function downloadAsset(a: Asset, blobUrls: Record<string, string>) {
-  const url = assetUrl(a, blobUrls)
+export async function downloadPreview(a: AssetRef) {
+  const url = previewUrl(a)
   if (!url) return
-  save(await fetch(url).then((r) => r.blob()), a.fileName)
+  saveFile(await fetch(url).then((r) => r.blob()), a.fileName ?? `${a.title}.${a.preview?.split('.').pop() ?? 'png'}`)
 }
 
 /** Copy text; falls back to a hidden textarea where the clipboard API is not allowed. */
@@ -78,84 +75,160 @@ export async function copyText(text: string): Promise<boolean> {
   }
 }
 
-/** All global text of a product as plain text, ready to paste into a document or email. */
-export function productAsText(p: Product): string {
-  const c = p.content
-  const lines = [`${p.name} – ${p.species}`]
-  if (c.tagline) lines.push(c.tagline)
-  lines.push('')
-  if (c.shortDescription) lines.push(c.shortDescription, '')
-  if (c.description) lines.push(c.description, '')
-  if (c.keyBenefits.length) lines.push('Key benefits', ...c.keyBenefits.map((b) => `• ${b}`), '')
-  if (c.sellingPoints.length) lines.push('Selling points', ...c.sellingPoints.map((b) => `• ${b}`), '')
-  const facts: [string, string][] = [
-    ['Range', p.range], ['Category', p.categories.join(', ')], ['Species', p.species], ['Stage', p.stages.join(', ')],
+export const listAsText = (items: string[]) => items.filter(Boolean).map((b) => `• ${b}`).join('\n')
+
+function facts(p: Product): [string, string][] {
+  return [
+    ['Range', p.range], ['Species', p.species], ['Production stage', p.stages.join(', ')], ['Category', p.categories.join(', ')],
     ['Product code', p.code], ['Feed type', p.feedType], ['Pellet sizes', p.pelletSizes.join(', ')], ['Packaging', p.packaging.join(', ')],
   ]
-  for (const [k, v] of facts) if (v) lines.push(`${k}: ${v}`)
+}
+
+/** The approved text for a locale as plain text, ready to paste into a document, slide or email. */
+export function productAsText(p: Product, loc: string): string {
+  const { copy } = approvedContent(p, loc)
+  const lines = [`${p.name} – ${p.species}`]
+  if (copy.tagline) lines.push(copy.tagline)
+  lines.push('')
+  if (copy.shortDescription) lines.push(copy.shortDescription, '')
+  if (copy.description) lines.push(copy.description, '')
+  if (copy.keyBenefits.length) lines.push('Key benefits', listAsText(copy.keyBenefits), '')
+  if (copy.sellingPoints.length) lines.push('Selling points', listAsText(copy.sellingPoints), '')
+  for (const [k, v] of facts(p)) if (v) lines.push(`${k}: ${v}`)
   return lines.join('\n').trim()
 }
 
-/* ---------- Product sheet PDF (one page, Helvetica, built from the PIM content) ---------- */
+/* ---------- Product sheet PDF ---------- */
 
-const latin = (s: string) =>
-  s.replace(/[–—]/g, '-').replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/…/g, '...').replace(/®/g, '(R)').replace(/•/g, '-')
-    .replace(/[^\x20-\x7e\xa0-\xff]/g, '?').replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+type Line = { text: string; size: number; bold?: boolean; gap?: number }
 
-function wrap(text: string, max: number): string[] {
-  const out: string[] = []
-  for (const para of text.split('\n')) {
-    let line = ''
-    for (const w of para.split(' ')) {
-      if ((line + ' ' + w).trim().length > max) { out.push(line); line = w } else line = (line + ' ' + w).trim()
-    }
-    out.push(line)
+function sheetLines(p: Product, loc: string, copy: Copy, note: string): Line[] {
+  const out: Line[] = []
+  out.push({ text: `${p.name} – ${p.species}`, size: 22, bold: true })
+  if (copy.tagline) out.push({ text: copy.tagline, size: 13 })
+  out.push({ text: '', size: 8 })
+  if (copy.description || copy.shortDescription) out.push({ text: copy.description || copy.shortDescription, size: 10.5 })
+  if (copy.keyBenefits.length) {
+    out.push({ text: 'Key benefits', size: 13, bold: true, gap: 10 })
+    copy.keyBenefits.forEach((b) => out.push({ text: `•  ${b}`, size: 10.5 }))
   }
+  if (copy.sellingPoints.length) {
+    out.push({ text: 'Selling points', size: 13, bold: true, gap: 10 })
+    copy.sellingPoints.forEach((b) => out.push({ text: `•  ${b}`, size: 10.5 }))
+  }
+  out.push({ text: 'Product details', size: 13, bold: true, gap: 10 })
+  for (const [k, v] of facts(p)) if (v) out.push({ text: `${k}: ${v}`, size: 10.5 })
+  if (p.lifecycle !== 'active') out.push({ text: `Lifecycle: ${LIFECYCLE_LABEL[p.lifecycle]}`, size: 10.5 })
+  out.push({ text: `BioMar Product Information · ${loc === GLOBAL ? 'Global (English)' : marketLabel(loc)} · ${new Date().toLocaleDateString('en-GB')}. ${note}`, size: 8, gap: 16 })
   return out
 }
 
-export function downloadProductSheet(p: Product) {
-  const c = p.content
-  const rows: [string, number, boolean][] = []
-  const add = (t: string, size = 10, bold = false) => rows.push([t, size, bold])
-  add(`${p.name} - ${p.species}`, 20, true)
-  if (c.tagline) add(c.tagline, 12)
-  add('')
-  if (c.description) { wrap(c.description, 95).forEach((l) => add(l)); add('') }
-  if (c.keyBenefits.length) { add('Key benefits', 12, true); c.keyBenefits.forEach((b) => wrap('- ' + b, 92).forEach((l, i) => add(i ? '  ' + l : l))); add('') }
-  add('Product details', 12, true)
-  const facts: [string, string][] = [
-    ['Range', p.range], ['Category', p.categories.join(', ')], ['Species', p.species], ['Production stage', p.stages.join(', ')],
-    ['Product code', p.code], ['Feed type', p.feedType], ['Pellet sizes', p.pelletSizes.join(', ')], ['Packaging', p.packaging.join(', ')],
-    ['Lifecycle', LIFECYCLE_LABEL[p.lifecycle]],
-  ]
-  for (const [k, v] of facts) if (v) add(`${k}:  ${v}`)
-  add('')
-  add(`BioMar Product Information, ${new Date().toLocaleDateString('en-GB')}. Status: ${p.status.status === 'approved' ? 'approved' : 'not yet approved'}.`, 8)
+const PAGE_W = 595
+const PAGE_H = 842
+const MARGIN = 50
 
-  let y = 790
-  let content = 'BT\n'
-  for (const [t, size, bold] of rows) {
-    y -= size + 6
-    if (y < 40) break
-    content += `/${bold ? 'F2' : 'F1'} ${size} Tf 1 0 0 1 50 ${y} Tm (${latin(t)}) Tj\n`
+/** Text PDF with the built-in Helvetica font: selectable text, for languages written in Western European characters. */
+function textPdf(lines: Line[]): Uint8Array {
+  const winAnsi = (s: string) => s.replace(/[–—]/g, '-').replace(/[“”„]/g, '"').replace(/[‘’]/g, "'").replace(/…/g, '...').replace(/•/g, '\x95').replace(/™/g, '\x99').replace(/€/g, '\x80')
+    .replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+  const width = (s: string, size: number) => s.length * size * 0.5
+  let y = PAGE_H - 60
+  let content = '0.07 0.16 0.30 rg 0 812 595 30 re f\n0 g\nBT\n'
+  for (const l of lines) {
+    y -= l.gap ?? 0
+    const words = l.text.split(/\s+/)
+    let row = ''
+    const flush = () => { y -= l.size * 1.4; if (y > 40) content += `/${l.bold ? 'F2' : 'F1'} ${l.size} Tf 1 0 0 1 ${MARGIN} ${y.toFixed(1)} Tm (${winAnsi(row)}) Tj\n`; row = '' }
+    if (!l.text) { y -= l.size; continue }
+    for (const w of words) {
+      if (row && width(`${row} ${w}`, l.size) > PAGE_W - MARGIN * 2) flush()
+      row = row ? `${row} ${w}` : w
+    }
+    flush()
   }
-  content += 'ET\n0.07 0.16 0.30 rg 0 812 595 30 re f\n'
+  content += 'ET\n'
   const objs = [
     '<< /Type /Catalog /Pages 2 0 R >>',
     '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>',
+    `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PAGE_W} ${PAGE_H}] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>`,
     '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>',
     '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>',
     `<< /Length ${content.length} >>\nstream\n${content}endstream`,
   ]
-  let pdf = '%PDF-1.4\n'
+  return assemble(objs.map((o) => latin1(o)))
+}
+
+/** Image PDF drawn by the browser, for languages Helvetica cannot show (Greek, Turkish, Polish, Vietnamese, Chinese). */
+async function imagePdf(lines: Line[]): Promise<Uint8Array> {
+  const scale = 2.5
+  const c = document.createElement('canvas')
+  c.width = PAGE_W * scale
+  c.height = PAGE_H * scale
+  const g = c.getContext('2d')!
+  g.scale(scale, scale)
+  g.fillStyle = '#fff'; g.fillRect(0, 0, PAGE_W, PAGE_H)
+  g.fillStyle = '#13284c'; g.fillRect(0, 0, PAGE_W, 30)
+  g.fillStyle = '#17223a'
+  let y = 60
+  for (const l of lines) {
+    y += l.gap ?? 0
+    if (!l.text) { y += l.size; continue }
+    g.font = `${l.bold ? 700 : 400} ${l.size}px Montserrat, Arial, "Noto Sans", "Microsoft YaHei", sans-serif`
+    const cjk = /[　-鿿]/.test(l.text)
+    const tokens = cjk ? [...l.text] : l.text.split(/\s+/)
+    let row = ''
+    const flush = () => { y += l.size * 1.4; if (y < PAGE_H - 30) g.fillText(row, MARGIN, y); row = '' }
+    for (const t of tokens) {
+      const test = row ? (cjk ? row + t : `${row} ${t}`) : t
+      if (row && g.measureText(test).width > PAGE_W - MARGIN * 2) { flush(); row = t } else row = test
+    }
+    flush()
+  }
+  const jpeg = await new Promise<Blob>((r) => c.toBlob((b) => r(b!), 'image/jpeg', 0.9))
+  const img = new Uint8Array(await jpeg.arrayBuffer())
+  const content = `q ${PAGE_W} 0 0 ${PAGE_H} 0 0 cm /Im1 Do Q`
+  const objs: Uint8Array[] = [
+    latin1('<< /Type /Catalog /Pages 2 0 R >>'),
+    latin1('<< /Type /Pages /Kids [3 0 R] /Count 1 >>'),
+    latin1(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PAGE_W} ${PAGE_H}] /Resources << /XObject << /Im1 4 0 R >> >> /Contents 5 0 R >>`),
+    concat([latin1(`<< /Type /XObject /Subtype /Image /Width ${c.width} /Height ${c.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${img.length} >>\nstream\n`), img, latin1('\nendstream')]),
+    latin1(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`),
+  ]
+  return assemble(objs)
+}
+
+function latin1(s: string): Uint8Array {
+  const b = new Uint8Array(s.length)
+  for (let i = 0; i < s.length; i++) b[i] = s.charCodeAt(i) & 0xff
+  return b
+}
+function concat(parts: Uint8Array[]): Uint8Array {
+  const out = new Uint8Array(parts.reduce((n, p) => n + p.length, 0))
+  let o = 0
+  for (const p of parts) { out.set(p, o); o += p.length }
+  return out
+}
+function assemble(objs: Uint8Array[]): Uint8Array {
+  const parts: Uint8Array[] = [latin1('%PDF-1.4\n')]
+  let len = parts[0].length
   const offsets: number[] = []
-  objs.forEach((o, i) => { offsets.push(pdf.length); pdf += `${i + 1} 0 obj\n${o}\nendobj\n` })
-  const xref = pdf.length
-  pdf += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n` + offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('')
-  pdf += `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`
-  const bytes = new Uint8Array(pdf.length)
-  for (let i = 0; i < pdf.length; i++) bytes[i] = pdf.charCodeAt(i) & 0xff
-  save(new Blob([bytes], { type: 'application/pdf' }), `${p.id}-product-sheet.pdf`)
+  objs.forEach((o, i) => {
+    offsets.push(len)
+    const chunk = concat([latin1(`${i + 1} 0 obj\n`), o, latin1('\nendobj\n')])
+    parts.push(chunk)
+    len += chunk.length
+  })
+  parts.push(latin1(`xref\n0 ${objs.length + 1}\n0000000000 65535 f \n${offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('')}trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${len}\n%%EOF`))
+  return concat(parts)
+}
+
+/** One-page product sheet with the latest approved information for a locale. */
+export async function downloadProductSheet(p: Product, loc: string) {
+  const { copy, fallback, current } = approvedContent(p, loc)
+  const note = fallback ? 'No approved local copy yet: global English text shown.' : current ? 'Approved content.' : 'Latest approved version; a newer version is being prepared.'
+  const lines = sheetLines(p, loc, copy, note)
+  const western = lines.every((l) => /^[\x20-\x7e\xa0-\xff–—“”„‘’…•™€]*$/.test(l.text))
+  const bytes = western ? textPdf(lines) : await imagePdf(lines)
+  const suffix = loc === GLOBAL ? 'global' : loc.toLowerCase()
+  await saveFile(new Blob([bytes as BlobPart], { type: 'application/pdf' }), `${p.id}-${suffix}-product-sheet.pdf`)
 }

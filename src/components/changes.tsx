@@ -1,5 +1,5 @@
-import type { Copy, Product, Variant, VersionText } from '../types'
-import { COPY_FIELDS, DETAIL_FIELDS } from '../types'
+import type { Product, Variant, VersionText } from '../types'
+import { COPY_FIELDS, DETAIL_FIELDS, LOCAL_FIELDS } from '../types'
 import { COPY_LABEL } from '../data/reference'
 import { changedFields, diffList, diffText, type Part } from '../lib/diff'
 import { Empty } from './ui'
@@ -31,18 +31,18 @@ export function globalChanges(p: Product): ChangeSet {
   return { before, after, fields: changedFields(before, after, ALL_FIELDS) }
 }
 
-/** Proposed translation changes compared with the last approved translation. */
+/** Proposed local changes compared with the last approved local version. */
 export function variantChanges(v: Variant): ChangeSet {
   const before = v.approved as Values | undefined
   const after = v as unknown as Values
-  return { before, after, fields: changedFields(before, after, COPY_FIELDS) }
+  return { before, after, fields: changedFields(before, after, LOCAL_FIELDS) }
 }
 
-/** What changed in English since the version a translation was based on. */
-export function englishChangesSince(p: Product, v: Variant): ChangeSet {
+/** What changed in the approved global copy since the version a local copy was written against. */
+export function globalChangesSince(p: Product, v: Variant): ChangeSet {
   const before = p.versions?.[v.sourceVersion] as Values | undefined
-  const after = (latestApproved(p) ?? (p.content as Copy)) as Values
-  return { before, after, fields: changedFields(before, after, COPY_FIELDS) }
+  const after = (latestApproved(p) ?? p.content) as unknown as Values
+  return { before, after, fields: changedFields(before, after, LOCAL_FIELDS) }
 }
 
 function Parts({ parts }: { parts: Part[] }) {
@@ -86,11 +86,11 @@ export function DiffValue({ before, after }: { before: unknown; after: unknown }
 }
 
 /** A list of the changed fields, each with its highlighted difference. */
-export function ChangeList({ changes, emptyText = 'No text changes.' }: { changes: ChangeSet; emptyText?: string }) {
+export function ChangeList({ changes, emptyText = 'No text changes.', local }: { changes: ChangeSet; emptyText?: string; local?: boolean }) {
   // First version: nothing approved before, so show all text as new
   const first = !changes.before
   const fields = first
-    ? COPY_FIELDS.filter((f) => { const v = changes.after[f]; return Array.isArray(v) ? v.length > 0 : !!v })
+    ? (local ? LOCAL_FIELDS : COPY_FIELDS).filter((f) => { const v = changes.after[f]; return Array.isArray(v) ? v.length > 0 : !!v })
     : changes.fields
   if (!fields.length) return <p className="muted small">{emptyText}</p>
   return (

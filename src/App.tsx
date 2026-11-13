@@ -1,14 +1,10 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { useStore } from './data/store'
-import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import ProductPage from './pages/ProductPage'
-import TranslationPage from './pages/TranslationPage'
-import Files from './pages/Files'
-import Approvals from './pages/Approvals'
-import Markets from './pages/Markets'
-import Admin from './pages/Admin'
+import People from './pages/People'
 
 // HashRouter keeps the prototype working as a single static file (no server routing needed).
 export default function App() {
@@ -18,15 +14,11 @@ export default function App() {
     <HashRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductPage />} />
-          <Route path="/products/:id/translations/:locale" element={<TranslationPage />} />
           <Route path="/products/:id/:tab" element={<ProductPage />} />
-          <Route path="/files" element={<Files />} />
-          <Route path="/approvals" element={<Approvals />} />
-          <Route path="/markets" element={<Markets />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/people" element={<People />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

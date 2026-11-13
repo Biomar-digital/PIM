@@ -1,6 +1,7 @@
-// Reference data: markets/languages, taxonomy, labels. Extend here when new markets or ranges are added.
+// Reference data: locales, taxonomy, labels. Extend here when new locales or ranges are added.
 import type { AssetType, Lifecycle, Role, Status } from '../types'
 
+/** The locales of biomar.com. Ids are the website's culture codes; "global" is the global English site. */
 export interface Market {
   /** Locale id, same as the website culture code */
   id: string
@@ -32,6 +33,15 @@ export const MARKETS: Market[] = [
 ]
 
 export const MARKET_BY_ID: Record<string, Market> = Object.fromEntries(MARKETS.map((m) => [m.id, m]))
+
+export const GLOBAL = 'global'
+/** Every locale people can select, Global first */
+export const LOCALE_IDS = [GLOBAL, ...MARKETS.map((m) => m.id)]
+export const REGIONS = ['Nordics', 'Europe', 'Mediterranean', 'Americas', 'Asia-Pacific']
+/** Short code shown in the locale picker, e.g. "DK" */
+export const localeCode = (id: string) => (id === GLOBAL ? 'GL' : id === 'zh' ? 'CN' : id.split('-')[1] ?? id.toUpperCase())
+/** Language of a locale */
+export const localeLanguage = (id: string) => (id === GLOBAL ? 'English' : MARKET_BY_ID[id]?.language ?? id)
 export const LANGUAGES = [...new Set(MARKETS.map((m) => m.language))].sort()
 
 /** "Norway (Norwegian)", or just "Norway" when short */
@@ -67,28 +77,35 @@ export const ROLE_LABEL: Record<Role, string> = {
   viewer: 'Viewer',
 }
 export const ROLE_DESCRIPTION: Record<Role, string> = {
-  admin: 'Full access, manages users, roles and markets.',
-  global_editor: 'Maintains global product details, marketing copy and assets. Can edit every market.',
+  admin: 'Everything a global editor can do, plus managing people and their access.',
+  global_editor: 'Manages the global record (name, classification, tagline, hero image, technical details) and can edit every locale.',
   approver: 'Approves global and local content, or sends it back with a note.',
-  local_editor: 'Writes the translations and local files for their own markets and sends them for approval.',
-  viewer: 'Finds, copies and downloads product content.',
+  local_editor: 'Adapts the marketing copy and adds local documents for their own locales, and sends them for approval.',
+  viewer: 'Finds, copies and downloads approved product content.',
 }
+/** Roles that work across every locale */
+export const GLOBAL_ROLES: Role[] = ['admin', 'global_editor', 'approver']
 
 export const LIFECYCLE_LABEL: Record<Lifecycle, string> = {
   active: 'Active', phasing_out: 'Phasing out', discontinued: 'Discontinued',
 }
 
-export const ASSET_TYPES: { id: AssetType; label: string; required: boolean; hint: string }[] = [
-  { id: 'logo', label: 'Logo', required: true, hint: 'Product logo from the brand logo pack' },
-  { id: 'bag', label: 'Packshot', required: true, hint: 'Image of the bag or packaging' },
-  { id: 'datasheet', label: 'Technical datasheet', required: true, hint: 'PDF with the technical specification' },
-  { id: 'photo', label: 'Product photos', required: false, hint: 'Pellets, farm and lifestyle photography' },
-  { id: 'brochure', label: 'Brochures', required: false, hint: 'Sales and marketing material' },
-  { id: 'other', label: 'Other files', required: false, hint: 'Certificates, presentations and anything else' },
+/**
+ * Asset types. `global` = managed by the global team only, the same in every locale.
+ * The others can also be added per locale by the local team.
+ */
+export const ASSET_TYPES: { id: AssetType; label: string; plural: string; global: boolean; required: boolean; hint: string }[] = [
+  { id: 'hero', label: 'Hero image', plural: 'Hero image', global: true, required: false, hint: 'The main product image, used everywhere' },
+  { id: 'image', label: 'Product image', plural: 'High-resolution product images', global: true, required: false, hint: 'Pellets, farm and lifestyle photography' },
+  { id: 'bag', label: 'Bag design', plural: 'Product bag designs', global: true, required: true, hint: 'Bag artwork and packshots' },
+  { id: 'logo', label: 'Logo', plural: 'Logos', global: true, required: false, hint: 'Product logo from the brand logo pack' },
+  { id: 'datasheet', label: 'Technical datasheet', plural: 'Technical datasheets and PDFs', global: false, required: false, hint: 'Technical specification' },
+  { id: 'brochure', label: 'Brochure', plural: 'Brochures', global: false, required: false, hint: 'Sales and marketing material' },
+  { id: 'document', label: 'Other document', plural: 'Other documents', global: false, required: false, hint: 'Certificates, presentations and anything else' },
 ]
 export const ASSET_LABEL: Record<AssetType, string> = Object.fromEntries(ASSET_TYPES.map((a) => [a.id, a.label])) as Record<AssetType, string>
 
-/** Labels for the marketing copy fields */
+/** Labels for the marketing copy fields. The tagline is global; the rest can be adapted per locale. */
 export const COPY_LABEL = {
   tagline: 'Tagline',
   shortDescription: 'Short description',

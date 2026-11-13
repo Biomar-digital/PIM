@@ -73,15 +73,18 @@ STAGE_ORDER = ["Hatchery", "Starter", "Transfer", "Grower"]
 
 # People in the sample organisation
 USERS = [
-    {"id": "u-ingrid", "name": "Ingrid Solberg", "title": "Global Product Manager", "role": "global_editor", "markets": []},
-    {"id": "u-marco", "name": "Marco Bianchi", "title": "Global Marketing Lead", "role": "approver", "markets": []},
-    {"id": "u-thomas", "name": "Thomas Haugen", "title": "Marketing Coordinator, Norway", "role": "local_editor", "markets": ["nn-NO", "en-GB"]},
-    {"id": "u-lars", "name": "Lars Nielsen", "title": "Marketing Coordinator, Nordics", "role": "local_editor", "markets": ["da-DK", "sv-SE", "fi-FI"]},
-    {"id": "u-elena", "name": "Elena Papadopoulou", "title": "Marketing Manager, Mediterranean", "role": "local_editor", "markets": ["el-GR", "tr-TR", "it-IT", "es-ES", "fr-FR"]},
-    {"id": "u-camila", "name": "Camila Rojas", "title": "Marketing Coordinator, Latin America", "role": "local_editor", "markets": ["es-CL", "es-EC", "es-CR"]},
-    {"id": "u-minh", "name": "Nguyen Minh Anh", "title": "Marketing Coordinator, Asia-Pacific", "role": "local_editor", "markets": ["vi-VN", "en-AU", "zh"]},
-    {"id": "u-sofie", "name": "Sofie Andersen", "title": "Digital Platforms", "role": "admin", "markets": []},
-    {"id": "u-paul", "name": "Paul Becker", "title": "Sales Manager, Central Europe", "role": "viewer", "markets": ["de-DE", "pl-PL"]},
+    # Global people see and manage every locale; their default locale is Global.
+    {"id": "u-ingrid", "name": "Ingrid Solberg", "title": "Global Product Manager", "role": "global_editor", "locales": [], "defaultLocale": "global"},
+    {"id": "u-marco", "name": "Marco Bianchi", "title": "Global Marketing Lead", "role": "approver", "locales": [], "defaultLocale": "global"},
+    {"id": "u-sofie", "name": "Sofie Andersen", "title": "Digital Platforms", "role": "admin", "locales": [], "defaultLocale": "global"},
+    # Local people work in their own locales and can view Global.
+    {"id": "u-cathrine", "name": "Cathrine Jensen", "title": "Marketing Manager, Denmark", "role": "local_editor", "locales": ["da-DK"], "defaultLocale": "da-DK"},
+    {"id": "u-thomas", "name": "Thomas Haugen", "title": "Marketing Coordinator, Norway", "role": "local_editor", "locales": ["nn-NO", "en-GB"], "defaultLocale": "nn-NO"},
+    {"id": "u-lars", "name": "Lars Nielsen", "title": "Marketing Coordinator, Sweden and Finland", "role": "local_editor", "locales": ["sv-SE", "fi-FI"], "defaultLocale": "sv-SE"},
+    {"id": "u-elena", "name": "Elena Papadopoulou", "title": "Marketing Manager, Mediterranean", "role": "local_editor", "locales": ["el-GR", "tr-TR", "it-IT", "es-ES", "fr-FR"], "defaultLocale": "el-GR"},
+    {"id": "u-camila", "name": "Camila Rojas", "title": "Marketing Coordinator, Latin America", "role": "local_editor", "locales": ["es-CL", "es-EC", "es-CR"], "defaultLocale": "es-CL"},
+    {"id": "u-minh", "name": "Nguyen Minh Anh", "title": "Marketing Coordinator, Asia-Pacific", "role": "local_editor", "locales": ["vi-VN", "en-AU", "en-PH", "zh"], "defaultLocale": "vi-VN"},
+    {"id": "u-paul", "name": "Paul Becker", "title": "Sales Manager, Central Europe", "role": "viewer", "locales": ["de-DE", "pl-PL"], "defaultLocale": "de-DE"},
 ]
 REVIEW_NOTES = [
     "Please align the key benefits with the latest global version.",
@@ -97,7 +100,7 @@ def next_note():
     return REVIEW_NOTES[_note_i[0] % len(REVIEW_NOTES)]
 
 
-LOCAL_EDITOR_FOR = {m: u["id"] for u in USERS if u["role"] == "local_editor" for m in u["markets"]}
+LOCAL_EDITOR_FOR = {m: u["id"] for u in USERS if u["role"] == "local_editor" for m in u["locales"]}
 
 DISCLAIMER = re.compile(
     r"illustrat|ilustra|Produktbildene|assortment displayed|contact form|kontaktskjema|Bitte beachten|"
@@ -151,6 +154,8 @@ BAGS = json.load(open(BAGS_INDEX, encoding="utf-8")) if os.path.exists(BAGS_INDE
 
 
 COPY_KEYS = ("tagline", "shortDescription", "description", "keyBenefits", "sellingPoints")
+# Local versions adapt these; the tagline is global and the same everywhere.
+LOCAL_KEYS = ("shortDescription", "description", "keyBenefits", "sellingPoints")
 
 
 def earlier_version(copy):
@@ -292,9 +297,7 @@ def main():
             editor = LOCAL_EDITOR_FOR.get(c, "u-ingrid")
             web_loc = web_range.get("locales", {}).get(c, {})
             variants[c] = {
-                "localName": "",
                 "shortDescription": "" if same_as_global else (first_sentence(loc["paras"][0]) if loc["paras"] and random.random() < 0.88 else ""),
-                "tagline": "" if same_as_global or web_loc.get("tagline") == tagline else web_loc.get("tagline", ""),
                 "description": "" if same_as_global else "\n\n".join(loc["paras"]),
                 "keyBenefits": [] if same_as_global else loc["benefits"],
                 "sellingPoints": [] if same_as_global or web_loc.get("benefits") == selling else web_loc.get("benefits", []),
@@ -306,13 +309,17 @@ def main():
                          **({"reviewNote": next_note()} if vstatus == "draft" and random.random() < 0.25 else {})},
             }
             # Last approved text of the translation, used to show approvers what changed
-            vcopy = {k: variants[c][k] for k in COPY_KEYS}
+            vcopy = {k: variants[c][k] for k in LOCAL_KEYS}
             if vstatus == "approved":
                 variants[c]["approved"] = vcopy
+                variants[c]["version"] = random.randint(1, 4)
             else:
                 prev_v = earlier_version(vcopy)
                 if prev_v:
-                    variants[c]["approved"] = prev_v
+                    variants[c]["approved"] = {k: prev_v[k] for k in LOCAL_KEYS}
+                    variants[c]["version"] = random.randint(1, 3)
+                else:
+                    variants[c]["version"] = 0
         # target markets: where variants exist + sometimes a market we have no copy for yet
         targets = list(variants.keys())
         extra_pool = {
@@ -329,21 +336,23 @@ def main():
         website_slug = (url_names.get("en") if isinstance(url_names, dict) else None) or slugify(full)
 
         # --- assets: only real files (product logo from the brand packs, packshot from biomar.com) ---
+        # Asset references. In production each one points to the asset in The Pond (pondUrl);
+        # here the logo and bag image files are bundled as previews and not yet linked.
         assets = []
         logo_key = next((k for k in (norm(name) + norm(species), norm(name), norm(rng)) if k in LOGOS), None)
         if logo_key:
+            label = LOGOS[logo_key]['label'].replace(' (shrimp)', '')
             assets.append({
-                "id": f"a-{slug}-logo", "type": "logo", "fileName": f"{LOGOS[logo_key]['label'].replace(' (shrimp)', '')} logo.png",
-                "mime": "image/png", "sizeKb": max(1, os.path.getsize(f"src/assets/logos/{LOGOS[logo_key]['file']}") // 1024),
-                "scope": "global", "source": "bundled", "file": f"logos/{LOGOS[logo_key]['file']}",
-                "uploadedBy": "u-sofie", "uploadedAt": "2026-11-12T11:00:00Z",
+                "id": f"a-{slug}-logo", "type": "logo", "title": f"{label} logo", "scope": "global",
+                "preview": f"logos/{LOGOS[logo_key]['file']}", "fileName": f"{label} logo.png", "pondUrl": "",
+                "addedBy": "u-sofie", "addedAt": "2026-11-12T11:00:00Z",
             })
         bag = BAGS.get(slug)
         if bag:
             assets.append({
-                "id": f"a-{slug}-bag", "type": "bag", "fileName": bag["fileName"], "mime": "image/webp",
-                "sizeKb": bag["sizeKb"], "scope": "global", "source": "bundled", "file": f"bags/{bag['file']}",
-                "sourceUrl": bag["url"], "uploadedBy": "website", "uploadedAt": "2026-11-12T12:00:00Z",
+                "id": f"a-{slug}-bag", "type": "bag", "title": f"{name} {species} bag", "scope": "global",
+                "preview": f"bags/{bag['file']}", "fileName": bag["fileName"], "pondUrl": "", "sourceUrl": bag["url"],
+                "addedBy": "u-sofie", "addedAt": "2026-11-12T12:00:00Z",
             })
 
         # --- history ---
@@ -358,7 +367,7 @@ def main():
         for c, v in variants.items():
             history.append({"id": f"h-{slug}-{c}", "at": v["meta"]["updatedAt"], "by": v["meta"]["updatedBy"], "section": c,
                             "action": {"approved": "approved", "in_review": "submitted", "draft": "edited"}[v["meta"]["status"]],
-                            "summary": {"approved": "Translation approved", "in_review": "Translation submitted for approval", "draft": "Translation edited"}[v["meta"]["status"]]})
+                            "summary": {"approved": f"Approved as version {v['version']}", "in_review": "Sent for approval", "draft": "Local content edited"}[v["meta"]["status"]]})
         history.sort(key=lambda h: h["at"], reverse=True)
 
         products.append({
@@ -397,7 +406,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 8, "users": USERS, "products": products}
+    seed = {"version": 9, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, separators=(",", ":"))
     print(f"Wrote {len(products)} products to {OUT}")

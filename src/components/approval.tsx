@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import { Check, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
 import type { Meta, Product, Section, User } from '../types'
+import { GLOBAL } from '../data/reference'
 import { can, essentialTodos } from '../data/rules'
 import { sectionLabel, transition, userName } from '../data/store'
 import { Modal, SendBackModal } from './ui'
 
-/** The one or two buttons that move content through Draft, In approval and Approved. */
+/** The buttons that move content through Draft, In approval and Approved. */
 export function ApprovalActions({ p, section, meta, user }: { p: Product; section: Section; meta: Meta; user: User }) {
   const [sendBack, setSendBack] = useState(false)
   const [confirmSend, setConfirmSend] = useState<string[] | null>(null)
-  const editable = can.edit(user, section)
+  const editable = can.editLocale(user, section)
   const send = () => {
-    const missing = section === 'global' ? essentialTodos(p).map((t) => t.label) : []
+    const missing = section === GLOBAL ? essentialTodos(p).map((t) => t.label) : []
     if (missing.length) setConfirmSend(missing)
     else transition(p.id, section, 'in_review')
   }
@@ -29,7 +30,7 @@ export function ApprovalActions({ p, section, meta, user }: { p: Product; sectio
           <ul className="bullets">{confirmSend.map((m) => <li key={m}>{m}</li>)}</ul>
         </Modal>
       )}
-      {meta.status === 'in_review' && can.approve(user) && (
+      {meta.status === 'in_review' && can.approve(user, section) && (
         <>
           <button className="btn btn-approve" onClick={() => transition(p.id, section, 'approved')}><Check size={16} />Approve</button>
           <button className="btn btn-secondary" onClick={() => setSendBack(true)}><Undo2 size={16} />Send back</button>
@@ -46,6 +47,31 @@ export function ApprovalActions({ p, section, meta, user }: { p: Product; sectio
   )
 }
 
+export type SaveMode = 'draft' | 'submit' | 'minor'
+
+/**
+ * Buttons under an edit form. Approved content offers two ways to save:
+ * a small update (typo or wording fix: stays approved, nobody has to review it), or a change that needs approval.
+ */
+export function EditActions({ meta, onCancel, onSave, disabled }: { meta: Meta; onCancel: () => void; onSave: (mode: SaveMode) => void; disabled?: boolean }) {
+  const approved = meta.status === 'approved'
+  return (
+    <div className="edit-actions">
+      {approved && <p className="muted small grow">A <strong>small update</strong> (typo, wording) stays approved and does not ask other locales to review. Anything bigger goes through approval.</p>}
+      <div className="row-gap wrap end">
+        <button className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+        {approved && <button className="btn btn-secondary" disabled={disabled} onClick={() => onSave('minor')}>Save as small update</button>}
+        {meta.status === 'in_review'
+          ? <button className="btn btn-primary" disabled={disabled} onClick={() => onSave('draft')}>Save</button>
+          : <>
+            <button className="btn btn-secondary" disabled={disabled} onClick={() => onSave('draft')}>Save as draft</button>
+            <button className="btn btn-primary" disabled={disabled} onClick={() => onSave('submit')}><Send size={16} />Save and send for approval</button>
+          </>}
+      </div>
+    </div>
+  )
+}
+
 /** Banner shown when an approver sent the content back. */
 export function SentBackNote({ meta }: { meta: Meta }) {
   if (meta.status !== 'draft' || !meta.reviewNote) return null
@@ -55,12 +81,4 @@ export function SentBackNote({ meta }: { meta: Meta }) {
       <div><strong>Sent back by {userName(meta.updatedBy)}:</strong> {meta.reviewNote}</div>
     </div>
   )
-}
-
-/** One line explaining what happens next, shown beside the status. */
-export function StatusHint({ meta, user, section }: { meta: Meta; user: User; section: Section }) {
-  const editable = can.edit(user, section)
-  if (meta.status === 'approved') return <span className="muted small">{editable ? 'Approved. Any change creates a new draft.' : 'Approved and ready to use.'}</span>
-  if (meta.status === 'in_review') return <span className="muted small">{can.approve(user) ? 'Check the content, then approve or send it back.' : 'Waiting for an approver.'}</span>
-  return <span className="muted small">{editable ? 'Draft. Send it for approval when it is ready.' : 'Draft. The editor has not sent it for approval yet.'}</span>
 }

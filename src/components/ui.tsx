@@ -1,26 +1,36 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertTriangle, BadgeCheck, Check, CheckCircle2, ChevronDown, CircleDashed, Clock, Copy, X } from 'lucide-react'
-import { MARKET_STATE_LABEL, type MarketState } from '../data/rules'
+import { AlertTriangle, BadgeCheck, Ban, Check, CheckCircle2, ChevronDown, CircleDashed, CircleOff, Clock, Copy, Lock, X } from 'lucide-react'
+import { LOCALE_STATE_LABEL, type LocaleState } from '../data/rules'
 import { initials } from '../lib/format'
 import { copyText } from '../lib/files'
 import { toast, useStore, userName } from '../data/store'
 
 /* ---------- Status ---------- */
 
-const STATUS_ICON: Record<MarketState, typeof Clock> = {
+const STATUS_ICON: Record<LocaleState, typeof Clock> = {
   approved: CheckCircle2,
   in_review: Clock,
   draft: CircleDashed,
-  needs_update: AlertTriangle,
-  not_started: CircleDashed,
+  needs_review: AlertTriangle,
+  missing: CircleOff,
+  not_available: Ban,
 }
 
-export function StatusBadge({ status, small }: { status: MarketState; small?: boolean }) {
+export function StatusBadge({ status, small }: { status: LocaleState; small?: boolean }) {
   const Icon = STATUS_ICON[status]
   return (
     <span className={`badge badge-${status}${small ? ' badge-sm' : ''}`}>
       <Icon size={small ? 12 : 14} aria-hidden />
-      {MARKET_STATE_LABEL[status]}
+      {LOCALE_STATE_LABEL[status]}
+    </span>
+  )
+}
+
+/** Marks information that only the global team manages. */
+export function GlobalLock({ editable, label = 'Managed globally' }: { editable?: boolean; label?: string }) {
+  return (
+    <span className="lock-tag" title={editable ? 'You manage this for every locale. Changes appear in all locales.' : 'Only the global team can change this. It is the same in every locale.'}>
+      <Lock size={12} aria-hidden />{label}
     </span>
   )
 }

@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom'
 import { Check, X } from 'lucide-react'
 import type { Product, User } from '../types'
 import { FIELDS, FIELD_BY_KEY, GROUP_LABEL, displayValue, getValue, isEmptyValue, type FieldDef, type FieldGroup, type FieldKey } from '../lib/fields'
-import { saveGlobal, saveGlobalMany, useStore, type GlobalPatch } from '../data/store'
+import { saveGlobal, saveGlobalMany, type GlobalPatch } from '../data/store'
 import { essentialTodos, isReady } from '../data/rules'
 import { productImage } from '../lib/files'
 import { ReadyBadge, StatusBadge, Thumb } from './ui'
 import { FieldInput } from './FieldInput'
 
-const GROUPS: FieldGroup[] = ['classification', 'specification', 'copy', 'management']
+const GROUPS: FieldGroup[] = ['identity', 'technical', 'copy', 'management']
 
 function loadGroups(): FieldGroup[] {
-  try { return JSON.parse(localStorage.getItem('pim.sheetGroups') || 'null') ?? ['classification', 'specification'] } catch { return ['classification', 'specification'] }
+  try { return JSON.parse(localStorage.getItem('pim.sheetGroups2') || 'null') ?? ['identity', 'technical'] } catch { return ['identity', 'technical'] }
 }
 
 /** Spreadsheet of products: one row per product, one column per field. Click a cell to edit; tick rows to change many at once. */
 export function Sheet({ products, users, canEdit }: { products: Product[]; users: User[]; canEdit: boolean }) {
-  const blobUrls = useStore((s) => s.blobUrls)
   const [groups, setGroups] = useState<FieldGroup[]>(loadGroups)
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [editing, setEditing] = useState<{ id: string; key: FieldKey } | null>(null)
@@ -25,7 +24,7 @@ export function Sheet({ products, users, canEdit }: { products: Product[]; users
   const toggleGroup = (g: FieldGroup) => {
     const next = groups.includes(g) ? groups.filter((x) => x !== g) : GROUPS.filter((x) => x === g || groups.includes(x))
     setGroups(next)
-    try { localStorage.setItem('pim.sheetGroups', JSON.stringify(next)) } catch { /* not available */ }
+    try { localStorage.setItem('pim.sheetGroups2', JSON.stringify(next)) } catch { /* not available */ }
   }
   const visibleIds = products.map((p) => p.id)
   const allSelected = visibleIds.length > 0 && visibleIds.every((id) => selected.has(id))
@@ -65,7 +64,7 @@ export function Sheet({ products, users, canEdit }: { products: Product[]; users
                 <td className="sheet-sticky sheet-first">
                   {canEdit && <input type="checkbox" aria-label={`Select ${p.name} – ${p.species}`} checked={selected.has(p.id)} onChange={() => toggle(p.id)} />}
                   <Link to={`/products/${p.id}`} className="sheet-prod">
-                    <Thumb url={productImage(p, blobUrls)} size={28} />
+                    <Thumb url={productImage(p)} size={28} />
                     <span className="clamp-1"><strong>{p.name}</strong> – {p.species}</span>
                   </Link>
                 </td>
@@ -104,7 +103,7 @@ function CellEditor({ p, f, users, onClose }: { p: Product; f: FieldDef; users: 
   const ref = useRef<HTMLDivElement>(null)
   const save = () => {
     const value = Array.isArray(v) ? v.map((x) => x.trim()).filter(Boolean) : typeof v === 'string' ? v.trim() : v
-    saveGlobal(p.id, { [f.key]: value } as GlobalPatch, true)
+    saveGlobal(p.id, { [f.key]: value } as GlobalPatch)
     onClose()
   }
   useEffect(() => {
