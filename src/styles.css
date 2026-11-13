@@ -752,3 +752,54 @@ td.sheet-first { padding: 6px 10px; white-space: nowrap; }
   .products-table td:first-child { min-width: 0; }
   .products-table .prod-cell { min-width: 150px; }
 }
+
+/* =========================================================================
+   Files and content items, internal information
+   ========================================================================= */
+.assets-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.asset-title { display: block; color: var(--heading); font-weight: 600; font-size: 13.5px; }
+.asset-desc { color: var(--text); margin: 2px 0; max-width: 70ch; }
+.asset-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; color: var(--muted); margin-top: 3px; }
+.asset-actions { flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.asset-list.compact .asset-row { padding: 9px 20px; }
+.asset-list.compact .asset-thumb { width: 52px; height: 40px; }
+.internal-tag { display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 700; border-radius: 4px; padding: 0 6px; background: var(--neutral-200); color: var(--heading); }
+.asset-thumb.fmt-word { background: #e5eefc; } .fmt-word .asset-ext { color: #1d5bbf; }
+.asset-thumb.fmt-powerpoint { background: #fdece4; } .fmt-powerpoint .asset-ext { color: #c4471b; }
+.asset-thumb.fmt-excel { background: #e3f4ea; } .fmt-excel .asset-ext { color: #17703f; }
+.asset-thumb.fmt-pdf { background: #fde7e5; } .fmt-pdf .asset-ext { color: #b42318; }
+.asset-thumb.fmt-video { background: #efe9fb; } .fmt-video .asset-ext { color: #5b3cc4; }
+.asset-thumb.fmt-text { background: var(--neutral-100); } .fmt-text .asset-ext { color: var(--heading); }
+.source-seg { flex-wrap: wrap; align-self: start; }
+.drop.has-file { border-color: var(--aqua-500); background: var(--tint); }
+.drop > svg { color: var(--aqua-500); }
+.resource-internal { align-self: end; padding-bottom: 8px; }
+.text-body { white-space: pre-line; }
+
+.internal { display: grid; gap: 22px; }
+.internal-intro { margin-top: 0; }
+.internal-section > .card-head h2 { display: flex; align-items: center; gap: 10px; }
+.inote { padding: 16px 20px; border-bottom: 1px solid var(--border); display: grid; gap: 8px; }
+.inote:last-child { border-bottom: 0; }
+.inote .asset-list { border: 1px solid var(--border); border-radius: var(--radius); }
+.inote .asset-list .asset-row { padding: 8px 12px; }
+.inote-head { display: flex; align-items: center; gap: 10px; }
+.inote-head h3 { font-size: 14.5px; flex: 1; min-width: 0; }
+.inote-actions { display: flex; gap: 2px; }
+.internal-section > .asset-list { border-top: 1px solid var(--border); }
+.avail { display: inline-block; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.avail-available { background: var(--approved-bg); color: var(--approved); }
+.avail-on_request { background: var(--review-bg); color: var(--review); }
+.avail-phasing_out { background: var(--update-bg); color: var(--update); }
+.avail-not_sold { background: var(--neutral-200); color: var(--muted); }
+.avail-table td { vertical-align: top; }
+@media (max-width: 640px) {
+  .asset-actions { width: 100%; justify-content: flex-start; padding-left: 98px; }
+  .inote, .asset-list.compact .asset-row { padding-left: 16px; padding-right: 16px; }
+}
+.inote.concept { background: var(--tint); }
+.concept-facts { margin: 0; display: grid; gap: 6px; }
+.concept-facts div { display: grid; grid-template-columns: 170px 1fr; gap: 12px; }
+.concept-facts dt { color: var(--muted); font-size: 12.5px; font-weight: 600; }
+.concept-facts dd { margin: 0; }
+@media (max-width: 640px) { .concept-facts div { grid-template-columns: 1fr; gap: 0; } }

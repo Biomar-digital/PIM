@@ -46,6 +46,8 @@ region's markets with one click. Divisions are selectable too.
 | **Status and updates** | Per locale: Missing, Draft, In approval, Approved, and *Needs review* when the global content was approved again after the local copy was written. Local copy is never overwritten: the local team reviews it, edits it or marks *No change needed*. |
 | **Approval** | Saving approved content offers a **small update** (typo or wording: stays approved, no approval, no review for other locales) or a change that **needs approval** (draft, then *Send for approval*). Approvers see exactly what changed (added text in green, removed text struck through) and approve or send back with a note. |
 | **Assets** | Hero image, high-resolution product images, bag designs, logos, technical datasheets, brochures and other documents. The files stay in **The Pond**: the PIM stores a link to each one. Hero image, product images, bag designs and logos are global and managed by the global team. Local teams add brochures, datasheets and documents for their own locales. |
+| **Internal information** | A tab on each product for information that is not published: pellet sizes, formats and technical details; availability, pellet sizes and formats per market; internal presentations; technical information and notes; trials and results; internal selling points and positioning (with the range concept from the Product Brand Guidelines 2025); other information. Each note is global or for one market, can have files attached, and shows who changed it last. Nothing is pre-filled. |
+| **Files and content** | The Assets tab holds every file and content item: links to The Pond, uploaded documents (Word, PowerPoint, Excel, PDF, images, videos), web links, and text written in the PIM (article drafts, social media posts). Each item has a title, short description, content type, market, date and an *Internal use only* flag, and can be searched and filtered by type, format, market and use. One item shows wherever it is relevant: articles, social posts, videos, brochures and presentations under *Related content* on the Content tab, presentations, trial reports, datasheets and documents in Internal information. Product search also finds products by file title. |
 | **Use the content** | Copy any field, copy all approved text for the locale, or download a one-page product sheet (PDF) with the latest approved content of the locale. |
 | **Locales tab** | Where the product is available, the status and version of every local version, and the "live on the website" flag. Global editors add or remove locales. |
 | **People and access** | People, their locales and default locale, and what each role can do. The user menu switches person to try each role (for example Cathrine Jensen, Marketing Manager Denmark). |
@@ -59,7 +61,10 @@ The published prototype uses the artifact's shared database: everyone who opens 
 same products, edits, approvals and asset links, live. Each changed product is stored as one document
 (the full record with its local versions, approved versions and history); products nobody has changed
 come from `seed.json`. The sidebar shows *Shared data, saved*. Run locally (`npm run dev`), it falls back
-to this browser's storage and says *Saved in this browser only*. *People and access → Reset sample data*
+to this browser's storage and says *Saved in this browser only*.
+Uploaded files (`src/lib/uploads.ts`): images, videos, PDFs and text files go to the artifact's shared file store
+(up to 20 MB); Office files go to the shared database in parts (up to 8 MB). Larger files belong in The Pond or
+SharePoint and are linked. *People and access → Reset sample data*
 removes all changes for everyone.
 
 ## Structure
@@ -127,7 +132,7 @@ python3 -I scripts/build_seed.py path/to/unzipped-export src/data/seed.json
 ```
 
 Product names, ranges, species, production stages, descriptions, key benefits and the local
-local versions come from the CMS export. Taglines (global only) and selling points,
+local versions come from the CMS export. Taglines (global only; for EXIA, EFICO, MAXIO, POWER, LARVIVA, SmartCare and Blue Impact from the Product Brand Guidelines 2025) and selling points,
 categories and production stages come from biomar.com via `scripts/fetch_website_content.py`.
 The website does not hold product codes, feed type, pellet sizes, packaging or datasheets, so these
 are left empty. In production they would be maintained in the PIM by the global product team or

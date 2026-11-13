@@ -58,7 +58,7 @@ export default function Products() {
     return productsIn(products, scope)
       .filter((p) => {
         if (terms.length) {
-          const hay = [p.name, p.species, p.range, p.code, ...p.categories, ...p.stages].join(' ').toLowerCase()
+          const hay = [p.name, p.species, p.range, p.code, ...p.categories, ...p.stages, ...p.assets.map((a) => a.title), ...(p.internal?.notes ?? []).map((n) => n.title)].join(' ').toLowerCase()
           if (!terms.every((x) => hay.includes(x))) return false
         }
         if (get('range') && p.range !== get('range')) return false
@@ -136,7 +136,7 @@ export default function Products() {
       <div className="toolbar">
         <label className="search">
           <Search size={18} aria-hidden />
-          <input id="product-search" type="search" placeholder="Search by product name, species, range or code" value={get('q')} onChange={(e) => set('q', e.target.value)} aria-label="Search products" />
+          <input id="product-search" type="search" placeholder="Search by product, species, range, code or file title" value={get('q')} onChange={(e) => set('q', e.target.value)} aria-label="Search products" />
         </label>
         <div className="seg" role="group" aria-label="View">
           <button className={shownView === 'table' ? 'on' : ''} onClick={() => changeView('table')} title="List"><List size={18} /><span className="hide-sm">List</span></button>

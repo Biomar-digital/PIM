@@ -67,27 +67,86 @@ export interface Variant extends LocalCopy {
 /** Snapshot of an approved global version: the copy, plus product details when known. */
 export type VersionText = Copy & Partial<Record<DetailField, unknown>>
 
-export type AssetType = 'hero' | 'image' | 'bag' | 'logo' | 'brochure' | 'datasheet' | 'document'
+export type AssetType =
+  | 'hero' | 'image' | 'bag' | 'logo' | 'video' | 'presentation' | 'article' | 'social'
+  | 'trial' | 'datasheet' | 'brochure' | 'spreadsheet' | 'document'
+
+/** Where an uploaded file is kept: the artifact's file store, the shared database (in parts), or this browser */
+export interface StoredFile {
+  store: 'asset' | 'db' | 'local'
+  ref: string
+  name: string
+  size: number
+  mime: string
+}
 
 /**
- * A reference to an asset. The file itself lives in The Pond (BioMar's DAM); the PIM keeps the link,
- * what the asset is for, and which locale it belongs to.
+ * A file or piece of content related to a product. One item can appear in several places
+ * (Assets, Content, Internal information) without being added twice.
+ * It is either a link to The Pond, a link to another page, an uploaded file, or text written in the PIM.
  */
 export interface AssetRef {
   id: string
   type: AssetType
   title: string
+  description?: string
   /** "global" or a locale id */
   scope: string
+  /** Date the item belongs to (YYYY-MM-DD), e.g. when a trial ended or an article was published */
+  date?: string
+  /** For internal use only, not for publishing */
+  internal?: boolean
   /** Link to the asset in The Pond. Empty = not linked yet. */
   pondUrl: string
-  /** Preview image bundled with the prototype (path inside src/assets), until The Pond can serve previews */
+  /** Link to another page (SharePoint, YouTube, LinkedIn...) */
+  url?: string
+  /** Uploaded file */
+  file?: StoredFile
+  /** Text written in the PIM (article drafts, social media posts) */
+  body?: string
+  /** Preview image bundled with the prototype (path inside src/assets) */
   preview?: string
   fileName?: string
   /** Where a bundled preview was taken from */
   sourceUrl?: string
   addedBy: string
   addedAt: string
+  updatedAt?: string
+}
+
+/* ---------- Internal information ---------- */
+
+export type InternalSection = 'presentations' | 'technical' | 'trials' | 'positioning' | 'other'
+
+/** A note in the Internal information tab: free text, optionally with related files */
+export interface InternalNote {
+  id: string
+  section: InternalSection
+  /** "global" or a locale id */
+  scope: string
+  title: string
+  body: string
+  /** Related items from the product's assets */
+  resourceIds: string[]
+  updatedBy: string
+  updatedAt: string
+}
+
+export type MarketAvailability = '' | 'available' | 'on_request' | 'phasing_out' | 'not_sold'
+
+/** What is sold in one market: availability, pellet sizes and formats, notes */
+export interface MarketInfo {
+  status: MarketAvailability
+  pelletSizes: string[]
+  packaging: string[]
+  notes: string
+  updatedBy: string
+  updatedAt: string
+}
+
+export interface InternalInfo {
+  notes: InternalNote[]
+  markets: Record<string, MarketInfo>
 }
 
 /** 'global', 'assets' or a locale id */
@@ -95,7 +154,8 @@ export type Section = string
 
 export type HistoryAction =
   | 'created' | 'edited' | 'minor_update' | 'submitted' | 'approved' | 'changes_requested' | 'restored' | 'reviewed'
-  | 'asset_added' | 'asset_removed' | 'asset_linked' | 'market_added' | 'market_removed' | 'variant_created'
+  | 'asset_added' | 'asset_removed' | 'asset_linked' | 'asset_edited' | 'market_added' | 'market_removed' | 'variant_created'
+  | 'internal_edited'
 
 export interface HistoryEntry {
   id: string
@@ -137,6 +197,8 @@ export interface Product {
   markets: string[]
   variants: Record<string, Variant>
   assets: AssetRef[]
+  /** Internal information: not published, for marketing, product and sales teams */
+  internal?: InternalInfo
   history: HistoryEntry[]
   createdAt: string
 }

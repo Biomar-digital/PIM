@@ -154,6 +154,14 @@ BAGS_INDEX = "src/assets/bags/index.json"
 BAGS = json.load(open(BAGS_INDEX, encoding="utf-8")) if os.path.exists(BAGS_INDEX) else {}
 
 
+# Taglines from the BioMar Product Brand Guidelines 2025 (they take precedence over the website)
+BRAND_TAGLINES = {
+    **{r: "Optimise your Performance" for r in ("EXIA", "MAXIO", "EFICO", "POWER")},
+    "LARVIVA": "Start Strong. Stay Strong.",
+    "SmartCare": "You Care. We Care. SmartCare.",
+    "Blue Impact": "Progressively transforming aquaculture",
+}
+
 COPY_KEYS = ("tagline", "shortDescription", "description", "keyBenefits", "sellingPoints")
 # Local versions adapt these; the tagline is global and the same everywhere.
 LOCAL_KEYS = ("shortDescription", "description", "keyBenefits", "sellingPoints")
@@ -267,14 +275,14 @@ def main():
         mk_updated = random.randint(-120, -1) if mk_status == "approved" else random.randint(-21, -1)
         mk_version = random.randint(2, 6)
         random.random(), random.random()  # keep the random sequence stable
-        tagline = web_range.get("tagline", "")
+        tagline = BRAND_TAGLINES.get(rng, web_range.get("tagline", ""))
         selling = web_range.get("benefits", [])
         sources = {}
         if web.get("url"):
             for f in ("description", "keyBenefits", "categories", "stages"):
                 sources[f] = web["url"]
         if web_range.get("url"):
-            if tagline:
+            if tagline and rng not in BRAND_TAGLINES:
                 sources["tagline"] = web_range["url"]
             if selling:
                 sources["sellingPoints"] = web_range["url"]

@@ -13,7 +13,7 @@ import type { Product, User } from '../types'
 type Snap = { id: string; data(): Record<string, unknown> | undefined }
 type QuerySnap = { docs: Snap[] }
 type DbError = { code: string; message: string }
-interface DocRef { set(d: Record<string, unknown>): Promise<void>; delete(): Promise<void> }
+interface DocRef { set(d: Record<string, unknown>): Promise<void>; delete(): Promise<void>; get(): Promise<{ exists: boolean; data(): Record<string, unknown> | undefined }> }
 interface Collection {
   doc(id: string): DocRef
   get(): Promise<QuerySnap>
@@ -41,6 +41,8 @@ export async function connect(version: number, ms = 6000): Promise<boolean> {
 }
 
 export const isShared = () => !!db
+/** The shared database, for modules that keep their own documents (uploaded files) */
+export const sharedDb = () => db
 
 /** Documents written for an older seed are ignored, so a new seed starts clean. */
 function read<T>(s: QuerySnap, key: 'product' | 'user'): Map<string, T> {

@@ -139,14 +139,20 @@ export const LIFECYCLE_LABEL: Record<Lifecycle, string> = {
  * Asset types. `global` = managed by the global team only, the same in every locale.
  * The others can also be added per locale by the local team.
  */
-export const ASSET_TYPES: { id: AssetType; label: string; plural: string; global: boolean; required: boolean; hint: string }[] = [
-  { id: 'hero', label: 'Hero image', plural: 'Hero image', global: true, required: false, hint: 'The main product image, used everywhere' },
-  { id: 'image', label: 'Product image', plural: 'High-resolution product images', global: true, required: false, hint: 'Pellets, farm and lifestyle photography' },
-  { id: 'bag', label: 'Bag design', plural: 'Product bag designs', global: true, required: true, hint: 'Bag artwork and packshots' },
-  { id: 'logo', label: 'Logo', plural: 'Logos', global: true, required: false, hint: 'Product logo from the brand logo pack' },
-  { id: 'datasheet', label: 'Technical datasheet', plural: 'Technical datasheets and PDFs', global: false, required: false, hint: 'Technical specification' },
-  { id: 'brochure', label: 'Brochure', plural: 'Brochures', global: false, required: false, hint: 'Sales and marketing material' },
-  { id: 'document', label: 'Other document', plural: 'Other documents', global: false, required: false, hint: 'Certificates, presentations and anything else' },
+export const ASSET_TYPES: { id: AssetType; label: string; plural: string; global: boolean; required: boolean }[] = [
+  { id: 'hero', label: 'Hero image', plural: 'Hero image', global: true, required: false },
+  { id: 'image', label: 'Product image', plural: 'High-resolution product images', global: true, required: false },
+  { id: 'bag', label: 'Bag design', plural: 'Product bag designs', global: true, required: true },
+  { id: 'logo', label: 'Logo', plural: 'Logos', global: true, required: false },
+  { id: 'video', label: 'Video', plural: 'Videos', global: false, required: false },
+  { id: 'presentation', label: 'Presentation', plural: 'Presentations', global: false, required: false },
+  { id: 'article', label: 'Article', plural: 'Articles and drafts', global: false, required: false },
+  { id: 'social', label: 'Social media content', plural: 'Social media content', global: false, required: false },
+  { id: 'trial', label: 'Trial report', plural: 'Trial reports and research', global: false, required: false },
+  { id: 'datasheet', label: 'Technical datasheet', plural: 'Technical datasheets and PDFs', global: false, required: false },
+  { id: 'brochure', label: 'Brochure', plural: 'Brochures', global: false, required: false },
+  { id: 'spreadsheet', label: 'Spreadsheet', plural: 'Spreadsheets and data', global: false, required: false },
+  { id: 'document', label: 'Other document', plural: 'Other documents and materials', global: false, required: false },
 ]
 export const ASSET_LABEL: Record<AssetType, string> = Object.fromEntries(ASSET_TYPES.map((a) => [a.id, a.label])) as Record<AssetType, string>
 

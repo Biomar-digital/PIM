@@ -10,6 +10,7 @@ import { ApprovalActions } from '../components/approval'
 import { LocaleCode, localeName } from '../components/Layout'
 import { ContentTab, type ContentMode } from './product/ContentTab'
 import { AssetsTab } from './product/AssetsTab'
+import { InternalTab } from './product/InternalTab'
 import { LocalesTab } from './product/LocalesTab'
 import { HistoryTab } from './product/HistoryTab'
 
@@ -76,6 +77,7 @@ export default function ProductPage() {
   const tabs = [
     { id: 'content', label: 'Content' },
     { id: 'assets', label: `Assets (${localAssets})` },
+    { id: 'internal', label: 'Internal information' },
     { id: 'locales', label: `Locales (${p.markets.length})` },
     { id: 'history', label: 'History' },
   ]
@@ -182,6 +184,7 @@ export default function ProductPage() {
 
       {tab === 'content' && <ContentTab p={p} user={user} loc={section} mode={mode} setMode={setMode} />}
       {tab === 'assets' && <AssetsTab p={p} user={user} loc={section} />}
+      {tab === 'internal' && <InternalTab p={p} user={user} loc={section} />}
       {tab === 'locales' && <LocalesTab p={p} user={user} onOpen={(l) => navigate(`/products/${p.id}${regionMarkets?.includes(l) ? `?market=${l}` : ''}`)} />}
       {tab === 'history' && <HistoryTab p={p} user={user} loc={section} />}
     </div>

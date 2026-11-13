@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { AlertTriangle, ArrowRight, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
-import type { LocalCopy, LocalField, Meta, Product, User, Variant } from '../../types'
+import { AlertTriangle, ArrowRight, Plus, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
+import type { AssetType, LocalCopy, LocalField, Meta, Product, User, Variant } from '../../types'
 import { LOCAL_FIELDS } from '../../types'
 import { COPY_LABEL, GLOBAL, localeLanguage, marketLabel } from '../../data/reference'
 import { type LocaleState, approvedGlobal, can, essentialTodos, isOutdated, localeState, todos, variantGaps } from '../../data/rules'
@@ -13,6 +13,8 @@ import { copyText, downloadProductSheet, productAsText } from '../../lib/files'
 import { Card, CopyButton, Empty, GlobalLock, ListEditor, StatusBadge, UpdatedBy } from '../../components/ui'
 import { AttrValue, CopyValue, asText, cleanPatch } from './parts'
 import { LocaleCode, localeName } from '../../components/Layout'
+import { ResourceList, ResourceModal, addableTypes } from '../../components/resources'
+import { Link } from 'react-router-dom'
 
 export const COPY_HINT: Record<LocalField, string> = {
   shortDescription: 'One or two sentences for product cards and listings',
@@ -36,8 +38,7 @@ export function ContentTab({ p, user, loc, mode, setMode }: { p: Product; user: 
           ? <GlobalCopyCard p={p} user={user} />
           : <LocalCopyCard key={`${p.id}-${loc}`} p={p} user={user} loc={loc} onCompare={() => setMode('side')} />}
         <GlobalGroup p={p} user={user} group="identity" />
-        <GlobalGroup p={p} user={user} group="technical" />
-        {loc === GLOBAL && <GlobalGroup p={p} user={user} group="management" />}
+        <RelatedContent p={p} user={user} loc={loc} />
       </div>
       <aside className="overview-side">
         <UseCard p={p} loc={loc} />
@@ -66,7 +67,7 @@ function ChangesToApprove({ p, user, loc }: { p: Product; user: User; loc: strin
 
 /* ---------------- Global groups (locked for everyone but the global team) ---------------- */
 
-function GlobalGroup({ p, user, group }: { p: Product; user: User; group: FieldGroup }) {
+export function GlobalGroup({ p, user, group, title }: { p: Product; user: User; group: FieldGroup; title?: string }) {
   const users = useStore((s) => s.db.users)
   const fields = fieldsIn(group)
   const [draft, setDraft] = useState<Record<string, string | string[]> | null>(null)
@@ -84,7 +85,7 @@ function GlobalGroup({ p, user, group }: { p: Product; user: User; group: FieldG
   return (
     <Card
       className={`attr-card${editable ? '' : ' locked'}`}
-      title={<>{GROUP_LABEL[group]}<span className="attr-count">{filled} of {fields.length} filled</span></>}
+      title={<>{title ?? GROUP_LABEL[group]}<span className="attr-count">{filled} of {fields.length} filled</span></>}
       actions={<>
         <GlobalLock editable={editable} label={group === 'management' ? 'Global team only' : 'Same in every locale'} />
         {editable && !draft && <button className="btn btn-secondary btn-sm" onClick={start}><Pencil size={14} />Edit</button>}
@@ -355,6 +356,27 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
         </div>
       )}
     </div>
+  )
+}
+
+/* ---------------- Related content (same items as in Assets) ---------------- */
+
+const RELATED: AssetType[] = ['article', 'social', 'video', 'brochure', 'presentation']
+
+function RelatedContent({ p, user, loc }: { p: Product; user: User; loc: string }) {
+  const [adding, setAdding] = useState(false)
+  const items = p.assets.filter((a) => RELATED.includes(a.type) && (loc === GLOBAL || a.scope === GLOBAL || a.scope === loc))
+  const canAdd = addableTypes(user).some((t) => RELATED.includes(t.id))
+  return (
+    <Card className="attr-card"
+      title={<>Related content<span className="attr-count">Articles, social media posts, videos, brochures and presentations</span></>}
+      actions={<>
+        <Link to={`/products/${p.id}/assets`} className="link-sm">All files</Link>
+        {canAdd && <button className="btn btn-secondary btn-sm" onClick={() => setAdding(true)}><Plus size={14} />Add</button>}
+      </>}>
+      <ResourceList user={user} items={items} compact empty="Nothing added yet." />
+      {adding && <ResourceModal p={p} user={user} loc={loc} type="article" onClose={() => setAdding(false)} />}
+    </Card>
   )
 }
 

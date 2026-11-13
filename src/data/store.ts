@@ -7,11 +7,12 @@
 import { useSyncExternalStore } from 'react'
 import seed from './seed.json'
 import type {
-  AssetRef, Copy, Database, DetailField, HistoryAction, HistoryEntry, LocalCopy, Product, Section, Status, User, Variant, VersionText,
+  AssetRef, Copy, Database, DetailField, HistoryAction, HistoryEntry, InternalInfo, InternalNote, LocalCopy, MarketInfo, Product, Section, Status, User, Variant, VersionText,
 } from '../types'
 import { COPY_FIELDS, DETAIL_FIELDS, LOCAL_FIELDS } from '../types'
 import { idb } from '../lib/idb'
 import * as shared from '../lib/shared'
+import { removeFile } from '../lib/uploads'
 import { ASSET_LABEL, GLOBAL, marketLabel } from './reference'
 import { can } from './rules'
 
@@ -410,15 +411,32 @@ export function restoreVersion(id: string, entryId: string) {
 
 /* ---------------- Assets (references to The Pond) ---------------- */
 
-export function addAsset(id: string, input: Pick<AssetRef, 'type' | 'title' | 'scope' | 'pondUrl'>) {
+export type AssetInput = Pick<AssetRef, 'type' | 'title' | 'scope' | 'pondUrl'> & Partial<Pick<AssetRef, 'description' | 'date' | 'internal' | 'url' | 'file' | 'body'>>
+
+export function addAsset(id: string, input: AssetInput): string {
   const asset: AssetRef = { id: newId('a'), ...input, addedBy: state.userId, addedAt: now() }
+  const how = input.file ? 'Uploaded' : input.body != null ? 'Wrote' : 'Linked'
   updateProduct(id, (p) => ({
     ...p,
     // Only one hero image: a new one replaces the old one
     assets: [asset, ...p.assets.filter((a) => !(input.type === 'hero' && a.type === 'hero'))],
-    history: [historyEntry('assets', 'asset_added', `Linked ${input.title} (${ASSET_LABEL[input.type]}${input.scope !== GLOBAL ? `, ${marketLabel(input.scope, true)}` : ''})`), ...p.history],
+    history: [historyEntry('assets', 'asset_added', `${how} ${input.title} (${ASSET_LABEL[input.type]}${input.scope !== GLOBAL ? `, ${marketLabel(input.scope, true)}` : ''})`), ...p.history],
   }))
-  toast(`${input.title} linked`)
+  toast(`${input.title} added`)
+  return asset.id
+}
+
+export function updateAsset(id: string, assetId: string, patch: Partial<AssetRef>) {
+  updateProduct(id, (p) => {
+    const a = p.assets.find((x) => x.id === assetId)
+    if (!a) return p
+    return {
+      ...p,
+      assets: p.assets.map((x) => (x.id === assetId ? { ...x, ...patch, updatedAt: now() } : x)),
+      history: [historyEntry('assets', 'asset_edited', `Updated ${patch.title ?? a.title}`), ...p.history],
+    }
+  })
+  toast('Saved')
 }
 
 export function linkAsset(id: string, assetId: string, pondUrl: string) {
@@ -435,15 +453,63 @@ export function linkAsset(id: string, assetId: string, pondUrl: string) {
 }
 
 export function removeAsset(id: string, assetId: string) {
+  let file: AssetRef['file']
   updateProduct(id, (p) => {
     const a = p.assets.find((x) => x.id === assetId)
+    file = a?.file
+    const internal = p.internal && { ...p.internal, notes: p.internal.notes.map((n) => ({ ...n, resourceIds: n.resourceIds.filter((r) => r !== assetId) })) }
     return {
       ...p,
       assets: p.assets.filter((x) => x.id !== assetId),
-      history: [historyEntry('assets', 'asset_removed', `Removed ${a?.title ?? 'an asset'}`), ...p.history],
+      internal,
+      history: [historyEntry('assets', 'asset_removed', `Removed ${a?.title ?? 'an item'}`), ...p.history],
     }
   })
-  toast('Asset removed', 'info')
+  if (file) removeFile(file)
+  toast('Removed', 'info')
+}
+
+/* ---------------- Internal information ---------------- */
+
+const internalOf = (p: Product): InternalInfo => p.internal ?? { notes: [], markets: {} }
+
+export function saveNote(id: string, note: Omit<InternalNote, 'id' | 'updatedBy' | 'updatedAt'> & { id?: string }) {
+  updateProduct(id, (p) => {
+    const info = internalOf(p)
+    const existing = note.id && info.notes.find((n) => n.id === note.id)
+    const saved: InternalNote = { ...note, id: note.id ?? newId('n'), updatedBy: state.userId, updatedAt: now() }
+    return {
+      ...p,
+      internal: { ...info, notes: existing ? info.notes.map((n) => (n.id === saved.id ? saved : n)) : [saved, ...info.notes] },
+      history: [historyEntry(note.scope, 'internal_edited', `${existing ? 'Updated' : 'Added'} internal note “${saved.title}”`), ...p.history],
+    }
+  })
+  toast('Saved')
+}
+
+export function removeNote(id: string, noteId: string) {
+  updateProduct(id, (p) => {
+    const info = internalOf(p)
+    const n = info.notes.find((x) => x.id === noteId)
+    return {
+      ...p,
+      internal: { ...info, notes: info.notes.filter((x) => x.id !== noteId) },
+      history: [historyEntry(n?.scope ?? GLOBAL, 'internal_edited', `Removed internal note “${n?.title ?? ''}”`), ...p.history],
+    }
+  })
+  toast('Removed', 'info')
+}
+
+export function saveMarketInfo(id: string, locale: string, patch: Omit<MarketInfo, 'updatedBy' | 'updatedAt'>) {
+  updateProduct(id, (p) => {
+    const info = internalOf(p)
+    return {
+      ...p,
+      internal: { ...info, markets: { ...info.markets, [locale]: { ...patch, updatedBy: state.userId, updatedAt: now() } } },
+      history: [historyEntry(locale, 'internal_edited', `Updated availability and formats for ${marketLabel(locale, true)}`), ...p.history],
+    }
+  })
+  toast('Saved')
 }
 
 /* ---------------- Products ---------------- */
