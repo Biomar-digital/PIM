@@ -831,3 +831,28 @@ td.sheet-first { padding: 6px 10px; white-space: nowrap; }
 .req-meta .loc-code { min-width: 22px; height: 16px; font-size: 9px; padding: 0 4px; }
 .req-actions { flex-shrink: 0; }
 @media (max-width: 640px) { .req { flex-wrap: wrap; } .req-actions { width: 100%; justify-content: flex-end; } }
+
+/* =========================================================================
+   Dashboard: clean, consistent sections (no decorative colour bars)
+   ========================================================================= */
+.dash { --dash-radius: 6px; }
+.dash .card, .dash .work-group, .dash .stats, .dash .tagged .req-list, .dash .all-clear, .dash .dash-hero { border-radius: var(--dash-radius); }
+.dash .work-group,
+.dash .work-group.tone-approve, .dash .work-group.tone-sent_back, .dash .work-group.tone-update,
+.dash .work-group.tone-draft, .dash .work-group.tone-missing { border: 1px solid var(--border); background: var(--surface); }
+.dash .tagged .req-list { border: 1px solid var(--border); background: var(--surface); }
+.dash .work-group-head { background: var(--surface); border-bottom: 1px solid var(--border); padding: 11px 16px; gap: 8px; font-size: 13.5px; }
+.dash .work-group-head strong { font-weight: 600; }
+.dash .work-count { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.dash .work-group-head .link-btn { margin-left: auto; font-weight: 500; font-size: 12.5px; }
+.dash .work-row { padding: 10px 16px; }
+.dash .work-row:hover, .dash .stat:hover { background: var(--neutral-50); }
+.dash .section-head { align-items: baseline; margin-bottom: 10px; }
+.dash .section-head h2, .dash .attention .section-head h2 { font-size: 16px; font-weight: 600; }
+.dash .section-head .muted { font-size: 12.5px; }
+.dash .all-clear { background: var(--surface); border: 1px solid var(--border); }
+.dash .card-head { padding: 13px 18px; }
+.dash .card-head h2 { font-size: 15px; }
+.dash .stats { border-color: var(--border); }
+.dash .stat { padding: 14px 18px; }
+.dash .stat-n { font-size: 24px; }

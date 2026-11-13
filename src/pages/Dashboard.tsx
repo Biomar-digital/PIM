@@ -171,10 +171,10 @@ function WorkGroup({ items }: { items: WorkItem[] }) {
       <div className="work-group-head">
         <span className={`dot dot-${first.tone}`} aria-hidden />
         <strong>{first.title}</strong>
-        <span className="count-pill">{items.length}</span>
+        <span className="work-count">{items.length}</span>
         {items.length > 3 && (
           <button className="link-btn small" onClick={() => setAll(!all)} aria-expanded={all}>
-            {all ? <>Show fewer<ChevronDown size={14} /></> : <>Show all {items.length}<ChevronRight size={14} /></>}
+            {all ? <>Show fewer<ChevronDown size={14} /></> : <>Show all<ChevronRight size={14} /></>}
           </button>
         )}
       </div>
