@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { AlertTriangle, ArrowRight, Plus, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
+import { AlertTriangle, ArrowRight, Copy, Plus, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
 import type { AssetType, LocalCopy, LocalField, Meta, Product, User, Variant } from '../../types'
 import { LOCAL_FIELDS } from '../../types'
 import { COPY_LABEL, GLOBAL, localeLanguage, marketLabel } from '../../data/reference'
@@ -34,6 +34,19 @@ const PER_SPECIES = ['species', 'code']
 /** Only the fields that differ from what is saved now */
 const changedOnly = (patch: Record<string, unknown>, before: (k: string) => unknown) =>
   Object.fromEntries(Object.entries(patch).filter(([k, v]) => !PER_SPECIES.includes(k) && !same(v, before(k))))
+
+/** Shown before editing, so people know the change can go to the other species too */
+function AlsoHint({ also, onEdit }: { also: AlsoApply; onEdit: () => void }) {
+  if (!also.options.length) return null
+  const n = also.options.length
+  return (
+    <div className="also-hint">
+      <Copy size={15} aria-hidden />
+      <span><strong>{also.options[0].name}</strong> is also made for {n} other {n === 1 ? 'species' : 'species'}. When you edit, you can apply the same changes to them.</span>
+      <button className="link-btn small" onClick={() => { also.onChange(also.options.map((o) => o.id)); onEdit() }}>Edit for all species</button>
+    </div>
+  )
+}
 
 /** Choice of other species to copy an edit to. Local copy: only species sold in that market. */
 function useAlso(p: Product, loc: string): AlsoApply & { push: (patch: Record<string, unknown>, mode: SaveMode) => void } {
@@ -191,7 +204,9 @@ function GlobalCopyCard({ p, user }: { p: Product; user: User }) {
       title={<>Marketing copy<span className="attr-count">Global English, the master text for every locale</span></>}
       actions={editable && !draft ? <button className="btn btn-secondary btn-sm" onClick={() => setDraft(pickLocal(p.content))}><Pencil size={14} />Edit</button> : <GlobalLock editable={editable} label="Global team only" />}
     >
-      <div className="pad-x pad-t"><StatusLine meta={p.status} version={p.content.version} /><SentBackNote meta={p.status} /></div>
+      <div className="pad-x pad-t"><StatusLine meta={p.status} version={p.content.version} /><SentBackNote meta={p.status} />
+        {editable && !draft && <AlsoHint also={also} onEdit={() => setDraft(pickLocal(p.content))} />}
+      </div>
       <CopyFields value={p.content} draft={draft} setDraft={setDraft} />
       {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} also={also} tag={{ productId: p.id, locale: GLOBAL, about: 'Marketing copy', kind: 'translate' }} />}
     </Card>
@@ -267,6 +282,7 @@ function LocalCopyCard({ p, user, loc, onCompare }: { p: Product; user: User; lo
         <StatusLine meta={v.meta} version={v.version} state={localeState(p, loc)} />
         <SentBackNote meta={v.meta} />
         <ReviewBanner p={p} v={v} user={user} loc={loc} onCompare={onCompare} />
+        {editable && !draft && !v.inheritsGlobal && <AlsoHint also={also} onEdit={() => setDraft(pickLocal(v))} />}
         {v.inheritsGlobal && (
           <div className="note">
             <Globe2 size={18} />
@@ -317,6 +333,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
       <div className="sbs-notes">
         <SentBackNote meta={v.meta} />
         <ReviewBanner p={p} v={v} user={user} loc={loc} />
+        {editable && <AlsoHint also={also} onEdit={() => {}} />}
       </div>
 
       <div className="sbs-overview">

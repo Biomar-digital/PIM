@@ -63,17 +63,18 @@ export interface AlsoApply {
 /** "Also apply to the same product for other species" */
 function AlsoApplyPicker({ also }: { also: AlsoApply }) {
   const [open, setOpen] = useState(also.selected.length > 0)
+  const shown = open || also.selected.length > 0
   const { options, selected, onChange } = also
   const all = selected.length === options.length
   const toggle = (id: string) => onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id])
   return (
     <div className="also">
       <label className="check also-main">
-        <input type="checkbox" checked={open} onChange={(e) => { setOpen(e.target.checked); onChange(e.target.checked ? options.map((o) => o.id) : []) }} />
+        <input type="checkbox" checked={shown} onChange={(e) => { setOpen(e.target.checked); onChange(e.target.checked ? options.map((o) => o.id) : []) }} />
         <Copy size={14} aria-hidden />
         <span>Also apply these changes to {options[0].name} for other species <span className="muted">({options.length})</span></span>
       </label>
-      {open && (
+      {shown && (
         <div className="also-body">
           <div className="also-list">
             {options.map((o) => (
