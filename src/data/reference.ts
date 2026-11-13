@@ -2,51 +2,96 @@
 import type { AssetType, Lifecycle, Role, Status } from '../types'
 
 /** The locales of biomar.com. Ids are the website's culture codes; "global" is the global English site. */
+/** The locales of biomar.com. Ids are the website's culture codes; "global" is the global English site. */
 export interface Market {
   /** Locale id, same as the website culture code */
   id: string
   market: string
   language: string
-  region: string
+  /** Division the market belongs to (d:...) */
+  division: string
+  /** Region inside the division, when the division has regions (EMEA) */
+  region?: string
 }
 
 export const MARKETS: Market[] = [
-  { id: 'nn-NO', market: 'Norway', language: 'Norwegian', region: 'Nordics' },
-  { id: 'da-DK', market: 'Denmark', language: 'Danish', region: 'Nordics' },
-  { id: 'sv-SE', market: 'Sweden', language: 'Swedish', region: 'Nordics' },
-  { id: 'fi-FI', market: 'Finland', language: 'Finnish', region: 'Nordics' },
-  { id: 'en-GB', market: 'United Kingdom', language: 'English', region: 'Europe' },
-  { id: 'de-DE', market: 'Germany', language: 'German', region: 'Europe' },
-  { id: 'pl-PL', market: 'Poland', language: 'Polish', region: 'Europe' },
-  { id: 'fr-FR', market: 'France', language: 'French', region: 'Europe' },
-  { id: 'es-ES', market: 'Spain', language: 'Spanish', region: 'Mediterranean' },
-  { id: 'it-IT', market: 'Italy', language: 'Italian', region: 'Mediterranean' },
-  { id: 'el-GR', market: 'Greece', language: 'Greek', region: 'Mediterranean' },
-  { id: 'tr-TR', market: 'Türkiye', language: 'Turkish', region: 'Mediterranean' },
-  { id: 'es-CL', market: 'Chile', language: 'Spanish', region: 'Americas' },
-  { id: 'es-EC', market: 'Ecuador', language: 'Spanish', region: 'Americas' },
-  { id: 'es-CR', market: 'Costa Rica', language: 'Spanish', region: 'Americas' },
-  { id: 'en-AU', market: 'Australia', language: 'English', region: 'Asia-Pacific' },
-  { id: 'vi-VN', market: 'Vietnam', language: 'Vietnamese', region: 'Asia-Pacific' },
-  { id: 'en-PH', market: 'Philippines', language: 'English', region: 'Asia-Pacific' },
-  { id: 'zh', market: 'China', language: 'Chinese', region: 'Asia-Pacific' },
+  // Salmon Division
+  { id: 'nn-NO', market: 'Norway', language: 'Norwegian', division: 'd:salmon' },
+  { id: 'es-CL', market: 'Chile', language: 'Spanish', division: 'd:salmon' },
+  { id: 'en-GB', market: 'United Kingdom', language: 'English', division: 'd:salmon' },
+  { id: 'en-AU', market: 'Australia', language: 'English', division: 'd:salmon' },
+  // LATAM, Shrimp and Hatchery Division
+  { id: 'es-EC', market: 'Ecuador', language: 'Spanish', division: 'd:latam' },
+  { id: 'en-PH', market: 'Philippines', language: 'English', division: 'd:latam' },
+  { id: 'es-CR', market: 'Costa Rica', language: 'Spanish', division: 'd:latam' },
+  // Asia Division
+  { id: 'vi-VN', market: 'Vietnam', language: 'Vietnamese', division: 'd:asia' },
+  { id: 'zh', market: 'China', language: 'Chinese', division: 'd:asia' },
+  // EMEA Division
+  { id: 'fr-FR', market: 'France', language: 'French', division: 'd:emea', region: 'r:westmed' },
+  { id: 'es-ES', market: 'Spain', language: 'Spanish', division: 'd:emea', region: 'r:westmed' },
+  { id: 'el-GR', market: 'Greece', language: 'Greek', division: 'd:emea', region: 'r:greece' },
+  { id: 'tr-TR', market: 'Türkiye', language: 'Turkish', division: 'd:emea', region: 'r:turkey' },
+  { id: 'da-DK', market: 'Denmark', language: 'Danish', division: 'd:emea', region: 'r:baltics' },
+  { id: 'sv-SE', market: 'Sweden', language: 'Swedish', division: 'd:emea', region: 'r:baltics' },
+  { id: 'fi-FI', market: 'Finland', language: 'Finnish', division: 'd:emea', region: 'r:baltics' },
+  { id: 'de-DE', market: 'Germany', language: 'German', division: 'd:emea', region: 'r:baltics' },
+  { id: 'pl-PL', market: 'Poland', language: 'Polish', division: 'd:emea', region: 'r:baltics' },
+  { id: 'it-IT', market: 'Italy', language: 'Italian', division: 'd:emea', region: 'r:baltics' },
 ]
 
 export const MARKET_BY_ID: Record<string, Market> = Object.fromEntries(MARKETS.map((m) => [m.id, m]))
 
 export const GLOBAL = 'global'
-/** Every locale people can select, Global first */
+
+/**
+ * Divisions and regions: groups of markets that one marketing team looks after.
+ * Selecting a group shows its markets together (dashboard, products, tasks).
+ * Regions with a single market (Greece, Türkiye) are selected as that market.
+ */
+export interface Group {
+  id: string
+  name: string
+  short: string
+  kind: 'division' | 'region'
+  division?: string
+  locales: string[]
+}
+
+const marketsWhere = (f: (m: Market) => boolean) => MARKETS.filter(f).map((m) => m.id)
+
+export const GROUPS: Group[] = [
+  { id: 'd:salmon', name: 'Salmon Division', short: 'SAL', kind: 'division', locales: marketsWhere((m) => m.division === 'd:salmon') },
+  { id: 'd:latam', name: 'LATAM, Shrimp and Hatchery Division', short: 'LAT', kind: 'division', locales: marketsWhere((m) => m.division === 'd:latam') },
+  { id: 'd:asia', name: 'Asia Division', short: 'ASI', kind: 'division', locales: marketsWhere((m) => m.division === 'd:asia') },
+  { id: 'd:emea', name: 'EMEA Division', short: 'EMEA', kind: 'division', locales: marketsWhere((m) => m.division === 'd:emea') },
+  { id: 'r:westmed', name: 'West Med', short: 'WM', kind: 'region', division: 'd:emea', locales: marketsWhere((m) => m.region === 'r:westmed') },
+  { id: 'r:baltics', name: 'Baltics', short: 'BAL', kind: 'region', division: 'd:emea', locales: marketsWhere((m) => m.region === 'r:baltics') },
+]
+export const GROUP_BY_ID: Record<string, Group> = Object.fromEntries(GROUPS.map((g) => [g.id, g]))
+export const DIVISIONS = GROUPS.filter((g) => g.kind === 'division')
+
+export const isGroup = (id: string) => id in GROUP_BY_ID
+/** Markets behind a selection: a group's markets, or the market itself. Global = none (the master record). */
+export const scopeLocales = (id: string): string[] => (id === GLOBAL ? [] : GROUP_BY_ID[id]?.locales ?? [id])
+/** Region (or division) a market belongs to, as shown to people: "Baltics", "Salmon Division" */
+export function marketGroup(id: string): Group | undefined {
+  const m = MARKET_BY_ID[id]
+  if (!m) return undefined
+  return GROUP_BY_ID[m.region ?? ''] ?? GROUP_BY_ID[m.division]
+}
+
+/** Every market or group people can select, Global first */
 export const LOCALE_IDS = [GLOBAL, ...MARKETS.map((m) => m.id)]
-export const REGIONS = ['Nordics', 'Europe', 'Mediterranean', 'Americas', 'Asia-Pacific']
-/** Short code shown in the locale picker, e.g. "DK" */
-export const localeCode = (id: string) => (id === GLOBAL ? 'GL' : id === 'zh' ? 'CN' : id.split('-')[1] ?? id.toUpperCase())
+/** Short code shown in the picker, e.g. "DK", "BAL" */
+export const localeCode = (id: string) => (id === GLOBAL ? 'GL' : GROUP_BY_ID[id]?.short ?? (id === 'zh' ? 'CN' : id.split('-')[1] ?? id.toUpperCase()))
 /** Language of a locale */
-export const localeLanguage = (id: string) => (id === GLOBAL ? 'English' : MARKET_BY_ID[id]?.language ?? id)
-export const LANGUAGES = [...new Set(MARKETS.map((m) => m.language))].sort()
+export const localeLanguage = (id: string) => (id === GLOBAL ? 'English' : GROUP_BY_ID[id] ? `${GROUP_BY_ID[id].locales.length} markets` : MARKET_BY_ID[id]?.language ?? id)
 
 /** "Norway (Norwegian)", or just "Norway" when short */
 export function marketLabel(id: string, short = false): string {
   if (id === 'global') return short ? 'Global' : 'Global (English)'
+  if (GROUP_BY_ID[id]) return GROUP_BY_ID[id].name
   const m = MARKET_BY_ID[id]
   if (!m) return id
   return short ? m.market : `${m.market} (${m.language})`

@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AlertTriangle, ArrowRight, CheckCircle2, ChevronDown, ChevronRight, CircleOff, Clock, FileWarning, Package } from 'lucide-react'
 import { currentUser, setLocale, useStore, userName } from '../data/store'
-import { GLOBAL, localeLanguage } from '../data/reference'
+import { DIVISIONS, GLOBAL, GROUP_BY_ID, isGroup, localeLanguage, scopeLocales } from '../data/reference'
 import { can, isGlobalUser, type LocaleState } from '../data/rules'
 import { attentionCounts, localeOverview, productsIn, recentChanges, workItems, type Attention, type WorkItem } from '../data/insights'
 import { productImage } from '../lib/files'
@@ -15,7 +15,7 @@ const greeting = () => {
   return h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening'
 }
 
-export const copyWord = (loc: string) => (loc === GLOBAL || localeLanguage(loc) === 'English' ? 'local' : localeLanguage(loc))
+export const copyWord = (loc: string) => (loc === GLOBAL || isGroup(loc) || localeLanguage(loc) === 'English' ? 'local' : localeLanguage(loc))
 
 export default function Dashboard() {
   const all = useStore((s) => s.db.products)
@@ -26,7 +26,9 @@ export default function Dashboard() {
   const work = useMemo(() => workItems(all, user, loc), [all, user, loc])
   const recent = useMemo(() => recentChanges(all, loc), [all, loc])
   const global = loc === GLOBAL
+  const group = isGroup(loc)
   const name = localeName(loc)
+  const where = group ? `in ${scopeLocales(loc).length} markets` : `in ${name}`
 
   const tiles: { show?: Attention; n: number; label: string; hint: string; icon: typeof Package; tone: string }[] = global ? [
     { n: products.length, label: 'Products', hint: 'Every product in the PIM', icon: Package, tone: 'neutral' },
@@ -35,10 +37,10 @@ export default function Dashboard() {
     { show: 'missing_copy', n: counts.missing_copy, label: 'Missing copy', hint: 'English, or a locale where it is sold', icon: CircleOff, tone: 'missing' },
     { show: 'missing_info', n: counts.missing_info, label: 'Missing information or assets', hint: 'Core copy or bag design', icon: FileWarning, tone: 'missing' },
   ] : [
-    { n: products.length, label: `Available in ${name}`, hint: 'Products sold in this locale', icon: Package, tone: 'neutral' },
-    { show: 'missing_copy', n: counts.missing_copy, label: `Missing ${copyWord(loc)} copy`, hint: 'No description or benefits yet', icon: CircleOff, tone: 'missing' },
-    { show: 'needs_review', n: counts.needs_review, label: 'Global content changed', hint: `${localeLanguage(loc)} copy needs review`, icon: AlertTriangle, tone: 'update' },
-    { show: 'in_review', n: counts.in_review, label: 'Awaiting approval', hint: `${name} versions sent for approval`, icon: Clock, tone: 'review' },
+    { n: products.length, label: `Available in ${name}`, hint: group ? `Sold in at least one of its ${scopeLocales(loc).length} markets` : 'Products sold in this market', icon: Package, tone: 'neutral' },
+    { show: 'missing_copy', n: counts.missing_copy, label: `Missing ${copyWord(loc)} copy`, hint: group ? 'In at least one market' : 'No description or benefits yet', icon: CircleOff, tone: 'missing' },
+    { show: 'needs_review', n: counts.needs_review, label: 'Global content changed', hint: group ? 'Local copy to review' : `${localeLanguage(loc)} copy needs review`, icon: AlertTriangle, tone: 'update' },
+    { show: 'in_review', n: counts.in_review, label: 'Awaiting approval', hint: `Local versions sent for approval`, icon: Clock, tone: 'review' },
     { show: 'missing_info', n: counts.missing_info, label: 'Missing information or assets', hint: 'Global copy or bag design', icon: FileWarning, tone: 'missing' },
   ]
 
@@ -46,9 +48,11 @@ export default function Dashboard() {
     <div className="page">
       <div className="page-head">
         <div>
-          <p className="muted">{greeting()}, {user.name.split(' ')[0]}</p>
-          <h1 className="row-gap"><LocaleCode id={loc} />{global ? 'Global overview' : name}</h1>
-          <p className="muted">{global ? `All ${products.length} products and ${localeOverview(all).length} locales` : `${localeLanguage(loc)} · ${products.length} products available in ${name}`}</p>
+          <h1 className="hello">{greeting()}, {user.name.split(' ')[0]}</h1>
+          <p className="lead">Welcome to BioMar Product Information</p>
+          <h2 className="scope-title row-gap"><LocaleCode id={loc} />{global ? 'Global overview' : name}
+            <span className="muted small">{global ? `All ${products.length} products in ${localeOverview(all).length} markets` : group ? `${products.length} products ${where}` : `${localeLanguage(loc)} · ${products.length} products`}</span>
+          </h2>
         </div>
       </div>
 
@@ -72,7 +76,7 @@ export default function Dashboard() {
         </Card>
 
         <div className="stack-gap">
-        {!global && <StatusSummary loc={loc} />}
+        {!global && !group && <StatusSummary loc={loc} />}
         <Card title="Latest changes">
           <ul className="activity">
             {recent.map((r, i) => (
@@ -90,7 +94,8 @@ export default function Dashboard() {
           </ul>
         </Card>
         </div>
-        {global && isGlobalUser(user) && <LocalesCard />}
+        {global && isGlobalUser(user) && <LocalesCard title="Markets by division" />}
+        {group && <LocalesCard only={scopeLocales(loc)} title={`Markets in ${name}`} />}
       </div>
     </div>
   )
@@ -168,31 +173,37 @@ function StatusSummary({ loc }: { loc: string }) {
   )
 }
 
-/** Every locale at a glance, for global users */
-function LocalesCard() {
+/** Markets at a glance: every market for global users (by division), or the markets of a region. */
+function LocalesCard({ only, title = 'Markets' }: { only?: string[]; title?: string }) {
   const all = useStore((s) => s.db.products)
-  const rows = useMemo(() => localeOverview(all), [all])
+  const rows = useMemo(() => localeOverview(all, only), [all, only])
+  const sections = only ? [{ id: '', name: '', rows }] : DIVISIONS.map((d) => ({ id: d.id, name: d.name, rows: rows.filter((r) => r.division === d.id) }))
   return (
-    <Card title="Locales" className="span-3">
+    <Card title={title} className="span-3">
       <div className="table-wrap">
         <table className="table locales-table">
-          <thead><tr><th>Locale</th><th className="num">Products</th><th className="num">Approved</th><th className="num">Needs review</th><th className="num">In approval</th><th className="num">Draft</th><th className="num">Not started</th><th className="hide-md">Progress</th></tr></thead>
+          <thead><tr><th>Market</th><th className="num">Products</th><th className="num">Approved</th><th className="num">Needs review</th><th className="num">In approval</th><th className="num">Draft</th><th className="num">Not started</th><th className="hide-md">Progress</th></tr></thead>
           <tbody>
-            {rows.map((r) => (
-              <tr key={r.id} className="click-row" onClick={() => setLocale(r.id)} title={`Switch to ${r.market}`}>
-                <td><span className="row-gap"><LocaleCode id={r.id} /><span><strong>{r.market}</strong><span className="muted small block">{r.language}</span></span></span></td>
-                <td className="num">{r.total}</td>
-                <td className="num">{r.counts.approved || ''}</td>
-                <td className="num warn-text">{r.counts.needs_review || ''}</td>
-                <td className="num">{r.counts.in_review || ''}</td>
-                <td className="num">{r.counts.draft || ''}</td>
-                <td className="num">{r.counts.missing || ''}</td>
-                <td className="hide-md">
-                  <div className="stack-bar sm" aria-label={`${r.counts.approved} of ${r.total} approved`}>
-                    {STATE_ORDER.map((s) => r.counts[s] > 0 && <span key={s} className={`seg-${s}`} style={{ flex: r.counts[s] }} />)}
-                  </div>
-                </td>
-              </tr>
+            {sections.map((sec) => (
+              <Fragment key={sec.id || 'all'}>
+                {sec.name && <tr className="group-row click-row" onClick={() => setLocale(sec.id)}><td colSpan={8}>{sec.name}</td></tr>}
+                {sec.rows.map((r) => (
+                  <tr key={r.id} className="click-row" onClick={() => setLocale(r.id)} title={`Switch to ${r.market}`}>
+                    <td><span className="row-gap"><LocaleCode id={r.id} /><span><strong>{r.market}</strong><span className="muted small block">{r.language}{!only && r.region && GROUP_BY_ID[r.region] ? ` · ${GROUP_BY_ID[r.region].name}` : ''}</span></span></span></td>
+                    <td className="num">{r.total}</td>
+                    <td className="num">{r.counts.approved || ''}</td>
+                    <td className="num warn-text">{r.counts.needs_review || ''}</td>
+                    <td className="num">{r.counts.in_review || ''}</td>
+                    <td className="num">{r.counts.draft || ''}</td>
+                    <td className="num">{r.counts.missing || ''}</td>
+                    <td className="hide-md">
+                      <div className="stack-bar sm" aria-label={`${r.counts.approved} of ${r.total} approved`}>
+                        {STATE_ORDER.map((s) => r.counts[s] > 0 && <span key={s} className={`seg-${s}`} style={{ flex: r.counts[s] }} />)}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </Fragment>
             ))}
           </tbody>
         </table>

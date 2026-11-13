@@ -744,3 +744,71 @@ h1 .loc-code { height: 28px; min-width: 38px; font-size: 13px; }
 @media (max-width: 900px) { .topbar-loc { display: inline-grid; } }
 .list-editor textarea, .sbs-right textarea { field-sizing: content; min-height: 3.2em; }
 .sbs-label .lock-tag { text-transform: none; letter-spacing: 0; }
+
+/* =========================================================================
+   Look and feel of The Pond and the customer portal
+   ========================================================================= */
+:root { --pond: #eaf4fa; --pond-icon: #a8d3ea; --pond-ink: #1d3463; }
+h1 { font-weight: 800; color: var(--pond-ink); letter-spacing: -.01em; }
+.hello { font-size: 40px; font-weight: 700; color: var(--pond-ink); }
+.lead { font-size: 16px; color: var(--text); margin-top: 2px; }
+.scope-title { margin-top: 22px; font-size: 20px; font-weight: 700; color: var(--pond-ink); flex-wrap: wrap; }
+.scope-title .muted { font-weight: 500; font-size: 14px; }
+
+/* Market selector in the top bar, like the customer portal */
+.topbar { gap: 14px; }
+.loc-picker { position: relative; margin: 0; flex-shrink: 0; }
+.loc-btn { background: var(--surface); color: var(--text); border: 1.5px solid var(--pond-ink); border-radius: 6px; padding: 7px 12px; min-width: 260px; max-width: 340px; box-shadow: none; }
+.loc-btn:hover { background: var(--surface-2); }
+.loc-btn-text strong { font-size: 13px; font-weight: 700; color: var(--pond-ink); }
+.loc-btn-text span { font-size: 13px; color: var(--text); }
+.loc-pop { left: 0; top: calc(100% + 6px); width: 360px; }
+.loc-div { border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px; }
+.loc-opt.d1 { padding-left: 26px; }
+.loc-opt.d2 { padding-left: 44px; font-size: 13px; }
+.loc-opt.grp { font-weight: 600; }
+.loc-opt.d0.grp { color: var(--pond-ink); }
+.loc-code.group { background: var(--pond-ink); color: #fff; }
+
+/* Search as in The Pond: a soft grey pill */
+.qs-box { background: #f1f2f4; border-color: transparent; border-radius: 999px; padding: 0 18px; }
+.qs-box:focus-within { background: var(--surface); }
+:root[data-theme="dark"] .qs-box { background: var(--surface-2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .qs-box { background: var(--surface-2); } }
+
+/* Dashboard tiles in The Pond's style: pale blue, big soft icon, navy text */
+.tile { background: var(--pond); border: 0; border-radius: 10px; box-shadow: none; padding: 18px 18px 16px; min-height: 150px; grid-template-rows: auto 1fr auto auto; position: relative; overflow: hidden; }
+.tile:hover { box-shadow: 0 6px 20px rgba(29,52,99,.12); }
+.tile-top { color: inherit; }
+.tile-top svg { width: 44px; height: 44px; color: var(--pond-icon) !important; stroke-width: 1.6; order: 2; }
+.tile-n { font-size: 38px; font-weight: 800; color: var(--pond-ink); order: 1; }
+.tile strong { font-size: 15px; color: var(--pond-ink); }
+.tile .muted { color: #4a5a78; }
+.tile-missing:not(.tile-zero) .tile-n { color: #b42318; }
+.tile-update:not(.tile-zero) .tile-n { color: #a3460c; }
+.tile-review:not(.tile-zero) .tile-n { color: #865600; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pond: #16283f; --pond-icon: #35618a; --pond-ink: #d6e3ff; } }
+:root[data-theme="dark"] { --pond: #16283f; --pond-icon: #35618a; --pond-ink: #d6e3ff; }
+
+/* Region views */
+.market-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 14px 0 0; }
+.market-tab { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border-strong); background: var(--surface); border-radius: 999px; padding: 5px 13px; font-weight: 600; font-size: 13px; cursor: pointer; }
+.market-tab:hover { border-color: var(--pond-ink); }
+.market-tab.on { background: var(--pond-ink); border-color: var(--pond-ink); color: #fff; }
+.market-tab.off { color: var(--faint); border-style: dashed; }
+.dot-not_available { background: transparent; border: 1.5px dashed var(--border-strong); }
+.market-chips { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.mchip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; padding: 1px 7px 1px 5px; border-radius: 4px; background: var(--surface-2); border: 1px solid var(--border); }
+.mchip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+@media (max-width: 900px) {
+  .loc-btn { min-width: 0; max-width: 220px; }
+  .loc-btn-text span { display: none; }
+  .hello { font-size: 30px; }
+}
+@media (max-width: 640px) {
+  .topbar { flex-wrap: wrap; }
+  .loc-picker { order: 3; width: 100%; }
+  .loc-btn { max-width: none; width: 100%; }
+  .loc-pop { width: 100%; }
+}

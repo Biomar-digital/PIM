@@ -77,14 +77,15 @@ USERS = [
     {"id": "u-ingrid", "name": "Ingrid Solberg", "title": "Global Product Manager", "role": "global_editor", "locales": [], "defaultLocale": "global"},
     {"id": "u-marco", "name": "Marco Bianchi", "title": "Global Marketing Lead", "role": "approver", "locales": [], "defaultLocale": "global"},
     {"id": "u-sofie", "name": "Sofie Andersen", "title": "Digital Platforms", "role": "admin", "locales": [], "defaultLocale": "global"},
-    # Local people work in their own locales and can view Global.
-    {"id": "u-cathrine", "name": "Cathrine Jensen", "title": "Marketing Manager, Denmark", "role": "local_editor", "locales": ["da-DK"], "defaultLocale": "da-DK"},
-    {"id": "u-thomas", "name": "Thomas Haugen", "title": "Marketing Coordinator, Norway", "role": "local_editor", "locales": ["nn-NO", "en-GB"], "defaultLocale": "nn-NO"},
-    {"id": "u-lars", "name": "Lars Nielsen", "title": "Marketing Coordinator, Sweden and Finland", "role": "local_editor", "locales": ["sv-SE", "fi-FI"], "defaultLocale": "sv-SE"},
-    {"id": "u-elena", "name": "Elena Papadopoulou", "title": "Marketing Manager, Mediterranean", "role": "local_editor", "locales": ["el-GR", "tr-TR", "it-IT", "es-ES", "fr-FR"], "defaultLocale": "el-GR"},
-    {"id": "u-camila", "name": "Camila Rojas", "title": "Marketing Coordinator, Latin America", "role": "local_editor", "locales": ["es-CL", "es-EC", "es-CR"], "defaultLocale": "es-CL"},
-    {"id": "u-minh", "name": "Nguyen Minh Anh", "title": "Marketing Coordinator, Asia-Pacific", "role": "local_editor", "locales": ["vi-VN", "en-AU", "en-PH", "zh"], "defaultLocale": "vi-VN"},
-    {"id": "u-paul", "name": "Paul Becker", "title": "Sales Manager, Central Europe", "role": "viewer", "locales": ["de-DE", "pl-PL"], "defaultLocale": "de-DE"},
+    # Regional marketing managers work in every market of their region or division and open the PIM there.
+    {"id": "u-cathrine", "name": "Cathrine Jensen", "title": "Marketing Manager, Baltics", "role": "local_editor", "locales": ["da-DK", "sv-SE", "fi-FI", "de-DE", "pl-PL", "it-IT"], "defaultLocale": "r:baltics"},
+    {"id": "u-iris", "name": "Iris Moreau", "title": "Marketing Manager, West Med", "role": "local_editor", "locales": ["fr-FR", "es-ES"], "defaultLocale": "r:westmed"},
+    {"id": "u-elena", "name": "Elena Papadopoulou", "title": "Marketing Manager, Greece", "role": "local_editor", "locales": ["el-GR"], "defaultLocale": "el-GR"},
+    {"id": "u-deniz", "name": "Deniz Aksoy", "title": "Marketing Manager, Türkiye", "role": "local_editor", "locales": ["tr-TR"], "defaultLocale": "tr-TR"},
+    {"id": "u-thomas", "name": "Thomas Haugen", "title": "Marketing Manager, Salmon Division", "role": "local_editor", "locales": ["nn-NO", "es-CL", "en-GB", "en-AU"], "defaultLocale": "d:salmon"},
+    {"id": "u-camila", "name": "Camila Rojas", "title": "Marketing Manager, LATAM, Shrimp and Hatchery", "role": "local_editor", "locales": ["es-EC", "en-PH", "es-CR"], "defaultLocale": "d:latam"},
+    {"id": "u-minh", "name": "Nguyen Minh Anh", "title": "Marketing Manager, Asia Division", "role": "local_editor", "locales": ["vi-VN", "zh"], "defaultLocale": "d:asia"},
+    {"id": "u-paul", "name": "Paul Becker", "title": "Sales Manager, Germany and Poland", "role": "viewer", "locales": ["de-DE", "pl-PL"], "defaultLocale": "de-DE"},
 ]
 REVIEW_NOTES = [
     "Please align the key benefits with the latest global version.",
@@ -406,7 +407,7 @@ def main():
             "createdAt": created,
         })
 
-    seed = {"version": 9, "users": USERS, "products": products}
+    seed = {"version": 10, "users": USERS, "products": products}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(seed, fh, ensure_ascii=False, separators=(",", ":"))
     print(f"Wrote {len(products)} products to {OUT}")

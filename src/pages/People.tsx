@@ -3,7 +3,7 @@ import { Check, Minus, RotateCcw } from 'lucide-react'
 import type { Role } from '../types'
 import { currentUser, resetDemo, updateUser, useStore } from '../data/store'
 import { can, isGlobalUser } from '../data/rules'
-import { GLOBAL, MARKETS, ROLE_DESCRIPTION, ROLE_LABEL, marketLabel } from '../data/reference'
+import { DIVISIONS, GLOBAL, GROUPS, MARKETS, ROLE_DESCRIPTION, ROLE_LABEL, marketLabel } from '../data/reference'
 import { Avatar, Card, Empty, Modal } from '../components/ui'
 
 const MATRIX: { label: string; roles: Role[] }[] = [
@@ -38,13 +38,13 @@ export default function People() {
       <Card title="People">
         <div className="table-wrap">
           <table className="table">
-            <thead><tr><th>Name</th><th>Role</th><th className="hide-md">Locales</th><th className="hide-md">Opens in</th><th /></tr></thead>
+            <thead><tr><th>Name</th><th>Role</th><th className="hide-md">Markets</th><th className="hide-md">Opens in</th><th /></tr></thead>
             <tbody>
               {users.map((u) => (
                 <tr key={u.id}>
                   <td><span className="prod-cell"><Avatar name={u.name} size={32} /><span><strong>{u.name}</strong><span className="muted small block">{u.title}</span></span></span></td>
                   <td>{ROLE_LABEL[u.role]}</td>
-                  <td className="hide-md small">{isGlobalUser(u) ? <Empty text="All locales" /> : u.locales.map((m) => marketLabel(m, true)).join(', ') || <Empty text="None yet" />}</td>
+                  <td className="hide-md small">{isGlobalUser(u) ? <Empty text="All markets" /> : u.locales.map((m) => marketLabel(m, true)).join(', ') || <Empty text="None yet" />}</td>
                   <td className="hide-md small">{marketLabel(u.defaultLocale, true)}</td>
                   <td className="right">{admin && <button className="btn btn-secondary btn-sm" onClick={() => setEditing(u.id)}>Edit</button>}</td>
                 </tr>
@@ -87,23 +87,23 @@ export default function People() {
           <p className="muted small">{ROLE_DESCRIPTION[editUser.role]}</p>
           {isGlobalUser(editUser) ? <p className="small">This role works across every locale.</p> : (
             <fieldset className="field">
-              <legend>Locales this person works in</legend>
-              <div className="checks checks-grid">
-                {MARKETS.map((m) => (
+              <legend>Markets this person works in</legend>
+              {DIVISIONS.map((d) => <div key={d.id}><p className="small strong mt-sm">{d.name}</p><div className="checks checks-grid">
+                {MARKETS.filter((m) => m.division === d.id).map((m) => (
                   <label key={m.id} className="check">
                     <input type="checkbox" checked={editUser.locales.includes(m.id)} onChange={(e) => {
                       const locales = e.target.checked ? [...editUser.locales, m.id] : editUser.locales.filter((x) => x !== m.id)
-                      updateUser(editUser.id, { locales, defaultLocale: locales.includes(editUser.defaultLocale) || editUser.defaultLocale === GLOBAL ? editUser.defaultLocale : locales[0] ?? GLOBAL })
+                      updateUser(editUser.id, { locales, defaultLocale: can.viewLocale({ ...editUser, locales }, editUser.defaultLocale) ? editUser.defaultLocale : locales[0] ?? GLOBAL })
                     }} />
                     {marketLabel(m.id)}
                   </label>
                 ))}
-              </div>
+              </div></div>)}
             </fieldset>
           )}
           <label className="field"><span>Opens the PIM in</span>
             <select id="admin-default" value={editUser.defaultLocale} onChange={(e) => updateUser(editUser.id, { defaultLocale: e.target.value })}>
-              {[GLOBAL, ...(isGlobalUser(editUser) ? MARKETS.map((m) => m.id) : editUser.locales)].map((l) => <option key={l} value={l}>{marketLabel(l)}</option>)}
+              {[GLOBAL, ...GROUPS.filter((g) => can.viewLocale(editUser, g.id)).map((g) => g.id), ...(isGlobalUser(editUser) ? MARKETS.map((m) => m.id) : editUser.locales)].map((l) => <option key={l} value={l}>{marketLabel(l)}</option>)}
             </select>
           </label>
         </Modal>

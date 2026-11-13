@@ -1,15 +1,16 @@
 // Business rules: permissions, locale state and what is still missing. Pure functions, no UI.
 import type { AssetType, Copy, LocalCopy, Product, Status, User, Variant } from '../types'
 import { LOCAL_FIELDS } from '../types'
-import { ASSET_TYPES, GLOBAL, GLOBAL_ROLES, LOCALE_IDS } from './reference'
+import { ASSET_TYPES, GLOBAL, GLOBAL_ROLES, GROUPS, GROUP_BY_ID, LOCALE_IDS } from './reference'
 
 /* ---------------- Permissions ---------------- */
 
 export const isGlobalUser = (u: User) => GLOBAL_ROLES.includes(u.role)
 
 export const can = {
-  /** Select a locale and see its content. Everyone can see Global, the master record. */
-  viewLocale: (u: User, loc: string) => loc === GLOBAL || isGlobalUser(u) || u.locales.includes(loc),
+  /** Select a market, region or division and see its content. Everyone can see Global, the master record. */
+  viewLocale: (u: User, loc: string) =>
+    loc === GLOBAL || isGlobalUser(u) || (GROUP_BY_ID[loc] ? GROUP_BY_ID[loc].locales.every((l) => u.locales.includes(l)) : u.locales.includes(loc)),
   /** Global record: name, classification, technical details, tagline, hero image, global English copy */
   editGlobal: (u: User) => u.role === 'admin' || u.role === 'global_editor',
   /** Local copy of one locale */
@@ -27,8 +28,10 @@ export const can = {
   manageUsers: (u: User) => u.role === 'admin',
 }
 
-/** Locales a person can select, Global first */
+/** Markets a person can select, Global first */
 export const userLocales = (u: User) => LOCALE_IDS.filter((l) => can.viewLocale(u, l))
+/** Regions and divisions a person can select */
+export const userGroups = (u: User) => GROUPS.filter((g) => can.viewLocale(u, g.id))
 
 /** Locales a person edits (not Global) */
 export const editableLocales = (u: User) => LOCALE_IDS.filter((l) => l !== GLOBAL && can.editLocale(u, l))

@@ -22,12 +22,23 @@ npm run build:single # one self-contained HTML file in dist-single/ (easy to sha
 ## What's in it
 
 Built for product managers, heads of product marketing and local marketing managers.
-Everything follows the **selected locale**: the website's own locales (Global English plus the
-19 market cultures of biomar.com, such as `da-DK` and `es-ES`), chosen in the sidebar.
+Everything follows the **selected market or region**: the website's own locales (Global English plus the
+19 market cultures of biomar.com, such as `da-DK` and `es-ES`), organised by division:
+
+| Division | Regions and markets |
+|---|---|
+| Salmon Division | Norway, Chile, United Kingdom, Australia |
+| LATAM, Shrimp and Hatchery Division | Ecuador, Philippines, Costa Rica |
+| Asia Division | Vietnam, China |
+| EMEA Division | **West Med** (France, Spain), **Greece**, **Türkiye**, **Baltics** (Denmark, Sweden, Finland, Germany, Poland, Italy) |
+
+A regional marketing manager opens the PIM in their region (Cathrine Jensen: Baltics, Iris Moreau: West Med)
+and sees the dashboard, tasks and products of every market in it; on a product page they switch between the
+region's markets with one click. Divisions are selectable too.
 
 | Area | What it does |
 |---|---|
-| **Locale picker** | In the sidebar. Each person opens the PIM in their default locale and can switch to the locales they have access to (global roles see every locale). The dashboard, product library and product pages all adapt. *Open the PIM in … by default* changes the default. |
+| **Market picker** | In the top bar, like the customer portal's selector: Global, then each division with its regions and markets. Each person opens the PIM in their default (a market, region or division) and can switch to what they have access to (global roles see everything). *Open the PIM in … by default* changes the default. |
 | **Dashboard** | What needs attention in the selected locale: products available there, products missing local copy, local copy to review because the global content changed, content awaiting approval, and products missing information or assets. Every number opens exactly that list in Products. Below: your next steps (grouped), the content status of the locale and the latest changes. In Global: the same across every locale, plus a table of all locales. |
 | **Products** | Only the products available in the selected locale. Grouped by range, then product, then species. Search by name, filter by range, species, production stage, status in the locale, and *Available in* (Global). List or cards. Global editors also get a **Spreadsheet** to edit the global record of many products at once, and **Excel** export and import. |
 | **Product page** | One master record per product. *Product identity* (name, range, species, stages, category, tagline) and *Technical information* are global: marked *Same in every locale* with a lock, editable by the global team only. *Marketing copy* (short description, description, key benefits, selling points) is the local version of the selected locale. The header shows the status and version in that locale, who changed it last, and the approval buttons. |
@@ -59,7 +70,7 @@ src/
   data/
     seed.json           product data (generated, see below)
     website.json        content collected from biomar.com
-    reference.ts        locales, ranges, categories, stages, asset types, labels
+    reference.ts        markets, divisions and regions, ranges, categories, stages, asset types, labels
     rules.ts            permissions, locale state, approved content, what is missing
     insights.ts         dashboard numbers, attention filters, next steps, locale overview
     store.ts            state and every write action (edit, small update, approval, assets, history)

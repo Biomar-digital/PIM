@@ -3,9 +3,9 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { Download, LayoutGrid, List, Search, SlidersHorizontal, Table2, Upload, X } from 'lucide-react'
 import type { Product } from '../types'
 import { currentUser, useStore, userName } from '../data/store'
-import { CATEGORIES, GLOBAL, MARKETS, STAGES, marketLabel } from '../data/reference'
+import { CATEGORIES, GLOBAL, MARKETS, STAGES, isGroup, marketLabel, scopeLocales } from '../data/reference'
 import { can, essentialTodos, isReady, lastUpdated, localeState, LOCALE_STATE_LABEL, type LocaleState } from '../data/rules'
-import { ATTENTION_LABEL, matches, productsIn, type Attention } from '../data/insights'
+import { ATTENTION_LABEL, marketsIn, matches, productsIn, type Attention } from '../data/insights'
 import { productImage } from '../lib/files'
 import { timeAgo } from '../lib/format'
 import { EmptyState, ReadyBadge, StatusBadge, Thumb } from '../components/ui'
@@ -13,6 +13,7 @@ import { Sheet } from '../components/Sheet'
 import { ImportModal } from '../components/ImportModal'
 import { exportProducts } from '../lib/excel'
 import { LocaleCode, localeName } from '../components/Layout'
+import { localeCode as localeCodeOf } from '../data/reference'
 
 type View = 'table' | 'grid' | 'sheet'
 function loadView(): View {
@@ -28,6 +29,7 @@ export default function Products() {
   const user = useStore(currentUser)
   const loc = useStore((s) => s.locale)
   const global = loc === GLOBAL
+  const group = isGroup(loc)
   const products = useMemo(() => productsIn(all, loc), [all, loc])
   const [params, setParams] = useSearchParams()
   const [view, setView] = useState<View>(loadView)
@@ -50,7 +52,9 @@ export default function Products() {
     const terms = get('q').toLowerCase().split(/\s+/).filter(Boolean)
     const status = get('status')
     const show = get('show') as Attention | ''
-    return products
+    // In a region, the market filter narrows everything to one of its markets
+    const scope = group && get('market') && scopeLocales(loc).includes(get('market')) ? get('market') : loc
+    return productsIn(products, scope)
       .filter((p) => {
         if (terms.length) {
           const hay = [p.name, p.species, p.range, p.code, ...p.categories, ...p.stages].join(' ').toLowerCase()
@@ -62,8 +66,8 @@ export default function Products() {
         if (get('category') && !p.categories.includes(get('category'))) return false
         if (global && get('market') && !p.markets.includes(get('market'))) return false
         if (status === 'ready' && !isReady(p)) return false
-        if (status && status !== 'ready' && localeState(p, loc) !== status) return false
-        if (show && !matches(p, loc, show)) return false
+        if (status && status !== 'ready' && !(global ? [GLOBAL] : marketsIn(p, scope)).some((l) => localeState(p, l) === status)) return false
+        if (show && !matches(p, scope, show)) return false
         return true
       })
       .sort((a, b) => {
@@ -116,6 +120,7 @@ export default function Products() {
           <p className="muted row-gap wrap">
             <LocaleCode id={loc} />
             {global ? `${rows.length} of ${products.length} products` : `${rows.length} of ${products.length} products available in ${localeName(loc)}`}
+            {group && <span className="muted small">({scopeLocales(loc).map((l) => marketLabel(l, true)).join(', ')})</span>}
           </p>
         </div>
         <div className="row-gap wrap">
@@ -140,9 +145,9 @@ export default function Products() {
         <Select id="f-range" label="Range" value={get('range')} onChange={(v) => set('range', v)} options={ranges} />
         <Select id="f-species" label="Species" value={get('species')} onChange={(v) => set('species', v)} options={species} />
         <Select id="f-stage" label="Production stage" value={get('stage')} onChange={(v) => set('stage', v)} options={STAGES} />
-        <Select id="f-status" label={global ? 'Global status' : `Status in ${localeName(loc)}`} value={get('status')} onChange={(v) => set('status', v)}
+        <Select id="f-status" label={global ? 'Global status' : group ? 'Status in any market' : `Status in ${localeName(loc)}`} value={get('status')} onChange={(v) => set('status', v)}
           options={global ? GLOBAL_STATES : LOCAL_STATES.map((s) => [s, LOCALE_STATE_LABEL[s]])} />
-        {global && <Select id="f-market" label="Available in" value={get('market')} onChange={(v) => set('market', v)} options={MARKETS.map((m) => [m.id, marketLabel(m.id)])} />}
+        {(global || group) && <Select id="f-market" label={global ? 'Available in' : 'Market'} value={get('market')} onChange={(v) => set('market', v)} options={(global ? MARKETS.map((m) => m.id) : scopeLocales(loc)).map((m) => [m, marketLabel(m)])} />}
         <button className={`btn btn-ghost more-btn${more ? ' on' : ''}`} onClick={() => setMore(!more)}><SlidersHorizontal size={16} />More</button>
         {more && (
           <>
@@ -186,7 +191,7 @@ export default function Products() {
                 <th>Product</th>
                 <th>Species</th>
                 <th className="hide-md">Production stage</th>
-                <th>{global ? 'Global status' : `Status in ${localeName(loc)}`}</th>
+                <th>{global ? 'Global status' : group ? 'Status per market' : `Status in ${localeName(loc)}`}</th>
                 {global && <th className="hide-md">Locales</th>}
                 <th className="hide-lg">Last updated</th>
               </tr>
@@ -242,6 +247,7 @@ function Select({ id, label, value, onChange, options, noAll }: { id: string; la
 
 /** Status of the product in the selected locale, plus what is missing */
 function LocaleStatus({ p, loc }: { p: Product; loc: string }) {
+  if (isGroup(loc)) return <MarketChips p={p} loc={loc} />
   const missing = essentialTodos(p).length
   return (
     <span className="status-cell">
@@ -263,6 +269,18 @@ function LocalesSummary({ p }: { p: Product }) {
       {approved} of {p.markets.length} approved
       {review > 0 && <span className="warn-text block">{review} to review</span>}
       {missing > 0 && <span className="muted block">{missing} not started</span>}
+    </span>
+  )
+}
+
+/** One small chip per market of the region where the product is available, coloured by its status */
+function MarketChips({ p, loc }: { p: Product; loc: string }) {
+  return (
+    <span className="market-chips">
+      {marketsIn(p, loc).map((l) => {
+        const st = localeState(p, l)
+        return <span key={l} className={`mchip mchip-${st}`} title={`${marketLabel(l)}: ${LOCALE_STATE_LABEL[st]}`}><span className={`dot dot-${st}`} />{localeCodeOf(l)}</span>
+      })}
     </span>
   )
 }

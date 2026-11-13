@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Check, ChevronDown, Cloud, HardDrive, LayoutDashboard, Menu as MenuIcon, Package, Plus, Search, Star, Users, X } from 'lucide-react'
-import { GLOBAL, MARKET_BY_ID, REGIONS, ROLE_LABEL, localeCode, localeLanguage, marketLabel } from '../data/reference'
-import { can, isGlobalUser, userLocales } from '../data/rules'
+import { DIVISIONS, GLOBAL, GROUP_BY_ID, MARKETS, MARKET_BY_ID, ROLE_LABEL, isGroup, localeCode, marketGroup, marketLabel } from '../data/reference'
+import { can, isGlobalUser } from '../data/rules'
 import { currentUser, setLocale, setUser, updateUser, useStore } from '../data/store'
 import { productsIn } from '../data/insights'
 import { BIOMAR_LOGO } from '../lib/logos'
@@ -10,13 +10,26 @@ import { productImage } from '../lib/files'
 import { Avatar, Thumb, Toasts, useClickOutside } from './ui'
 import { NewProductModal } from './NewProductModal'
 
-export const localeName = (id: string) => (id === GLOBAL ? 'Global' : MARKET_BY_ID[id]?.market ?? id)
+export const localeName = (id: string) => (id === GLOBAL ? 'Global' : GROUP_BY_ID[id]?.name ?? MARKET_BY_ID[id]?.market ?? id)
 
 export function LocaleCode({ id }: { id: string }) {
-  return <span className={`loc-code${id === GLOBAL ? ' global' : ''}`} aria-hidden>{localeCode(id)}</span>
+  return <span className={`loc-code${id === GLOBAL ? ' global' : isGroup(id) ? ' group' : ''}`} aria-hidden>{localeCode(id)}</span>
 }
 
-/** Locale picker: the whole PIM follows the selected locale. */
+/** One line under a selection's name: its language, or how many markets it covers */
+function scopeDetail(id: string) {
+  if (id === GLOBAL) return 'Master record, English'
+  const g = GROUP_BY_ID[id]
+  if (g) return g.locales.map((l) => MARKET_BY_ID[l].market).join(', ')
+  const m = MARKET_BY_ID[id]
+  const grp = marketGroup(id)
+  return `${m.language}${grp ? ` · ${grp.name}` : ''}`
+}
+
+/**
+ * Market picker, in the top bar like the customer portal's selector.
+ * Global, then each division with its regions and markets. Selecting a region shows all its markets together.
+ */
 function LocalePicker() {
   const user = useStore(currentUser)
   const locale = useStore((s) => s.locale)
@@ -24,38 +37,55 @@ function LocalePicker() {
   const [open, setOpen] = useState(false)
   const close = useCallback(() => setOpen(false), [])
   const ref = useClickOutside<HTMLDivElement>(close)
-  const allowed = userLocales(user)
-  const count = useMemo(() => Object.fromEntries(allowed.map((l) => [l, productsIn(products, l).length])), [products, allowed])
-  const mine = isGlobalUser(user) ? [GLOBAL] : allowed
-  const others = isGlobalUser(user) ? allowed.filter((l) => l !== GLOBAL) : []
+  const count = useCallback((id: string) => productsIn(products, id).length, [products])
   const pick = (l: string) => { setLocale(l); setOpen(false) }
-  const option = (l: string) => (
-    <button key={l} role="option" aria-selected={l === locale} className={`loc-opt${l === locale ? ' sel' : ''}`} onClick={() => pick(l)}>
-      <LocaleCode id={l} />
-      <span className="grow">{localeName(l)}<span className="muted small"> {localeLanguage(l)}</span></span>
-      {l === user.defaultLocale && <Star size={13} className="muted" aria-label="Your default" />}
-      <span className="muted small num">{count[l]}</span>
-    </button>
-  )
+  const option = (l: string, depth: number) => {
+    const ok = can.viewLocale(user, l)
+    if (!ok) return null
+    return (
+      <button key={l} role="option" aria-selected={l === locale} className={`loc-opt d${depth}${l === locale ? ' sel' : ''}${isGroup(l) ? ' grp' : ''}`} onClick={() => pick(l)}>
+        <LocaleCode id={l} />
+        <span className="grow">{localeName(l)}{!isGroup(l) && l !== GLOBAL && <span className="muted small"> {MARKET_BY_ID[l].language}</span>}</span>
+        {l === user.defaultLocale && <Star size={13} className="muted" aria-label="Your default" />}
+        <span className="muted small num">{count(l)}</span>
+      </button>
+    )
+  }
+  // Division > region (or standalone market) > market
+  const tree = DIVISIONS.map((d) => {
+    const markets = MARKETS.filter((m) => m.division === d.id)
+    const rows: ReactNode[] = []
+    const seen = new Set<string>()
+    for (const m of markets) {
+      if (m.region && GROUP_BY_ID[m.region]) {
+        if (seen.has(m.region)) continue
+        seen.add(m.region)
+        rows.push(option(m.region, 1))
+        for (const x of markets.filter((y) => y.region === m.region)) rows.push(option(x.id, 2))
+      } else rows.push(option(m.id, 1))
+    }
+    if (!rows.some(Boolean) && !can.viewLocale(user, d.id)) return null
+    return (
+      <div key={d.id} className="loc-div">
+        {can.viewLocale(user, d.id) ? option(d.id, 0) : <div className="loc-group">{d.name}</div>}
+        {rows}
+      </div>
+    )
+  })
   return (
     <div className="loc-picker" ref={ref}>
-      <span className="loc-label">Locale</span>
       <button className="loc-btn" onClick={() => setOpen(!open)} aria-expanded={open} aria-haspopup="listbox" id="locale-picker">
         <LocaleCode id={locale} />
         <span className="loc-btn-text">
           <strong>{localeName(locale)}</strong>
-          <span>{localeLanguage(locale)} · {count[locale] ?? 0} products</span>
+          <span>{scopeDetail(locale)}</span>
         </span>
-        <ChevronDown size={16} aria-hidden />
+        <ChevronDown size={18} aria-hidden />
       </button>
       {open && (
-        <div className="loc-pop" role="listbox" aria-label="Choose a locale">
-          <div className="loc-group">{isGlobalUser(user) ? 'Master record' : 'Your locales'}</div>
-          {mine.map(option)}
-          {others.length > 0 && REGIONS.map((r) => {
-            const list = others.filter((l) => MARKET_BY_ID[l]?.region === r)
-            return list.length ? <div key={r}><div className="loc-group">{r}</div>{list.map(option)}</div> : null
-          })}
+        <div className="loc-pop" role="listbox" aria-label="Choose a market or region">
+          {option(GLOBAL, 0)}
+          {tree}
           {locale !== user.defaultLocale && (
             <button className="loc-default" onClick={() => { updateUser(user.id, { defaultLocale: locale }); setOpen(false) }}>
               <Star size={14} />Open the PIM in {localeName(locale)} by default
@@ -81,7 +111,6 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         <div className="sidebar-app">Product Information</div>
         <button className="icon-btn sidebar-close" onClick={onClose} aria-label="Close menu"><X size={20} /></button>
       </div>
-      <LocalePicker />
       <nav className="sidebar-nav" onClick={onClose}>
         {items.map(({ to, label, icon: Icon, end }) => (
           <NavLink key={to} to={to} end={end} className="nav-item">
@@ -123,7 +152,7 @@ function QuickSearch() {
       <label className="qs-box">
         <Search size={18} aria-hidden />
         <input
-          id="quick-search" type="search" placeholder={`Search products in ${localeName(locale)}`} value={q} autoComplete="off"
+          id="quick-search" type="search" placeholder="Search products" value={q} autoComplete="off"
           onChange={(e) => { setQ(e.target.value); setOpen(true) }} onFocus={() => setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') go(hits.length === 1 ? `/products/${hits[0].id}` : `/products?q=${encodeURIComponent(q)}`)
@@ -172,7 +201,7 @@ function UserMenu() {
               <Avatar name={u.name} size={28} />
               <span>
                 <span className="user-name">{u.name}</span>
-                <span className="user-role">{ROLE_LABEL[u.role]}{isGlobalUser(u) ? ', all locales' : `, ${u.locales.map((m) => marketLabel(m, true)).join(', ')}`}</span>
+                <span className="user-role">{u.title}{isGlobalUser(u) ? '' : `, ${marketLabel(u.defaultLocale, true)}`}</span>
               </span>
               {u.id === user.id && <Check size={16} className="check-ic" />}
             </button>
@@ -187,7 +216,6 @@ export function Layout({ children }: { children: ReactNode }) {
   const [menu, setMenu] = useState(false)
   const [creating, setCreating] = useState(false)
   const user = useStore(currentUser)
-  const locale = useStore((s) => s.locale)
   const navigate = useNavigate()
   return (
     <div className="app">
@@ -196,7 +224,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <div className="main">
         <header className="topbar">
           <button className="icon-btn menu-btn" onClick={() => setMenu(true)} aria-label="Open menu"><MenuIcon size={22} /></button>
-          <button className="topbar-loc" onClick={() => setMenu(true)} aria-label={`Locale: ${localeName(locale)}. Change`}><LocaleCode id={locale} /></button>
+          <LocalePicker />
           <QuickSearch />
           <div className="topbar-right">
             {can.createProduct(user) && (

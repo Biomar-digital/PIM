@@ -1,20 +1,26 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import type { Product, User } from '../../types'
-import { MARKETS, REGIONS } from '../../data/reference'
+import { DIVISIONS, MARKETS, isGroup, scopeLocales } from '../../data/reference'
 import { can, isOutdated, localeState } from '../../data/rules'
-import { setAvailability, setLocale, setWebsiteStatus } from '../../data/store'
+import { setAvailability, setLocale, setWebsiteStatus, useStore } from '../../data/store'
 import { Card, Empty, Modal, StatusBadge, UpdatedBy } from '../../components/ui'
 import { LocaleCode } from '../../components/Layout'
 
 /** Where the product is available, and the state of each local version. */
-export function LocalesTab({ p, user, onOpen }: { p: Product; user: User; onOpen: () => void }) {
+export function LocalesTab({ p, user, onOpen }: { p: Product; user: User; onOpen: (locale: string) => void }) {
   const [adding, setAdding] = useState<string[] | null>(null)
   const [removing, setRemoving] = useState<string | null>(null)
   const manage = can.setAvailability(user)
   const available = MARKETS.filter((m) => p.markets.includes(m.id))
   const missing = MARKETS.filter((m) => !p.markets.includes(m.id))
-  const open = (l: string) => { if (can.viewLocale(user, l)) { setLocale(l); onOpen() } }
+  const scope = useStore((s) => s.locale)
+  const open = (l: string) => {
+    if (!can.viewLocale(user, l)) return
+    // Inside a region, stay in the region and open that market
+    if (!scopeLocales(scope).includes(l) || !isGroup(scope)) setLocale(l)
+    onOpen(l)
+  }
 
   return (
     <Card title={`Available in ${available.length} ${available.length === 1 ? 'locale' : 'locales'}`} actions={manage && missing.length > 0 && <button className="btn btn-secondary btn-sm" onClick={() => setAdding(missing.map((m) => m.id))}><Plus size={14} />Add a locale</button>}>
@@ -52,11 +58,11 @@ export function LocalesTab({ p, user, onOpen }: { p: Product; user: User; onOpen
 
       {adding && (
         <Modal title="Make available in more locales" onClose={() => setAdding(null)} footer={<button className="btn btn-primary" onClick={() => setAdding(null)}>Done</button>}>
-          {REGIONS.map((r) => {
-            const list = MARKETS.filter((m) => adding.includes(m.id) && m.region === r)
+          {DIVISIONS.map((d) => {
+            const list = MARKETS.filter((m) => adding.includes(m.id) && m.division === d.id)
             return list.length ? (
-              <fieldset key={r} className="field">
-                <legend>{r}</legend>
+              <fieldset key={d.id} className="field">
+                <legend>{d.name}</legend>
                 <div className="checks checks-grid">
                   {list.map((m) => (
                     <label key={m.id} className="check">
