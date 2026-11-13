@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AtSign, Check, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
+import { AtSign, Check, Copy, MessageSquareWarning, Send, Undo2 } from 'lucide-react'
 import type { Meta, Product, Section, User } from '../types'
 import { GLOBAL } from '../data/reference'
 import { can, essentialTodos } from '../data/rules'
@@ -53,10 +53,48 @@ export type SaveMode = 'draft' | 'submit' | 'minor'
  * Buttons under an edit form. Approved content offers two ways to save:
  * a small update (typo or wording fix: stays approved, nobody has to review it), or a change that needs approval.
  */
-export function EditActions({ meta, onCancel, onSave, disabled, tag }: { meta: Meta; onCancel: () => void; onSave: (mode: SaveMode) => void; disabled?: boolean; tag?: TagDraft }) {
+export interface AlsoApply {
+  /** The same product for other species */
+  options: Product[]
+  selected: string[]
+  onChange: (ids: string[]) => void
+}
+
+/** "Also apply to the same product for other species" */
+function AlsoApplyPicker({ also }: { also: AlsoApply }) {
+  const [open, setOpen] = useState(also.selected.length > 0)
+  const { options, selected, onChange } = also
+  const all = selected.length === options.length
+  const toggle = (id: string) => onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id])
+  return (
+    <div className="also">
+      <label className="check also-main">
+        <input type="checkbox" checked={open} onChange={(e) => { setOpen(e.target.checked); onChange(e.target.checked ? options.map((o) => o.id) : []) }} />
+        <Copy size={14} aria-hidden />
+        <span>Also apply these changes to {options[0].name} for other species <span className="muted">({options.length})</span></span>
+      </label>
+      {open && (
+        <div className="also-body">
+          <div className="also-list">
+            {options.map((o) => (
+              <label key={o.id} className={`also-chip${selected.includes(o.id) ? ' on' : ''}`}>
+                <input type="checkbox" checked={selected.includes(o.id)} onChange={() => toggle(o.id)} />{o.species}
+              </label>
+            ))}
+            <button type="button" className="link-btn small" onClick={() => onChange(all ? [] : options.map((o) => o.id))}>{all ? 'Clear all' : 'Select all'}</button>
+          </div>
+          <p className="muted small">Only the fields you changed are copied; everything else stays as it is for each species. Each one keeps its own approval. Check that the text does not mention a species by name.</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function EditActions({ meta, onCancel, onSave, disabled, tag, also }: { meta: Meta; onCancel: () => void; onSave: (mode: SaveMode) => void; disabled?: boolean; tag?: TagDraft; also?: AlsoApply }) {
   const approved = meta.status === 'approved'
   return (
     <div className="edit-actions">
+      {also && also.options.length > 0 && <AlsoApplyPicker also={also} />}
       {approved && <p className="muted small grow">A <strong>small update</strong> (typo, wording) stays approved and does not ask other locales to review. Anything bigger goes through approval.</p>}
       <div className="row-gap wrap end">
         <button className="btn btn-secondary" onClick={onCancel}>Cancel</button>

@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AlertTriangle, ArrowRight, Plus, CheckCheck, ClipboardCopy, Columns2, FileDown, Globe2, Lock, Pencil } from 'lucide-react'
 import type { AssetType, LocalCopy, LocalField, Meta, Product, User, Variant } from '../../types'
 import { LOCAL_FIELDS } from '../../types'
 import { COPY_LABEL, GLOBAL, localeLanguage, marketLabel } from '../../data/reference'
 import { type LocaleState, approvedGlobal, can, essentialTodos, isOutdated, localeState, todos, variantGaps } from '../../data/rules'
-import { createVariant, markReviewed, saveGlobal, saveVariant, toast, transition, useStore, type GlobalPatch } from '../../data/store'
+import { applyToSpecies, createVariant, markReviewed, otherSpecies, saveGlobal, saveVariant, toast, transition, useStore, type GlobalPatch } from '../../data/store'
 import { ChangeList, DiffLegend, DiffValue, globalChanges, variantChanges } from '../../components/changes'
-import { EditActions, SentBackNote, type SaveMode } from '../../components/approval'
+import { EditActions, SentBackNote, type AlsoApply, type SaveMode } from '../../components/approval'
 import { GROUP_LABEL, fieldsIn, getValue, isEmptyValue, type FieldGroup } from '../../lib/fields'
 import { FieldInput } from '../../components/FieldInput'
 import { copyText, downloadProductSheet, productAsText } from '../../lib/files'
@@ -27,6 +27,26 @@ const pickLocal = (c: LocalCopy): LocalCopy => ({ shortDescription: c.shortDescr
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b)
 
 export type ContentMode = 'normal' | 'side'
+
+/** Fields that belong to one species and are never copied to the others */
+const PER_SPECIES = ['species', 'code']
+
+/** Only the fields that differ from what is saved now */
+const changedOnly = (patch: Record<string, unknown>, before: (k: string) => unknown) =>
+  Object.fromEntries(Object.entries(patch).filter(([k, v]) => !PER_SPECIES.includes(k) && !same(v, before(k))))
+
+/** Choice of other species to copy an edit to. Local copy: only species sold in that market. */
+function useAlso(p: Product, loc: string): AlsoApply & { push: (patch: Record<string, unknown>, mode: SaveMode) => void } {
+  const products = useStore((s) => s.db.products)
+  const options = useMemo(() => otherSpecies(p, products).filter((x) => loc === GLOBAL || x.markets.includes(loc) || !!x.variants[loc]), [p, products, loc])
+  const [selected, setSelected] = useState<string[]>([])
+  const push = (patch: Record<string, unknown>, mode: SaveMode) => {
+    const ids = selected.filter((id) => options.some((o) => o.id === id))
+    if (ids.length) applyToSpecies(p.id, loc, patch, ids, mode)
+    setSelected([])
+  }
+  return { options, selected, onChange: setSelected, push }
+}
 
 export function ContentTab({ p, user, loc, mode, setMode }: { p: Product; user: User; loc: string; mode: ContentMode; setMode: (m: ContentMode) => void }) {
   if (mode === 'side' && loc !== GLOBAL) return <SideBySide key={`${p.id}-${loc}`} p={p} user={user} loc={loc} />
@@ -72,11 +92,13 @@ export function GlobalGroup({ p, user, group, title }: { p: Product; user: User;
   const fields = fieldsIn(group)
   const [draft, setDraft] = useState<Record<string, string | string[]> | null>(null)
   const editable = can.editGlobal(user)
+  const also = useAlso(p, GLOBAL)
   const start = () => setDraft(Object.fromEntries(fields.map((f) => [f.key, structuredClone(getValue(p, f.key))])))
   const save = (mode: SaveMode) => {
     if (!draft) return
     const patch = cleanPatch(draft)
     if (!String(patch.name ?? 'x').trim()) return toast('The product name cannot be empty', 'error')
+    also.push(changedOnly(patch, (k) => getValue(p, k as never)), mode)
     saveGlobal(p.id, patch as GlobalPatch, { minor: mode === 'minor' })
     if (mode === 'submit') transition(p.id, GLOBAL, 'in_review')
     setDraft(null)
@@ -106,7 +128,7 @@ export function GlobalGroup({ p, user, group, title }: { p: Product; user: User;
           </div>
         ))}
       </dl>
-      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: GLOBAL, about: title ?? GROUP_LABEL[group], kind: 'review' }} />}
+      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} also={group === 'management' ? undefined : also} tag={{ productId: p.id, locale: GLOBAL, about: title ?? GROUP_LABEL[group], kind: 'review' }} />}
     </Card>
   )
 }
@@ -154,9 +176,12 @@ function StatusLine({ meta, version, state }: { meta: Meta; version: number; sta
 function GlobalCopyCard({ p, user }: { p: Product; user: User }) {
   const [draft, setDraft] = useState<LocalCopy | null>(null)
   const editable = can.editGlobal(user)
+  const also = useAlso(p, GLOBAL)
   const save = (mode: SaveMode) => {
     if (!draft) return
-    saveGlobal(p.id, cleanPatch(draft) as GlobalPatch, { minor: mode === 'minor' })
+    const patch = cleanPatch(draft)
+    also.push(changedOnly({ ...patch }, (k) => p.content[k as LocalField]), mode)
+    saveGlobal(p.id, patch as GlobalPatch, { minor: mode === 'minor' })
     if (mode === 'submit') transition(p.id, GLOBAL, 'in_review')
     setDraft(null)
   }
@@ -168,7 +193,7 @@ function GlobalCopyCard({ p, user }: { p: Product; user: User }) {
     >
       <div className="pad-x pad-t"><StatusLine meta={p.status} version={p.content.version} /><SentBackNote meta={p.status} /></div>
       <CopyFields value={p.content} draft={draft} setDraft={setDraft} />
-      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: GLOBAL, about: 'Marketing copy', kind: 'translate' }} />}
+      {draft && <EditActions meta={p.status} onCancel={() => setDraft(null)} onSave={save} also={also} tag={{ productId: p.id, locale: GLOBAL, about: 'Marketing copy', kind: 'translate' }} />}
     </Card>
   )
 }
@@ -218,11 +243,14 @@ function LocalCopyCard({ p, user, loc, onCompare }: { p: Product; user: User; lo
   const v = p.variants[loc]
   const [draft, setDraft] = useState<LocalCopy | null>(null)
   const editable = can.editLocale(user, loc)
+  const also = useAlso(p, loc)
   const title = <>Marketing copy<span className="attr-count">{marketLabel(loc)}</span></>
   if (!v) return <Card className="attr-card copy-card" title={title}><VariantStart p={p} user={user} loc={loc} /></Card>
   const save = (mode: SaveMode) => {
     if (!draft) return
-    saveVariant(p.id, loc, cleanPatch(draft), { minor: mode === 'minor' })
+    const patch = cleanPatch(draft)
+    also.push(changedOnly({ ...patch }, (k) => v[k as LocalField]), mode)
+    saveVariant(p.id, loc, patch, { minor: mode === 'minor' })
     if (mode === 'submit') transition(p.id, loc, 'in_review')
     setDraft(null)
   }
@@ -249,7 +277,7 @@ function LocalCopyCard({ p, user, loc, onCompare }: { p: Product; user: User; lo
         )}
       </div>
       <CopyFields value={v.inheritsGlobal ? english : v} draft={draft} setDraft={setDraft} />
-      {draft && <EditActions meta={v.meta} onCancel={() => setDraft(null)} onSave={save} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />}
+      {draft && <EditActions meta={v.meta} onCancel={() => setDraft(null)} onSave={save} also={also} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />}
     </Card>
   )
 }
@@ -262,6 +290,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
   const editable = can.editLocale(user, loc) && !!v && !v.inheritsGlobal
   const [draft, setDraft] = useState<LocalCopy | null>(v ? pickLocal(v) : null)
   const [highlight, setHighlight] = useState(true)
+  const also = useAlso(p, loc)
   const g = approvedGlobal(p)
   if (!v) return <Card><VariantStart p={p} user={user} loc={loc} /></Card>
   const current = pickLocal(v)
@@ -271,6 +300,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
   const outdated = isOutdated(p, v)
   const base = outdated ? p.versions?.[v.sourceVersion] : undefined
   const save = (mode: SaveMode) => {
+    also.push(changedOnly({ ...clean }, (k) => current[k as LocalField]), mode)
     saveVariant(p.id, loc, clean, { minor: mode === 'minor' })
     if (mode === 'submit') transition(p.id, loc, 'in_review')
   }
@@ -351,7 +381,7 @@ function SideBySide({ p, user, loc }: { p: Product; user: User; loc: string }) {
       {editable && (
         <div className={`sbs-bar${dirty ? ' dirty' : ''}`}>
           {dirty
-            ? <EditActions meta={v.meta} onCancel={() => setDraft(current)} onSave={save} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />
+            ? <EditActions meta={v.meta} onCancel={() => setDraft(current)} onSave={save} also={also} tag={{ productId: p.id, locale: loc, about: 'Marketing copy', kind: 'review' }} />
             : <p className="small"><CheckCheck size={16} className="ok-ic" />{gaps.length ? `All changes saved. Still to add: ${gaps.join(', ')}.` : 'All changes saved.'} {v.meta.status === 'draft' && !gaps.length && 'Send it for approval with the button at the top when it is ready.'}</p>}
         </div>
       )}

@@ -358,7 +358,12 @@ export function setAvailability(id: string, locale: string, available: boolean) 
 /* ---------------- Approval ---------------- */
 
 export function transition(id: string, section: Section, to: Status, note?: string) {
-  updateProduct(id, (p) => {
+  updateProduct(id, (p) => transitioned(p, section, to, note))
+  toast(to === 'approved' ? 'Approved' : to === 'in_review' ? 'Sent for approval' : 'Sent back to the editor', to === 'draft' ? 'info' : 'ok')
+}
+
+function transitioned(p: Product, section: Section, to: Status, note?: string): Product {
+  {
     const meta = section === GLOBAL ? p.status : p.variants[section]?.meta
     if (!meta) return p
     const newMeta: Variant['meta'] = { ...meta, status: to, updatedBy: state.userId, updatedAt: now(), reviewNote: to === 'draft' ? note : undefined }
@@ -386,8 +391,58 @@ export function transition(id: string, section: Section, to: Status, note?: stri
     }
     next.history = [historyEntry(section, action, summary, to === 'approved' ? snapshot : undefined), ...p.history]
     return next
+  }
+}
+
+/* ---------------- Same product, other species ---------------- */
+
+/** The same product made for other species (e.g. LARVIVA ProStart for sea bream, sea bass, cod…) */
+export function otherSpecies(p: Product, products: Product[] = state.db.products): Product[] {
+  return products.filter((x) => x.name === p.name && x.id !== p.id).sort((a, b) => a.species.localeCompare(b.species))
+}
+
+/**
+ * Copy an edit to the same product for other species. Only the fields that were changed are copied,
+ * so anything written specifically for a species stays as it is. Each product keeps its own approval.
+ * Local copy: products without a version for the market get one with just these fields.
+ */
+export function applyToSpecies(sourceId: string, section: Section, patch: Record<string, unknown>, ids: string[], mode: 'draft' | 'submit' | 'minor'): number {
+  const src = state.db.products.find((x) => x.id === sourceId)
+  if (!src || !ids.length || !Object.keys(patch).length) return 0
+  const how = ` (copied from ${src.species})`
+  const changed: Product[] = []
+  const products = state.db.products.map((p) => {
+    if (!ids.includes(p.id)) return p
+    let next = p
+    if (section === GLOBAL) {
+      next = applyGlobal(p, patch as GlobalPatch, { minor: mode === 'minor', how })
+      if (mode === 'submit' && next.status.status === 'draft') next = transitioned(next, GLOBAL, 'in_review')
+    } else {
+      const old = p.variants[section]
+      const base: Variant = old ?? { ...emptyLocal(), notes: '', inheritsGlobal: false, websiteStatus: 'not_live', sourceVersion: p.content.version, version: 0, meta: { status: 'draft', updatedBy: state.userId, updatedAt: now() } }
+      const v: Variant = { ...base, ...(patch as Partial<Variant>), inheritsGlobal: false }
+      const fields = VARIANT_FIELDS.filter((k) => JSON.stringify(base[k]) !== JSON.stringify(v[k]))
+      if (!old || fields.length) {
+        const minor = mode === 'minor' && !!old && old.meta.status === 'approved'
+        v.meta = { ...v.meta, status: minor ? 'approved' : afterEdit(v.meta.status), updatedBy: state.userId, updatedAt: now(), reviewNote: undefined }
+        if (minor) v.approved = pick(v, LOCAL_FIELDS) as unknown as LocalCopy
+        v.sourceVersion = p.content.version
+        next = {
+          ...p,
+          markets: p.markets.includes(section) ? p.markets : [...p.markets, section],
+          variants: { ...p.variants, [section]: v },
+          history: [historyEntry(section, minor ? 'minor_update' : old ? 'edited' : 'variant_created', `${minor ? 'Small update to' : old ? 'Changed' : 'Local version started with'} ${listFields(fields)}${how}`, pick(v, VARIANT_FIELDS)), ...p.history],
+        }
+        if (mode === 'submit' && v.meta.status === 'draft') next = transitioned(next, section, 'in_review')
+      }
+    }
+    if (next !== p) changed.push(next)
+    return next
   })
-  toast(to === 'approved' ? 'Approved' : to === 'in_review' ? 'Sent for approval' : 'Sent back to the editor', to === 'draft' ? 'info' : 'ok')
+  commitProducts(products, changed)
+  const n = changed.length
+  if (n) window.setTimeout(() => toast(`Also ${mode === 'submit' ? 'sent for approval' : 'saved'} for ${n} other species`), 50)
+  return n
 }
 
 /* ---------------- History ---------------- */

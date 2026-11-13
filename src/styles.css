@@ -856,3 +856,14 @@ td.sheet-first { padding: 6px 10px; white-space: nowrap; }
 .dash .stats { border-color: var(--border); }
 .dash .stat { padding: 14px 18px; }
 .dash .stat-n { font-size: 24px; }
+
+/* ---------- Also apply to other species ---------- */
+.edit-actions .also { flex: 1 1 100%; display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.also-main { font-weight: 600; color: var(--heading); display: flex; align-items: center; gap: 8px; }
+.also-main svg { color: var(--link); flex-shrink: 0; }
+.also-body { display: flex; flex-direction: column; gap: 8px; padding-left: 26px; }
+.also-list { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.also-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 8px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); font-size: 12.5px; cursor: pointer; }
+.also-chip.on { border-color: var(--link); background: var(--aqua-50, #edf6fa); color: var(--heading); }
+.also-chip input { margin: 0; }
+.also-body p { max-width: none; margin: 0; }
