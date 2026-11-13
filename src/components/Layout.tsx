@@ -112,7 +112,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
     <aside className={`sidebar${open ? ' open' : ''}`}>
       <div className="sidebar-brand">
         {BIOMAR_LOGO ? <img src={BIOMAR_LOGO.url} alt="BioMar" className="brand-logo" /> : <strong>BioMar</strong>}
-        <div className="sidebar-app">Product Information</div>
+        <div className="sidebar-app">The Product Hatchery</div>
         <button className="icon-btn sidebar-close" onClick={onClose} aria-label="Close menu"><X size={20} /></button>
       </div>
       <nav className="sidebar-nav" onClick={onClose}>

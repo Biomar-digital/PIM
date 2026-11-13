@@ -43,7 +43,7 @@ export function exportProducts(products: Product[], users: User[], fileName = 'b
     ['2. Lists (key benefits, pellet sizes, packaging, category, stage) have one item per line in the cell (Alt+Enter in Excel).'],
     ['3. Columns you do not need can be deleted. Empty cells clear the value.'],
     [`4. ${READ_ONLY.join(', ')} are for information and are ignored on import.`],
-    ['5. In Product Information, open Products, choose Import from Excel and select the file. You will see every change before it is saved.'],
+    ['5. In The Product Hatchery, open Products, choose Import from Excel and select the file. You will see every change before it is saved.'],
     ['6. Imported changes become drafts that need approval, like any other edit.'],
     [''],
     ['Allowed values'],

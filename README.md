@@ -1,4 +1,4 @@
-# BioMar Product Information (PIM) – prototype
+# The Product Hatchery: BioMar product information (PIM), prototype
 
 A simple, central place to find, maintain, review and approve BioMar product information:
 global master data, marketing copy, digital assets and market/language versions.

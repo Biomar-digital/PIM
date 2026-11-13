@@ -1,4 +1,4 @@
-// Data model for BioMar Product Information.
+// Data model for The Product Hatchery, BioMar product information.
 //
 // One Product = one master record. Global information (identity, classification, technical
 // details, tagline, hero image) lives on the product and is the same in every locale.

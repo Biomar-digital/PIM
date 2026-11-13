@@ -17,7 +17,7 @@ export function ImportModal({ products, users, onClose }: { products: Product[];
   const read = async (file?: File) => {
     if (!file) return
     setBusy(true); setError(''); setFileName(file.name)
-    try { setResult(await readImport(file, products, users)) } catch { setError('This file could not be read. Use an .xlsx file exported from Product Information.') }
+    try { setResult(await readImport(file, products, users)) } catch { setError('This file could not be read. Use an .xlsx file exported from The Product Hatchery.') }
     setBusy(false)
   }
   const apply = () => {
@@ -65,7 +65,7 @@ export function ImportModal({ products, users, onClose }: { products: Product[];
             </div>
           )}
           {result.changes.length === 0 ? (
-            <p className="muted">No differences found. The file matches what is already in Product Information.</p>
+            <p className="muted">No differences found. The file matches what is already in The Product Hatchery.</p>
           ) : (
             <div className="table-wrap import-preview">
               <table className="table">

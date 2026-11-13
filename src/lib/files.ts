@@ -119,7 +119,7 @@ function sheetLines(p: Product, loc: string, copy: Copy, note: string): Line[] {
   out.push({ text: 'Product details', size: 13, bold: true, gap: 10 })
   for (const [k, v] of facts(p)) if (v) out.push({ text: `${k}: ${v}`, size: 10.5 })
   if (p.lifecycle !== 'active') out.push({ text: `Lifecycle: ${LIFECYCLE_LABEL[p.lifecycle]}`, size: 10.5 })
-  out.push({ text: `BioMar Product Information · ${loc === GLOBAL ? 'Global (English)' : marketLabel(loc)} · ${new Date().toLocaleDateString('en-GB')}. ${note}`, size: 8, gap: 16 })
+  out.push({ text: `The Product Hatchery · BioMar · ${loc === GLOBAL ? 'Global (English)' : marketLabel(loc)} · ${new Date().toLocaleDateString('en-GB')}. ${note}`, size: 8, gap: 16 })
   return out
 }
 
